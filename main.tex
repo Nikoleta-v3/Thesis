@@ -44,6 +44,7 @@
 
 % Mathematics packages
 \usepackage{amsmath}
+\usepackage{amsthm}
 \usepackage{amssymb}
 \usepackage{mathtools}
 
@@ -65,10 +66,16 @@
 
 
 % Package to add features for tables
-\usepackage{multirow}
+\usepackage{multicol,multirow,array}
 \usepackage{booktabs}
+\usepackage{tabularx}
 \setlength{\heavyrulewidth}{1.5pt}
 \setlength{\abovetopsep}{4pt}
+
+% Package to add color for background for tables
+\usepackage{color, colortbl}
+\definecolor{Gray}{gray}{0.92}
+\definecolor{background}{RGB}{5, 66, 81}
 
 % Package to allow sub-figures
 \usepackage{subcaption}
@@ -82,6 +89,21 @@
 \usepackage{tikz}
 \usetikzlibrary{er,positioning, calc, patterns}
 \usetikzlibrary{decorations.pathreplacing}
+
+\usepackage{authblk}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%PARAMETERS%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\totalarticles}{\input{src/chapters/chapters-03/paper/Literature-Article/assets/total_articles.txt}}
+\newcommand{\manual}{\input{src/chapters/chapters-03/paper/Literature-Article/assets/prov_manual.txt}}
+\newcommand{\authors}{\input{src/chapters/chapters-03/paper/Literature-Article/assets/number_of_authors.txt}}
+\newcommand{\edges}{\input{src/chapters/chapters-03/paper/Literature-Article/assets/num_Edges.txt}}
+\newcommand{\isolated}{\input{src/chapters/chapters-03/paper/Literature-Article/assets/num_Isolated_nodes.txt}}
+\newcommand{\isolatedpercentage}{\input{src/chapters/chapters-03/paper/Literature-Article/assets/perce_Isolated_nodes.txt}}
+\newcommand{\connectedcomponents}{\input{src/chapters/chapters-03/paper/Literature-Article/assets/num_Connected_components.txt}}
+\newcommand{\communities}{\input{src/chapters/chapters-03/paper/Literature-Article/assets/num_Communities.txt}}
+\newcommand{\largestcc}{\input{src/chapters/chapters-03/paper/Literature-Article/assets/Size_of_largest_component.txt}}
+\newcommand{\clustering}{\input{src/chapters/chapters-03/paper/Literature-Article/assets/Clustering_coeff.txt}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % ----------------------------------------------------------------------------
 % The actual report
 % ----------------------------------------------------------------------------
@@ -108,9 +130,7 @@
 
 \input{src/chapters/chapters-01/main.tex}
 \input{src/chapters/chapters-02/main.tex}
-% \input{chapters/chapter3.tex}
-% \input{chapters/chapter4.tex}
-
+\input{src/chapters/chapters-03/main.tex}
 
 
 \addcontentsline{toc}{chapter}{References}
