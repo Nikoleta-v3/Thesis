@@ -47,6 +47,10 @@
 \usepackage{amsthm}
 \usepackage{amssymb}
 \usepackage{mathtools}
+\newcommand{\R}{\mathbb{R}}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\def\arraystretch{1.5}
 
 % A package to include graphics files (jpg, png, eps, pdf etc...)
 \usepackage{graphicx}
@@ -82,7 +86,11 @@
 
 % Package to add algorithms
 \usepackage[ruled,vlined]{algorithm2e}
+\usepackage[noend]{algpseudocode}
 \usepackage{setspace}
+\makeatletter
+\def\BState{\State\hskip-\ALG@thistlm}
+\makeatother
 
 % A package to generate latin. You do not need this: I am just using it to get
 % random text.
@@ -138,6 +146,7 @@
 \input{src/chapters/chapters-02/main.tex}
 \input{src/chapters/chapters-03/main.tex}
 \input{src/chapters/chapters-04/main.tex}
+\input{src/chapters/chapters-05/main.tex}
 
 \addcontentsline{toc}{chapter}{References}
 \printbibliography[title=References]
