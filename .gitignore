@@ -1,0 +1,8 @@
+*.DS_Store
+*.aux
+*.bcf
+*.lof
+*.log
+*.lot
+*.toc
+*.run.xml
