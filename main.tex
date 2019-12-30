@@ -80,6 +80,9 @@
 % Package to allow sub-figures
 \usepackage{subcaption}
 
+% Package to add algorithms
+\usepackage[ruled,vlined]{algorithm2e}
+\usepackage{setspace}
 
 % A package to generate latin. You do not need this: I am just using it to get
 % random text.
@@ -91,7 +94,6 @@
 \usetikzlibrary{decorations.pathreplacing}
 
 \usepackage{authblk}
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%PARAMETERS%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newcommand{\totalarticles}{\input{src/chapters/chapters-03/paper/Literature-Article/assets/total_articles.txt}}
 \newcommand{\manual}{\input{src/chapters/chapters-03/paper/Literature-Article/assets/prov_manual.txt}}
@@ -103,6 +105,10 @@
 \newcommand{\communities}{\input{src/chapters/chapters-03/paper/Literature-Article/assets/num_Communities.txt}}
 \newcommand{\largestcc}{\input{src/chapters/chapters-03/paper/Literature-Article/assets/Size_of_largest_component.txt}}
 \newcommand{\clustering}{\input{src/chapters/chapters-03/paper/Literature-Article/assets/Clustering_coeff.txt}}
+
+\newcommand{\uniquenumberofseeds}{\input{src/chapters/chapters-04/paper/axlml/paper/unique_number_of_seeds.tex}}
+\newcommand{\numberofalltournaments}{\input{src/chapters/chapters-04/paper/axlml/paper/number_of_all_tournaments.tex}}
+\newcommand{\numberofstrategies}{\input{src/chapters/chapters-04/paper/axlml/paper/unique_number_of_strategies.tex}}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % ----------------------------------------------------------------------------
 % The actual report
@@ -131,7 +137,7 @@
 \input{src/chapters/chapters-01/main.tex}
 \input{src/chapters/chapters-02/main.tex}
 \input{src/chapters/chapters-03/main.tex}
-
+\input{src/chapters/chapters-04/main.tex}
 
 \addcontentsline{toc}{chapter}{References}
 \printbibliography[title=References]
