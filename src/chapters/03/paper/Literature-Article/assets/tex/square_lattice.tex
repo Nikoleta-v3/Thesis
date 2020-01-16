@@ -1,0 +1,50 @@
+\documentclass{standalone}
+
+\usepackage{standalone}
+\usepackage{tikz}
+\usetikzlibrary{er,positioning, calc}
+
+\begin{document}
+
+    \begin{tikzpicture}
+        \tikzstyle{state}=[minimum width=0.1cm, font=\boldmath];
+
+        \node[circle, draw=black, fill=gray!] (0) at (0, 0) [state] {};
+        \node[circle, draw=black, fill=gray!] (1) at (1, 0) [state] {};
+        \node[circle, draw=black, fill=gray!] (1) at (1, 0) [state] {};
+        \node[circle, draw=black, fill=gray!] (2) at (0, -1) [state] {};
+        \node[circle, draw=black, fill=gray!] (3) at (1, -1) [state] {};
+
+        \node[circle, draw=black, fill=gray!] (4) at (1, 1) [state] {};
+        \node[circle, draw=black, fill=gray!] (5) at (0, 1) [state] {};
+        \node[circle, draw=black, fill=gray!] (6) at (0, -2) [state] {};
+        \node[circle, draw=black, fill=gray!] (7) at (1, -2) [state] {};
+
+        \node[circle, draw=black, fill=gray!] (8) at (-1, 0) [state] {};
+        \node[circle, draw=black, fill=gray!] (9) at (2, 0) [state] {};
+        \node[circle, draw=black, fill=gray!] (10) at (2, -1) [state] {};
+        \node[circle, draw=black, fill=gray!] (11) at (-1, -1) [state] {};
+
+        \node[circle, draw=black, fill=gray!] (12) at (-1, 1) [state] {};
+        \node[circle, draw=black, fill=gray!] (13) at (2, 1) [state] {};
+        \node[circle, draw=black, fill=gray!] (14) at (-1, -2) [state] {};
+        \node[circle, draw=black, fill=gray!] (15) at (2, -2) [state] {};
+
+        \draw (12) edge[out=90, in=-90, -, thick, gray!] node {} (14);
+        \draw (12) edge[out=180, in=0, -, thick, gray!] node {} (13);
+        \draw (13) edge[out=90, in=-90, -, thick, gray!] node {} (15);
+        \draw (14) edge[out=180, in=0, -, thick, gray!] node {} (15);
+
+        \draw (8) edge[out=180, in=0, -, thick, gray!] node {} (9);
+        \draw (11) edge[out=180, in=0, -, thick, gray!] node {} (10);
+
+        \draw (5) edge[out=90, in=-90, -, thick, gray!] node {} (6);
+        \draw (4) edge[out=90, in=-90, -, thick, gray!] node {} (7);
+
+        \node[circle, draw=red, fill=red] (0) at (0, 0) [state] {};
+        \draw (8) edge[out=0, in=180, -, ultra thick, red , dotted] node {} (0);
+        \draw (1) edge[out=180, in=0, -, ultra thick, red , dotted] node {} (0);
+        \draw (5) edge[out=-90, in=90, -, ultra thick, red, dotted] node {} (0);
+        \draw (2) edge[out=90, in=-90, -, ultra thick, red, dotted] node {} (0);
+    \end{tikzpicture}
+\end{document}
