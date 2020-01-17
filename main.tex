@@ -55,20 +55,6 @@
 % A package to include graphics files (jpg, png, eps, pdf etc...)
 \usepackage{graphicx}
 
-% A package that gives more control for bibliographies than the default
-\usepackage[backend=biber,
-			maxcitenames=2,
-			maxbibnames=99,
-			doi=false,
-			url=false,
-			bibstyle=apa,
-			firstinits,
-			uniquename=init,
-			style=authoryear
-            ]{biblatex}
-\addbibresource{bibliography.bib}
-
-
 % Package to add features for tables
 \usepackage{multicol,multirow,array}
 \usepackage{booktabs}
@@ -103,20 +89,20 @@
 
 \usepackage{authblk}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%PARAMETERS%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\newcommand{\totalarticles}{\input{src/chapters/chapters-03/paper/Literature-Article/assets/total_articles.txt}}
-\newcommand{\manual}{\input{src/chapters/chapters-03/paper/Literature-Article/assets/prov_manual.txt}}
-\newcommand{\authors}{\input{src/chapters/chapters-03/paper/Literature-Article/assets/number_of_authors.txt}}
-\newcommand{\edges}{\input{src/chapters/chapters-03/paper/Literature-Article/assets/num_Edges.txt}}
-\newcommand{\isolated}{\input{src/chapters/chapters-03/paper/Literature-Article/assets/num_Isolated_nodes.txt}}
-\newcommand{\isolatedpercentage}{\input{src/chapters/chapters-03/paper/Literature-Article/assets/perce_Isolated_nodes.txt}}
-\newcommand{\connectedcomponents}{\input{src/chapters/chapters-03/paper/Literature-Article/assets/num_Connected_components.txt}}
-\newcommand{\communities}{\input{src/chapters/chapters-03/paper/Literature-Article/assets/num_Communities.txt}}
-\newcommand{\largestcc}{\input{src/chapters/chapters-03/paper/Literature-Article/assets/Size_of_largest_component.txt}}
-\newcommand{\clustering}{\input{src/chapters/chapters-03/paper/Literature-Article/assets/Clustering_coeff.txt}}
+\newcommand{\totalarticles}{\input{src/chapters/03/paper/Literature-Article/assets/total_articles.txt}}
+\newcommand{\manual}{\input{src/chapters/03/paper/Literature-Article/assets/prov_manual.txt}}
+\newcommand{\authors}{\input{src/chapters/03/paper/Literature-Article/assets/number_of_authors.txt}}
+\newcommand{\edges}{\input{src/chapters/03/paper/Literature-Article/assets/num_Edges.txt}}
+\newcommand{\isolated}{\input{src/chapters/03/paper/Literature-Article/assets/num_Isolated_nodes.txt}}
+\newcommand{\isolatedpercentage}{\input{src/chapters/03/paper/Literature-Article/assets/perce_Isolated_nodes.txt}}
+\newcommand{\connectedcomponents}{\input{src/chapters/03/paper/Literature-Article/assets/num_Connected_components.txt}}
+\newcommand{\communities}{\input{src/chapters/03/paper/Literature-Article/assets/num_Communities.txt}}
+\newcommand{\largestcc}{\input{src/chapters/03/paper/Literature-Article/assets/Size_of_largest_component.txt}}
+\newcommand{\clustering}{\input{src/chapters/03/paper/Literature-Article/assets/Clustering_coeff.txt}}
 
-\newcommand{\uniquenumberofseeds}{\input{src/chapters/chapters-04/paper/axlml/paper/unique_number_of_seeds.tex}}
-\newcommand{\numberofalltournaments}{\input{src/chapters/chapters-04/paper/axlml/paper/number_of_all_tournaments.tex}}
-\newcommand{\numberofstrategies}{\input{src/chapters/chapters-04/paper/axlml/paper/unique_number_of_strategies.tex}}
+\newcommand{\uniquenumberofseeds}{\input{src/chapters/04/paper/axlml/paper/unique_number_of_seeds.tex}}
+\newcommand{\numberofalltournaments}{\input{src/chapters/04/paper/axlml/paper/number_of_all_tournaments.tex}}
+\newcommand{\numberofstrategies}{\input{src/chapters/04/paper/axlml/paper/unique_number_of_strategies.tex}}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % ----------------------------------------------------------------------------
 % The actual report
@@ -142,19 +128,19 @@
 \pagestyle{normal} %set header-footer style rest of report
 
 
-\input{src/chapters/chapters-01/main.tex}
-\input{src/chapters/chapters-02/main.tex}
-\input{src/chapters/chapters-03/main.tex}
-\input{src/chapters/chapters-04/main.tex}
-\input{src/chapters/chapters-05/main.tex}
-\input{src/chapters/chapters-06/main.tex}
-\input{src/chapters/chapters-07/main.tex}
-\input{src/chapters/chapters-08/main.tex}
+\input{src/chapters/01/main.tex}
+\input{src/chapters/02/main.tex}
+\input{src/chapters/03/main.tex}
+\input{src/chapters/04/main.tex}
+\input{src/chapters/05/main.tex}
+\input{src/chapters/06/main.tex}
+\input{src/chapters/07/main.tex}
+\input{src/chapters/08/main.tex}
 
 
 
-\addcontentsline{toc}{chapter}{References}
-\printbibliography[title=References]
+\bibliographystyle{plain}
+\bibliography{bibliography.bib}
 
 \begin{appendices}
 % \input{chapters/appendix.tex}
