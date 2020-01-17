@@ -25,6 +25,7 @@ jobs:
     - name: Install latex libs
       run: |
         sudo apt-get update
+        sudo apt-get install -y texlive-latex-extra
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
