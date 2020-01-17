@@ -147,13 +147,13 @@ strategy \(p\) against an opponent \(q\), denoted as \(u_q(p)\), is given by
 
 \begin{figure}
     \centering
-    \includestandalone[width=.35\textwidth]{src/chapters/chapters-05/paper/Memory-size-in-the-prisoners-dilemma/tex/markov_chain}
+    \includestandalone[width=.35\textwidth]{src/chapters/05/paper/Memory-size-in-the-prisoners-dilemma/tex/markov_chain}
     \caption{Markov Chain}
     \label{fig:markov_chain}
 \end{figure}
 
 \begin{equation}\label{eq:transition_matrix}
-    \input{src/chapters/chapters-05/paper/Memory-size-in-the-prisoners-dilemma/tex/m_matrix.tex}
+    \input{src/chapters/05/paper/Memory-size-in-the-prisoners-dilemma/tex/m_matrix.tex}
 \end{equation}
 
 
@@ -182,12 +182,12 @@ Theorem~\ref{theorem:quadratic_form_u}.
     \begin{equation}
     \resizebox{0.9\linewidth}{!}{\arraycolsep=2.5pt%
     \boldmath\(
-    Q = \input{src/chapters/chapters-05/paper/Memory-size-in-the-prisoners-dilemma/tex/q_numerator}\)},
+    Q = \input{src/chapters/05/paper/Memory-size-in-the-prisoners-dilemma/tex/q_numerator}\)},
     \end{equation}
     \begin{equation}\label{eq:q_bar_matrix}
     \resizebox{0.8\linewidth}{!}{\arraycolsep=2.5pt%
     \boldmath\(
-    \bar{Q} =  \input{src/chapters/chapters-05/paper/Memory-size-in-the-prisoners-dilemma/tex/q_denominator}\)}.
+    \bar{Q} =  \input{src/chapters/05/paper/Memory-size-in-the-prisoners-dilemma/tex/q_denominator}\)}.
     \end{equation}
     \end{center}
 
@@ -195,15 +195,15 @@ Theorem~\ref{theorem:quadratic_form_u}.
 
     \begin{equation}\label{eq:q_matrix_numerator}
     \resizebox{0.3\linewidth}{!}{\arraycolsep=2.5pt%
-    \boldmath\(c = \input{src/chapters/chapters-05/paper/Memory-size-in-the-prisoners-dilemma/tex/c_numerator}\),}
+    \boldmath\(c = \input{src/chapters/05/paper/Memory-size-in-the-prisoners-dilemma/tex/c_numerator}\),}
     \end{equation}
     \begin{equation}\label{eq:q_matrix_denominator}
     \resizebox{0.3\linewidth}{!}{\arraycolsep=2.5pt%
-    \boldmath\(\bar{c} = \input{src/chapters/chapters-05/paper/Memory-size-in-the-prisoners-dilemma/tex/c_denominator}\),
+    \boldmath\(\bar{c} = \input{src/chapters/05/paper/Memory-size-in-the-prisoners-dilemma/tex/c_denominator}\),
     }
     \end{equation}
-    and the constant terms \(a, \bar{a}\) are defined as \(a = \input{src/chapters/chapters-05/paper/Memory-size-in-the-prisoners-dilemma/tex/numerator_constant}\) and
-    \(\bar{a} = \input{src/chapters/chapters-05/paper/Memory-size-in-the-prisoners-dilemma/tex/denominator_constant}\).
+    and the constant terms \(a, \bar{a}\) are defined as \(a = \input{src/chapters/05/paper/Memory-size-in-the-prisoners-dilemma/tex/numerator_constant}\) and
+    \(\bar{a} = \input{src/chapters/05/paper/Memory-size-in-the-prisoners-dilemma/tex/denominator_constant}\).
 \end{theorem}
 
 The proof of Theorem~\ref{theorem:quadratic_form_u} is given in
@@ -226,10 +226,10 @@ and can be found at.
 \begin{figure}[!htbp]
     \begin{center}
         \begin{subfigure}{0.45\textwidth}
-            \includegraphics[width=\linewidth]{src/chapters/chapters-05/paper/Memory-size-in-the-prisoners-dilemma/img/validation_against_player_one.pdf}
+            \includegraphics[width=\linewidth]{src/chapters/05/paper/Memory-size-in-the-prisoners-dilemma/img/validation_against_player_one.pdf}
         \end{subfigure}
         \begin{subfigure}{0.45\textwidth}
-            \includegraphics[width=\linewidth]{src/chapters/chapters-05/paper/Memory-size-in-the-prisoners-dilemma/img/validation_against_player_two.pdf}
+            \includegraphics[width=\linewidth]{src/chapters/05/paper/Memory-size-in-the-prisoners-dilemma/img/validation_against_player_two.pdf}
         \end{subfigure}
     \end{center}
     \caption{Simulated and empirical utilities for \(p = (0, 1, 0, 1)\)
@@ -273,7 +273,7 @@ that the simulated behaviour has been captured successfully.
 
 \begin{figure}[!htbp]
     \begin{center}
-    \includegraphics[width=.5\linewidth]{src/chapters/chapters-05/paper/Memory-size-in-the-prisoners-dilemma/img/Stewart_tournament_results.pdf}
+    \includegraphics[width=.5\linewidth]{src/chapters/05/paper/Memory-size-in-the-prisoners-dilemma/img/Stewart_tournament_results.pdf}
     \caption{The utilities of memory-one strategies \((\frac{1}{3}, \frac{1}{3}, \frac{1}{3}, p_4)\) for
     \(p_4 \in \{0,  \frac{1}{19}, \frac{2}{19}, \dots, \frac{18}{19}, 1\}\)
     against the 10 memory-one strategies described in~\cite{Stewart2012}.
@@ -296,7 +296,7 @@ Figure~\ref{fig:hypothesis}.
 
 \begin{figure}[!htbp]
     \begin{center}
-    \includegraphics[width=.5\linewidth]{src/chapters/chapters-05/paper/Memory-size-in-the-prisoners-dilemma/img/mean_vs_average_heatmap.pdf}
+    \includegraphics[width=.5\linewidth]{src/chapters/05/paper/Memory-size-in-the-prisoners-dilemma/img/mean_vs_average_heatmap.pdf}
     \end{center}
     \caption{The difference between the average utility against the opponents
     from~\cite{Stewart2012} and the utility against the average player of the
@@ -483,7 +483,7 @@ experiments.
 \begin{figure}[!htb]
     \begin{subfigure}{0.49\textwidth}
         \centering
-        \includegraphics[width=\linewidth]{src/chapters/chapters-05/paper/Memory-size-in-the-prisoners-dilemma/img/population_defection_takes_over.pdf}
+        \includegraphics[width=\linewidth]{src/chapters/05/paper/Memory-size-in-the-prisoners-dilemma/img/population_defection_takes_over.pdf}
         \caption{For opponents \(q_{1}=(\frac{371}{1250},\frac{4693}{25000},\frac{4037}{50000},\frac{18461}{25000})\),
         $q_{2}=(\frac{48841}{100000},\frac{30587}{50000},\frac{76591}{100000},\frac{25921}{50000})$ and
         $q_{3}=(\frac{22199}{100000},\frac{87073}{100000},\frac{646}{3125},\frac{91861}{100000})$
@@ -494,7 +494,7 @@ experiments.
     \end{subfigure}\hfill
     \begin{subfigure}{0.49\textwidth}
         \centering
-        \includegraphics[width=\linewidth]{src/chapters/chapters-05/paper/Memory-size-in-the-prisoners-dilemma/img/population_defection_fails.pdf}
+        \includegraphics[width=\linewidth]{src/chapters/05/paper/Memory-size-in-the-prisoners-dilemma/img/population_defection_fails.pdf}
         \caption{For opponents $q_{1}=(\frac{69773}{100000},\frac{21609}{100000},\frac{97627}{100000},\frac{623}{100000})$,
         $q_{2}=(\frac{12649}{50000},\frac{43479}{100000},\frac{38969}{50000},\frac{19769}{100000})$ and
         $q_{3}=(\frac{96703}{100000},\frac{54723}{100000},\frac{24317}{25000},\frac{35741}{50000})$
@@ -530,7 +530,7 @@ in the last 10\% of iterations.
 
 \begin{figure}[!htbp]
     \begin{center}
-    \includegraphics[width=.5\linewidth]{src/chapters/chapters-05/paper/Memory-size-in-the-prisoners-dilemma/img/bayesian_example.pdf}
+    \includegraphics[width=.5\linewidth]{src/chapters/05/paper/Memory-size-in-the-prisoners-dilemma/img/bayesian_example.pdf}
     \end{center}
     \caption{Utility over time of calls using Bayesian optimisation. The
     opponents are \(q^{(1)} = (\frac{1}{3}, \frac{1}{3}, \frac{1}{3},
@@ -586,13 +586,13 @@ covered.
 \begin{figure}[!htbp]
     \begin{subfigure}{0.49\textwidth}
         \centering
-        \includegraphics[width=\linewidth]{src/chapters/chapters-05/paper/Memory-size-in-the-prisoners-dilemma/img/first_opponent_probabilities.pdf}
+        \includegraphics[width=\linewidth]{src/chapters/05/paper/Memory-size-in-the-prisoners-dilemma/img/first_opponent_probabilities.pdf}
         \subcaption{Distributions of first opponents' probabilities.}
         \label{fig:first_opponents_probabilities}
     \end{subfigure}
     \begin{subfigure}{0.49\textwidth}
         \centering
-        \includegraphics[width=\linewidth]{src/chapters/chapters-05/paper/Memory-size-in-the-prisoners-dilemma/img/second_opponent_probabilities.pdf}
+        \includegraphics[width=\linewidth]{src/chapters/05/paper/Memory-size-in-the-prisoners-dilemma/img/second_opponent_probabilities.pdf}
         \subcaption{Distributions of second opponents' probabilities.}
         \label{fig:second_opponents_probabilities}
     \end{subfigure}
@@ -614,7 +614,7 @@ This analysis will now be extended to an evolutionary setting.
 \begin{figure}[!htbp]
     \begin{minipage}{0.72\textwidth}
             \begin{center}
-                \includegraphics[width=\linewidth]{src/chapters/chapters-05/paper/Memory-size-in-the-prisoners-dilemma/img/best_respones_sserror.pdf}
+                \includegraphics[width=\linewidth]{src/chapters/05/paper/Memory-size-in-the-prisoners-dilemma/img/best_respones_sserror.pdf}
             \end{center}
                 \caption{Distribution of SSE for memory-one best responses, when \(N=2\).}
                 \label{fig:sserror_mem_one}
@@ -623,7 +623,7 @@ This analysis will now be extended to an evolutionary setting.
         \centering
         \captionsetup{type=table}
         \resizebox{.85\columnwidth}{!}{%
-            \input{src/chapters/chapters-05/paper/Memory-size-in-the-prisoners-dilemma/tex/sserror_table.tex}}
+            \input{src/chapters/05/paper/Memory-size-in-the-prisoners-dilemma/tex/sserror_table.tex}}
             \caption{Summary statistics SSE of best response memory one strategies included
             tournaments of \(N=2\).}
             \label{table:sserror_stats}
@@ -686,7 +686,7 @@ detected. A numerical example of the algorithm is given in Figure~\ref{fig:best_
 
 \begin{figure}[!htbp]
     \centering
-    \includegraphics[width=.6\textwidth]{src/chapters/chapters-05/paper/Memory-size-in-the-prisoners-dilemma/img/evolution_example_two.pdf}
+    \includegraphics[width=.6\textwidth]{src/chapters/05/paper/Memory-size-in-the-prisoners-dilemma/img/evolution_example_two.pdf}
     \caption{Best response dynamics with \(N=2\). More specifically, for
     \(q ^{(1)}=(\frac{59}{250},
                 \frac{1031}{10000},
@@ -723,7 +723,7 @@ being tricked.
 \begin{figure}[!htbp]
     \begin{minipage}{0.72\textwidth}
             \begin{center}
-            \includegraphics[width=\linewidth]{src/chapters/chapters-05/paper/Memory-size-in-the-prisoners-dilemma/img/evo_sserror.pdf}
+            \includegraphics[width=\linewidth]{src/chapters/05/paper/Memory-size-in-the-prisoners-dilemma/img/evo_sserror.pdf}
             \end{center}
             \caption{Distribution of SSE of best response memory-one strategies in
             evolutionary settings, when \(N=2\).}
@@ -733,7 +733,7 @@ being tricked.
         \centering
         \captionsetup{type=table}
         \resizebox{.85\columnwidth}{!}{%
-            \input{src/chapters/chapters-05/paper/Memory-size-in-the-prisoners-dilemma/tex/evo_sserror_table.tex}}
+            \input{src/chapters/05/paper/Memory-size-in-the-prisoners-dilemma/tex/evo_sserror_table.tex}}
             \caption{Summary statistics SSE of best response memory-one strategies in
             evolutionary settings, when when \(N=2\).}
             \label{table:sserror_stats}
@@ -742,7 +742,7 @@ being tricked.
 
 \begin{figure}[!htbp]
     \centering
-    \includegraphics[width=.8\textwidth]{src/chapters/chapters-05/paper/Memory-size-in-the-prisoners-dilemma/img/behaviour_violin_plots.pdf}
+    \includegraphics[width=.8\textwidth]{src/chapters/05/paper/Memory-size-in-the-prisoners-dilemma/img/behaviour_violin_plots.pdf}
     \caption{Distributions of \(p^*\) for both best response and evo memory-one
     strategies.}
     \label{fig:behaviour_violin_plots}
@@ -751,7 +751,7 @@ being tricked.
 \begin{table}[!htbp]
     \centering
     \resizebox{.7\columnwidth}{!}{%
-    \input{src/chapters/chapters-05/paper/Memory-size-in-the-prisoners-dilemma/tex/medians_tests.tex}}
+    \input{src/chapters/05/paper/Memory-size-in-the-prisoners-dilemma/tex/medians_tests.tex}}
     \caption{A non parametric test, Wilcoxon Rank Sum, has been performed to
     tests the difference in the median values of the cooperation probabilities
     in tournaments versus evolutionary settings. A non parametric test is used because
@@ -810,13 +810,13 @@ transition probabilities are given in Figures
 \begin{figure}[!htbp]
     \begin{subfigure}{0.49\textwidth}
         \centering
-        \includegraphics[width=\linewidth]{src/chapters/chapters-05/paper/Memory-size-in-the-prisoners-dilemma/img/first_opponent_probabilities_with_gambler.pdf}
+        \includegraphics[width=\linewidth]{src/chapters/05/paper/Memory-size-in-the-prisoners-dilemma/img/first_opponent_probabilities_with_gambler.pdf}
         \subcaption{Distributions of first opponents' probabilities for longer memory experiment.}
         \label{fig:first_opponents_probabilities_with_gambler}
     \end{subfigure}
     \begin{subfigure}{0.49\textwidth}
         \centering
-        \includegraphics[width=\linewidth]{src/chapters/chapters-05/paper/Memory-size-in-the-prisoners-dilemma/img/second_opponent_probabilities_with_gambler.pdf}
+        \includegraphics[width=\linewidth]{src/chapters/05/paper/Memory-size-in-the-prisoners-dilemma/img/second_opponent_probabilities_with_gambler.pdf}
         \subcaption{Distributions of second opponents' probabilities for longer memory experiment.}
         \label{fig:second_opponents_probabilities_with_gambler}
     \end{subfigure}
@@ -836,7 +836,7 @@ shorter memory is limiting.
 
 \begin{figure}[!htbp]
     \centering
-    \includegraphics[width=.55\textwidth]{src/chapters/chapters-05/paper/Memory-size-in-the-prisoners-dilemma/img/gambler_performance_against_mem_one.pdf}
+    \includegraphics[width=.55\textwidth]{src/chapters/05/paper/Memory-size-in-the-prisoners-dilemma/img/gambler_performance_against_mem_one.pdf}
     \caption{Utilities of Gambler and best response memory-one strategies for
     130 different pair of opponents.}\label{fig:utilities_gambler_mem_one}
 \end{figure}
@@ -910,16 +910,16 @@ only be more evident.
 
 \section{Proofs of the Theorems}\label{section:appendix_a}
 
-\subsection{Proof of Theorem~\ref{theorem:quadratic_form_u}}\label{appendix:proof_theorem_one}
-\input{src/chapters/chapters-05/paper/Memory-size-in-the-prisoners-dilemma/tex/proof_theorem_one}
+% \subsection{Proof of Theorem~\ref{theorem:quadratic_form_u}}\label{appendix:proof_theorem_one}
+% \input{src/chapters/05/paper/Memory-size-in-the-prisoners-dilemma/tex/proof_theorem_one}
 
-\subsection{Proof of Theorem~\ref{theorem:concavity}}\label{appendix:proof_theorem_three}
-\input{src/chapters/chapters-05/paper/Memory-size-in-the-prisoners-dilemma/tex/proof_theorem_three}
+% \subsection{Proof of Theorem~\ref{theorem:concavity}}\label{appendix:proof_theorem_three}
+% \input{src/chapters/05/paper/Memory-size-in-the-prisoners-dilemma/tex/proof_theorem_three}
 
-\subsection{Proof of Lemma~\ref{lemma:memone_group_best_response}}\label{appendix:proof_lemma_four}
-\input{src/chapters/chapters-05/paper/Memory-size-in-the-prisoners-dilemma/tex/proof_lemma_four}
+% \subsection{Proof of Lemma~\ref{lemma:memone_group_best_response}}\label{appendix:proof_lemma_four}
+% \input{src/chapters/05/paper/Memory-size-in-the-prisoners-dilemma/tex/proof_lemma_four}
 
-\section{Further Examples}\label{section:appendix_b}
+% \section{Further Examples}\label{section:appendix_b}
 
-\subsection{Example of non concavity for \(u(p)\) }\label{appendix:non_concave}
-\input{src/chapters/chapters-05/paper/Memory-size-in-the-prisoners-dilemma/tex/non_concave_example}
+% \subsection{Example of non concavity for \(u(p)\) }\label{appendix:non_concave}
+% \input{src/chapters/05/paper/Memory-size-in-the-prisoners-dilemma/tex/non_concave_example}
