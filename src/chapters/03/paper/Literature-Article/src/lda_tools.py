@@ -88,7 +88,7 @@ def compute_coherence_values(
             corpus=corpus,
             num_topics=num_topics,
             id2word=dictionary,
-            random_seed=100
+            random_seed=100,
         )
         model_list.append(model)
         coherencemodel = CoherenceModel(

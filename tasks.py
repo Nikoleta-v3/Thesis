@@ -13,12 +13,14 @@ def compile(c):
     """
     c.run("latexmk  -interaction=nonstopmode  --xelatex -shell-escape main.tex")
 
+
 @task
 def bibliography(c):
     """
     Merges the bibliography files for each chapter to one.
     """
     c.run("cat src/chapters/01/bibliography.bib > bibliography.bib")
+
 
 @task
 def spellcheck(c):
