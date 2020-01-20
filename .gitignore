@@ -12,3 +12,4 @@
 *.fdb_latexmk
 *.fls
 *.xdv
+*__pycache__/
