@@ -2,11 +2,11 @@
 the field of the Iterated Prisoner's Dilemma}
 
 This manuscript explores the research topics and collaborative behaviour of
-authors in the field of the Prisoner's Dilemma using topic modeling and a graph
+authors in the field of the Prisoner's Dilemma using topic modelling and a graph
 theoretic analysis of the co-authorship network. The analysis identified five
 research topics in the Prisoner's Dilemma which have been relevant of the course
 of time. These are human subject research, biological studies, strategies,
-evolutionary dynamics on networks and modeling problems as a Prisoner's Dilemma
+evolutionary dynamics on networks and modelling problems as a Prisoner's Dilemma
 game. Moreover, the results demonstrated the Prisoner's Dilemma is a field of
 continued interest, and although it is a collaborative field, it is not
 necessarily more collaborative than other scientific fields. The co-authorship
@@ -71,7 +71,7 @@ In \cite{Liu2015, youngblood2018}, a data set from a
 single source, Web of Science, is considered whereas the data set described here, archived
 at~\cite{pd_data_2018}, has been collected from five sources.
 
-Latent Dirichlet Allocation (LDA) is a topic modeling technique proposed
+Latent Dirichlet Allocation (LDA) is a topic modelling technique proposed
 in~\cite{Blei2003} as a generative probabilistic model for discovering
 underlying topics in collections of data.
 Applications of the technique include detection in image data~\cite{Agarwal2008,
@@ -175,7 +175,7 @@ The data set has been archived and is available at~\cite{pd_data_2018}. Note tha
 collection was performed on the \(30^{\text{th}}\) November 2018.
 % TODO Ensure this stay accurate
 
-The relationship between the authors within a field will be modeled as a graph
+The relationship between the authors within a field will be modelled as a graph
 \(G = (V_G, E_G)\) where \(V_G\) is the set of nodes and \(E_G\)  is the set of
 edges. The set \(V_G\) represents the authors and an edge connects two authors
 if and only if those authors have written together. This co-authorship network is
@@ -404,7 +404,7 @@ contributions for each topic for each abstract, \(c_i^ j\) for
 \(i \in \{1, 2, \dots, n\}\) for \(j \in \{1, 2, \dots, N\}\). In essence,
 LDA maps every paper to a vector space of dimension the number of topics. In the case
 of 6 topics it is difficult to visualise the clustering of topics. To overcome
-this a dimensionality reduction approach called t-Distributed Stochastic Neighbor Embedding
+this a dimensionality reduction approach called t-Distributed Stochastic Neighbour Embedding
 (t-SNE)~\cite{Maaten2008} is applied to the LDA model outputs. More specifically,
 t-SNE is used to reduce the dimensions of each \(c^j\) from \(n\) to 2.
 Figure~\ref{fig:lda_visualisation_six}, gives the visualisation of LDA for \(n=6\).
@@ -461,7 +461,7 @@ E, and more specifically:
     research}. Several publications assigned to the topic study the PD by
     setting experiments and having human participants simulate the game
     instead of computer simulations. These articles include~\cite{Matsumoto2016}
-    which showed that prosocial behavior increased with the age of the
+    which showed that prosocial behaviour increased with the age of the
     participants, ~\cite{Zhu2014} which studied the difference in cooperation
     between high-functioning autistic and typically developing
     children,~\cite{Molina2013} explored the gender effect in highschool
@@ -473,7 +473,7 @@ E, and more specifically:
     papers which apply the PD to genetics~\cite{Santorelli2008, Sistrom2015}, to
     the study of tumours~\cite{archetti2013evolutionary, sartakhti2017} and
     viruses~\cite{turner1999prisoner}. Other works include how phenotype affinity
-    can affect the emergence of cooperation~\cite{wu2019phenotype} and modeling
+    can affect the emergence of cooperation~\cite{wu2019phenotype} and modelling
     bacterial communities as a spatial structured social dilemma.
     \item Based on the keywords and the most representative article Topic
     C appears to include publications on PD \textbf{strategies}. Publications
@@ -491,7 +491,7 @@ E, and more specifically:
     on the emergence of cooperation and~\cite{chen2016fixation} which explored
     the fixation probabilities of any two strategies is spatial
     structures.
-    \item The publication assigned to Topic E are on \textbf{modeling problems
+    \item The publication assigned to Topic E are on \textbf{modelling problems
     as a PD game}. Though Topic B is also concerned with problems being formulated
     as a PD, it includes only biological problems. In comparison, the problems
     in Topic E include decision making in
@@ -515,11 +515,11 @@ subjective (the algorithm is determining the output) the interpretation above is
 
 \textbf{Five topics in the PD publications identified by the data set of this
 work are human subject research, biological studies, strategies, evolutionary
-dynamics on networks and modeling problems as a PD}.
+dynamics on networks and modelling problems as a PD}.
 
 These 5 topics nicely
 summarise the PD research. They highlight the interdisciplinarity of the field;
-how it brings together applied modeling of real world situations (Topic B and E)
+how it brings together applied modelling of real world situations (Topic B and E)
 and more theoretical notions such as evolutionary dynamics and optimality of
 strategies.
 
@@ -556,7 +556,7 @@ given by Table \ref{table:topics_per_year}.
     \resizebox{\textwidth}{!}{
     \input{src/chapters/03/paper/Literature-Article/assets/topics_per_year_table}}
     \end{center}
-    \caption{Topic modeling result for the cumulative data set over the periods
+    \caption{Topic modelling result for the cumulative data set over the periods
     }\label{table:topics_per_year}
 \end{table}
 
@@ -708,7 +708,7 @@ an author is 10\% more likely to collaborate with a collaborator's co-author.
 Thus, \textbf{topics ``human subject research'' and ``biological studies'' tend
 to be more collaborative than the topic of ``strategies'', and an authors in
 these are less likely to have at least one collaborator compared to the topic of
-``modeling problems as a PD''}.
+``modelling problems as a PD''}.
 
 \textbf{``Evolutionary dynamics on networks'' also appear to be a collaborative topic}.
 In fact the network of the topic  is a
@@ -821,7 +821,7 @@ attention and publications. In Section~\ref{section:topics} LDA was
 applied to the data set to identify topics on which researchers have been
 publishing. The LDA analysis showed that the data could be classified into 5
 topics associated with human subject research, biological studies, strategies,
-evolutionary dynamics on networks and modeling
+evolutionary dynamics on networks and modelling
 problems as a PD. These topics summarize the field of the PD well, as they
 demonstrate its interdisciplinarity and applications to a variety of problems. A
 temporal analysis explored how relevant these topics have been over the course
@@ -858,7 +858,7 @@ game theoretic sub fields, to evaluate whether the results remain the same.
 %     \item The Numpy library for data manipulation~\cite{walt2011numpy}.
 %     \item The Networkx~\cite{networkx} package for analysing networks.
 %     \item Gephi~\cite{ICWSM09154} open source package for visualising networks.
-%     \item The Gensim library for the topic modeling~\cite{rehurek_lrec}.
+%     \item The Gensim library for the topic modelling~\cite{rehurek_lrec}.
 %     \item The louvain library for calculating the networks modularity \url{https://github.com/taynaud/python-louvain}.
 % \end{itemize}
 
@@ -886,7 +886,7 @@ game theoretic sub fields, to evaluate whether the results remain the same.
 
 \section{Centrality Measures Distributions}
 
-\subsection{Distrubutions for \(G\) and \(\bar{G}\)}
+\subsection{Distributions for \(G\) and \(\bar{G}\)}
 
 \begin{figure}[!hbtp]
     \centering
@@ -902,7 +902,7 @@ game theoretic sub fields, to evaluate whether the results remain the same.
     \label{fig:cc_distributions}
 \end{figure}
 
-\subsection{Distrubutions for Topic Networks}\label{appendix:distributions}
+\subsection{Distributions for Topic Networks}\label{appendix:distributions}
 
 \begin{figure}[!hbtp]
     \centering
