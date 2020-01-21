@@ -1,0 +1,15 @@
+*.DS_Store
+*.aux
+*.bcf
+*.lof
+*.log
+*.lot
+*.toc
+*.out
+*.run.xml
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.xdv
+*__pycache__/
