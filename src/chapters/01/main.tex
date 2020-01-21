@@ -1,9 +1,87 @@
 \chapter{Introduction}
 
-\section{Prisoner's Dilemma}
+This thesis describes ...
 
-\section{Brief Literature Review}
+This introductory chapter is set as follows:
 
-\section{Research Questions \& Thesis Structure}
+\begin{itemize}
+    \item Section~\ref{section:introduction_prisoners_dilemma} introduces
+    the Prisoner's Dilemma.
+    \item Section~\ref{section:introduction_brief_literature} covers a brief
+    literature review.
+    \item Section~\ref{section:research_questions} formalises the research
+    questions and sets out the structure of the thesis.
+\end{itemize}
+
+\section{Prisoner's Dilemma}\label{section:introduction_prisoners_dilemma}
+
+Based on the Darwinian principle of survival of the fittest cooperative behaviour
+should not be favoured, however, cooperation is plentiful in nature.
+A paradigm of understanding the emergence of these behaviours is
+a particular two player non-cooperative game called the Prisoner's Dilemma (PD),
+originally described in~\cite{Flood1958}.
+
+In the PD each player has two choices, to either be selfless and cooperate or to
+be selfish and defect. Each decision is made simultaneously and
+independently. The utility of each player is influenced by its own behaviour,
+and the behaviour of the opponent. Both players do better if they choose to
+cooperate than if both choose to defect. However, a player has the temptation to
+deviate as that player will receive a higher payoff than that of mutual
+cooperation.
+Players' payoffs are generally represented by (\ref{eq:the_pd_payoffs}). Both
+players receive a reward for mutual cooperation, \(R\), and a payoff \(P\) for
+mutual defection. A player that defects while the other cooperates receives a payoff of
+\(T\), whereas the cooperator receives \(S\). The dilemma exists due
+to constraints (\ref{eq:constrain_one}) and (\ref{eq:constrain_two}).
+
+\begin{equation}\label{eq:the_pd_payoffs}
+    \begin{pmatrix}
+    R & S \\ T & P
+    \end{pmatrix}
+\end{equation}
+
+\begin{equation}\label{eq:constrain_one}
+    T > R > P > S
+\end{equation}
+
+\begin{equation}\label{eq:constrain_two}
+    2R > T + S
+\end{equation}
+
+Another common representation of the payoff matrix is given by~(\ref{eq:the_pd_payoffs_with_cost}),
+where \(b\) is the benefit of the altruistic behaviour and \(c\) it's its cost
+(constraints (\ref{eq:constrain_one}) and (\ref{eq:constrain_two}) still hold).
+
+\begin{equation}\label{eq:the_pd_payoffs_with_cost}
+    \begin{pmatrix}
+        b - c & c \\ b & 0
+    \end{pmatrix}
+\end{equation}
+
+Constraints (\ref{eq:constrain_one}-\ref{eq:constrain_two})
+guarantee that it never benefits a player to cooperate, indeed mutual
+defection is a Nash equilibrium. However, when the game is studied in a manner
+where prior outcome matters, defecting is no longer necessarily the dominant
+choice.
+
+The repeated form of the game is called the Iterated Prisoner's Dilemma (IPD)
+and theoretical works have shown that cooperation can emerge once players
+interact repeatedly. Arguably, the most important of these works is Robert
+Axelrod's ``The Evolution of Cooperation''~\cite{Axelrod1984}. In his book
+Axelrod reports on a series of computer tournaments he organised. In these
+tournaments academics from several fields were invited to design computer
+strategies to compete. Axelrod's work showed that greedy
+strategies did very poorly in the long run whereas altruistic strategies did
+better. ``The Evolution of Cooperation'' is considered a milestone in the field
+but it is not the only one. On the contrary, the PD has attracted attention ever
+since the game's origins.
+
+
+\section{Brief Literature Review}\label{section:introduction_brief_literature}
+
+\section{Research Questions \& Thesis Structure}\label{section:research_questions}
+
+This thesis contains ... chapters, together attempting to answer three research
+questions.
 
 \section{Software Development \& Best Practices}
