@@ -1,12 +1,9 @@
-[submodule "src/chapters/04/paper/axlml"]
-	path = src/chapters/04/paper/axlml
-	url = git@github.com:drvinceknight/axlml.git
-[submodule "src/chapters/05/paper/Memory-size-in-the-prisoners-dilemma"]
-	path = src/chapters/05/paper/Memory-size-in-the-prisoners-dilemma
-	url = git@github.com:Nikoleta-v3/Memory-size-in-the-prisoners-dilemma.git
 [submodule "src/chapters/03/paper/Literature-Article"]
 	path = src/chapters/03/paper/Literature-Article
 	url = git@github.com:Nikoleta-v3/Literature-Article.git
-[submodule "src/chapters/05/Memory-size-in-the-prisoners-dilemma"]
-	path = src/chapters/05/Memory-size-in-the-prisoners-dilemma
+[submodule "src/chapters/04/paper/axlml-personal-copy"]
+	path = src/chapters/04/paper/axlml-personal-copy
+	url = git@github.com:Nikoleta-v3/axlml-personal-copy.git
+[submodule "src/chapters/05/paper/Memory-size-in-the-prisoners-dilemma"]
+	path = src/chapters/05/paper/Memory-size-in-the-prisoners-dilemma
 	url = git@github.com:Nikoleta-v3/Memory-size-in-the-prisoners-dilemma.git
