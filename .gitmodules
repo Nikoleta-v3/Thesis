@@ -1,9 +1,3 @@
-[submodule "src/chapters/03/paper/Literature-Article"]
-	path = src/chapters/03/paper/Literature-Article
-	url = git@github.com:Nikoleta-v3/Literature-Article.git
-[submodule "src/chapters/04/paper/axlml-personal-copy"]
-	path = src/chapters/04/paper/axlml-personal-copy
-	url = git@github.com:Nikoleta-v3/axlml-personal-copy.git
-[submodule "src/chapters/05/paper/Memory-size-in-the-prisoners-dilemma"]
-	path = src/chapters/05/paper/Memory-size-in-the-prisoners-dilemma
-	url = git@github.com:Nikoleta-v3/Memory-size-in-the-prisoners-dilemma.git
+[submodule "src/chapters/03/paper/bibliometric-study-of-the-prisoners-dilemma"]
+	path = src/chapters/03/paper/bibliometric-study-of-the-prisoners-dilemma
+	url = https://github.com/Nikoleta-v3/bibliometric-study-of-the-prisoners-dilemma.git
