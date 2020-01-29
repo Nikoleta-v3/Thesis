@@ -38,6 +38,12 @@ jobs:
     - name: Clone submodules
       run: |
         git submodule update --init --recursive
+    - name: Combine and clean bibliography
+      run: |
+        inv bibliography
     - name: Test that pdf compiles
       run: |
         inv compile
+    # - name: Test spellcheck
+    #   run: |
+    #     inv spellcheck
