@@ -99,7 +99,7 @@ words = {
     "src",
     "tex",
     "Anatol",
-    "Axelord",
+    "Axelrod",
     "Axelrod's",
     "ESS",
     "FSM",
@@ -124,4 +124,8 @@ words = {
     "optimization",
     "summarized",
     "topologies",
+    "prosocial",
+    "assortative",
+    "bimodal",
+    "PHP"
 }

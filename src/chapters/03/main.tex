@@ -1,5 +1,5 @@
 \chapter{A bibliometric study of research topics, collaboration and influence in
-the field of the Iterated Prisoner's Dilemma}
+the field of the Iterated Prisoner's Dilemma}\label{chapter:bibliometric_study}
 
 This manuscript explores the research topics and collaborative behaviour of
 authors in the field of the Prisoner's Dilemma using topic modelling and a graph
@@ -20,7 +20,7 @@ connected to a ``main'' group of authors.
 The Prisoner's Dilemma (PD) is a well known game used since its introduction in
 the 1950's~\cite{Flood1958} as a framework for studying the emergence of
 cooperation; a topic of continued interest for mathematical,
-social~\cite{Perc2008}, biological~\cite{Turner1999} and
+social~\cite{Perc2008}, biological~\cite{turner1999prisoner} and
 ecological~\cite{Wu2011} sciences. This manuscript presents a bibliometric
 analysis of 2,420 published articles on the Prisoner's Dilemma between 1951 and
 2018. It presents the dominant topics in the PD publications, which have been
@@ -288,7 +288,7 @@ collected from the aforementioned APIs but have been manually added because they
 are of interest. Examples of such papers include~\cite{Flood1958}
 the first publication on the PD,~\cite{Ohtsuki2006, Stewart2012} two well cited
 articles in the field, and a series of works from Robert Axelrod
-~\cite{Axelrod1980, Axelrod1980more, Axelrod1987, Axelrod1981, Riolo2001} a
+~\cite{Axelrod1980a, Axelrod1980b, Axelrod1987, Axelrod1981, Riolo2001} a
 leading author of the field. A more detailed summary of the articles' provenance
 is given by Table~\ref{table:preliminary_table}. Only 3\% of the data set consists of
 articles that were manually added and 27\% of the articles were collected from
@@ -301,7 +301,7 @@ from arXiv with 11 articles per year, followed by Springer with 9 and PLOS with
 \begin{table}[!hbtp]
     \begin{center}
     \resizebox{.9\textwidth}{!}{
-    \input{src/chapters/03/paper/Literature-Article/assets/preliminary_table}}
+    \input{src/chapters/03/paper/bibliometric-study-of-the-prisoners-dilemma/assets/preliminary_table}}
     \end{center}
     \caption{Summary of~\cite{pd_data_2018} per provenance.}
     \label{table:preliminary_table}
@@ -331,7 +331,7 @@ field of the PD continues to attract academic attention.
 
 \begin{figure}[!hbtp]
     \centering
-    \includegraphics[width=.50\textwidth]{src/chapters/03/paper/Literature-Article/assets/images/forecasting.pdf}
+    \includegraphics[width=.50\textwidth]{src/chapters/03/paper/bibliometric-study-of-the-prisoners-dilemma/assets/images/forecasting.pdf}
     \caption{Number of articles published on the PD 1951-2018 (on a log scale),
     with a fitted exponential line, and a forecast for 2017-2022.}\label{fig:timeseries}
 \end{figure}
@@ -346,7 +346,7 @@ be seen that Matjaz Perc is an outlier. More specifically, most authors have
 
 \begin{figure}[!hbtp]
     \centering
-    \includegraphics[width=.50\textwidth]{src/chapters/03/paper/Literature-Article/assets/images/papers_per_author.pdf}
+    \includegraphics[width=.50\textwidth]{src/chapters/03/paper/bibliometric-study-of-the-prisoners-dilemma/assets/images/papers_per_author.pdf}
     \caption{Distribution of number of papers per author (on a log scale).}
     \label{fig:num_papers_per_author}
 \end{figure}
@@ -369,7 +369,7 @@ researchers.
 
 \begin{figure}[!hbtp]
     \centering
-    \includegraphics[width=.55\textwidth]{src/chapters/03/paper/Literature-Article/assets/images/collaborative_index.pdf}
+    \includegraphics[width=.55\textwidth]{src/chapters/03/paper/bibliometric-study-of-the-prisoners-dilemma/assets/images/collaborative_index.pdf}
     \caption{Collaboration index over time.}\label{fig:ci_over_time}
 \end{figure}
 
@@ -393,7 +393,7 @@ value of 0.418.
 
 \begin{figure}[!hbtp]
     \centering
-    \includegraphics[width=.45\textwidth]{src/chapters/03/paper/Literature-Article/assets/images/coherence_values.pdf}
+    \includegraphics[width=.45\textwidth]{src/chapters/03/paper/bibliometric-study-of-the-prisoners-dilemma/assets/images/coherence_values.pdf}
     \caption{Coherence for LDA models over the number of topics.}
     \label{fig:coherence_value_over_number_of_topcis}
 \end{figure}
@@ -436,12 +436,12 @@ chosen to carry out the analysis of this work, and moreover the LDA model for
     \centering
     \begin{minipage}{.45\textwidth}
         \centering
-        \includegraphics[width=.9\textwidth]{src/chapters/03/paper/Literature-Article/assets/images/topics_scatter_plot_6.pdf}
+        \includegraphics[width=.9\textwidth]{src/chapters/03/paper/bibliometric-study-of-the-prisoners-dilemma/assets/images/topics_scatter_plot_6.pdf}
         \caption{Visualisation of LDA with \(n=6\) on 2 dimensions.}\label{fig:lda_visualisation_six}
     \end{minipage}\hfill
     \begin{minipage}{.45\textwidth}
         \centering
-        \includegraphics[width=.9\textwidth]{src/chapters/03/paper/Literature-Article/assets/images/topics_scatter_plot_5.pdf}
+        \includegraphics[width=.9\textwidth]{src/chapters/03/paper/bibliometric-study-of-the-prisoners-dilemma/assets/images/topics_scatter_plot_5.pdf}
         \caption{Visualisation of LDA with \(n=5\) on 2 dimensions.}\label{fig:lda_visualisation_five}
     \end{minipage}
 \end{figure}
@@ -462,7 +462,7 @@ E, and more specifically:
     setting experiments and having human participants simulate the game
     instead of computer simulations. These articles include~\cite{Matsumoto2016}
     which showed that prosocial behaviour increased with the age of the
-    participants, ~\cite{Zhu2014} which studied the difference in cooperation
+    participants,~\cite{Li20140} which studied the difference in cooperation
     between high-functioning autistic and typically developing
     children,~\cite{Molina2013} explored the gender effect in highschool
     students and~\cite{Bell2017} explored the effect of facial expressions of
@@ -482,7 +482,7 @@ E, and more specifically:
     training of strategies~\cite{ishibuchi2011evolution} with different
     representation methods. Moreover, publications that study the evolutionary
     stability of strategies~\cite{Adami2013} and introduced methods
-    of differentiating between them~\cite{ashlock2008fingerprinting} are
+    of differentiating between them~\cite{Ashlock2008} are
     also assigned to C.
     \item The keywords associated with Topic D clearly show that the topic
     is focused on \textbf{evolutionary dynamics on networks}. Publications include
@@ -504,7 +504,7 @@ E, and more specifically:
 \begin{table}[!hbtp]
     \begin{center}
     \resizebox{\textwidth}{!}{
-    \input{src/chapters/03/paper/Literature-Article/assets/documents_of_topic}}
+    \input{src/chapters/03/paper/bibliometric-study-of-the-prisoners-dilemma/assets/documents_of_topic}}
     \end{center}
     \caption{Keywords for each topic and the document with the most representative article for each topic.}
     \label{table:topics_and_articles}
@@ -535,7 +535,7 @@ seem to be any given topic more or less in fashion}.
 
 \begin{figure}[!hbtp]
     \centering
-    \includegraphics[width=\textwidth]{src/chapters/03/paper/Literature-Article/assets/images/papers_per_topic_over_time.pdf}
+    \includegraphics[width=\textwidth]{src/chapters/03/paper/bibliometric-study-of-the-prisoners-dilemma/assets/images/papers_per_topic_over_time.pdf}
     \caption{Number of articles per topic over the years (on a logged scale).}\label{fig:number_of_articles_per_topic}
 \end{figure}
 
@@ -554,7 +554,7 @@ given by Table \ref{table:topics_per_year}.
 \begin{table}[!hbtp]
     \begin{center}
     \resizebox{\textwidth}{!}{
-    \input{src/chapters/03/paper/Literature-Article/assets/topics_per_year_table}}
+    \input{src/chapters/03/paper/bibliometric-study-of-the-prisoners-dilemma/assets/topics_per_year_table}}
     \end{center}
     \caption{Topic modelling result for the cumulative data set over the periods
     }\label{table:topics_per_year}
@@ -588,7 +588,7 @@ work over time, there were still papers being published on those topics}.
 
 \begin{figure}[!hbtp]
     \centering
-    \includegraphics[width=.75\textwidth]{src/chapters/03/paper/Literature-Article/assets/images/contribution_over_time.pdf}
+    \includegraphics[width=.75\textwidth]{src/chapters/03/paper/bibliometric-study-of-the-prisoners-dilemma/assets/images/contribution_over_time.pdf}
     \caption{Maximum percentage contributions (\(c^*\)) over the time periods,
     for the LDA models for the entire data set for \(n\) equal to 5, 6
     and the optimal number of topics over time.}
@@ -613,11 +613,11 @@ by Table~\ref{table:network_comparison.tex}.
 
 \begin{figure}[!hbtp]\vspace{-2cm}
     \begin{subfigure}{.95\textwidth}\centering
-        \includegraphics[width=.5\textwidth]{src/chapters/03/paper/Literature-Article/assets/images/pd_network.pdf}
+        \includegraphics[width=.5\textwidth]{src/chapters/03/paper/bibliometric-study-of-the-prisoners-dilemma/assets/images/pd_network.pdf}
         \caption{\(G\) the co-authorship network for the IPD.}
     \end{subfigure}\hfill
     \begin{subfigure}{.95\textwidth}\centering
-        \includegraphics[width=.5\textwidth]{src/chapters/03/paper/Literature-Article/assets/images/pd_network_cluster.pdf}
+        \includegraphics[width=.5\textwidth]{src/chapters/03/paper/bibliometric-study-of-the-prisoners-dilemma/assets/images/pd_network_cluster.pdf}
         \caption{\(\bar{G}\) the largest connected component of \(G\).}
      \end{subfigure}
      \caption{A graphical representation of \(G\) and \(\bar{G}\)}\label{fig:graphical_representation_graphs}
@@ -668,7 +668,7 @@ to write with people outside their community.
 \begin{table}[!hbtp]
     \centering
     \resizebox{\textwidth}{!}{
-    \input{src/chapters/03/paper/Literature-Article/assets/network_comparison.tex}}
+    \input{src/chapters/03/paper/bibliometric-study-of-the-prisoners-dilemma/assets/network_comparison.tex}}
     \caption{Network metrics for \(G\) and \(\bar{G}\) respectively.}
     \label{table:network_comparison.tex}
 \end{table}
@@ -676,7 +676,7 @@ to write with people outside their community.
 \begin{table}[!hbtp]
     \centering
     \resizebox{\textwidth}{!}{
-    \input{src/chapters/03/paper/Literature-Article/assets/other_topics_network_comparison.tex}}
+    \input{src/chapters/03/paper/bibliometric-study-of-the-prisoners-dilemma/assets/other_topics_network_comparison.tex}}
     \caption{Network metrics for auction games and price of anarchy networks respectively.}
     \label{table:other_topics_network_comparison.tex}
 \end{table}
@@ -719,7 +719,7 @@ compared to any other topic network.
 \begin{table}[!hbtp]
     \centering
     \resizebox{\textwidth}{!}{
-    \input{src/chapters/03/paper/Literature-Article/assets/topic_network_comparison.tex}}
+    \input{src/chapters/03/paper/bibliometric-study-of-the-prisoners-dilemma/assets/topic_network_comparison.tex}}
     \caption{Network metrics for topic networks.}\label{table:topics_networks}
 \end{table}
 
@@ -757,7 +757,7 @@ only the authors connected to the main cluster}.
 
 \begin{table}[!hbtp]
     \begin{center}
-    \resizebox{.9\textwidth}{!}{\input{src/chapters/03/paper/Literature-Article/assets/centralities_pd_graph.tex}}
+    \resizebox{.9\textwidth}{!}{\input{src/chapters/03/paper/bibliometric-study-of-the-prisoners-dilemma/assets/centralities_pd_graph.tex}}
 \end{center}
 \caption{10 most central authors based on betweenness and closeness centralities
 for \(G\) and \(\bar{G}\).}\label{table:central_authors}
@@ -785,7 +785,7 @@ though it is not clear as to why.
 \newcolumntype{g}{>{\columncolor{Gray}}l}
 \begin{table}[!hbtp]
     \begin{center}
-    \resizebox{.9\textwidth}{!}{\input{src/chapters/03/paper/Literature-Article/assets/betweeness_topics_graphs.tex}}
+    \resizebox{.9\textwidth}{!}{\input{src/chapters/03/paper/bibliometric-study-of-the-prisoners-dilemma/assets/betweeness_topics_graphs.tex}}
 \end{center}
 \caption{10 most central authors based on betweenness centrality
 for topics' networks.}\label{table:central_authors_bc_topics}
@@ -794,7 +794,7 @@ for topics' networks.}\label{table:central_authors_bc_topics}
 \newcolumntype{g}{>{\columncolor{Gray}}l}
 \begin{table}[!hbtp]
     \begin{center}
-    \resizebox{.9\textwidth}{!}{\input{src/chapters/03/paper/Literature-Article/assets/closeness_topics_graphs.tex}}
+    \resizebox{.9\textwidth}{!}{\input{src/chapters/03/paper/bibliometric-study-of-the-prisoners-dilemma/assets/closeness_topics_graphs.tex}}
 \end{center}
 \caption{10 most central authors based on closeness centrality
 for topics' networks.}\label{table:central_authors_cc_topics}
@@ -871,7 +871,7 @@ game theoretic sub fields, to evaluate whether the results remain the same.
 \begin{table}[!hbtp]
     \centering
     \resizebox{.8\textwidth}{!}{
-    \input{src/chapters/03/paper/Literature-Article/assets/cumulative_graphs_table.tex}}
+    \input{src/chapters/03/paper/bibliometric-study-of-the-prisoners-dilemma/assets/cumulative_graphs_table.tex}}
 \end{table}
 
 \newpage
@@ -880,7 +880,7 @@ game theoretic sub fields, to evaluate whether the results remain the same.
 \begin{table}[!hbtp]
     \centering
     \resizebox{.8\textwidth}{!}{
-    \input{src/chapters/03/paper/Literature-Article/assets/cumulative_clusters_table.tex}}
+    \input{src/chapters/03/paper/bibliometric-study-of-the-prisoners-dilemma/assets/cumulative_clusters_table.tex}}
 \end{table}
 
 
@@ -890,14 +890,14 @@ game theoretic sub fields, to evaluate whether the results remain the same.
 
 \begin{figure}[!hbtp]
     \centering
-    \includegraphics[width=.8\textwidth]{src/chapters/03/paper/Literature-Article/assets/images/pd_betweeness_centralities.pdf}
+    \includegraphics[width=.8\textwidth]{src/chapters/03/paper/bibliometric-study-of-the-prisoners-dilemma/assets/images/pd_betweeness_centralities.pdf}
     \caption{Distributions of betweenness centrality in \(G\) and \(\bar{G}\)}
     \label{fig:bc_distributions}
 \end{figure}
 
 \begin{figure}[!hbtp]
     \centering
-    \includegraphics[width=.8\textwidth]{src/chapters/03/paper/Literature-Article/assets/images/pd_closeness_centralities.pdf}
+    \includegraphics[width=.8\textwidth]{src/chapters/03/paper/bibliometric-study-of-the-prisoners-dilemma/assets/images/pd_closeness_centralities.pdf}
     \caption{Distributions of closeness centrality in \(G\) and \(\bar{G}\)}
     \label{fig:cc_distributions}
 \end{figure}
@@ -906,14 +906,14 @@ game theoretic sub fields, to evaluate whether the results remain the same.
 
 \begin{figure}[!hbtp]
     \centering
-    \includegraphics[width=\textwidth]{src/chapters/03/paper/Literature-Article/assets/images/topics_betweeness_distributions.pdf}
+    \includegraphics[width=\textwidth]{src/chapters/03/paper/bibliometric-study-of-the-prisoners-dilemma/assets/images/topics_betweeness_distributions.pdf}
     \caption{Distributions of betweenness centrality in topics' networks.}
     \label{fig:bc_distributions_topics}
 \end{figure}
 
 \begin{figure}[!hbtp]
     \centering
-    \includegraphics[width=\textwidth]{src/chapters/03/paper/Literature-Article/assets/images/topics_closeness_distributions.pdf}
+    \includegraphics[width=\textwidth]{src/chapters/03/paper/bibliometric-study-of-the-prisoners-dilemma/assets/images/topics_closeness_distributions.pdf}
     \caption{Distributions of closeness centrality in topics' networks.}
     \label{fig:cc_distributions_topics}
 \end{figure}
