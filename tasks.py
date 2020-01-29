@@ -26,7 +26,7 @@ def spellcheck(c):
     """
 
     book = list(pathlib.Path("./src/").glob("chapters/0*/main.tex"))
-    exit_codes = []
+    exit_codes = [0]
     for path in book:
         latex = path.read_text()
         aspell_output = subprocess.check_output(

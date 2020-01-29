@@ -124,4 +124,8 @@ words = {
     "optimization",
     "summarized",
     "topologies",
+    "prosocial",
+    "assortative",
+    "bimodal",
+    "PHP"
 }
