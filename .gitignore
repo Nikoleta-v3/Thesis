@@ -13,3 +13,4 @@
 *.fls
 *.xdv
 *__pycache__/
+*.ipynb_checkpoints/

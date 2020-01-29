@@ -44,6 +44,6 @@ jobs:
     - name: Test that pdf compiles
       run: |
         inv compile
-    # - name: Test spellcheck
-    #   run: |
-    #     inv spellcheck
+    - name: Test spellcheck
+      run: |
+        inv spellcheck

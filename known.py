@@ -99,7 +99,7 @@ words = {
     "src",
     "tex",
     "Anatol",
-    "Axelord",
+    "Axelrod",
     "Axelrod's",
     "ESS",
     "FSM",
