@@ -51,6 +51,8 @@
 \newcommand{\N}{\mathbb{N}}
 \newtheorem{theorem}{Theorem}
 \newtheorem{lemma}[theorem]{Lemma}
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
 \def\arraystretch{1.5}
 
 % A package to include graphics files (jpg, png, eps, pdf etc...)
@@ -177,18 +179,27 @@
 \begin{document}
 
 \newgeometry{a4paper, top=25.4mm, bottom=25.4mm, right=25.4mm, left=25.4mm}
-\input{title}
+% \input{title}
 \restoregeometry
 
 \frontmatter
 \pagestyle{chapterstyle} %set header-footer style for front matter
+<<<<<<< HEAD
 \input{abstract.tex}
 \input{acknowledgements.tex}
 \input{dissemination.tex}
+=======
+% \input{executive_summary.tex}
+% \input{acknowledgements.tex}
+>>>>>>> drafts chapter introduction
 
 \tableofcontents
 \listoffigures
 \listoftables
+<<<<<<< HEAD
+=======
+% \input{summary.tex}
+>>>>>>> drafts chapter introduction
 
 \mainmatter
 \pagestyle{normal} %set header-footer style rest of report

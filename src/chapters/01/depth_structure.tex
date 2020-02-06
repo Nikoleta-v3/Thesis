@@ -1,0 +1,30 @@
+\documentclass{standalone}
+
+\usepackage{standalone}
+\usepackage{tikz}
+
+\begin{document}
+    \begin{tikzpicture}[node distance=1cm]
+
+    \node (dummy_up)
+    {};
+    \node[below=10cm of dummy_up] (dummy_down)
+    {};
+
+    \node[right=1cm of dummy_up, punkt] (metatournaments)
+    {4. A meta analysis of tournaments and an evaluation of performance};
+
+    \node[below right=1.5cm of metatournaments, punkt] (lstm)
+    {7. LSTM Player};
+
+    \node[below right=1.5cm of lstm, punkt] (sequences)
+    {6. Best Response Sequences};
+    
+    \node[below right=1.5cm of sequences, punkt] (memoryone)
+    {5. Stability of defection, optimisation of strategies and the limits of
+    memory};
+
+    \draw (dummy_up) edge[->, line width=2mm, out=-90, in=90] node[above, rotate=90] {\Large{\textbf{depth}}} (dummy_down);
+
+    \end{tikzpicture}
+\end{document}

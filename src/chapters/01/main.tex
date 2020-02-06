@@ -1,6 +1,17 @@
 \chapter{Introduction}
 
-This thesis describes ...
+This thesis aim to reinforce the understanding of best responses to environments
+for the Prisoner's Dilemma, one the the most well known examples of a strategic
+game. In the 1984's the book ``The Evolution of Cooperation'' was an initial
+step to computer science being applied to  a field of mathematics used to
+understand the emergence of cooperative behaviour.
+
+This thesis summarises, evaluates and builds upon previous literature to
+push the bounds of our understanding of how mathematical modelling and
+computer science techniques can used in the search of dominant
+behaviour to environments. To summarise, this thesis contributes to the discussion
+of dominant behaviour and provides new mathematical frameworks for the continued
+understanding of the questions raised throughout.
 
 This introductory chapter is set as follows:
 
@@ -9,85 +20,283 @@ This introductory chapter is set as follows:
     the Prisoner's Dilemma.
     \item Section~\ref{section:introduction_brief_literature} covers a brief
     literature review.
-    \item Section~\ref{section:research_questions} formalises the research
+    \item Section~\ref{section:introduction_research_questions} formalises the research
     questions and sets out the structure of the thesis.
+    \item Section~\ref{section:introduction_software_development} cover the
+    software development techniques used throughout of the thesis.
 \end{itemize}
 
 \section{Prisoner's Dilemma}\label{section:introduction_prisoners_dilemma}
 
-Based on the Darwinian principle of survival of the fittest cooperative behaviour
-should not be favoured, however, cooperation is plentiful in nature.
-A paradigm of understanding the emergence of these behaviours is
-a particular two player non-cooperative game called the Prisoner's Dilemma (PD),
-originally described in~\cite{Flood1958}.
+Game theory was formalised in 1944~\cite{VonNeumann1944} and is the study of
+interactions as \textit{strategic games}. A game is a model of interacting
+decision makers refereed to as \textit{players}. Each player has a set of
+possible \textit{actions}. The model captures the interactions of the player's
+actions by allowing each player's \textit{payoffs} to be affected by the actions
+of all players. More precisely, as given in~\cite{Osborne2004}, the formal
+definition of a strategic game is as follows,
 
-In the PD each player has two choices, to either be selfless and cooperate or to
-be selfish and defect. Each decision is made simultaneously and
-independently. The utility of each player is influenced by its own behaviour,
-and the behaviour of the opponent. Both players do better if they choose to
-cooperate than if both choose to defect. However, a player has the temptation to
-deviate as that player will receive a higher payoff than that of mutual
-cooperation.
-Players' payoffs are generally represented by (\ref{eq:the_pd_payoffs}). Both
-players receive a reward for mutual cooperation, \(R\), and a payoff \(P\) for
-mutual defection. A player that defects while the other cooperates receives a payoff of
-\(T\), whereas the cooperator receives \(S\). The dilemma exists due
-to constraints (\ref{eq:constrain_one}) and (\ref{eq:constrain_two}).
+\begin{definition}
+A \textbf{strategic game} consists of
+\begin{itemize}
+    \item a set of player
+    \item for each player, a set of actions
+    \item for each player, payoff functions over the set of all actions.
+\end{itemize}
+\end{definition}
 
-\begin{equation}\label{eq:the_pd_payoffs}
+On the most well known strategic games is the Prisoner's Dilemma (PD) originally
+described in~\cite{Flood1958}. A two player non-cooperative game which
+illustrates aspects of political philosophy and morality; how selfishness will
+lead to an `inefficiency' of the outcome, when selflessness can be
+evolutionarily advantageous.
+
+More specifically, in the PD each player has two actions, to either be selfless
+and cooperate, denoted as (C), or to be selfish and defect, denoted as (D). Each
+decision is made simultaneously and independently. Players' payoffs are
+generally represented by (\ref{eq:pd_definition}). Both players receive a reward
+for mutual cooperation, \(R\), and a payoff \(P\) for mutual defection. A player
+that defects while the other cooperates receives a payoff of \(T\), whereas the
+cooperator receives \(S\).
+
+\begin{equation}\label{eq:pd_definition}
+    S_p =
     \begin{pmatrix}
-    R & S \\ T & P
+        R & S  \\
+        T & P
+    \end{pmatrix}
+    \quad
+    S_q =
+    \begin{pmatrix}
+        R & T  \\
+        S & P
     \end{pmatrix}
 \end{equation}
+
+It is assumed that two cooperating players do better than two defecting ones,
+and thus, the payoff of two cooperating players \(R\) is
+larger than the payoff of two defecting players \(P\). A player, however, has the
+temptation to deviate, as that player will receive a higher payoff \(T\) than
+that of mutual cooperation \(R\) whilst the cooperator's payoff \(S\) is smaller than
+\(P\). In consequence, the payoffs are constrained by
+Equation~(\ref{eq:constrain_one}).
 
 \begin{equation}\label{eq:constrain_one}
     T > R > P > S
 \end{equation}
 
+A second constraint is that which ensures that a social dilemma arises: the sum
+of the utilities to both players is best when they both cooperate,
+Equation~(\ref{eq:constrain_two}).
+
 \begin{equation}\label{eq:constrain_two}
     2R > T + S
 \end{equation}
 
-Another common representation of the payoff matrix is given by~(\ref{eq:the_pd_payoffs_with_cost}),
-where \(b\) is the benefit of the altruistic behaviour and \(c\) it's its cost
-(constraints (\ref{eq:constrain_one}) and (\ref{eq:constrain_two}) still hold).
+A special case of the Prisoner's Dilemma is that of the \textit{donation game}.
+In the donation game each player can cooperate by providing a benefit \(b\) to
+the other player at their cost \(c\) with \(0 < c < d\). Then \(T=b, R=b-c,S=c,
+\text{and } P=0\). The representation of the donation game payoff matrix is
+given by~(\ref{eq:the_pd_payoffs_with_cost}).
 
 \begin{equation}\label{eq:the_pd_payoffs_with_cost}
+    S_p =
     \begin{pmatrix}
-        b - c & c \\ b & 0
+        b - c & c\\
+        b & 0
+    \end{pmatrix}
+    \quad
+    S_q =
+    \begin{pmatrix}
+        b - c & b  \\
+        c & 0
     \end{pmatrix}
 \end{equation}
 
-Constraints (\ref{eq:constrain_one}-\ref{eq:constrain_two})
-guarantee that it never benefits a player to cooperate, indeed mutual
-defection is a Nash equilibrium. However, when the game is studied in a manner
-where prior outcome matters, defecting is no longer necessarily the dominant
-choice.
+This thesis uses the basic PD as given by Equation~\ref{eq:pd_definition}
+throughout, and the values of the payoff used are \(R = 3,P = 1,T = 5,S = 0\).
+These values are the most common in the literature.
 
-The repeated form of the game is called the Iterated Prisoner's Dilemma (IPD)
-and theoretical works have shown that cooperation can emerge once players
-interact repeatedly. Arguably, the most important of these works is Robert
-Axelrod's ``The Evolution of Cooperation''~\cite{Axelrod1984}. In his book
-Axelrod reports on a series of computer tournaments he organised. In these
-tournaments academics from several fields were invited to design computer
-strategies to compete. Axelrod's work showed that greedy
-strategies did very poorly in the long run whereas altruistic strategies did
-better. ``The Evolution of Cooperation'' is considered a milestone in the field
-but it is not the only one. On the contrary, the PD has attracted attention ever
-since the game's origins.
+In a non cooperative game the players interact in order to achieved a most
+preferred outcome. The \textit{best response strategy} is the strategy
+that maximises the utility of a player given a known strategy of the other
+player. A solution concept commonly used in game theory is the Nash equilibrium
+which is a pair of best response strategies at which neither of the players has
+a reason to deviate. Due to constrains (\ref{eq:constrain_one} and
+\ref{eq:constrain_two}) it never benefits a player to cooperate, and once both
+players defect neither have a reason to change their decision. Thus, in the
+Prisoner Dilemma mutual defection is a Nash equilibrium and defection is the
+best response strategy.
 
+The game can be studied in a manner where prior outcome matters whereas
+defecting is no longer necessarily. The repeated form of the game is called the
+Iterated Prisoner's Dilemma (IPD). The IPD differs from the original concept of
+a PD because participants can learn about the behavioral tendencies of their
+counter party. The dominant choice and the best response strategies are no
+longer trivial. Theoretical work has shown that once players interact repeatedly
+complex behaviour can emerge. Arguably, the most important of these works is
+Robert Axelrod's ``The Evolution of Cooperation''~\cite{Axelrod1984} where he
+reports on a series of computer tournaments. These demonstrated that in repeated
+interactions reciprocity allows cooperative behaviour to emergence.
 
 \section{Brief Literature Review}\label{section:introduction_brief_literature}
 
-\section{Research Questions \& Thesis Structure}\label{section:research_questions}
+In the 1980s, Axelrod published on an evolutionary tournament~\cite{Axelrod1981}
+and two round robin tournaments~\cite{Axelrod1980a, Axelrod1980b}. The results
+highlighted the robustness the strategy Tit For Tat which was the winner
+of both round robin tournaments and took over a population of 63 strategies.
+The strategy has kept it's reputation until today and it can be commonly be
+consider as the best basic strategy in the IPD.
 
-This thesis contains ... chapters, together attempting to answer three research
-questions.
+Nevertheless, following Axelrod's tournaments new competitions and mathematical
+models introduced new strategies, each with new traits of dominance.
+A brief summary of selected competitions and the dominating strategies that risen
+from these are given by Table~\ref{table:tournament_refs}.
+
+\begin{table}[htbp]
+    \centering
+    \resizebox{.9\textwidth}{!}{
+    \begin{tabular}{ccll}
+        \toprule
+        Year & Reference & Environment & Dominating Strategies\\
+        \midrule
+        1980 & \cite{Axelrod1980a} & Round robin tournament with 13 participants & Tit For Tat \\
+        1980 & \cite{Axelrod1980b} & Round robin tournament with a probabilistic ending and 13 participants & Tit For Tat\\
+        1984 & \cite{Axelrod1981}  & Evolutionary tournament with 64 participants & Tit For Tat\\
+        1991 & \cite{Bendor1991}   & Round robin tournament with noise and 13 participants & Nice and Forgiving\\
+        2005 & \cite{Kendall2007iterated}  & Varied with 223 participants & Varying \\
+        2012 & \cite{Stewart2012}  & Round robin tournament with 13 & Generous Zero Determinants \\
+        2012 & \cite{Harper2017}   & Round robin tournament with 200 participants & Heuristically trained strategies\\
+        \bottomrule
+    \end{tabular}}
+    \caption{An overview of published tournaments}
+    \label{table:tournament_refs}
+\end{table}
+
+\section{Research Questions \& Thesis Structure}\label{section:introduction_research_questions}
+
+This thesis contains seven chapters, together attempting to answer two research
+questions:
+
+\begin{enumerate}
+    \item What is the optimal behaviour an Iterated Prisoner's Dilemma strategy should adapt as a response to different
+ environments?
+    \item What is are the research topics in the field of the Prisoner's Dilemma?
+    \item Is the academic field of the Prisoner's Dilemma cooperative and is there
+    influence between the authors?
+\end{enumerate}
+
+There are two main part to the thesis. The initial parts aims to answer research
+questions 2 and 3. Chapter~\ref{chapter:literature_review} provides a condensed
+literature review which summarises the already established results of the
+literature. Chapter~\ref{chapter:literature_review} separates the manuscripts
+under different research topics identified by myself. To complement the manual
+separation of articles under research topics,
+Chapter~\ref{chapter:bibliometric_study} automatically partitions 2500 IPD
+articles using natural language processing. The data set with 25000 articles have
+been collected using a bespoke research software. The data set is further
+analysed using network theoretic approaches to answer research question 3.
+
+The second part includes four chapter and it aims to answer research question 1.
+Each chapter uses a different approach, namely:
+Chapter~\ref{chapter:meta_tournaments} evaluates the performance of 195, many
+from the literature, in more than 40000 of different types.
+Chapter~\ref{chapter:memory_one}, focuses on a specific set of IPD strategies
+called memory-one. The thesis uses mathematical modelling to explore the best
+responses to a collection of memory-one strategies as a multidimensional non
+linear optimisation problem, and the benefits of extortionate/manipulative
+behaviour. Chapter~\ref{chapter:best_response_sequence} explores best responses
+in the form of sequences and identifies a series of best response sequences to
+strategies from the literature heuristically. Finally,
+Chapter~\ref{chapter:lstm} trains a sophisticated strategy using a recurrent neural
+network.
+
+The difference between these chapters is their depth in which the explore best
+responses. More specifically, \dots as shown in Figure~\ref{fig:depth_structure}.
 
 \begin{figure}[!hbtp]
     \centering
-    \includestandalone[width=\textwidth]{src/chapters/01/thesis_structure}
+    \includestandalone[width=\textwidth]{src/chapters/01/depth_structure}
+    \caption{The depth of exploration whilst reporting on research question 1.}\label{fig:depth_structure}
+\end{figure}
+
+The seven chapters of the thesis progress in a logical manner, illustrated in
+Figure~\ref{fig:structure_of_thesis}. An arrow between one chapter and another
+implies that work from one is used as motivation of the other.
+
+\begin{figure}[!hbtp]
+    \centering
+    \includestandalone[width=.9\textwidth]{src/chapters/01/thesis_structure}
     \caption{Structure of this thesis.}\label{fig:structure_of_thesis}
 \end{figure}
 
-\section{Software Development \& Best Practices}
+A summary of each chapter is outlines:
+
+\begin{itemize}
+    \item Chapter~\ref{chapter:literature_review} provides a systematic
+    literature review for the Prisoner's Dilemma. It has manually classified
+    paper under research topics and.
+    \item Chapter~\ref{chapter:bibliometric_study} provides a systematic
+    literature review for the Prisoner's Dilemma. It has manually classified
+    paper under research topics and 
+    \item Chapter~\ref{chapter:meta_tournaments} analyses a large data set of
+    computer tournaments. It evaluates \numberofstrategies strategies in more
+    than 40000 tournaments, presents the top performing strategies, and analyzes
+    their salient features.
+    \item Chapter~\ref{chapter:memory_one} explores the full space of memory-one
+    strategies and identifies the best response memory-one strategy against a
+    given set of opponents.
+    \item Chapter~\ref{chapter:best_response_sequence}
+    \item Chapter~\ref{chapter:lstm}
+    \item Chapter 8 summarises the work and indicates possible future directions
+    for the work.
+\end{itemize}
+
+\section{Software Development \& Best Practices}\label{section:introduction_software_development}
+
+The research of this thesis, as many others, heavily rely on software.
+A survey conducted by the at 15 Russell Group Universities.
+92\% of the researchers questioned use software intensively in 
+their work, and 70\% said that ``It would not be practical to 
+conduct my work without software''.
+
+As with all research there is an obligation to ensuring the correctness and
+reproducibility of the results. The software decisions throughout this thesis
+have been driven by these requirements.
+
+Each chapter of this thesis, excluding Chapters~\ref{chapter:literature_review}
+and~\ref{chapter:conclusion} have source code and analysis code associated with
+them. The code of this thesis is written in the programming language Python. The
+source code, the analysis notebooks and the data for each chapter have been
+archived and are available online. The source code and the analysis notebooks
+are also hosted on GitHub. More specifically,
+
+\begin{table}[htbp]
+    \centering
+    \resizebox{\textwidth}{!}{
+    \begin{tabular}{llcc}
+        \toprule
+        {} & GitHub url & Source code citation & Data citation \\
+        \midrule
+        Chapter~\ref{chapter:bibliometric_study}    & \url{https://github.com/Nikoleta-v3/bibliometric-study-of-the-prisoners-dilemma} &
+        \cite{Nikoleta_2017} &  \cite{Pd_data_2018, Anarchy_data_2018, Auction_data_2018}\\
+        Chapter~\ref{chapter:meta_tournaments}      & \url{https://github.com/Nikoleta-v3/meta-analysis-of-prisoners-dilemma-tournaments} &
+        & \cite{Data} \\
+        Chapter~\ref{chapter:memory_one}            & \url{https://github.com/Nikoleta-v3/Memory-size-in-the-prisoners-dilemma}  &  & \cite{Glynatsi2019} \\
+        Chapter~\ref{chapter:best_response_sequence}
+        \&~\ref{chapter:lstm}                       & \url{https://github.com/Nikoleta-v3/Training-IPD-strategies-with-RNN}   &  & \\
+        \bottomrule
+    \end{tabular}}
+    \caption{Citations and GitHub url for source code and data used in the thesis.}
+    \label{table:source_code_data_citations}
+\end{table}
+
+These are also mentioned at the corresponding chapters alongside examples of
+the code's usage.
+
+Several chapter of the thesis make use of the open source package Axelrod-Python.
+Axelrod-Python is an open source project for simulating rounds of the IPD.
+The specific version of Axelrod-Python used at each chapter will be mentioned
+at the start of each chapter.
+
+This thesis itself is hosted on GitHub and uses automatic testing \dots.
