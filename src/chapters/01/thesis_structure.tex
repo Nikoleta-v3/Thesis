@@ -7,10 +7,10 @@
     \begin{tikzpicture}[node distance=1cm]
     \node[punkt] (literature) {2. A systematic literature review of the Prisoner's Dilemma};
 
-    \node[below=1.5cm of literature] (dummy)
+    \node[below=1.2cm of literature] (dummy)
     {};
 
-    \node[right=4.8cm of dummy, punkt] (bibliometrics)
+    \node[right=5.4cm of dummy, punkt] (bibliometrics)
     {3. A bibliometric study of research topics, collaboration and influence in
     the field};
 
@@ -29,6 +29,8 @@
 
     \draw (literature) edge[pil, out=0, in=135] node {} (bibliometrics);
     \draw (literature) edge[pil, out=-90, in=90] node {} (metatournaments);
+    \draw (literature) edge[pil, out=-90, in=135] node {} (memoryone);
+    \draw (literature) edge[pil, out=-90, in=45] node {} (sequences);
     \draw (metatournaments) edge[doublepil, out=0, in=180] node {} (memoryone);
     \draw (metatournaments) edge[doublepil, out=180, in=0] node {} (sequences);
     \draw (sequences) edge[doublepil, out=-90, in=90] node {} (lstm);
