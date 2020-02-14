@@ -1,101 +1,27 @@
 \chapter{A systematic literature review of the Prisoner's Dilemma.}\label{chapter:literature_review}
 
-    The Prisoner's Dilemma is a well known game used since the 1950's as a
-    framework for studying the emergence of cooperation; a topic of continuing
-    interest for mathematical, social, biological and ecological sciences. The
-    iterated version of the game, the Iterated Prisoner's Dilemma, attracted
-    attention in the 1980's after the publication of the ``The Evolution of
-    Cooperation'' and has been a topic of pioneering research ever since. The
-    aim of this paper is to provide a systematic literature review on Prisoner's
-    Dilemma related research. This is achieved by reviewing selected pieces of
-    work and partition the literature into five different sections with each
-    reviewing a different aspect of research. The questions answered in this
-    manuscript are (1) what are the research trends in the field (2) what are
-    the already existing results within the field.
+\section{Introduction}
 
-\section{Introduction}\label{section:introduction}
-
-Based on the Darwinian principle of survival of the fittest cooperative behaviour
-should not be favoured, however, cooperation is plentiful in nature.
-A paradigm of understanding the emergence of these behaviours is
-a particular two player non-cooperative game called the Prisoner's Dilemma (PD),
-originally described in~\cite{Flood1958}.
-
-In the PD each player has two choices, to either be selfless and cooperate or to
-be selfish and defect. Each decision is made simultaneously and
-independently. The utility of each player is influenced by its own behaviour,
-and the behaviour of the opponent. Both players do better if they choose to
-cooperate than if both choose to defect. However, a player has the temptation to
-deviate as that player will receive a higher payoff than that of mutual
-cooperation.
-Players' payoffs are generally represented by (\ref{eq:the_pd_payoffs}). Both
-players receive a reward for mutual cooperation, \(R\), and a payoff \(P\) for
-mutual defection. A player that defects while the other cooperates receives a payoff of
-\(T\), whereas the cooperator receives \(S\). The dilemma exists due
-to constraints (\ref{eq:constrain_one}) and (\ref{eq:constrain_two}).
-
-\begin{equation}\label{eq:the_pd_payoffs}
-    \begin{pmatrix}
-    R & S \\ T & P
-    \end{pmatrix}
-\end{equation}
-
-\begin{equation}\label{eq:constrain_one}
-    T > R > P > S
-\end{equation}
-
-\begin{equation}\label{eq:constrain_two}
-    2R > T + S
-\end{equation}
-
-Another common representation of the payoff matrix is given by~(\ref{eq:the_pd_payoffs_with_cost}),
-where \(b\) is the benefit of the altruistic behaviour and \(c\) it's its cost
-(constraints (\ref{eq:constrain_one}) and (\ref{eq:constrain_two}) still hold).
-
-\begin{equation}\label{eq:the_pd_payoffs_with_cost}
-    \begin{pmatrix}
-        b - c & c \\ b & 0
-    \end{pmatrix}
-\end{equation}
-
-Constraints (\ref{eq:constrain_one}-\ref{eq:constrain_two})
-guarantee that it never benefits a player to cooperate, indeed mutual
-defection is a Nash equilibrium. However, when the game is studied in a manner
-where prior outcome matters, defecting is no longer necessarily the dominant
-choice.
-
-The repeated form of the game is called the Iterated Prisoner's Dilemma (IPD)
-and theoretical works have shown that cooperation can emerge once players
-interact repeatedly. Arguably, the most important of these works is Robert
-Axelrod's ``The Evolution of Cooperation''~\cite{Axelrod1984}. In his book
-Axelrod reports on a series of computer tournaments he organised. In these
-tournaments academics from several fields were invited to design computer
-strategies to compete. Axelrod's work showed that greedy
-strategies did very poorly in the long run whereas altruistic strategies did
-better. ``The Evolution of Cooperation'' is considered a milestone in the field
-but it is not the only one. On the contrary, the PD has attracted attention ever
-since the game's origins.
-
-This manuscript presents a qualitative description of selected pieces
-of work. These have been separated into five sections, each
-reviewing a different aspect of research. The topics reviewed at each section
-are the following:
+This Chapter provides a systematic literature on the Prisoner's Dilemma.
+It partitions the literature in five different sections each reviewing a
+different aspect of research. The Chapter is structured as follows:
 
 \begin{itemize}
-    \item section~\ref{section:origin}, \textbf{Origins of the Prisoner's
-    Dilemma}.
-    \item section~\ref{section:intelligent_design}, \textbf{Axelrod's
-    tournaments and intelligent design of strategies}.
-    \item section~\ref{section:evolutionary_dynamics}, \textbf{Evolutionary dynamics}
-    \item section~\ref{section:structured_strategies}, \textbf{Structured
-    strategies and training}.
-    \item section~\ref{section:software}, \textbf{Software}.
+    \item section~\ref{section:origin} presents the origin of the Prisoner's
+    Dilemma and reviews the early publications in the field and the use of
+    human subject research.
+    \item section~\ref{section:intelligent_design} presents the pioneering computer
+    tournaments of Robert Axelrod and reviews IPD strategies of intelligent design.
+    \item section~\ref{section:evolutionary_dynamics} review research on evolutionary
+    dynamics.
+    \item section~\ref{section:structured_strategies} defines structured
+    strategies in the IPD, the notion of training and discusses related papers.
+    \item section~\ref{section:software} reports several pieces of software
+    used for simulating the PD game.
 \end{itemize}
 
-The aim of this work is to provide a concrete summary of the existing literature
-on the PD. This is done to provide a review which will allow the research
-community to understand overall trends in the field, and already existing
-results.
+The aim of this Chapter is to provide a concrete summary of the existing
+literature on the PD and contribute to research question 1.
 
 \section{Origins of the prisoner's dilemma}\label{section:origin}
 
@@ -127,9 +53,8 @@ in \cite{rapoport1965}.
 Rapoport was also interested in conceptualising strategies that could promote
 international cooperation. Decades later he would submit the winning strategy
 (Tit for Tat) of the first computer tournament, run by Robert Axelrod.
-In the next section these tournaments,
-and several strategies that were designed by researchers, such as Rapoport, are
-introduced.
+These tournaments and several strategies that were designed by researchers, such
+as Rapoport, are introduced in the following section.
 
 \section{Axelrod's tournaments and intelligently designed strategies}
 \label{section:intelligent_design}
@@ -140,10 +65,14 @@ political scientist Robert Axelrod believed that there was no clear answer to th
 question of how to avoid conflict, or even how an individual should play the
 game. Combining his interest in artificial intelligence and political science
 Axelrod created a framework for exploring these questions using computer
-tournaments. Axelrod asked researchers to design a strategy with the purpose of
-wining an IPD tournament. This section covers Axelrod's original
-tournaments as well as research that introduced new intelligently designed
-strategies.
+tournaments.
+
+% Axelrod asked researchers to design a strategy with the purpose of
+% wining an IPD tournament.
+
+% This section covers Axelrod's original
+% tournaments as well as research that introduced new intelligently designed
+% strategies.
 
 Axelrod's tournaments made the study of cooperation of critical interest. As
 described in~\cite{Rapoport2015}, ``Axelrod's “new approach” has been extremely
@@ -164,10 +93,12 @@ to get a more stable estimate of the scores for each pair of play.
 Each participant knew the exact number of turns and had access to the full
 history of each match. Furthermore, Axelrod performed a preliminary tournament
 and the results were known to the participants. This preliminary tournament is
-mentioned in~\cite{Axelrod1980a} but no details were given. The payoff values
-used for equation~(\ref{eq:the_pd_payoffs}) were \(R=3, P=1, T=5\) and \(S=0\).
-These values are commonly used in the literature and unless specified will be
-the values used in the rest of the works described here.
+mentioned in~\cite{Axelrod1980a} but no details were given.
+
+% The payoff values
+% used for equation~(\ref{eq:the_pd_payoffs}) were \(R=3, P=1, T=5\) and \(S=0\).
+% These values are commonly used in the literature and unless specified will be
+% the values used in the rest of the works described here.
 
 The winner of the tournament was determined by the total average score and not
 by the number of matches won. The strategy that was announced the winner was the
@@ -366,7 +297,7 @@ covered in this section.
 
 \begin{figure}[!hbtp]
     \centering
-    \includestandalone{src/chapters/02/natural_selection}
+    \includestandalone{src/chapters/02/tex/natural_selection}
     \caption{Natural selection favours defection in a mixed population of Cooperators
     and Defectors.}\label{fig:natural_selection_diagram}
 \end{figure}
@@ -425,8 +356,8 @@ Local interactions proved that as long as small clusters of cooperators form, wh
 they can benefit from interactions with other cooperators while avoiding
 interactions with defectors, global cooperation will continue. Thus, local
 interactions proved that even for the PD cooperation can emerge. Moreover in
-\cite{Ohtsuki2006}, whilst using the payoff
-matrix~(\ref{eq:the_pd_payoffs_with_cost}), it was shown that cooperation will
+\cite{Ohtsuki2006}, whilst using the donation game (
+Eq~(\ref{eq:donation_game})), it was shown that cooperation will
 evolve in a structured population as long as the benefit to cost ratio \(b / c\)
 is higher than the number of neighbours. In~\cite{Perc2011}, graphs were a probability
 of rewiring ones connections was considered were studied. The rewire could be with any
@@ -438,13 +369,13 @@ carefully and one should keep their number limited.
 \begin{figure}[!hbtp]
 \centering
     \begin{subfigure}{.25\textwidth}
-        \includestandalone[width=\textwidth]{src/chapters/02/square_lattice}
+        \includestandalone[width=\textwidth]{src/chapters/02/tex/square_lattice}
     \end{subfigure}
     \begin{subfigure}{.25\textwidth}\centering
-        \includestandalone[width=\textwidth]{src/chapters/02/hexagonal_lattice}
+        \includestandalone[width=\textwidth]{src/chapters/02/tex/hexagonal_lattice}
      \end{subfigure}
      \begin{subfigure}{.25\textwidth}\centering
-        \includestandalone[width=\textwidth]{src/chapters/02/square_lattice_eight}
+        \includestandalone[width=\textwidth]{src/chapters/02/tex/square_lattice_eight}
      \end{subfigure}
      \caption{Spatial neighbourhoods}\label{fig:topologies}
     \end{figure}
@@ -530,11 +461,11 @@ representation of Tit for Tat.
 
 \begin{figure}[!hbtp]
     \begin{subfigure}{.45\textwidth}\centering
-        \includestandalone[height=.1\textheight]{src/chapters/02/tit_for_tat_fsm_one}
+        \includestandalone[height=.1\textheight]{src/chapters/02/tex/tit_for_tat_fsm_one}
         \caption{Tit for Tat as a finite state machine with 1 state.}\label{fig:representation_a}
     \end{subfigure}
     \begin{subfigure}{.45\textwidth}\centering
-        \includestandalone[height=.1\textheight]{src/chapters/02/tit_for_tat_fsm}
+        \includestandalone[height=.1\textheight]{src/chapters/02/tex/tit_for_tat_fsm}
         \caption{Tit for Tat as a finite state machine with 2 states.}\label{fig:representation_b}
      \end{subfigure}
      \caption{Finite state machine representations of Tit for Tat. A machine
@@ -562,7 +493,7 @@ Figure~\ref{fig:transitive_fingerprinting}.
 
 \begin{figure}[!hbtp]
     \centering
-    \includegraphics[height=.3\textheight]{src/chapters/02/Win-Stay_Lose-Shift.png}
+    \includegraphics[height=.3\textheight]{src/chapters/02/img/Win-Stay_Lose-Shift.png}
     \caption{Pavlov fingerprinting with Tit for Tat used as the probe strategy.
     Figure was generated using~\cite{axelrodproject}.}
     \label{fig:fingerprinting}
@@ -570,7 +501,7 @@ Figure~\ref{fig:transitive_fingerprinting}.
 
 \begin{figure}[!hbtp]
     \centering
-    \includegraphics[height=.3\textheight]{src/chapters/02/Tit_for_Tat_fingerprint.png}
+    \includegraphics[height=.3\textheight]{src/chapters/02/img/Tit_for_Tat_fingerprint.png}
     \caption{Transitive fingerprint of Tit for Tat against a set of 50 random opponents.}
     \label{fig:transitive_fingerprinting}
 \end{figure}
@@ -618,9 +549,9 @@ largest collection of strategies, known to the author. The strategy list of
 the project has been cited by publications~\cite{Anastassacos2018, Hayes2017,
 Neumann2018}.
 
-\section{Conclusion}
+\section{Summary}
 
-This manuscript presented a literature review on the Iterated Prisoner's
+This Chapter presented a literature review on the Iterated Prisoner's
 Dilemma. The opening sections focused on research trends and published works of
 the field, followed by a presentation of research and educational software.
 More specifically, Section~\ref{section:origin}
@@ -665,7 +596,3 @@ cells~\cite{archetti2018, Kaznatchee2017}, as well as in social situations and
 how they can be driven by rewards~\cite{Dridi2018}. New research is still ongoing
 for example in evolutionarily dynamics on graphs~\cite{Allen2017, hathcock2018,
 Liu2017}.
-
-% \newpage
-% \bibliographystyle{plain}
-% \bibliography{bibliography.bib}
