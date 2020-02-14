@@ -87,7 +87,7 @@ review of tournaments that have been conducted since the originals.
 The first reported computer tournament took place in 1980~\cite{Axelrod1980a}. A
 total of 13 strategies were submitted, written in the programming languages
 Fortran or Basic. Each competed in a 200 turn match against all 12 opponents,
-itself and a player that played randomly (called \textbf{Random}). This type of
+itself and a player that played randomly (called \textit{Random}). This type of
 tournament is referred to as a round robin. The tournament was repeated 5 times
 to get a more stable estimate of the scores for each pair of play.
 Each participant knew the exact number of turns and had access to the full
@@ -102,7 +102,7 @@ mentioned in~\cite{Axelrod1980a} but no details were given.
 
 The winner of the tournament was determined by the total average score and not
 by the number of matches won. The strategy that was announced the winner was the
-strategy submitted by Rapoport, \textbf{Tit For Tat}. The success of Tit for Tat
+strategy submitted by Rapoport, \textit{Tit For Tat}. The success of Tit for Tat
 came as a surprise. It was not only the simplest submitted strategy, it would
 always cooperates on the first round and then mimic the opponent's previous
 move, but it had also won the tournament even though it could never beat
@@ -119,19 +119,19 @@ However, 5 different number of turns were selected for each match 63, 77, 151,
 308 and 401, such that the average length would be around 200 turns.
 
 Nine of the original participants competed again in the second tournament. Two
-strategies that remained the same were Tit For Tat and \textbf{Grudger}. Grudger
+strategies that remained the same were Tit For Tat and \textit{Grudger}. Grudger
 is a strategy that will cooperate as long as the opponent does not defect,
 submitted by James W. Friedman. The name Grudger was give to the strategy
 in~\cite{Li20141}, though the strategy goes by many names in the literature such
 as, Spite~\cite{Beaufils1997}, Grim Trigger~\cite{Banks1990} and
-Grim~\cite{Van2015}. New entries in the second tournament included \textbf{Tit
-for Two Tats} submitted by John Maynard Smith and \textbf{KPavlovC}. KPavlovC,
+Grim~\cite{Van2015}. New entries in the second tournament included \textit{Tit
+for Two Tats} submitted by John Maynard Smith and \textit{KPavlovC}. KPavlovC,
 is also known as Simpleton~\cite{rapoport1965}, introduced by Rapoport or just
 Pavlov~\cite{Nowak1993}. The strategy is based on the fundamental behavioural
 mechanism win-stay, lose-shift. Pavlov is heavily studied in the literature and
 similarly to Tit for Tat it is used in tournaments today and has
 had many variants trying to build upon it's success, for example
-\textbf{PavlovD} and \textbf{Adaptive Pavlov}~\cite{Li2007}.
+\textit{PavlovD} and \textit{Adaptive Pavlov}~\cite{Li2007}.
 
 Despite the larger size of the second tournament none of the new entries managed
 to outperform the simpler designed strategy. The winner was once again Tit for
@@ -149,7 +149,7 @@ showed that stochastic uncertainties severely undercut the effectiveness of
 reciprocating strategies and such stochastic uncertainties have to be expected
 in real life situations~\cite{Milinski1987}. For example, in~\cite{Molander1985}
 it is
-proven that in an environment where \textbf{noise} (a probability that a
+proven that in an environment where \textit{noise} (a probability that a
 player's move will be flipped) is introduced two strategies playing Tit for Tat
 receive the same average payoff as two Random players.
 Hammerstein, pointed out that if by mistake, one of two
@@ -160,25 +160,25 @@ The poor performance of the strategy in noisy environments was also demonstrated
 in tournaments. In~\cite{Bendor1991, Donninger1986} round robin
 tournaments with noise were performed, and Tit For Tat did not win.
 The authors concluded that to overcome the noise more generous strategies
-than Tit For Tat were needed. They introduced the strategies \textbf{Nice and Forgiving}
-and \textbf{OmegaTFT} respectively.
+than Tit For Tat were needed. They introduced the strategies \textit{Nice and Forgiving}
+and \textit{OmegaTFT} respectively.
 
 A second type of stochastic uncertainty is
 misperception, where a player's action is made correctly but it is recorded
 incorrectly by the opponent. In~\cite{Wu1995}, a strategy
-called~\textbf{Contrite Tit for Tat} was introduced that was more successful than Tit for Tat
+called~\textit{Contrite Tit for Tat} was introduced that was more successful than Tit for Tat
 in such environments. The difference between the strategies was that Contrite
 Tit for Tat was not so fast to retaliate against a defection.
 
 Several works extended the reciprocity based approach which has led to new
 strategies. For example Gradual~\cite{Beaufils1997} which was constructed to
 have the same qualities as those of Tit for Tat except one,
-\textbf{Gradual} had a memory of the game since the beginning of it. Gradual
+\textit{Gradual} had a memory of the game since the beginning of it. Gradual
 recorded the number of defections by the opponent and punished them with a
 growing number of defections. It would then enter a calming state in which it
 would cooperates for two rounds. In a tournament of 12 strategies, including
 both Tit for Tat and Pavlov, Gradual managed to outperformed them all. A
-strategy with the same intuition as Gradual is \textbf{Adaptive Tit for
+strategy with the same intuition as Gradual is \textit{Adaptive Tit for
 Tat}~\cite{tzafestas-2000a}. Adaptive Tit for Tat does not keep a permanent
 count of past defections, it maintains a continually updated estimate of the
 opponent’s behaviour, and uses this estimate to condition its future actions. In
@@ -194,8 +194,8 @@ team from the University of Southampton submitted a total of 60
 strategies~\cite{A.Rogers2007Ctpw}. All these were strategies that had been
 programmed with a recognition mechanism by default. Once the strategies
 recognised one another, one would act as leader and the other as a follower. The
-follower plays as a \textbf{Cooperator}, cooperates unconditionally and the
-leader would play as a \textbf{Defector} gaining the highest achievable score.
+follower plays as a \textit{Cooperator}, cooperates unconditionally and the
+leader would play as a \textit{Defector} gaining the highest achievable score.
 The followers would defect unconditionally against other strategies to lower
 their score and help the leader. The result was that Southampton had the top
 three performers. Nick Jennings, who was part of the team, said that ``We
@@ -207,20 +207,20 @@ strategy"~\cite{southampton_blog}.
 \subsection{Memory one Strategies}\label{section:memory_one}
 
 A set of strategies that have received a lot of attention in
-the literature are \textbf{memory one} strategies. In~\cite{Nowak1989},
+the literature are \textit{memory one} strategies. In~\cite{Nowak1989},
 Nowak and Sigmund proposed a structure for studying simple strategies that
 remembered only the previous turn, and moreover, only recorded the move of the
-opponent. These are called \textbf{reactive} strategies and they can be
+opponent. These are called \textit{reactive} strategies and they can be
 represented by using three parameters \((y, p_1, p_2)\), where \(y\) is the
 probability to cooperate in the first move, and \(p_1\) and \(p_2\) the
 conditional probabilities to cooperate, given that the opponent's last move was
 a cooperation or a defection. For example Tit For Tat is a reactive strategy and
 it can be written as \((1, 1, 0)\). Another reactive strategy well known in
-the literature is \textbf{Generous Tit for Tat}~\cite{Nowak1992}.
+the literature is \textit{Generous Tit for Tat}~\cite{Nowak1992}.
 
 In~\cite{Nowak1990}, Nowak and Sigmund extended
 their work to include strategies which consider the entire history of the previous turn to make a decision.
-These are called \textbf{memory one} strategies.
+These are called \textit{memory one} strategies.
 If only a single turn of the game is taken into account and depending on the
 simultaneous moves of the two players there are only four possible states that
 the players could be in. These are:
@@ -238,7 +238,7 @@ p_1, p_2, p_3, p_4)\). For example Pavlov's memory one representation is \((1,
 1, 0, 0, 1)\).
 
 Memory one strategies made an impact when a specific set of memory one
-strategies were introduced called \textbf{Zero-determinant}
+strategies were introduced called \textit{Zero-determinant}
 (ZD)~\cite{Press2012}. The American Mathematical Society's news section~\cite{Hilbe2015}
 stated that ``the world of game theory is currently on fire'' and in~\cite{Stewart2012}
 it was stated that
@@ -253,7 +253,7 @@ IPD. Moreover, they argued that memory is not beneficial. In~\cite{Adami2013, Kn
 Hilbe2013, Hilbe2013b, Hilbe2015, KnightHGC17, Knight2019, Lee2015, Stewart2012} the
 effectiveness of ZD strategies is questioned. In~\cite{Adami2013}, it was shown that ZD
 strategies are not evolutionary stable, and in~\cite{Stewart2012} a more
-generous set of ZDs, the~\textbf{Generous ZD}, were shown to outperform the more
+generous set of ZDs, the~\textit{Generous ZD}, were shown to outperform the more
 extortionate ZDs. Finally, in~\cite{Knight2017, KnightHGC17, Knight2019, Lee2015}, the `memory does not benefit a
 strategy' statement was questioned. A set of more complex strategies, strategies
 that take in account the entire history set of the game, were trained and proven
@@ -395,7 +395,7 @@ and strategies obtained from training.
 
 This section covers strategies that are different to that of intelligent design discussed
 in Section~\ref{section:intelligent_design}. These are strategies that have
-been \textbf{trained} using generic strategy archetypes. For example,
+been through a \textit{training} process using generic strategy archetypes. For example,
 in~\cite{Axelrod1987} Axelrod decided to explore deterministic strategies that
 took into account the last 3 turns of the game. As discussed in
 Section~\ref{section:memory_one}, for each turn there are 4 possible outcomes,
@@ -413,14 +413,14 @@ archetype~\cite{Miller1996}, more specifically, Moore
 machines~\cite{moore1956}. He used a genetic algorithm to train finite state
 machines in environments with noise. Miller's results showed that even a small
 difference in noise (from 1\% to 3\%) significantly changed the characteristics
-of the evolving strategies. The strategies he introduced were \textbf{Punish
-Twice}, \textbf{Punish Once for Two Tats} and \textbf{Punish Twice and Wait}.
+of the evolving strategies. The strategies he introduced were \textit{Punish
+Twice}, \textit{Punish Once for Two Tats} and \textit{Punish Twice and Wait}.
 In~\cite{Ashlock2006b} finite state automata and genetic algorithms were also
 used to introduce new strategies. In a series of experiments where the size of
 the population varied, there were two strategies frequently developed by the
 training process and more over they were developed only after the evolution had
-gone on for many generations. These were \textbf{Fortess3} and
-\textbf{Fortess4}.
+gone on for many generations. These were \textit{Fortess3} and
+\textit{Fortess4}.
 Following Miller's work in 1996, the first structured strategies based on neural
 networks that had be trained using a genetic algorithm was introduced
 in~\cite{Harrald1996} by Harrald and Fogel. Harrald and Fogel considered a
@@ -442,8 +442,8 @@ performing individuals are more likely to be replicated and (2)
 a round robin tournament. In a round robin tournament which was simulated using the
 software~\cite{axelrodproject} and the 200 strategies implemented within the
 software, the top spots were dominated by the trained strategies of all the
-archetypes. The top three strategies were \textbf{Evolved
-LookUp 2 2 2}, \textbf{Evolved HMM 5} and \textbf{Evolved FSM 16}.
+archetypes. The top three strategies were \textit{Evolved
+LookUp 2 2 2}, \textit{Evolved HMM 5} and \textit{Evolved FSM 16}.
 
 In~\cite{KnightHGC17} it was demonstrated that these trained strategies
 would overtake the population in a Moran process. The strategies evolved an ability
