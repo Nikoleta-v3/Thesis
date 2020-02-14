@@ -65,8 +65,8 @@ def bibliography(c):
     bib_database.entries.reverse()
     entries = bib_database.entries
 
-    for entry in entries:
-        entry["ID"] = entry["ID"].capitalize()
+    # for entry in entries:
+    #     entry["ID"] = entry["ID"].capitalize()
 
     unique_titles = set(titles)
 
@@ -78,7 +78,7 @@ def bibliography(c):
                 to_keep.append(entry)
                 break
 
-    keys_to_keep = [entry["ID"] for entry in to_keep]
+    keys_to_keep = [entry["ID"].capitalize() for entry in to_keep]
     dropped_keys = list(set(keys) - set(keys_to_keep))
     duplicate_keys = [k for k, v in Counter(keys_to_keep).items() if v > 1]
 
@@ -109,12 +109,12 @@ def bibliography(c):
                 [
                     entry["title"].lower()
                     for entry in bib_database.entries
-                    if entry["ID"] == key
+                    if entry["ID"].capitalize() == key
                 ]
             )
             if SequenceMatcher(None, *unique_titles).ratio() > 0.7:
                 for entry in bib_database.entries:
-                    if key == entry["ID"]:
+                    if key == entry["ID"].capitalize():
                         citations_to_export.append(entry)
                         break
             else:
@@ -126,7 +126,7 @@ def bibliography(c):
                             citations_to_export.append(entry)
         else:
             for entry in bib_database.entries:
-                if key == entry["ID"]:
+                if key == entry["ID"].capitalize():
                     citations_to_export.append(entry)
                     break
 
