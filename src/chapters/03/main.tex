@@ -1,6 +1,13 @@
 \chapter{A bibliometric study of research topics, collaboration and influence in
 the field of the Iterated Prisoner's Dilemma}\label{chapter:bibliometric_study}
 
+\begin{center}
+    The research report in this Chapter has lead in a manuscript entitled: \\
+    \textbf{``A bibliometric study of research topics, collaboration and influence in the field of the Iterated Prisoner's Dilemma''} \\
+    Available at: \url{arxiv.org/abs/1911.06128} \\ \vspace{.5cm}
+    \textit{\textbf{The abstract of the manuscript is the following:}}
+\end{center}
+
 This manuscript explores the research topics and collaborative behaviour of
 authors in the field of the Prisoner's Dilemma using topic modelling and a graph
 theoretic analysis of the co-authorship network. The analysis identified five
@@ -15,101 +22,50 @@ connections across the communities are made. The Prisoner Dilemma authors also
 do not influence or gain much information by their connections, unless they are
 connected to a ``main'' group of authors.
 
+The main differences between the manuscript and the Chapter are:
+
+\begin{itemize}
+    \item Difference 1
+    \item Difference 2
+    \item Difference 3
+\end{itemize}
+
 \section{Introduction}\label{section:introduction}
 
-The Prisoner's Dilemma (PD) is a well known game used since its introduction in
-the 1950's~\cite{Flood1958} as a framework for studying the emergence of
-cooperation; a topic of continued interest for mathematical,
-social~\cite{Perc2008}, biological~\cite{turner1999prisoner} and
-ecological~\cite{Wu2011} sciences. This manuscript presents a bibliometric
-analysis of 2,420 published articles on the Prisoner's Dilemma between 1951 and
-2018. It presents the dominant topics in the PD publications, which have been
-identified using Latent Dirichlet Allocation~\cite{Blei2003}, and it explores the changes in the
-dominant topics over time. The collaborative behaviour of the field is explored
+Chapter~\ref{chapter:literature_review} presented a systematic literature review
+on the Prisoner's Dilemma. The Chapter aimed to summarise the results of the
+established research, and to contribute to the answer to research question 1.
+This was done by partitioning the reviewed literature in five different topics
+corresponding to the sections of Chapter~\ref{chapter:literature_review}. This
+Chapter aims to contribute to the same research questions by an automatic
+approach. Namely, it presents a bibliometric analysis of 2,420 published
+articles on the Prisoner's Dilemma between 1951 and 2018. It presents the
+dominant topics in the PD publications, which have been identified using Latent
+Dirichlet Allocation~\cite{Blei2003}, and it explores the changes in the
+dominant topics over time.
+
+Moreover, this Chapter explores the collaborative behaviour of the field is explored
 using the co-authorship network, and furthermore, the Latent Dirichlet
 Allocation topic analysis is combined with the co-authorship network analysis to assess
 the relative influence of authors in these topics. Assessing the collaborative
-behaviour of the field of collaboration itself is the main aim of this work.
+behaviour of the field of collaboration is the second research question raised
+in this thesis. The Chapter is structured as follows:
 
-As discussed in~\cite{youngblood2018}, bibliometrics (the statistical analysis
-of published works originally described by~\cite{pritchard1969}) has been used
-to support historical assumptions about the development of fields
-\cite{raina1998}, identify connections between scientific growth and policy
-changes \cite{das2016}, develop a quantitative understanding of author
-order~\cite{sekara2018}, and investigate the collaborative structure of an
-interdisciplinary field~\cite{Liu2015}. Most academic research is undertaken in
-the form of collaborative effort and as~\cite{Kyvik2017} points out, it is
-rational that two or more people have the potential to do better as a group
-than individually. Indeed this is the very premise of the Prisoner's Dilemma itself.
-Collaboration in groups has a long tradition in experimental
-sciences and it has be proven to be productive according
-to~\cite{Etzkowitz1992}. The number of collaborations can be different
-between research fields and understanding how collaborative a field is not
-always an easy task. Several studies tend to consider academic citations as a
-measure for these things. A blog post published by Nature~\cite{nature_blog}
-argues that depending on citations can often be misleading because the true
-number of citations can not be known. Citations can be missed due to data entry
-errors, academics are influenced by many more papers than they actually cite and
-several of the citations are superficial.
-
-A more recent approach to measuring collaborative behaviour, and to studying the
-development of a field is to use the co-authorship network, as described
-in~\cite{Liu2015}. The co-authorship network has many advantages as several
-graph theoretic measures can be used as proxies to explain author relationships.
-For example the average degree of a node corresponds to the average number of
-an authors' collaborators, and clustering coefficient corresponds to the extent that
-two collaborators of an author also collaborate with each other.
-In~\cite{Liu2015}, the approach was applied to analyse the development of the field
-``evolution of cooperation'', and in~\cite{youngblood2018} to identify the
-subdisciplines of the interdisciplinary field of ``cultural evolution'' and
-investigate trends in collaboration and productivity between these subdisciplines.
-Moreover, \cite{Li2019} examined the
-long-term impact of co-authorship with established, highly-cited scientists on
-the careers of junior researchers. This paper builds upon the work done
-by~\cite{Liu2015} and ~\cite{youngblood2018}, and extends their methodology.
-In \cite{Liu2015, youngblood2018}, a data set from a
-single source, Web of Science, is considered whereas the data set described here, archived
-at~\cite{pd_data_2018}, has been collected from five sources.
-
-Latent Dirichlet Allocation (LDA) is a topic modelling technique proposed
-in~\cite{Blei2003} as a generative probabilistic model for discovering
-underlying topics in collections of data.
-Applications of the technique include detection in image data~\cite{Agarwal2008,
-Coelho2010} and detection in video~\cite{Niebles2008, Wang2008}. Nevertheless,
-LDA has been applied by several works on publication data for identifying the
-topic structure of a subject area. In~\cite{Inglis2018}, it was applied to the
-publications on mathematical education of the journals ``Educational Studies in
-Mathematics'' and ``Journal for Research in Mathematics Education'' to
-identify the dominant topics that each journal was publishing on. The topics of
-the North American library and Information Science dissertations were 
-studied chronologically in~\cite{Sugimoto2011}, and the main topic of the
-scientific content presented at EvoLang conferences was identified
-in~\cite{Bergmann2018}. In~\cite{Bergmann2018} the LDA approach is combined with
-clustering and a co-authorship network analysis. A clustering analysis is
-applied to the LDA topics, and the co-authorship network is analysed as a whole
-where the clusters are only used to differentiate between the authors' topics.
-In comparison, this works applies
-LDA to identify dominant topics in the Prisoner's Dilemma fields and analyses
-the networks corresponding to these topics individually.
-
-The methodology used in this manuscript (including the data collection) is
+The methodology used in this manuscript, including the data collection, is
 covered in Section~\ref{section:methodology} and a preliminary analysis of the
 data set is presented in Section~\ref{section:preliminary}. This manuscript
 makes usage of the methodology and data to address the following questions:
 
-\begin{enumerate}
-    \item What are the research topics of the Prisoner's Dilemma?
-    \item Is one topic currently more in fashion?
-    \item How have the research topics changed over the years?
-    \item Is the Prisoner's Dilemma a collaborative field?
-    \item Are some topics more collaborative than others?
-    \item Are there authors which benefit more from their position in the
-    network?
-\end{enumerate}
-
-Results regarding questions 1-3 are presented in Section~\ref{section:topics}
-and questions 4-6 are addressed in Section~\ref{section:co_authorship}. The
-results are summarised in Section~\ref{section:conclusion}.
+\begin{itemize}
+    \item section~\ref{section:methodology}, covers the methodology used in this manuscript,
+    including the data collection.
+    \item section~\ref{section:preliminary}, presents a preliminary analysis of the
+    data set.
+    \item section~\ref{section:topics}, focuses on research question 1, and the
+    written topics of the PD over time.
+    \item section~\ref{section:co_authorship}, evaluates the collaborative behaviour
+    of the field and addresses research question 2.
+\end{itemize}
 
 \section{Methodology}\label{section:methodology}
 
@@ -174,6 +130,75 @@ were used as sources to collect data for this analysis:
 The data set has been archived and is available at~\cite{pd_data_2018}. Note that the latest data
 collection was performed on the \(30^{\text{th}}\) November 2018.
 % TODO Ensure this stay accurate
+
+Latent Dirichlet Allocation (LDA) is a topic modelling technique proposed
+in~\cite{Blei2003} as a generative probabilistic model for discovering
+underlying topics in collections of data.
+Applications of the technique include detection in image data~\cite{Agarwal2008,
+Coelho2010} and detection in video~\cite{Niebles2008, Wang2008}. Nevertheless,
+LDA has been applied by several works on publication data for identifying the
+topic structure of a subject area. In~\cite{Inglis2018}, it was applied to the
+publications on mathematical education of the journals ``Educational Studies in
+Mathematics'' and ``Journal for Research in Mathematics Education'' to
+identify the dominant topics that each journal was publishing on. The topics of
+the North American library and Information Science dissertations were 
+studied chronologically in~\cite{Sugimoto2011}, and the main topic of the
+scientific content presented at EvoLang conferences was identified
+in~\cite{Bergmann2018}.
+
+
+
+
+The Prisoner's Dilemma (PD) is a well known game used since its introduction in
+the 1950's~\cite{Flood1958} as a framework for studying the emergence of
+cooperation; a topic of continued interest for mathematical,
+social~\cite{Perc2008}, biological~\cite{turner1999prisoner} and
+ecological~\cite{Wu2011} sciences. This manuscript presents a bibliometric
+analysis of 2,420 published articles on the Prisoner's Dilemma between 1951 and
+2018. It presents the dominant topics in the PD publications, which have been
+identified using Latent Dirichlet Allocation~\cite{Blei2003}, and it explores the changes in the
+dominant topics over time. 
+
+As discussed in~\cite{youngblood2018}, bibliometrics (the statistical analysis
+of published works originally described by~\cite{pritchard1969}) has been used
+to support historical assumptions about the development of fields
+\cite{raina1998}, identify connections between scientific growth and policy
+changes \cite{das2016}, develop a quantitative understanding of author
+order~\cite{sekara2018}, and investigate the collaborative structure of an
+interdisciplinary field~\cite{Liu2015}. Most academic research is undertaken in
+the form of collaborative effort and as~\cite{Kyvik2017} points out, it is
+rational that two or more people have the potential to do better as a group
+than individually. Indeed this is the very premise of the Prisoner's Dilemma itself.
+Collaboration in groups has a long tradition in experimental
+sciences and it has be proven to be productive according
+to~\cite{Etzkowitz1992}. The number of collaborations can be different
+between research fields and understanding how collaborative a field is not
+always an easy task. Several studies tend to consider academic citations as a
+measure for these things. A blog post published by Nature~\cite{nature_blog}
+argues that depending on citations can often be misleading because the true
+number of citations can not be known. Citations can be missed due to data entry
+errors, academics are influenced by many more papers than they actually cite and
+several of the citations are superficial.
+
+A more recent approach to measuring collaborative behaviour, and to studying the
+development of a field is to use the co-authorship network, as described
+in~\cite{Liu2015}. The co-authorship network has many advantages as several
+graph theoretic measures can be used as proxies to explain author relationships.
+For example the average degree of a node corresponds to the average number of
+an authors' collaborators, and clustering coefficient corresponds to the extent that
+two collaborators of an author also collaborate with each other.
+In~\cite{Liu2015}, the approach was applied to analyse the development of the field
+``evolution of cooperation'', and in~\cite{youngblood2018} to identify the
+subdisciplines of the interdisciplinary field of ``cultural evolution'' and
+investigate trends in collaboration and productivity between these subdisciplines.
+Moreover, \cite{Li2019} examined the
+long-term impact of co-authorship with established, highly-cited scientists on
+the careers of junior researchers. This paper builds upon the work done
+by~\cite{Liu2015} and ~\cite{youngblood2018}, and extends their methodology.
+In \cite{Liu2015, youngblood2018}, a data set from a
+single source, Web of Science, is considered whereas the data set described here, archived
+at~\cite{pd_data_2018}, has been collected from five sources.
+
 
 The relationship between the authors within a field will be modelled as a graph
 \(G = (V_G, E_G)\) where \(V_G\) is the set of nodes and \(E_G\)  is the set of
@@ -803,7 +828,7 @@ for topics' networks.}\label{table:central_authors_cc_topics}
 The distributions of both centrality measures for all the networks of this
 work are given in the Appendix~\ref{appendix:distributions}.
 
-\section{Conclusion}\label{section:conclusion}
+\section{Chapter summary}\label{section:conclusion}
 
 This manuscript has explored the research topics in the publications of the
 Iterated Prisoner's Dilemma, and moreover, the authors' collaborative behaviour
@@ -848,72 +873,3 @@ The study of the PD is the study of cooperation and investigating
 the cooperative behaviours of authors is what this work has aimed to achieve.
 Interesting areas of future work would include extending this analysis to more
 game theoretic sub fields, to evaluate whether the results remain the same.
-
-% \section{Acknowledgements}
-
-% A variety of software have been used in this work:
-
-% \begin{itemize}
-%     \item The Matplotlib library for visualisation~\cite{hunter2007matplotlib}.
-%     \item The Numpy library for data manipulation~\cite{walt2011numpy}.
-%     \item The Networkx~\cite{networkx} package for analysing networks.
-%     \item Gephi~\cite{ICWSM09154} open source package for visualising networks.
-%     \item The Gensim library for the topic modelling~\cite{rehurek_lrec}.
-%     \item The louvain library for calculating the networks modularity \url{https://github.com/taynaud/python-louvain}.
-% \end{itemize}
-
-% \bibliographystyle{plain}
-% \bibliography{bibliography.bib}
-
-\section{Cumulative Networks Metrics}\label{appendix:tables}
-
-\subsection{Collaborativeness metrics for cumulative graphs, \(\tilde{G} \subseteq G\)}
-\begin{table}[!hbtp]
-    \centering
-    \resizebox{.8\textwidth}{!}{
-    \input{src/chapters/03/paper/bibliometric-study-of-the-prisoners-dilemma/assets/cumulative_graphs_table.tex}}
-\end{table}
-
-\newpage
-
-\subsection{Collaborativeness metrics for cumulative graphs' main clusters, \(\tilde{G} \subseteq \bar{G}\)}
-\begin{table}[!hbtp]
-    \centering
-    \resizebox{.8\textwidth}{!}{
-    \input{src/chapters/03/paper/bibliometric-study-of-the-prisoners-dilemma/assets/cumulative_clusters_table.tex}}
-\end{table}
-
-
-\section{Centrality Measures Distributions}
-
-\subsection{Distributions for \(G\) and \(\bar{G}\)}
-
-\begin{figure}[!hbtp]
-    \centering
-    \includegraphics[width=.8\textwidth]{src/chapters/03/paper/bibliometric-study-of-the-prisoners-dilemma/assets/images/pd_betweeness_centralities.pdf}
-    \caption{Distributions of betweenness centrality in \(G\) and \(\bar{G}\)}
-    \label{fig:bc_distributions}
-\end{figure}
-
-\begin{figure}[!hbtp]
-    \centering
-    \includegraphics[width=.8\textwidth]{src/chapters/03/paper/bibliometric-study-of-the-prisoners-dilemma/assets/images/pd_closeness_centralities.pdf}
-    \caption{Distributions of closeness centrality in \(G\) and \(\bar{G}\)}
-    \label{fig:cc_distributions}
-\end{figure}
-
-\subsection{Distributions for Topic Networks}\label{appendix:distributions}
-
-\begin{figure}[!hbtp]
-    \centering
-    \includegraphics[width=\textwidth]{src/chapters/03/paper/bibliometric-study-of-the-prisoners-dilemma/assets/images/topics_betweeness_distributions.pdf}
-    \caption{Distributions of betweenness centrality in topics' networks.}
-    \label{fig:bc_distributions_topics}
-\end{figure}
-
-\begin{figure}[!hbtp]
-    \centering
-    \includegraphics[width=\textwidth]{src/chapters/03/paper/bibliometric-study-of-the-prisoners-dilemma/assets/images/topics_closeness_distributions.pdf}
-    \caption{Distributions of closeness centrality in topics' networks.}
-    \label{fig:cc_distributions_topics}
-\end{figure}
