@@ -90,15 +90,13 @@ to journal.
 
 The data collection is crucial to this study. To ensure that this study can be
 reproduced all code used to query the different APIs has been packaged as a
-Python library and is available online~\cite{nikoleta_2017}. The software could
-be used for any type of projects similar to the one described here,
+Python library and is available online~\cite{nikoleta_2017}. The software is called
+\textit{Arcas} and it could
+be used for any type of projects similar to the one described here. The
 documentation for it is available at:
-\url{http://arcas.readthedocs.io/en/latest/}. Project~\cite{nikoleta_2017} allow
+\url{http://arcas.readthedocs.io/en/latest/}. Arcas allow
 users to collect articles from a list of APIs by specifying just a single
-keyword. Articles for which any of the terms ``prisoner's dilemma'',
-``prisoners dilemma'', ``prisoner dilemma'', ``prisoners evolution'', ``prisoner
-game theory'' existed within the title, the abstract or the text are included
-in the analysis. Four prominent journals in the field and a preprint server
+keyword from four prominent journals in the field and a preprint server
 were used as sources to collect data for this analysis:
 
 \begin{multicols}{2}
@@ -127,6 +125,80 @@ were used as sources to collect data for this analysis:
     \end{itemize}
 \end{multicols}
 
+An example of using Arcas to retriecve an signle article on the prisoner's dilemma
+based on the title is.
+
+\begin{minted}
+    [
+    framesep=4mm,
+    frame=lines,
+    baselinestretch=1.2,
+    fontsize=\small,
+    ]
+    {python}
+>>> import arcas
+>>> api = arcas.Plos()
+>>> parameters = api.parameters_fix(title="Prisoner's Dilemma", records=1)
+>>> url = api.create_url_search(parameters)
+>>> url
+http://api.plos.org/search?q=title:"Prisoner\'s Dilemma"&rows=1
+\end{minted}
+
+
+\begin{minted}
+    [
+    framesep=4mm,
+    frame=lines,
+    baselinestretch=1.2,
+    fontsize=\small,
+    ]
+    {python}
+>>> request = api.make_request(url)
+>>> root = api.get_root(request)
+>>> article = api.parse(root)
+>>> article
+[{'id': '10.1371/journal.pone.0028576',
+  'journal': 'PLoS ONE',
+  'eissn': '1932-6203',
+  'publication_date': '2011-12-14T00:00:00Z',
+  'article_type': 'Research Article',
+  'author_display': ['Irina Kareva'],
+  'abstract':
+  ["As tumors outgrow their blood supply and become oxygen deprived, they switch
+  to less energetically efficient but oxygen-independent anaerobic glucose
+  metabolism. However, cancer cells maintain glycolytic phenotype even in the
+  areas of ample oxygen supply (Warburg effect). It has been hypothesized that
+  the competitive advantage that glycolytic cells get over aerobic cells is
+  achieved through secretion of lactic acid, which is a by-product of glycolysis.
+  It creates acidic microenvironment around the tumor that can be toxic to normal
+  somatic cells. This interaction can be seen as a prisoner's dilemma: from
+  the point of view of metabolic payoffs, it is better for cells to cooperate
+  and become better competitors but neither cell has an incentive to
+  unilaterally change its metabolic strategy. In this paper a novel
+  mathematical technique, which allows reducing an otherwise infinitely
+  dimensional system to low dimensionality, is used to demonstrate that
+  changing the environment can take the cells out of this equilibrium and that
+  it is cooperation that can in fact lead to the cell population committing
+  evolutionary suicide.\n      "],
+  'title_display': "Prisoner's Dilemma in Cancer Metabolism",
+  'score': 21,
+  'author': ['Irina Kareva'],
+  'date': 2011,
+  'provenance': 'PLOS',
+  'doi': '10.1371/journal.pone.0028576',
+  'url': 'https://doi.org/10.1371/journal.pone.0028576',
+  'title': "Prisoner's Dilemma in Cancer Metabolism",
+  'key': 'Kareva2011',
+  'unique_key': '0d56101113057d99fc6d83095812735a',
+  'category': 'Not available',
+  'open_access': 'Not available'}]
+\end{minted}
+
+
+Articles for which any of the terms ``prisoner's dilemma'',
+``prisoners dilemma'', ``prisoner dilemma'', ``prisoners evolution'', ``prisoner
+game theory'' existed within the title, the abstract or the text are included
+in the analysis.
 The data set has been archived and is available at~\cite{pd_data_2018}. Note that the latest data
 collection was performed on the \(30^{\text{th}}\) November 2018.
 % TODO Ensure this stay accurate
