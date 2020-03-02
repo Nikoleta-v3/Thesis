@@ -14,3 +14,4 @@
 *.xdv
 *__pycache__/
 *.ipynb_checkpoints/
+*_minted-main
