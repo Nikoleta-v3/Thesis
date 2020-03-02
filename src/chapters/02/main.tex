@@ -408,7 +408,8 @@ of strategy is called a \textit{lookup table}. In~\cite{Axelrod1987} lookup tabl
 genetic algorithm~\cite{Koza1997}. A training process includes making random changes to
 a given instant of the lookup table. The strategy which corresponds to the new altered
 instant is evaluated in a given setting set by the experiment, and if the
-utility of the strategy has increased this change is kept, otherwise not.
+utility of the strategy has increased this change is kept and its genes are passed 
+on to a new generation of strategies.
 A genetic algorithm is not the only heuristic method which can be used for
 training strategies, realistically any heuristic method can be used.
 
