@@ -193,10 +193,10 @@ environment and we devised a way for computer agents to recognise and collude
 with one another despite the noise. Our solution beats the standard Tit For Tat
 strategy"~\cite{southampton_blog}.
 
-\subsection{Memory one Strategies}\label{section:memory_one}
+\subsection{Memory-one Strategies}\label{section:memory_one}
 
 A set of strategies that have received a lot of attention in
-the literature are \textit{memory one} strategies. In~\cite{Nowak1989},
+the literature are \textit{memory-one} strategies. In~\cite{Nowak1989},
 Nowak and Sigmund proposed a structure for studying simple strategies that
 remembered only the previous turn, and moreover, only recorded the move of the
 opponent. These are called \textit{reactive} strategies and they can be
@@ -209,7 +209,7 @@ the literature is \textit{Generous Tit for Tat}~\cite{Nowak1992} (\(1, 1, \frac{
 
 In~\cite{Nowak1990}, Nowak and Sigmund extended
 their work to include strategies which consider the entire history of the previous turn to make a decision.
-These are called \textit{memory one} strategies.
+These are called memory-one strategies.
 If only a single turn of the game is taken into account and depending on the
 simultaneous moves of the two players there are only four possible states that
 the players could be in. These are:
@@ -221,15 +221,15 @@ the players could be in. These are:
     \item Both players defected, denoted as \(DD\).
 \end{itemize}
 
-Thus, a memory one strategy can be denoted by the probabilities of cooperating
+Thus, a memory-one strategy can be denoted by the probabilities of cooperating
 after each state and the probability of cooperating in the first round, \((y,
-p_1, p_2, p_3, p_4)\). For example Pavlov's memory one representation is \((1,
+p_1, p_2, p_3, p_4)\). For example Pavlov's memory-one representation is \((1,
 1, 0, 0, 1)\). Though reactive and memory-one strategies have to specify their
 move in the first round, the opening move is a transient effect and has no affect
 on the game in long run~\cite{sigmund2010calculus}. Consequently, reactive strategies
 can be described as elements \(p \in R^2\) and memory-one strategies as \(p \in R^4\).
 
-Memory one strategies made an impact when a specific subset of memory one
+Memory-one strategies made an impact when a specific subset of memory-one
 strategies were introduced called \textit{Zero-determinant} strategies
 (ZDs)~\cite{Press2012}. The American Mathematical Society's news section~\cite{Hilbe2015}
 stated that ``the world of game theory is currently on fire'' and in~\cite{Stewart2012}
@@ -249,7 +249,7 @@ that longer-memory strategies have an advantage over short memory
 strategies. Chapter~\ref{chapter:memory_one}, studies the set of memory-one strategies,
 and more specifically, best response memory-one strategies and reinforces the
 discussion that the best action is adaptability and not manipulation, and short
- memory can be limiting.
+memory can be limiting.
 
 This section of the literature covered the original computer tournaments of
 Axelrod, the early success of Tit For Tat in these tournaments and excessive
@@ -265,8 +265,8 @@ not surfaced from an indirect process, such strategies are covered in
 section~\ref{section:structured_strategies}.
 
 In the later part of this section a series of new strategies which were built on
-the basic reciprocal approaches were presented, followed by the infamous memory
-one strategies, the zero-determinant strategies. Though the ZDs can be proven to be robust
+the basic reciprocal approaches were presented, followed by the infamous memory-one
+strategies, the zero-determinant strategies. Though the ZDs can be proven to be robust
 in pairwise interactions they were found to be lacking in evolutionary settings
 and in computer tournaments. Evolutionary settings and the emergence
 of cooperation under natural selection are covered in the next section.
