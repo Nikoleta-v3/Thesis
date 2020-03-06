@@ -413,6 +413,24 @@ on to a new generation of strategies.
 A genetic algorithm is not the only heuristic method which can be used for
 training strategies, realistically any heuristic method can be used.
 
+
+\begin{figure}[!hbtp]
+    \begin{subfigure}{.45\textwidth}\centering
+        \includestandalone[width=.27\textheight]{src/chapters/02/tex/gambler_diagram}
+        % \caption{Tit for Tat as a finite state machine with 1 state.}\label{fig:representation_a}
+    \end{subfigure}\hspace{1cm}
+    \begin{subfigure}{.45\textwidth}\centering
+        \includestandalone[width=.27\textheight]{src/chapters/02/tex/gambler_diagram_choice}
+        % \caption{Tit for Tat as a finite state machine with 2 states.}\label{fig:representation_b}
+     \end{subfigure}
+    %  \caption{Finite state machine representations of Tit for Tat. A machine
+    %  consists of transition arrows associated with the states. Each arrow is
+    %  labelled with \(A/R\) where \(A\) is the opponent's last action and \(R\)
+    %  is the player's response. Finite state machines consist of a set of
+    %  internal states. In (a) Tit for Tat finite state
+    %  machine consists of 1 state and in (b) of 2.}\label{fig:machine_tft}
+\end{figure}
+
 In 1996 John Miller considered finite state automata as an
 archetype~\cite{Miller1996}, more specifically, Moore
 machines~\cite{moore1956}. The training process used a genetic algorithm and

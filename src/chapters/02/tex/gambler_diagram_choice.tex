@@ -34,16 +34,16 @@
     \node (B10) at ($(B9) + (0, -.55)$) [cooperator] {C};
 
     \node (C) at ($(A) + (-1, 0)$) {};
-    \node (C1) at ($(C) +  (0, -.57)$)  {\footnotesize{$1$}};
-    \node (C2) at ($(C1) + (0, -.55)$) {\footnotesize{$2$}};
-    \node (C3) at ($(C2) + (0, -.55)$) {\footnotesize{$3$}};
-    \node (C4) at ($(C3) + (0, -.55)$) {\footnotesize{$4$}};
-    \node (C5) at ($(C4) + (0, -.55)$) {\footnotesize{$5$}};
-    \node (C6) at ($(C5) + (0, -.75)$) {\footnotesize{$\vdots$}};
-    \node (C7) at ($(C6) + (0, -.55)$) {\footnotesize{$n - 3$}};
-    \node (C8) at ($(C7) + (0, -.55)$) {\footnotesize{$n - 2$}};
-    \node (C9) at ($(C8) + (0, -.55)$) {\footnotesize{$n -1$}};
-    \node (C10) at ($(C9) + (0, -.55)$){\footnotesize{$n$}};
+    \node (C1) at ($(C) +  (0, -.57)$) {};
+    \node (C2) at ($(C1) + (0, -.55)$) {};
+    \node (C3) at ($(C2) + (0, -.55)$) {};
+    \node (C4) at ($(C3) + (0, -.55)$) {};
+    \node (C5) at ($(C4) + (0, -.55)$) {};
+    \node (C6) at ($(C5) + (0, -.75)$) {};
+    \node (C7) at ($(C6) + (0, -.55)$) {};
+    \node (C8) at ($(C7) + (0, -.55)$) {};
+    \node (C9) at ($(C8) + (0, -.55)$) {};
+    \node (C10) at ($(C9) + (0, -.55)$){};
     % ---------------------------------------------------
 
     % Identifying inputs --------------------------------
@@ -51,9 +51,9 @@
     \draw[very thick, dashed, gray] ($(A8) + (-.3, .3)$)  rectangle ($(A10) + (.3, -.3)$);
 
     % % Strategy inputs
-    \node (dummy) at ($(A) + (4.5, -2.75)$) {};
-    \node (dummy_1) at ($(A) + (5.2, -.5)$) {$\vdots$};
-    \node (dummy_2) at ($(A) + (5.2, -4.95)$) {$\vdots$};
+    \node (dummy) at (4, -2.75) {};
+    \node (dummy_1) at (4.7, -.5) {$\vdots$};
+    \node (dummy_2) at (4.7, -4.95) {$\vdots$};
 
     \node[draw=gray, inner sep=-.01mm, thick, rounded corners, font=\footnotesize] (action)  at (4.7, -2.75) {
         \begin{tabular}{ccc}
@@ -82,7 +82,7 @@
     % Strategy outputs
 
 
-    \node (output) at ($(dummy) + (3, 0)$) [right] {C};
+    \node (output) at ($(dummy) + (3, 0)$) [right] {\cancel{C} \ \textcolor{red}{D}};
     \node (output_1) at ($(dummy) + (3, -1.2)$) [right] {D};
     \node (output_2) at ($(dummy) + (3, 1.2)$) [right] {C};
     \draw [->, very thick] ($(dummy) + (2, 0)$) -- (output);
