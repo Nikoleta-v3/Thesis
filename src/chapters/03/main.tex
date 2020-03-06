@@ -8,7 +8,7 @@ the field of the Iterated Prisoner's Dilemma}\label{chapter:bibliometric_study}
     \textit{\textbf{The abstract of the manuscript is the following:}}
 \end{center}
 
-This manuscript explores the research topics and collaborative behaviour of
+``This manuscript explores the research topics and collaborative behaviour of
 authors in the field of the Prisoner's Dilemma using topic modelling and a graph
 theoretic analysis of the co-authorship network. The analysis identified five
 research topics in the Prisoner's Dilemma which have been relevant of the course
@@ -20,54 +20,105 @@ necessarily more collaborative than other scientific fields. The co-authorship
 network suggests that authors are focused on their communities and not many
 connections across the communities are made. The Prisoner Dilemma authors also
 do not influence or gain much information by their connections, unless they are
-connected to a ``main'' group of authors.
+connected to a ``main'' group of authors.''
 
-The main differences between the manuscript and the Chapter are:
-
-\begin{itemize}
-    \item Difference 1
-    \item Difference 2
-    \item Difference 3
-\end{itemize}
+The differences between the Chapter and the manuscript include \dots.
+\newpage
 
 \section{Introduction}\label{section:introduction}
 
 Chapter~\ref{chapter:literature_review} presented a systematic literature review
-on the Prisoner's Dilemma. The Chapter aimed to summarise the results of the
-established research, and to contribute to the answer to research question 1.
-This was done by partitioning the reviewed literature in five different topics
+on the PD. The Chapter aimed to summarise the results of the
+established research, and to identify research topics in the field of the PD.
+This was done by partitioning the reviewed literature in five different topics,
 corresponding to the sections of Chapter~\ref{chapter:literature_review}. This
-Chapter aims to contribute to the same research questions by an automatic
-approach. Namely, it presents a bibliometric analysis of 2,420 published
-articles on the Prisoner's Dilemma between 1951 and 2018. It presents the
-dominant topics in the PD publications, which have been identified using Latent
+Chapter aims to contribute to the same research questions by using an automatic
+approach. Namely, this Chapter presents a bibliometric analysis of 2,420 published
+articles on the PD between 1951 and 2018. It presents the
+topics in the PD publications, which have been identified using Latent
 Dirichlet Allocation~\cite{Blei2003}, and it explores the changes in the
 dominant topics over time.
 
-Moreover, this Chapter explores the collaborative behaviour of the field is explored
-using the co-authorship network, and furthermore, the Latent Dirichlet
-Allocation topic analysis is combined with the co-authorship network analysis to assess
-the relative influence of authors in these topics. Assessing the collaborative
-behaviour of the field of collaboration is the second research question raised
-in this thesis. The Chapter is structured as follows:
-
-The methodology used in this manuscript, including the data collection, is
-covered in Section~\ref{section:methodology} and a preliminary analysis of the
-data set is presented in Section~\ref{section:preliminary}. This manuscript
-makes usage of the methodology and data to address the following questions:
+Moreover, this Chapter explores the collaborative behaviour of the field of collaboration,
+which is the third research question raised in this thesis,
+using the co-authorship network. The network analysis is combined the Latent Dirichlet
+Allocation topic analysis to also assess
+the relative influence of authors in these topics.
+The Chapter is structured as follows:
 
 \begin{itemize}
     \item section~\ref{section:methodology}, covers the methodology used in this manuscript,
     including the data collection.
     \item section~\ref{section:preliminary}, presents a preliminary analysis of the
     data set.
-    \item section~\ref{section:topics}, focuses on research question 1, and the
-    written topics of the PD over time.
+    \item section~\ref{section:topics}, identifies research topics in the field using
+    natural language process.
     \item section~\ref{section:co_authorship}, evaluates the collaborative behaviour
-    of the field and addresses research question 2.
+    of the field.
 \end{itemize}
 
 \section{Methodology}\label{section:methodology}
+
+As discussed in~\cite{youngblood2018}, bibliometrics (the statistical analysis
+of published works originally described by~\cite{pritchard1969}) has been used
+to support historical assumptions about the development of fields
+\cite{raina1998}, identify connections between scientific growth and policy
+changes \cite{das2016}, develop a quantitative understanding of author
+order~\cite{sekara2018}, and investigate the collaborative structure of an
+interdisciplinary field~\cite{Liu2015}. Most academic research is undertaken in
+the form of collaborative effort and as~\cite{Kyvik2017} points out, it is
+rational that two or more people have the potential to do better as a group
+than individually. Indeed this is the very premise of the PD itself.
+Collaboration in groups has a long tradition in experimental
+sciences and it has be proven to be productive according
+to~\cite{Etzkowitz1992}. The number of collaborations can be different
+between research fields and understanding how collaborative a field is not
+always an easy task. Several studies tend to consider academic citations as a
+measure for these things. A blog post published by Nature~\cite{nature_blog}
+argues that depending on citations can often be misleading because the true
+number of citations can not be known. Citations can be missed due to data entry
+errors, academics are influenced by many more papers than they actually cite and
+several of the citations are superficial.
+
+A more recent approach to measuring collaborative behaviour, and to studying the
+development of a field is to use the co-authorship network, as described
+in~\cite{Liu2015}. The co-authorship network has many advantages as several
+graph theoretic measures can be used as proxies to explain author relationships.
+For example the average degree of a node corresponds to the average number of
+an authors' collaborators, and clustering coefficient corresponds to the extent that
+two collaborators of an author also collaborate with each other.
+In~\cite{Liu2015}, the approach was applied to analyse the development of the field
+``evolution of cooperation'', and in~\cite{youngblood2018} to identify the
+subdisciplines of the interdisciplinary field of ``cultural evolution'' and
+investigate trends in collaboration and productivity between these subdisciplines.
+Moreover, \cite{Li2019} examined the
+long-term impact of co-authorship with established, highly-cited scientists on
+the careers of junior researchers. This Chapter builds upon the previous work done
+by~\cite{Liu2015} and ~\cite{youngblood2018}, and extends their methodology.
+
+Latent Dirichlet Allocation (LDA) is a topic modelling technique proposed
+in~\cite{Blei2003} as a generative probabilistic model for discovering
+underlying topics in collections of data.
+Applications of the technique include detection in image data~\cite{Agarwal2008,
+Coelho2010} and detection in video~\cite{Niebles2008, Wang2008}. Nevertheless,
+LDA has been applied by several works on publication data for identifying the
+topic structure of a subject area. In~\cite{Inglis2018}, it was applied to the
+publications on mathematical education of the journals ``Educational Studies in
+Mathematics'' and ``Journal for Research in Mathematics Education'' to
+identify the dominant topics that each journal was publishing on. The topics of
+the North American library and Information Science dissertations were 
+studied chronologically in~\cite{Sugimoto2011}, and the main topic of the
+scientific content presented at EvoLang conferences was identified
+in~\cite{Bergmann2018}.
+
+Several of the approaches described of this Chapter have previously been carried
+out in~\cite{Bergmann2018,Liu2015,Sugimoto2011, youngblood2018}], the novelty is
+combining the approaches as well as applying them to a new data set. More
+specifically, in~\cite{Liu2015, youngblood2018}, a data set from a single
+source, Web of Science, is considered whereas the data set described here,
+archived at~\cite{pd_data_2018}, has been collected from five sources.
+
+\subsection{Data Collection}
 
 Academic articles are accessible through scholarly databases. Several databases
 and collections today offer access through an open application protocol
@@ -79,7 +130,7 @@ details of the request. For example,
 dilemma&max_results=1} represents a request message. The first part of the
 request is the address of the API. In this example the address corresponds to
 the API of arXiv. The second part of the request contains the search arguments.
-In this example it is requested that the word `prisoners dilemma' exists within
+In this example it is requested a single article that the word `prisoners dilemma' exists within
 the article's title. The format of the request message is different from API to
 API. The receive phase includes receiving a number of raw metadata of articles
 that satisfies the request message. The raw metadata are commonly received in
@@ -90,14 +141,106 @@ to journal.
 
 The data collection is crucial to this study. To ensure that this study can be
 reproduced all code used to query the different APIs has been packaged as a
-Python library and is available online~\cite{nikoleta_2017}. The software is called
-\textit{Arcas} and it could
-be used for any type of projects similar to the one described here. The
-documentation for it is available at:
-\url{http://arcas.readthedocs.io/en/latest/}. Arcas allow
-users to collect articles from a list of APIs by specifying just a single
-keyword from four prominent journals in the field and a preprint server
-were used as sources to collect data for this analysis:
+Python library called \textit{Arcas} which is available online~\cite{nikoleta_2017}.
+Arcas includes documentation of usage which is available at: \url{http://arcas.readthedocs.io/en/latest/}. 
+Arcas allows users to quickly create a query message to a publisher's API as
+demonstrated in Figure~\ref{fig:arcas_query}. The API is specified by creating
+an instance of a class. The names of the available api classes corresponds to
+the publishers' names.
+
+\begin{figure}[!hbtp]
+\begin{minted}
+    [
+    bgcolor=orange!25,
+    framesep=2mm,
+    frame=lines,
+    baselinestretch=1.2,
+    fontsize=\footnotesize,
+    ]
+    {python}
+>>> import arcas
+>>> api = arcas.Plos()
+>>> parameters = api.parameters_fix(title="Prisoner's Dilemma", records=1)
+>>> url = api.create_url_search(parameters)
+>>> url
+http://api.plos.org/search?q=title:"Prisoner\'s Dilemma"&rows=1
+\end{minted}
+\caption{Python Code. Example of using the library Arcas to create a message for
+the API of the publisher PLOS. The query is for a single article with the
+word `prisoners dilemma' in the title.}\label{fig:arcas_query}
+\end{figure}
+
+It can be seen that the query message for PLOS is different to that of arXiv which
+was mentioned earlier. The message is used to query the API and retrieve a
+reply. This is shown in Figure~\ref{fig:arcas_metadata}.
+
+\begin{figure}[!hbtp]
+\begin{minted}
+    [
+    bgcolor=orange!25,
+    framesep=2mm,
+    frame=lines,
+    baselinestretch=1.2,
+    fontsize=\footnotesize,
+    ]
+    {python}
+>>> request = api.make_request(url)
+>>> root = api.get_root(request)
+>>> article = api.parse(root)
+>>> article
+[{'id': '10.1371/journal.pone.0028576',
+  'journal': 'PLoS ONE',
+  'eissn': '1932-6203',
+  'publication_date': '2011-12-14T00:00:00Z',
+  'article_type': 'Research Article',
+  'author_display': ['Irina Kareva'],
+  'abstract': ["As tumors outgrow their ..."],
+  'title_display': "Prisoner's Dilemma in Cancer Metabolism",
+  'score': 21,
+  'author': ['Irina Kareva'],
+  'date': 2011,
+  'provenance': 'PLOS',
+  'doi': '10.1371/journal.pone.0028576',
+  'url': 'https://doi.org/10.1371/journal.pone.0028576',
+  'title': "Prisoner's Dilemma in Cancer Metabolism",
+  'key': 'Kareva2011',
+  'unique_key': '0d56101113057d99fc6d83095812735a',
+  'category': 'Not available',
+  'open_access': 'Not available'}]
+\end{minted}
+\caption{Python Code. Example of using a query message to retrieve metadata.}
+\label{fig:arcas_metadata}
+\end{figure}
+
+As mentioned previously, the structure of the received data differs from journal
+to journal. The metadata data and their naming from PLOS is different from those
+of arXiv. Arcas has a build in function to standarise the multiple types of replies,
+Figure~\ref{fig:arcas_to_dataframe}.
+
+\begin{figure}[!hbtp]
+    \begin{minted}
+        [
+        bgcolor=orange!25,
+        framesep=2mm,
+        frame=lines,
+        baselinestretch=1.2,
+        fontsize=\footnotesize,
+        ]
+        {python}
+>>> meta_data = api.to_dataframe(article[0])
+>>> meta_data.columns
+Index(['url', 'key', 'unique_key', 'title', 'author', 'abstract', 'doi',
+'date', 'journal', 'provenance', 'category', 'score', 'open_access'],
+dtype='object')
+\end{minted}
+\caption{Python Code. Arcas includes a function which standarises the results of
+the queries regarding the API.}\label{fig:arcas_to_dataframe}
+\end{figure}
+
+The advantages of the library is that articles can be collected from a list of
+APIs by specifying a single keyword. A total of four prominent publishers in the
+field and a preprint server were used as sources to collect data for this
+analysis:
 
 \begin{multicols}{2}
     \begin{itemize}
@@ -125,158 +268,21 @@ were used as sources to collect data for this analysis:
     \end{itemize}
 \end{multicols}
 
-An example of using Arcas to retriecve an signle article on the prisoner's dilemma
-based on the title is.
-
-\begin{minted}
-    [
-    framesep=4mm,
-    frame=lines,
-    baselinestretch=1.2,
-    fontsize=\small,
-    ]
-    {python}
->>> import arcas
->>> api = arcas.Plos()
->>> parameters = api.parameters_fix(title="Prisoner's Dilemma", records=1)
->>> url = api.create_url_search(parameters)
->>> url
-http://api.plos.org/search?q=title:"Prisoner\'s Dilemma"&rows=1
-\end{minted}
-
-
-\begin{minted}
-    [
-    framesep=4mm,
-    frame=lines,
-    baselinestretch=1.2,
-    fontsize=\small,
-    ]
-    {python}
->>> request = api.make_request(url)
->>> root = api.get_root(request)
->>> article = api.parse(root)
->>> article
-[{'id': '10.1371/journal.pone.0028576',
-  'journal': 'PLoS ONE',
-  'eissn': '1932-6203',
-  'publication_date': '2011-12-14T00:00:00Z',
-  'article_type': 'Research Article',
-  'author_display': ['Irina Kareva'],
-  'abstract':
-  ["As tumors outgrow their blood supply and become oxygen deprived, they switch
-  to less energetically efficient but oxygen-independent anaerobic glucose
-  metabolism. However, cancer cells maintain glycolytic phenotype even in the
-  areas of ample oxygen supply (Warburg effect). It has been hypothesized that
-  the competitive advantage that glycolytic cells get over aerobic cells is
-  achieved through secretion of lactic acid, which is a by-product of glycolysis.
-  It creates acidic microenvironment around the tumor that can be toxic to normal
-  somatic cells. This interaction can be seen as a prisoner's dilemma: from
-  the point of view of metabolic payoffs, it is better for cells to cooperate
-  and become better competitors but neither cell has an incentive to
-  unilaterally change its metabolic strategy. In this paper a novel
-  mathematical technique, which allows reducing an otherwise infinitely
-  dimensional system to low dimensionality, is used to demonstrate that
-  changing the environment can take the cells out of this equilibrium and that
-  it is cooperation that can in fact lead to the cell population committing
-  evolutionary suicide.\n      "],
-  'title_display': "Prisoner's Dilemma in Cancer Metabolism",
-  'score': 21,
-  'author': ['Irina Kareva'],
-  'date': 2011,
-  'provenance': 'PLOS',
-  'doi': '10.1371/journal.pone.0028576',
-  'url': 'https://doi.org/10.1371/journal.pone.0028576',
-  'title': "Prisoner's Dilemma in Cancer Metabolism",
-  'key': 'Kareva2011',
-  'unique_key': '0d56101113057d99fc6d83095812735a',
-  'category': 'Not available',
-  'open_access': 'Not available'}]
-\end{minted}
-
-
-Articles for which any of the terms ``prisoner's dilemma'',
-``prisoners dilemma'', ``prisoner dilemma'', ``prisoners evolution'', ``prisoner
-game theory'' existed within the title, the abstract or the text are included
-in the analysis.
-The data set has been archived and is available at~\cite{pd_data_2018}. Note that the latest data
-collection was performed on the \(30^{\text{th}}\) November 2018.
+More specifically, for this Chapter articles for which any of the terms
+``prisoner's dilemma'', ``prisoners dilemma'', ``prisoner dilemma'', ``prisoners
+evolution'', ``prisoner game theory'' existed within the title, the abstract or
+the text are included in the analysis. The data set has been archived and is
+available at~\cite{pd_data_2018}. Note that the latest data collection was
+performed on the \(30^{\text{th}}\) November 2018.
 % TODO Ensure this stay accurate
 
-Latent Dirichlet Allocation (LDA) is a topic modelling technique proposed
-in~\cite{Blei2003} as a generative probabilistic model for discovering
-underlying topics in collections of data.
-Applications of the technique include detection in image data~\cite{Agarwal2008,
-Coelho2010} and detection in video~\cite{Niebles2008, Wang2008}. Nevertheless,
-LDA has been applied by several works on publication data for identifying the
-topic structure of a subject area. In~\cite{Inglis2018}, it was applied to the
-publications on mathematical education of the journals ``Educational Studies in
-Mathematics'' and ``Journal for Research in Mathematics Education'' to
-identify the dominant topics that each journal was publishing on. The topics of
-the North American library and Information Science dissertations were 
-studied chronologically in~\cite{Sugimoto2011}, and the main topic of the
-scientific content presented at EvoLang conferences was identified
-in~\cite{Bergmann2018}.
-
-
-
-
-The Prisoner's Dilemma (PD) is a well known game used since its introduction in
-the 1950's~\cite{Flood1958} as a framework for studying the emergence of
-cooperation; a topic of continued interest for mathematical,
-social~\cite{Perc2008}, biological~\cite{turner1999prisoner} and
-ecological~\cite{Wu2011} sciences. This manuscript presents a bibliometric
-analysis of 2,420 published articles on the Prisoner's Dilemma between 1951 and
-2018. It presents the dominant topics in the PD publications, which have been
-identified using Latent Dirichlet Allocation~\cite{Blei2003}, and it explores the changes in the
-dominant topics over time. 
-
-As discussed in~\cite{youngblood2018}, bibliometrics (the statistical analysis
-of published works originally described by~\cite{pritchard1969}) has been used
-to support historical assumptions about the development of fields
-\cite{raina1998}, identify connections between scientific growth and policy
-changes \cite{das2016}, develop a quantitative understanding of author
-order~\cite{sekara2018}, and investigate the collaborative structure of an
-interdisciplinary field~\cite{Liu2015}. Most academic research is undertaken in
-the form of collaborative effort and as~\cite{Kyvik2017} points out, it is
-rational that two or more people have the potential to do better as a group
-than individually. Indeed this is the very premise of the Prisoner's Dilemma itself.
-Collaboration in groups has a long tradition in experimental
-sciences and it has be proven to be productive according
-to~\cite{Etzkowitz1992}. The number of collaborations can be different
-between research fields and understanding how collaborative a field is not
-always an easy task. Several studies tend to consider academic citations as a
-measure for these things. A blog post published by Nature~\cite{nature_blog}
-argues that depending on citations can often be misleading because the true
-number of citations can not be known. Citations can be missed due to data entry
-errors, academics are influenced by many more papers than they actually cite and
-several of the citations are superficial.
-
-A more recent approach to measuring collaborative behaviour, and to studying the
-development of a field is to use the co-authorship network, as described
-in~\cite{Liu2015}. The co-authorship network has many advantages as several
-graph theoretic measures can be used as proxies to explain author relationships.
-For example the average degree of a node corresponds to the average number of
-an authors' collaborators, and clustering coefficient corresponds to the extent that
-two collaborators of an author also collaborate with each other.
-In~\cite{Liu2015}, the approach was applied to analyse the development of the field
-``evolution of cooperation'', and in~\cite{youngblood2018} to identify the
-subdisciplines of the interdisciplinary field of ``cultural evolution'' and
-investigate trends in collaboration and productivity between these subdisciplines.
-Moreover, \cite{Li2019} examined the
-long-term impact of co-authorship with established, highly-cited scientists on
-the careers of junior researchers. This paper builds upon the work done
-by~\cite{Liu2015} and ~\cite{youngblood2018}, and extends their methodology.
-In \cite{Liu2015, youngblood2018}, a data set from a
-single source, Web of Science, is considered whereas the data set described here, archived
-at~\cite{pd_data_2018}, has been collected from five sources.
-
+\subsection{Co-authorship Network}
 
 The relationship between the authors within a field will be modelled as a graph
 \(G = (V_G, E_G)\) where \(V_G\) is the set of nodes and \(E_G\)  is the set of
 edges. The set \(V_G\) represents the authors and an edge connects two authors
 if and only if those authors have written together. This co-authorship network is
-constructed using the main data set~\cite{pd_data_2018} and the open source package
+constructed using the data set~\cite{pd_data_2018} and the open source package
 \cite{networkx}. The PD network is denoted as \(G\) where the
 number of unique authors \(|V(G)|\) is \authors and \(|E(G)|\) is \edges.
 All authors' names were formatted as their first name and last name (i.e.
@@ -304,6 +310,7 @@ by the number of connected triples of nodes, is a local measure of the degree to
 which nodes in a graph tend to cluster together
 in a clique~\cite{Easley2010}. It shows to which extent the collaborators
 of an author also write together.
+
 In comparison, modularity is a global measure designed to measure the strength of
 division of a network into communities. The number of communities will be reported
 using the Clauset-Newman-Moore method~\cite{clauset2004}. Also the modularity index
@@ -313,6 +320,7 @@ corresponds to a structure where there are dense connections between the nodes w
 communities but sparse connections between nodes in different communities.
 That means that there are many sub communities of authors that write together
 but not across communities.
+
 Two further points are aimed to be explored in this work, (1) which people control the flow
 of information;
 as in which people influence the field the most and (2) which are the authors that
@@ -320,7 +328,7 @@ gain the most from the influence of the field. To measure these concepts
 centrality measures are going to be used.
 Centrality measures are often used to understand different
 aspects of social networks~\cite{Landherr2010}. Two centrality measures have been
-chosen for this paper and these are closeness and betweenness centrality.
+chosen for this Chapter and these are closeness and betweenness centrality.
 
 \begin{enumerate}
     \item In networks some nodes have a short distance to a lot of nodes and
@@ -341,18 +349,27 @@ chosen for this paper and these are closeness and betweenness centrality.
     the influence, thus these authors gain the most from their networks.
 \end{enumerate}
 
+\subsection{Topic Modelling}
+
 The articles contained in the data set (\cite{pd_data_2018}) will be classified
-into research topics using LDA an unsupervised machine learning technique
+into research topics using LDA a topic modelling technique
 designed to summarize large collections of documents by a small number of
 conceptually connected topics or themes~\cite{Blei2003, Grimmer2013}. The
 documents are the articles' abstracts and LDA was carried out using~\cite{rehurek_lrec}.
-In LDA, each document/abstract is represented by a distribution over topics,
-and the topics themselves are represented by a distribution over words. More
-specifically, each topics is described by weights associated with words and
-each document by the probabilities of belonging to a specific topic. The
-probability of a document belonging to a topic is referred to as the percentage
-contribution denoted as \(c\). For example the words and their associated
-weights for two topics A and B could be:
+
+In LDA, each document/abstract is represented by a distribution over topics, and
+the topics themselves are represented by a distribution over words. More
+specifically, each topics is described by weights associated with words and each
+document by the probabilities of belonging to a specific topic. The probability
+of a document belonging to a topic is referred to as the percentage contribution
+denoted as \(c\). The output of an LDA is an \(N \times n\) matrix - \(N\) rows
+for \(N\) abstracts and \(n\) columns for \(n\) topics. The cells contain the
+percentage contributions for each topic for each abstract, \(c_i^ j\) for \(i
+\in \{1, 2, \dots, n\}\) for \(j \in \{1, 2, \dots, N\}\). In essence, LDA maps
+every paper to a vector space of dimension the number of topics.
+
+For example the words and their associated weights for two topics A and B
+could be:
 
 \begin{itemize}
     \item Topic A: \(0.039 \times\)``cooperation'', \(0.028 \times\)``study'' and \(0.026 \times\)``human''.
@@ -364,17 +381,12 @@ The percentage contribution for a document with abstract ``The study of
 cooperation in humans'' has a \(c_{A} = 0.039 + 0.028 + 0.026 = 0.093\) and
 \(c_B = .020 + 0.0 + 0.0 = 0.020\). The topic to which a document is assigned to
 is based on the highest percentage contribution denoted as \(c^*\). For the
-given example the dominant topic is Topic A \(c^*=c_A\). LAD requires that
-the number of topics is specified in advance before running the algorithm. The
-number of topics can be chosen using the coherence value~\cite{Roder2015} or
-through subjective minimisation of the overlapping keywords between two topics.
-Both these approaches will be used in this work.
+given example the dominant topic is Topic A \(c^*=c_A\).
 
-Several of the approaches described in this section have previously been
-carried out in~\cite{Bergmann2018,Liu2015,Sugimoto2011, youngblood2018},
-the novelty here is combining the approaches as well as applying them
-to a new data set. A preliminary analysis of the data set is presented in the
-following section.
+LAD requires that the number of topics is specified in advance before running
+the algorithm. The number of topics can be chosen using the coherence
+value~\cite{Roder2015} or through subjective minimisation of the overlapping
+keywords between two topics. Both these approaches will be used in this work.
 
 \section{Preliminary Analysis}\label{section:preliminary}
 
@@ -382,11 +394,12 @@ The data set~\cite{pd_data_2018} consists of \totalarticles articles with unique
 titles. In case of duplicates the preprint version of an article (collected from
 arXiv) was dropped. Similarly to~\cite{Liu2015}, \manual articles have not been
 collected from the aforementioned APIs but have been manually added because they
-are of interest. Examples of such papers include~\cite{Flood1958}
-the first publication on the PD,~\cite{Ohtsuki2006, Stewart2012} two well cited
+are of interest. These papers include papers discussed in Chapter~\ref{chapter:literature_review}
+such as~\cite{Flood1958} the first publication on the PD,~\cite{Ohtsuki2006, Stewart2012} two well cited
 articles in the field, and a series of works from Robert Axelrod
-~\cite{Axelrod1980a, Axelrod1980b, Axelrod1987, Axelrod1981, Riolo2001} a
-leading author of the field. A more detailed summary of the articles' provenance
+~\cite{Axelrod1980a, Axelrod1980b, Axelrod1987, Axelrod1981, Riolo2001}.
+
+A more detailed summary of the articles' provenance
 is given by Table~\ref{table:preliminary_table}. Only 3\% of the data set consists of
 articles that were manually added and 27\% of the articles were collected from
 arXiv. The average number of publications is also included in
@@ -410,8 +423,7 @@ made from Figure~\ref{fig:timeseries}.
 
 \begin{enumerate}
     \item There is a steady increase of the number of publications since the
-    1980s and the introduction of computer tournaments~\cite{Axelrod1981}
-    (work by Robert Axelrod).
+    1980s and the introduction of computer tournaments~\cite{Axelrod1981}.
     \item There is a decrease in 2017-2018. This is due to our data set being
     incomplete. Articles that have been written in 2017-2018 have either not
     being published or were not retrievable by the APIs at the time of the last
@@ -495,11 +507,7 @@ value of 0.418.
     \label{fig:coherence_value_over_number_of_topcis}
 \end{figure}
 
-An LDA model outputs an \(N \times n\) matrix - \(N\) rows for \(N\)
-abstracts and \(n\) columns for \(n\) topics. The cells contain the percentage
-contributions for each topic for each abstract, \(c_i^ j\) for
-\(i \in \{1, 2, \dots, n\}\) for \(j \in \{1, 2, \dots, N\}\). In essence,
-LDA maps every paper to a vector space of dimension the number of topics. In the case
+In the case
 of 6 topics it is difficult to visualise the clustering of topics. To overcome
 this a dimensionality reduction approach called t-Distributed Stochastic Neighbour Embedding
 (t-SNE)~\cite{Maaten2008} is applied to the LDA model outputs. More specifically,
@@ -542,8 +550,6 @@ chosen to carry out the analysis of this work, and moreover the LDA model for
         \caption{Visualisation of LDA with \(n=5\) on 2 dimensions.}\label{fig:lda_visualisation_five}
     \end{minipage}
 \end{figure}
-
-\textbf{What are the research topics of the Prisoner's Dilemma?}
 
 For \(n=5\) the articles are clustered and assigned to their dominant topic,
 based on the highest percentage contribution. The keywords associated with a
@@ -610,33 +616,28 @@ E, and more specifically:
 Note that the whilst for the choice of 5 topics the actual clustering is not
 subjective (the algorithm is determining the output) the interpretation above is.
 
-\textbf{Five topics in the PD publications identified by the data set of this
+Five topics in the PD publications identified by the data set of this
 work are human subject research, biological studies, strategies, evolutionary
-dynamics on networks and modelling problems as a PD}.
-
+dynamics on networks and modelling problems as a PD.
 These 5 topics nicely
 summarise the PD research. They highlight the interdisciplinarity of the field;
 how it brings together applied modelling of real world situations (Topic B and E)
 and more theoretical notions such as evolutionary dynamics and optimality of
 strategies.
 
-\textbf{Is one topic currently more in fashion?}
-
 Figure~\ref{fig:number_of_articles_per_topic} gives the number of articles
 per topic over time. The topics appear to have had a similar trend over the years,
 with topics B and D having a later start. Following the introduction of a topic
 the publications in that topic have been increasing. There is no decreasing
 trend in any of the topics. All the topics have been publishing for years and
-they still attract the interest of academics. Thus, \textbf{there does not
-seem to be any given topic more or less in fashion}.
+they still attract the interest of academics. Thus, there does not
+seem to be any given topic more or less in fashion.
 
 \begin{figure}[!hbtp]
     \centering
     \includegraphics[width=\textwidth]{src/chapters/03/paper/bibliometric-study-of-the-prisoners-dilemma/assets/images/papers_per_topic_over_time.pdf}
     \caption{Number of articles per topic over the years (on a logged scale).}\label{fig:number_of_articles_per_topic}
 \end{figure}
-
-\textbf{How do the research topics change over the years?}
 
 To gain a better understanding regarding the change in the topics over the years,
 LDA is applied to the cumulative data set over 8 time periods. These periods are
@@ -679,9 +680,9 @@ The five topics of the PD presented in this manuscript appear to always be
 less good at fitting the publications compared to the six topics of LDA \(n=6\).
 Moreover, there are less good than the topics of the optimal number of topics
 from 1951 to 1995. The difference in the performance values, equation (\ref{eq:ratio}),
-however are small. \textbf{The relevances of the five topics has been increasing
+however are small. The relevances of the five topics has been increasing
 over time, and though, the topics did not always fit the majority of published
-work over time, there were still papers being published on those topics}.
+work over time, there were still papers being published on those topics.
 
 \begin{figure}[!hbtp]
     \centering
@@ -705,22 +706,18 @@ Section~\ref{section:methodology} is denoted as \(G\). There are a total of
 a size of \largestcc nodes. The largest connected component is going to be
 refereed to as the main cluster of the network and is denoted as \(\bar{G}\). A
 graphical representation of both networks is shown in
-Figure~\ref{fig:graphical_representation_graphs} and a metrics summary is given
-by Table~\ref{table:network_comparison.tex}.
+Figures~\ref{fig:graphical_representation_g}-\ref{fig:graphical_representation_g_bar}
+and a metrics summary is given by Table~\ref{table:network_comparison.tex}.
 
-\begin{figure}[!hbtp]\vspace{-2cm}
-    \begin{subfigure}{.95\textwidth}\centering
-        \includegraphics[width=.5\textwidth]{src/chapters/03/paper/bibliometric-study-of-the-prisoners-dilemma/assets/images/pd_network.pdf}
-        \caption{\(G\) the co-authorship network for the IPD.}
-    \end{subfigure}\hfill
-    \begin{subfigure}{.95\textwidth}\centering
-        \includegraphics[width=.5\textwidth]{src/chapters/03/paper/bibliometric-study-of-the-prisoners-dilemma/assets/images/pd_network_cluster.pdf}
-        \caption{\(\bar{G}\) the largest connected component of \(G\).}
-     \end{subfigure}
-     \caption{A graphical representation of \(G\) and \(\bar{G}\)}\label{fig:graphical_representation_graphs}
+\begin{figure}[!hbtp]
+    \includegraphics[width=\textwidth]{src/chapters/03/paper/bibliometric-study-of-the-prisoners-dilemma/assets/images/pd_network.pdf}
+    \caption{\(G\) the co-authorship network for the IPD.}\label{fig:graphical_representation_g}
 \end{figure}
 
-\textbf{Is the Prisoner's Dilemma a collaborative field?}
+\begin{figure}[!hbtp]
+    \includegraphics[width=\textwidth]{src/chapters/03/paper/bibliometric-study-of-the-prisoners-dilemma/assets/images/pd_network_cluster.pdf}
+    \caption{\(\bar{G}\) the largest connected component of \(G\).}\label{fig:graphical_representation_g_bar}
+\end{figure}
 
 Based on Table~\ref{table:network_comparison.tex} an author in \(G\) has on
 average 4 collaborators and a 70\% probability of collaborating with a
@@ -758,8 +755,8 @@ spread the knowledge of the field across academic teams. The fields
 of both Price of Anarchy and Auction games also have high modularity, and
 that could indicate that is in fact how academic publications are.
 
-Thus, \textbf{the PD is indeed a collaborative field but perhaps it is not
-more collaborative than other fields}, as there is no effort from the authors
+Thus, the PD is indeed a collaborative field but perhaps it is not
+more collaborative than other fields, as there is no effort from the authors
 to write with people outside their community.
 
 \begin{table}[!hbtp]
@@ -789,8 +786,6 @@ networks grow over time and that the networks always had a high modularity.
 Since the first publications authors tend to write with people from their
 communities, and that is not an effect of a specific time period.
 
-\textbf{Are some topics more collaborative than other?}
-
 The networks corresponding to the topics of Section~\ref{section:preliminary} have
 also been generated similarly to \(G\). Note that authors with publications in
 more than one topic exist, and these authors are included in all the corresponding
@@ -802,12 +797,12 @@ topic with the smallest average degree, 2.5, is Topic C. In topics A and B the
 number of isolated nodes is very small \(less than (0.2)\) compared to Topic E where the
 percentage of isolated nodes is approximately 6\%. Moreover, in topics C and E
 an author is 10\% more likely to collaborate with a collaborator's co-author.
-Thus, \textbf{topics ``human subject research'' and ``biological studies'' tend
+Thus, topics ``human subject research'' and ``biological studies'' tend
 to be more collaborative than the topic of ``strategies'', and an authors in
 these are less likely to have at least one collaborator compared to the topic of
-``modelling problems as a PD''}.
+``modelling problems as a PD''.
 
-\textbf{``Evolutionary dynamics on networks'' also appear to be a collaborative topic}.
+``Evolutionary dynamics on networks'' also appear to be a collaborative topic.
 In fact the network of the topic  is a
 sub graph of \(\bar{G}\), the main cluster of \(G\) and it will be demonstrated in the following section that
 authors in this network are more like to gain from the influence of the network
@@ -819,8 +814,6 @@ compared to any other topic network.
     \input{src/chapters/03/paper/bibliometric-study-of-the-prisoners-dilemma/assets/topic_network_comparison.tex}}
     \caption{Network metrics for topic networks.}\label{table:topics_networks}
 \end{table}
-
-\textbf{Are there authors which benefit more from their position in the network?}
 
 There are two centrality measures reported in this work, closeness and
 betweenness centrality. Closeness centrality is a measure of how easy it is for
@@ -849,8 +842,8 @@ It is obvious that in \(G\) the centralities values are low which suggests
 that in the PD authors do not benefit from their positions. This could be an
 effect of information not flowing from one community to another as authors tend
 to write with people from their communities. Nevertheless,
-\textbf{there are authors that do benefit from their position, but these are
-only the authors connected to the main cluster}.
+there are authors that do benefit from their position, but these are
+only the authors connected to the main cluster.
 
 \begin{table}[!hbtp]
     \begin{center}
