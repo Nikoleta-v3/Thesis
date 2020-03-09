@@ -2,13 +2,14 @@
 the field of the Iterated Prisoner's Dilemma}\label{chapter:bibliometric_study}
 
 \begin{center}
-    The research report in this Chapter has lead in a manuscript entitled: \\
+    The research reported in this Chapter has lead in a manuscript, entitled: \\
     \textbf{``A bibliometric study of research topics, collaboration and influence in the field of the Iterated Prisoner's Dilemma''} \\
-    Available at: \url{arxiv.org/abs/1911.06128} \\ \vspace{.5cm}
-    \textit{\textbf{The abstract of the manuscript is the following:}}
+    Available at: \url{arxiv.org/abs/1911.06128} \\
+    Associated data set: \cite{auction_data_2018}, \cite{anarchy_data_2018}, \cite{pd_data_2018}\\ \vspace{.5cm}
+    The manuscript's abstract is the following:
 \end{center}
 
-``This manuscript explores the research topics and collaborative behaviour of
+This manuscript explores the research topics and collaborative behaviour of
 authors in the field of the Prisoner's Dilemma using topic modelling and a graph
 theoretic analysis of the co-authorship network. The analysis identified five
 research topics in the Prisoner's Dilemma which have been relevant of the course
@@ -20,35 +21,28 @@ necessarily more collaborative than other scientific fields. The co-authorship
 network suggests that authors are focused on their communities and not many
 connections across the communities are made. The Prisoner Dilemma authors also
 do not influence or gain much information by their connections, unless they are
-connected to a ``main'' group of authors.''
+connected to a ``main'' group of authors.
 
 The differences between the Chapter and the manuscript include \dots.
 \newpage
 
 \section{Introduction}\label{section:introduction}
 
-Chapter~\ref{chapter:literature_review} presented a systematic literature review
-on the PD. The Chapter aimed to summarise the results of the
-established research, and to identify research topics in the field of the PD.
-This was done by partitioning the reviewed literature in five different topics,
-corresponding to the sections of Chapter~\ref{chapter:literature_review}. This
-Chapter aims to contribute to the same research questions by using an automatic
-approach. Namely, this Chapter presents a bibliometric analysis of 2,420 published
-articles on the PD between 1951 and 2018. It presents the
-topics in the PD publications, which have been identified using Latent
-Dirichlet Allocation~\cite{Blei2003}, and it explores the changes in the
-dominant topics over time.
-
-Moreover, this Chapter explores the collaborative behaviour of the field of collaboration,
-which is the third research question raised in this thesis,
-using the co-authorship network. The network analysis is combined the Latent Dirichlet
-Allocation topic analysis to also assess
-the relative influence of authors in these topics.
+This Chapter presents a bibliometric analysis of the data set
+``Articles' meta data on the Prisoner's Dilemma''~\cite{pd_data_2018}.
+Chapter~\ref{chapter:literature_review} presented a review of published works on
+the PD, and manually assigned them to different topics. These topics correspond
+to the sections of Chapter~\ref{chapter:literature_review}. To accompany that
+manual identification of topics this Chapter presents an automatic approach
+using natural language processing. More specifically, the \totalarticles articles' metadata
+in~\cite{pd_data_2018} are used to extract a list of research topics in the field.
+Moreover, the list of authors in~\cite{pd_data_2018} is also used to generate a
+co-authorship network and explore their collaborative behaviour.
 The Chapter is structured as follows:
 
 \begin{itemize}
-    \item section~\ref{section:methodology}, covers the methodology used in this manuscript,
-    including the data collection.
+    \item section~\ref{section:methodology}, covers the data collection and an introduction
+    to topic modelling and co-authorship networks.
     \item section~\ref{section:preliminary}, presents a preliminary analysis of the
     data set.
     \item section~\ref{section:topics}, identifies research topics in the field using
@@ -91,10 +85,9 @@ In~\cite{Liu2015}, the approach was applied to analyse the development of the fi
 ``evolution of cooperation'', and in~\cite{youngblood2018} to identify the
 subdisciplines of the interdisciplinary field of ``cultural evolution'' and
 investigate trends in collaboration and productivity between these subdisciplines.
-Moreover, \cite{Li2019} examined the
-long-term impact of co-authorship with established, highly-cited scientists on
-the careers of junior researchers. This Chapter builds upon the previous work done
-by~\cite{Liu2015} and ~\cite{youngblood2018}, and extends their methodology.
+This Chapter builds on the works of~\cite{Liu2015} and ~\cite{youngblood2018} and
+and extends their methodology. This is described in
+section~\ref{section:co_authorship_network}.
 
 Latent Dirichlet Allocation (LDA) is a topic modelling technique proposed
 in~\cite{Blei2003} as a generative probabilistic model for discovering
@@ -104,21 +97,22 @@ Coelho2010} and detection in video~\cite{Niebles2008, Wang2008}. Nevertheless,
 LDA has been applied by several works on publication data for identifying the
 topic structure of a subject area. In~\cite{Inglis2018}, it was applied to the
 publications on mathematical education of the journals ``Educational Studies in
-Mathematics'' and ``Journal for Research in Mathematics Education'' to
-identify the dominant topics that each journal was publishing on. The topics of
-the North American library and Information Science dissertations were 
-studied chronologically in~\cite{Sugimoto2011}, and the main topic of the
-scientific content presented at EvoLang conferences was identified
-in~\cite{Bergmann2018}.
+Mathematics'' and ``Journal for Research in Mathematics Education'', in~\cite{Sugimoto2011}
+to the dissertations of the North American library and Information Science and
+in~\cite{Bergmann2018} to conference papers presented at EvoLang conferences.
+LDA is the topic modelling technique used in this thesis. An introduction to
+the technique is presented in section~\ref{section:lda_introduction}.
 
-Several of the approaches described of this Chapter have previously been carried
-out in~\cite{Bergmann2018,Liu2015,Sugimoto2011, youngblood2018}], the novelty is
-combining the approaches as well as applying them to a new data set. More
-specifically, in~\cite{Liu2015, youngblood2018}, a data set from a single
-source, Web of Science, is considered whereas the data set described here,
-archived at~\cite{pd_data_2018}, has been collected from five sources.
+Several of the approaches of this Chapter have previously been carried
+out in~\cite{Bergmann2018,Liu2015,Sugimoto2011, youngblood2018}. The novelty of this
+thesis is the combination of these approaches and their application to a new data
+set. The data sets of~\cite{Liu2015} and~\cite{youngblood2018} are from 
+from a single source, the Web of Science, whereas the data set~\cite{pd_data_2018}
+considered here has been collected from five sources using a bespoke open source
+software. This software and the data collection process are presented in
+section~\ref{section:data_collection_arcas}.
 
-\subsection{Data Collection}
+\subsection{Data Collection}\label{section:data_collection_arcas}
 
 Academic articles are accessible through scholarly databases. Several databases
 and collections today offer access through an open application protocol
@@ -139,14 +133,25 @@ formats~\cite{nurseitov2009}. Similarly to the request message, the structure of
 the received data differs from journal
 to journal.
 
-The data collection is crucial to this study. To ensure that this study can be
-reproduced all code used to query the different APIs has been packaged as a
-Python library called \textit{Arcas} which is available online~\cite{nikoleta_2017}.
-Arcas includes documentation of usage which is available at: \url{http://arcas.readthedocs.io/en/latest/}. 
-Arcas allows users to quickly create a query message to a publisher's API as
-demonstrated in Figure~\ref{fig:arcas_query}. The API is specified by creating
-an instance of a class. The names of the available api classes corresponds to
-the publishers' names.
+The data collection is crucial to this thesis. To ensure that the research
+reported in this Chapter can be reproduced all code used to query the different
+APIs has been packaged as a Python library called \textit{Arcas}. The source
+code of the library has been made available online and the package includes
+documentation of usage which is available at:
+\url{http://arcas.readthedocs.io/en/latest/}. Arcas allows users to communicate
+with a list of APIs by specifying a single keyword whilst not considering the
+differences between the requesting and receiving phases of the APIs. Consider
+the example of retrieving a single article with the word `Prisoners Dilemma' in
+the title. Figure~\ref{fig:arcas_query_plos} demonstrates the Python code needed
+to query the publisher PLOS and Figure~\ref{fig:arcas_query_nature} demonstrates 
+code for querying the API of Nature.
+
+The only distinction between the two code snippets is their respective line 2
+where the API is specified by creating an instance of a class corresponding
+to the publisher's API. The differences between the two APIs are visible from
+lines 6 and 12 onwards. Lines 5 show the requesting message generated for the
+APIs and lines 12 onwards show the metadata of the article received by the
+requesting phases.
 
 \begin{figure}[!hbtp]
 \begin{minted}
@@ -156,6 +161,7 @@ the publishers' names.
     frame=lines,
     baselinestretch=1.2,
     fontsize=\footnotesize,
+    linenos
     ]
     {python}
 >>> import arcas
@@ -164,58 +170,98 @@ the publishers' names.
 >>> url = api.create_url_search(parameters)
 >>> url
 http://api.plos.org/search?q=title:"Prisoner\'s Dilemma"&rows=1
-\end{minted}
-\caption{Python Code. Example of using the library Arcas to create a message for
-the API of the publisher PLOS. The query is for a single article with the
-word `prisoners dilemma' in the title.}\label{fig:arcas_query}
-\end{figure}
 
-It can be seen that the query message for PLOS is different to that of arXiv which
-was mentioned earlier. The message is used to query the API and retrieve a
-reply. This is shown in Figure~\ref{fig:arcas_metadata}.
-
-\begin{figure}[!hbtp]
-\begin{minted}
-    [
-    bgcolor=orange!25,
-    framesep=2mm,
-    frame=lines,
-    baselinestretch=1.2,
-    fontsize=\footnotesize,
-    ]
-    {python}
 >>> request = api.make_request(url)
 >>> root = api.get_root(request)
 >>> article = api.parse(root)
 >>> article
 [{'id': '10.1371/journal.pone.0028576',
-  'journal': 'PLoS ONE',
-  'eissn': '1932-6203',
-  'publication_date': '2011-12-14T00:00:00Z',
-  'article_type': 'Research Article',
-  'author_display': ['Irina Kareva'],
-  'abstract': ["As tumors outgrow their ..."],
-  'title_display': "Prisoner's Dilemma in Cancer Metabolism",
-  'score': 21,
-  'author': ['Irina Kareva'],
-  'date': 2011,
-  'provenance': 'PLOS',
-  'doi': '10.1371/journal.pone.0028576',
-  'url': 'https://doi.org/10.1371/journal.pone.0028576',
-  'title': "Prisoner's Dilemma in Cancer Metabolism",
-  'key': 'Kareva2011',
-  'unique_key': '0d56101113057d99fc6d83095812735a',
-  'category': 'Not available',
-  'open_access': 'Not available'}]
+'journal': 'PLoS ONE',
+'eissn': '1932-6203',
+'publication_date': '2011-12-14T00:00:00Z',
+'article_type': 'Research Article',
+'author_display': ['Irina Kareva'],
+'abstract': ["As tumors outgrow their ..."],
+'title_display': "Prisoner's Dilemma in Cancer Metabolism",
+'score': 21,
+'author': ['Irina Kareva'],
+'date': 2011,
+'provenance': 'PLOS',
+'doi': '10.1371/journal.pone.0028576',
+'url': 'https://doi.org/10.1371/journal.pone.0028576',
+'title': "Prisoner's Dilemma in Cancer Metabolism",
+'key': 'Kareva2011',
+'unique_key': '0d56101113057d99fc6d83095812735a',
+'category': 'Not available',
+'open_access': 'Not available'}]
 \end{minted}
-\caption{Python Code. Example of using a query message to retrieve metadata.}
-\label{fig:arcas_metadata}
+\caption{Example of using the library Arcas to communicate the API of the publisher
+PLOS. The query is for a single article with the word `prisoners dilemma' in
+the title.}\label{fig:arcas_query_plos}
 \end{figure}
 
-As mentioned previously, the structure of the received data differs from journal
-to journal. The metadata data and their naming from PLOS is different from those
-of arXiv. Arcas has a build in function to standarise the multiple types of replies,
-Figure~\ref{fig:arcas_to_dataframe}.
+\begin{figure}[!hbtp]
+    \begin{minted}
+        [
+        bgcolor=orange!25,
+        framesep=2mm,
+        frame=lines,
+        baselinestretch=1.2,
+        fontsize=\footnotesize,
+        linenos
+        ]
+        {python}
+>>> import arcas
+>>> api = arcas.Nature()
+>>> parameters = api.parameters_fix(title="Prisoner's Dilemma", records=1)
+>>> url = api.create_url_search(parameters)
+>>> url
+http://www.nature.com/opensearch/request?&query=dc.title adj Prisoner's Dilemma&maximumRecords=1
+
+>>> request = api.make_request(url)
+>>> root = api.get_root(request)
+>>> article = api.parse(root)
+>>> article
+[{'records': None,
+'record': None,
+'recordSchema': 'info:srw/schema/11/pam-v2.1',
+'recordPacking': 'packed',
+'recordData': None,
+'message': None,
+'article': None,
+'head': None,
+'identifier': 'doi:10.1057/ces.1994.6',
+'title': """Survey Article: Cooperate or Defect? Russian and American Students
+in a Prisoner's Dilemma""",
+'creator': 'Michael Hemesath',
+'productCode': 'ces',
+'publicationName': 'Comparative Economic Studies',
+'issn': '0888-7233',
+'eIssn': '1478-3320',
+'doi': '10.1057/ces.1994.6',
+'publisher': 'Palgrave Macmillan',
+'publicationDate': '1994-04',
+'volume': '36',
+'number': '1',
+'startingPage': '83',
+'endingPage': '93',
+'url': 'http://dx.doi.org/10.1057/ces.1994.6',
+'genre': 'Research',
+'description': "<p>Do assumptions underlying the models of ...",
+'copyright': '© 1994 Palgrave Macmillan Ltd',
+'aggregationType': 'issue'}]
+    \end{minted}
+    \caption{Example of using the library Arcas to communicate the API of the publisher
+    Nature. The query is for a single article with the word `prisoners dilemma' in
+    the title.}\label{fig:arcas_query_nature}
+\end{figure}
+
+The are differences and similarities between the metadata of each API. Arcas
+includes a function which standarises the format of the metadata. Figure~\ref{fig:arcas_to_dataframe}
+demonstrates the usage of the function. Namely, the metadata reported by Arcas are
+the url, a generated key and a unique key, the title, the authors, the abstract,
+the doi, the date, the journal, the provenance, the category, the articles score
+and whether it's open access or not.
 
 \begin{figure}[!hbtp]
     \begin{minted}
@@ -237,10 +283,8 @@ dtype='object')
 the queries regarding the API.}\label{fig:arcas_to_dataframe}
 \end{figure}
 
-The advantages of the library is that articles can be collected from a list of
-APIs by specifying a single keyword. A total of four prominent publishers in the
-field and a preprint server were used as sources to collect data for this
-analysis:
+There are a total of five different APIs implemented within the project. These
+five include four prominent publishers in the field and a preprint server:
 
 \begin{multicols}{2}
     \begin{itemize}
@@ -268,7 +312,12 @@ analysis:
     \end{itemize}
 \end{multicols}
 
-More specifically, for this Chapter articles for which any of the terms
+Each source has been implemented as a class. For example the class for A, and B
+are given by Figures and respectively. The functions are the. As mentioned in
+to these includes tests to test their corresponding changes.
+
+The \totalarticles articles metadata~\cite{pd_data_2018} explored in this Chapter has been collected
+using Arcas. More specifically, articles for which any of the terms
 ``prisoner's dilemma'', ``prisoners dilemma'', ``prisoner dilemma'', ``prisoners
 evolution'', ``prisoner game theory'' existed within the title, the abstract or
 the text are included in the analysis. The data set has been archived and is
@@ -276,7 +325,7 @@ available at~\cite{pd_data_2018}. Note that the latest data collection was
 performed on the \(30^{\text{th}}\) November 2018.
 % TODO Ensure this stay accurate
 
-\subsection{Co-authorship Network}
+\subsection{Co-authorship Network}\label{section:co_authorship_network}
 
 The relationship between the authors within a field will be modelled as a graph
 \(G = (V_G, E_G)\) where \(V_G\) is the set of nodes and \(E_G\)  is the set of
@@ -303,7 +352,7 @@ A connected component is a maximal set of nodes such that each pair of nodes is
 connected by a path~\cite{Easley2010}. The number of connected components as well as the size of the
 largest connected component in the network are reported.
 The size of the largest connected component represents the scale of the central cluster
-of the entire network, as will be discussed in the analysis section.
+of the entire network, as will be discussed in later parts.
 Clustering coefficient and modularity are also calculated. The clustering
 coefficient, defined as 3 times the number of triangles on the graph divided
 by the number of connected triples of nodes, is a local measure of the degree to
@@ -321,14 +370,14 @@ communities but sparse connections between nodes in different communities.
 That means that there are many sub communities of authors that write together
 but not across communities.
 
-Two further points are aimed to be explored in this work, (1) which people control the flow
+Two further points are aimed to be explored in this thesis, (1) which people control the flow
 of information;
 as in which people influence the field the most and (2) which are the authors that
 gain the most from the influence of the field. To measure these concepts
 centrality measures are going to be used.
 Centrality measures are often used to understand different
-aspects of social networks~\cite{Landherr2010}. Two centrality measures have been
-chosen for this Chapter and these are closeness and betweenness centrality.
+aspects of social networks~\cite{Landherr2010}. The two centrality measures chosen
+here are closeness and betweenness centrality.
 
 \begin{enumerate}
     \item In networks some nodes have a short distance to a lot of nodes and
@@ -349,27 +398,24 @@ chosen for this Chapter and these are closeness and betweenness centrality.
     the influence, thus these authors gain the most from their networks.
 \end{enumerate}
 
-\subsection{Topic Modelling}
+\subsection{Topic Modelling}\label{section:lda_introduction}
 
-The articles contained in the data set (\cite{pd_data_2018}) will be classified
-into research topics using LDA a topic modelling technique
+The articles contained in the data set will be classified
+into research topics using LDA, a topic modelling technique
 designed to summarize large collections of documents by a small number of
-conceptually connected topics or themes~\cite{Blei2003, Grimmer2013}. The
-documents are the articles' abstracts and LDA was carried out using~\cite{rehurek_lrec}.
+conceptually connected topics or themes~\cite{Blei2003, Grimmer2013}. LDA is
+carried out using~\cite{rehurek_lrec}.
 
-In LDA, each document/abstract is represented by a distribution over topics, and
-the topics themselves are represented by a distribution over words. More
-specifically, each topics is described by weights associated with words and each
-document by the probabilities of belonging to a specific topic. The probability
-of a document belonging to a topic is referred to as the percentage contribution
-denoted as \(c\). The output of an LDA is an \(N \times n\) matrix - \(N\) rows
-for \(N\) abstracts and \(n\) columns for \(n\) topics. The cells contain the
-percentage contributions for each topic for each abstract, \(c_i^ j\) for \(i
-\in \{1, 2, \dots, n\}\) for \(j \in \{1, 2, \dots, N\}\). In essence, LDA maps
-every paper to a vector space of dimension the number of topics.
-
-For example the words and their associated weights for two topics A and B
-could be:
+The input to an LDA is a collection of documents, and the collection of
+documents considered here are the articles' abstracts. The output of an LDA is
+an \(N \times n\) matrix - \(N\) rows for \(N\) abstracts and \(n\) columns for
+\(n\) topics. The cells contain the percentage contributions for each topic for
+each abstract, \(c_i^ j\) for \(i \in \{1, 2, \dots, n\}\) for \(j \in \{1, 2,
+\dots, N\}\). Thus each document/abstract is represented by a distribution over
+topics, and the topics themselves are represented by a distribution over words.
+More specifically, each topics is described by weights associated with words.
+For example assume two topics A and B were the words and their associated weights
+are:
 
 \begin{itemize}
     \item Topic A: \(0.039 \times\)``cooperation'', \(0.028 \times\)``study'' and \(0.026 \times\)``human''.
@@ -379,23 +425,27 @@ could be:
 
 The percentage contribution for a document with abstract ``The study of
 cooperation in humans'' has a \(c_{A} = 0.039 + 0.028 + 0.026 = 0.093\) and
-\(c_B = .020 + 0.0 + 0.0 = 0.020\). The topic to which a document is assigned to
-is based on the highest percentage contribution denoted as \(c^*\). For the
-given example the dominant topic is Topic A \(c^*=c_A\).
+\(c_B = .020 + 0.0 + 0.0 = 0.020\). In essence, LDA maps every paper to a
+vector. In this example the document is maped to \([0.093, 0.020]\). Each
+document has a dominant topic to which is going to be assigned in. The dominant
+topic is the topic with the highest percentage contribution denoted as \(c^*\).
+For the given example the dominant topic is Topic A \(c^*=c_A\).
 
 LAD requires that the number of topics is specified in advance before running
 the algorithm. The number of topics can be chosen using the coherence
 value~\cite{Roder2015} or through subjective minimisation of the overlapping
 keywords between two topics. Both these approaches will be used in this work.
+Preceding the analysis of research topics, the next the next section presents a
+preliminary analysis of the data set.
 
 \section{Preliminary Analysis}\label{section:preliminary}
 
 The data set~\cite{pd_data_2018} consists of \totalarticles articles with unique
 titles. In case of duplicates the preprint version of an article (collected from
-arXiv) was dropped. Similarly to~\cite{Liu2015}, \manual articles have not been
-collected from the aforementioned APIs but have been manually added because they
-are of interest. These papers include papers discussed in Chapter~\ref{chapter:literature_review}
-such as~\cite{Flood1958} the first publication on the PD,~\cite{Ohtsuki2006, Stewart2012} two well cited
+arXiv) was dropped. Similarly to~\cite{Liu2015}, \manual articles have been manually
+added throught the writting on Chapter~\ref{chapter:literature_review} because
+they were of specific interest. These papers include~\cite{Flood1958} the first
+publication on the PD,~\cite{Ohtsuki2006, Stewart2012} two well cited
 articles in the field, and a series of works from Robert Axelrod
 ~\cite{Axelrod1980a, Axelrod1980b, Axelrod1987, Axelrod1981, Riolo2001}.
 
@@ -445,7 +495,7 @@ field of the PD continues to attract academic attention.
     with a fitted exponential line, and a forecast for 2017-2022.}\label{fig:timeseries}
 \end{figure}
 
-There are a total of \authors authors in the data set (\cite{pd_data_2018}) and several of these
+There are a total of \authors authors in the data set and several of these
 authors have had multiple publications collected from the data collection process.
 The highest number of articles collected for an
 author is 83 publications for Matjaz Perc. The distribution of the number of
@@ -616,10 +666,10 @@ E, and more specifically:
 Note that the whilst for the choice of 5 topics the actual clustering is not
 subjective (the algorithm is determining the output) the interpretation above is.
 
-Five topics in the PD publications identified by the data set of this
-work are human subject research, biological studies, strategies, evolutionary
+Thus, the five topics in the PD publications identified by the data set of using an LDA
+are human subject research, biological studies, strategies, evolutionary
 dynamics on networks and modelling problems as a PD.
-These 5 topics nicely
+These topics nicely
 summarise the PD research. They highlight the interdisciplinarity of the field;
 how it brings together applied modelling of real world situations (Topic B and E)
 and more theoretical notions such as evolutionary dynamics and optimality of
@@ -700,8 +750,8 @@ using a network theoretic approach.
 \section{Analysis of co-authorship network}\label{section:co_authorship}
 
 The collaborative behaviour of authors in the field of the PD is assessed using
-the co-authorship network, which as mentioned in
-Section~\ref{section:methodology} is denoted as \(G\). There are a total of
+the co-authorship network, which as introduced in
+section~\ref{section:methodology} is denoted as \(G\). There are a total of
 \connectedcomponents connected components in \(G\) and the largest component has
 a size of \largestcc nodes. The largest connected component is going to be
 refereed to as the main cluster of the network and is denoted as \(\bar{G}\). A
@@ -726,7 +776,15 @@ to write with a collaborator's co-author and on average has 2 more
 collaborators. Moreover, there are only \isolatedpercentage\% of authors in the
 PD that has no connection to any other author.
 
-How does this compare to other fields? Two more data sets for the topics
+\begin{table}[!hbtp]
+    \centering
+    \resizebox{\textwidth}{!}{
+    \input{src/chapters/03/paper/bibliometric-study-of-the-prisoners-dilemma/assets/network_comparison.tex}}
+    \caption{Network metrics for \(G\) and \(\bar{G}\) respectively.}
+    \label{table:network_comparison.tex}
+\end{table}
+
+But how do these compare to other fields? Two more data sets for the topics
 ``Price of Anarchy'' and ``Auction Games'' have been collected in order to
 compare the collaborative behaviour of the PD to other game theoretic fields. A
 total of 3444 publications have been collected for Auction games and 748 for
@@ -736,6 +794,14 @@ small number of articles that have been retrieved. Both data sets have been
 archived and are available in~\cite{auction_data_2018, anarchy_data_2018}.
 The networks for both data sets have been generated in the same way as \(G\).
 A summary of the networks' metrics are given by Table~\ref{table:other_topics_network_comparison.tex}.
+
+\begin{table}[!hbtp]
+    \centering
+    \resizebox{\textwidth}{!}{
+    \input{src/chapters/03/paper/bibliometric-study-of-the-prisoners-dilemma/assets/other_topics_network_comparison.tex}}
+    \caption{Network metrics for auction games and price of anarchy networks respectively.}
+    \label{table:other_topics_network_comparison.tex}
+\end{table}
 
 The average degrees for the Price of Anarchy and for Auction games are lower
 than the PD's. In Auction games an author is more likely to have no collaborators,
@@ -754,32 +820,29 @@ not many efforts are made to create new connections to other communities and
 spread the knowledge of the field across academic teams. The fields
 of both Price of Anarchy and Auction games also have high modularity, and
 that could indicate that is in fact how academic publications are.
-
 Thus, the PD is indeed a collaborative field but perhaps it is not
 more collaborative than other fields, as there is no effort from the authors
 to write with people outside their community.
-
-\begin{table}[!hbtp]
-    \centering
-    \resizebox{\textwidth}{!}{
-    \input{src/chapters/03/paper/bibliometric-study-of-the-prisoners-dilemma/assets/network_comparison.tex}}
-    \caption{Network metrics for \(G\) and \(\bar{G}\) respectively.}
-    \label{table:network_comparison.tex}
-\end{table}
-
-\begin{table}[!hbtp]
-    \centering
-    \resizebox{\textwidth}{!}{
-    \input{src/chapters/03/paper/bibliometric-study-of-the-prisoners-dilemma/assets/other_topics_network_comparison.tex}}
-    \caption{Network metrics for auction games and price of anarchy networks respectively.}
-    \label{table:other_topics_network_comparison.tex}
-\end{table}
 
 The evolution of the networks was also explored over time by constructing the
 network cumulatively over 51 periods. Except from the first period 1951-1966 the
 rest of the periods have a yearly interval (data for the years 1975 and 1982
 were not retrieved by the collection data process). The metrics of each sub
-network are given in the Appendix~\ref{appendix:tables}.
+network are given by Tables~\ref{table:cumulative_graphs} and~\ref{table:cumulative_clusters}.
+
+\begin{table}[!hbtp]
+    \centering
+    \resizebox{\textwidth}{!}{
+    \input{src/chapters/03/paper/bibliometric-study-of-the-prisoners-dilemma/assets/cumulative_graphs_table.tex}}
+    \caption{Collaborativeness metrics for cumulative graphs, \(\tilde{G} \subseteq G\)}\label{table:cumulative_graphs}
+\end{table}
+
+\begin{table}[!hbtp]
+    \centering
+    \resizebox{\textwidth}{!}{
+    \input{src/chapters/03/paper/bibliometric-study-of-the-prisoners-dilemma/assets/cumulative_clusters_table.tex}}
+    \caption{Collaborativeness metrics for cumulative graphs' main clusters, \(\tilde{G} \subseteq \bar{G}\)}\label{table:cumulative_clusters}
+\end{table}
 
 The results, similarly to the results of~\cite{Liu2015}, confirm that the
 networks grow over time and that the networks always had a high modularity.
@@ -791,6 +854,13 @@ also been generated similarly to \(G\). Note that authors with publications in
 more than one topic exist, and these authors are included in all the corresponding
 networks. A metrics' summary for all five topic networks is given by Table
 \ref{table:topics_networks}.
+
+\begin{table}[!hbtp]
+    \centering
+    \resizebox{\textwidth}{!}{
+    \input{src/chapters/03/paper/bibliometric-study-of-the-prisoners-dilemma/assets/topic_network_comparison.tex}}
+    \caption{Network metrics for topic networks.}\label{table:topics_networks}
+\end{table}
 
 Topic B is the network with the highest average degree followed by Topic A. The
 topic with the smallest average degree, 2.5, is Topic C. In topics A and B the
@@ -808,22 +878,15 @@ sub graph of \(\bar{G}\), the main cluster of \(G\) and it will be demonstrated 
 authors in this network are more like to gain from the influence of the network
 compared to any other topic network.
 
-\begin{table}[!hbtp]
-    \centering
-    \resizebox{\textwidth}{!}{
-    \input{src/chapters/03/paper/bibliometric-study-of-the-prisoners-dilemma/assets/topic_network_comparison.tex}}
-    \caption{Network metrics for topic networks.}\label{table:topics_networks}
-\end{table}
-
-There are two centrality measures reported in this work, closeness and
+The two centrality measures reported in this thesis are closeness and
 betweenness centrality. Closeness centrality is a measure of how easy it is for
 an author to contact others, and consequently affect them; influence them. Thus
-closeness centrality here is a measure of influence. Betweenness centrality is a
+closeness centrality is a measure of influence. Betweenness centrality is a
 measure of how many paths pass through a specific node, thus the amount of
-information this person has access to. Betweenness centrality is used here as a
-measure of how much an author gains from the field. All centrality measure can
-have values ranging from 0 to 1. The influence and the amount of information
-an author has access to are used to explore which authors benefit more
+information this person has access to. Betweenness centrality is interpated as a
+measure of how much an author gains from the field. The values of the centralities
+can range between 0 and 1. Influence and the amount of information
+an author has access to are proxies to understand if/which authors benefit more
 from their position.
 
 For \(G\) and \(\bar{G}\) the most central authors based on closeness and
@@ -895,17 +958,17 @@ work are given in the Appendix~\ref{appendix:distributions}.
 
 \section{Chapter summary}\label{section:conclusion}
 
-This manuscript has explored the research topics in the publications of the
+This Chapter explored the research topics from a collection of \totalarticles publications of the
 Iterated Prisoner's Dilemma, and moreover, the authors' collaborative behaviour
 and their influence in the research field. This was achieved by
-applying network theoretic approaches and a LDA algorithm to a total of 2422
-publications. Both the software~\cite{nikoleta_2017} and the data~\cite{nikoleta_2017}
+applying network theoretic approaches and a LDA algorithm to the collection of publications.
+Both the software~\cite{nikoleta_2017} and the main data set associated with the Chapter~\cite{nikoleta_2017}
 have been archived and are available to be used by other researchers. In
-fact~\cite{nikoleta_2017} has been used by~\cite{brane} and~\cite{arcas_blog}.
+fact Arcas has been used by~\cite{brane} and~\cite{arcas_blog}.
 
-The data collection and an introduction to the methodology used in this work
-were covered in Section~\ref{section:methodology}.
-Section~\ref{section:preliminary} covered an initial analysis of the data set
+Arcas, it's development and the data collection were covered in section~\ref{section:methodology},
+as well as an introduction to the co-authorship network and to LDA.
+section~\ref{section:preliminary} covered an initial analysis of the data set
 which demonstrated that the PD is a field that continues to attract academic
 attention and publications. In Section~\ref{section:topics} LDA was
 applied to the data set to identify topics on which researchers have been
@@ -919,7 +982,7 @@ of time, and it revealed that even though there were not the necessarily always
 the most discussed topics they were still being explored by researchers.
 
 The collaborative behaviour of the field was explored in
-Section~\ref{section:co_authorship} by constructing the co authorship network.
+section~\ref{section:co_authorship} by constructing the co-authorship network.
 It was concluded that the field is a collaborative field, where authors are
 likely to write with a collaborator's co-authors and on average an author has 4
 co-authors, however it not necessarily more collaborative than other fields. The
@@ -934,7 +997,8 @@ publishing in evolutionary dynamics on networks. Thus, an author would be aiming
 to publish on this topic if they were interested in gaining from their position
 in the publications of the PD.
 
-The study of the PD is the study of cooperation and investigating
-the cooperative behaviours of authors is what this work has aimed to achieve.
-Interesting areas of future work would include extending this analysis to more
-game theoretic sub fields, to evaluate whether the results remain the same.
+The study of the PD is the study of cooperation and investigating the
+cooperative behaviours of authors is what this Chapter has aimed to achieve. The
+following Chapters focus on best responses in changing environments of the PD,
+and more specifically Chapter~\ref{chapter:meta_tournaments} studies best
+responses from a collection of strategies in a large number of IPD tournaments.
