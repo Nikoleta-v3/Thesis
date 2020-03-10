@@ -401,8 +401,8 @@ class Arxiv(Api):
         root = ElementTree.fromstring(response.text)
         return root
 \end{minted}
-\caption{Class Arxiv is implemented in Arcas. It includes the code necassaty for Arcas
-to quert the API of arXiv.}\label{fig:arcas_arxiv}
+\caption{Class Arxiv is implemented in Arcas. It includes the code necessary for Arcas
+to query the API of arXiv.}\label{fig:arcas_arxiv}
 \end{figure}
 
 \begin{figure}[!hbtp]
@@ -482,8 +482,8 @@ class Ieee(Api):
         return root
     
 \end{minted}
-\caption{Class Ieee is implemented in Arcas. It includes the code necassaty for Arcas
-to quert the API of IEEE.}\label{fig:arcas_ieee}
+\caption{Class Ieee is implemented in Arcas. It includes the code necessary for Arcas
+to query the API of IEEE.}\label{fig:arcas_ieee}
 \end{figure}
 
 The \totalarticles articles metadata~\cite{pd_data_2018} explored in this Chapter has been collected
@@ -596,7 +596,7 @@ are:
 The percentage contribution for a document with abstract ``The study of
 cooperation in humans'' has a \(c_{A} = 0.039 + 0.028 + 0.026 = 0.093\) and
 \(c_B = .020 + 0.0 + 0.0 = 0.020\). In essence, LDA maps every paper to a
-vector. In this example the document is maped to \([0.093, 0.020]\). Each
+vector. In this example the document is mapped to \([0.093, 0.020]\). Each
 document has a dominant topic to which is going to be assigned in. The dominant
 topic is the topic with the highest percentage contribution denoted as \(c^*\).
 For the given example the dominant topic is Topic A \(c^*=c_A\).
@@ -727,49 +727,24 @@ value of 0.418.
     \label{fig:coherence_value_over_number_of_topcis}
 \end{figure}
 
-In the case
-of 6 topics it is difficult to visualise the clustering of topics. To overcome
-this a dimensionality reduction approach called t-Distributed Stochastic Neighbour Embedding
-(t-SNE)~\cite{Maaten2008} is applied to the LDA model outputs. More specifically,
-t-SNE is used to reduce the dimensions of each \(c^j\) from \(n\) to 2.
-Figure~\ref{fig:lda_visualisation_six}, gives the visualisation of LDA for \(n=6\).
-Each point represents a single document and its color corresponds to the topic
-with the highest percentage contribution. The documents which are clustered
-together have a similar percentage contribution distribution over the topics.
+The keywords associated with each topic for \(n=6\) are given by
+Table~\ref{table:topics_keywords_n_6}. Though \(n=6\) has the highest coherence
+score, from Table~\ref{table:topics_keywords_n_6} it can be observed that there
+are overlapping keywords between the topics. Further manual investigation has
+revealed that the seperation of topics are the most clear when an \(n\) of \(5\)
+is considered. Thus, \(n=5\) is chosen to carry out the analysis of this work,
+and moreover the LDA model for \(n=5\) has a coherence value 0.406 which is
+close to 0.418.
 
-Even though the LDA model with \(n=6\) has the highest coherence value, Figure
-\ref{fig:lda_visualisation_six} shows that documents of the same topic are
-closer to documents from other topics than each other. For example the documents
-of topic 2 are divided into two clusters. The one cluster is closer to documents
-from topic 4 and the other has a few documents closer to topic 1. In the case of \(n=6\)
-topic 4 appears to be on ``evolution of cooperation on networks'', and the
-papers from topic 2 surrounded from topic 4 include the articles
-``Evolutionary prisoner's dilemma game on hierarchical lattices''~\cite{Vukov2005}
-and ``Social evolution in structured populations''~\cite{Debarre2014}. Publications
-that clearly also fit topic 4.
 
-In comparison,
-\ref{fig:lda_visualisation_five} gives the visualisation of LDA \(n=5\) where
-the separation of the documents is more clear. Though
-several models, Figure~\ref{fig:coherence_value_over_number_of_topcis}, have a
-higher coherence value than the LDA model with \(n=5\), the separation
-of topics is not as clear for any model as it is for \(n=5\). Thus, \(n=5\) is
-chosen to carry out the analysis of this work, and moreover the LDA model for
-\(n=5\) has a coherence value 0.406 which is close to 0.418.
-
-\begin{figure}[!hbtp]
-    \centering
-    \begin{minipage}{.45\textwidth}
-        \centering
-        \includegraphics[width=.9\textwidth]{src/chapters/03/paper/bibliometric-study-of-the-prisoners-dilemma/assets/images/topics_scatter_plot_6.pdf}
-        \caption{Visualisation of LDA with \(n=6\) on 2 dimensions.}\label{fig:lda_visualisation_six}
-    \end{minipage}\hfill
-    \begin{minipage}{.45\textwidth}
-        \centering
-        \includegraphics[width=.9\textwidth]{src/chapters/03/paper/bibliometric-study-of-the-prisoners-dilemma/assets/images/topics_scatter_plot_5.pdf}
-        \caption{Visualisation of LDA with \(n=5\) on 2 dimensions.}\label{fig:lda_visualisation_five}
-    \end{minipage}
-\end{figure}
+\begin{table}[!hbtp]
+    \begin{center}
+    \resizebox{\textwidth}{!}{
+    \input{src/chapters/03/topics_keywords_n_6.tex}}
+    \end{center}
+    \caption{Keywords for each topic when \(n=6\). The highlighted keywords are overlapping keywords between topics.}
+    \label{table:topics_keywords_n_6}
+\end{table}
 
 For \(n=5\) the articles are clustered and assigned to their dominant topic,
 based on the highest percentage contribution. The keywords associated with a
@@ -1053,7 +1028,7 @@ betweenness centrality. Closeness centrality is a measure of how easy it is for
 an author to contact others, and consequently affect them; influence them. Thus
 closeness centrality is a measure of influence. Betweenness centrality is a
 measure of how many paths pass through a specific node, thus the amount of
-information this person has access to. Betweenness centrality is interpated as a
+information this person has access to. Betweenness centrality is interpreted as a
 measure of how much an author gains from the field. The values of the centralities
 can range between 0 and 1. Influence and the amount of information
 an author has access to are proxies to understand if/which authors benefit more
