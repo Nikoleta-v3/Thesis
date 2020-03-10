@@ -176,4 +176,7 @@ words = {
     "startingPage",
     "staticmethod",
     "tumors",
+    "Glynatsi",
+    "isinstance",
+    "len"
 }
