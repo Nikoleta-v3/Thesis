@@ -328,15 +328,13 @@ publishers website and for the APIs of this work they can acquired for free.
         linenos
         ]
         {python}
-
 class Arxiv(Api):
     def __init__(self):
         self.standard = 'http://export.arxiv.org/api/query?search_query='
 
     def to_dataframe(self, raw_article):
-        """A function which takes a dictionary with structure of the arXiv
-        results, transforms it to a standardized format and returns a dataframe.
-        """
+        """A function which takes a dictionary with structure of the arXiv results,
+        transforms it to a standardized format and returns a dataframe."""
         raw_article['url'] = raw_article.get('id', None)
 
         for key_one, key_two in [['author', 'name'], ['category', 'category']]:
@@ -371,9 +369,8 @@ class Arxiv(Api):
         return raw_articles
 
     @staticmethod
-    def parameters_fix(author=None, title=None, abstract=None, year=None,
-                        records=None, start=None, category=None, journal=None,
-                        keyword=None):
+    def parameters_fix(author=None, title=None, abstract=None, year=None, records=None,
+                       start=None, category=None, journal=None, keyword=None):
         parameters = []
         if author is not None:
             parameters.append('au:{}'.format(author))
@@ -416,7 +413,6 @@ to query the API of arXiv.}\label{fig:arcas_arxiv}
         linenos
         ]
         {python}
-
 class Ieee(Api):
     """
         API argument is 'ieee'.
@@ -485,6 +481,92 @@ class Ieee(Api):
 \caption{Class Ieee is implemented in Arcas. It includes the code necessary for Arcas
 to query the API of IEEE.}\label{fig:arcas_ieee}
 \end{figure}
+
+As mentioned in Chapter~\ref{chapter:introduction} the source code associated
+with the research projects of this thesis have been writen following a set of
+best practices. These best practices include unit testing. There are a series of
+unit tests that test the functionality and correctness of each API class.
+For example, Figure~\ref{fig:test_arxiv} displays a test case for the
+method \mintinline{python}{to_dataframe} of the class Arxiv. Moreover, Figure
+\ref{fig:test_ieee} shows several unit tests which ensure that the requesting
+url for IEEE, with different search arguments, is being generated correctly.
+
+\begin{figure}[!hbtp]
+    \begin{minted}
+        [
+        bgcolor=orange!5,
+        framesep=2mm,
+        frame=lines,
+        baselinestretch=1.2,
+        fontsize=\scriptsize,
+        linenos
+        ]
+        {python}
+import arcas
+
+def test_to_dataframe():
+    dummy_article = {'entry': '\n', 'id': 'http://arxiv.org/abs/0000',
+                     'updated': '2011', 'published': '2010', 'title': 'Title',
+                     'summary': "Abstract", 'author': '\n', 'name': 'E Glynatsi, V Knight',
+                     'doi': '10.0000', 'comment': 'This is a comment.',
+                     'journal_ref': 'Awesome Journal', 'primary_category': 'Dummy',
+                     'category': None}
+    api = arcas.Arxiv()
+    article = api.to_dataframe(dummy_article)
+
+    assert isinstance(article, pandas.core.frame.DataFrame)
+    assert list(article.columns) == api.keys()
+    assert len(article['url']) == 2
+
+    assert article['url'].unique()[0] == 'http://arxiv.org/abs/0000'
+    assert article['key'].unique()[0] == 'Glynatsi2010'
+    assert article['title'].unique()[0] == 'Title'
+    assert article['abstract'].unique()[0] == 'Abstract'
+    assert article['journal'].unique()[0] == 'Awesome Journal'
+    assert article['primary_category'].unique()[0] == 'Dummy'
+    assert article['category'].unique()[0] == None
+    assert article['score'].unique()[0] == 'Not available'
+    assert article['open_access'].unique()[0] == True
+\end{minted}
+\caption{Unit tests for class Arxiv. Tests the functionality of the method \mintinline{python}{to_dataframe}.}\label{fig:test_arxiv}
+\end{figure}
+
+\begin{figure}[!hbtp]
+        \begin{minted}
+            [
+            bgcolor=orange!5,
+            framesep=2mm,
+            frame=lines,
+            baselinestretch=1.2,
+            fontsize=\scriptsize,
+            linenos
+            ]
+            {python}
+import arcas
+
+def test_setup():
+    api = arcas.Ieee()
+    assert api.standard == 'https://ieeexploreapi.ieee.org/api/v1/search/articles?'
+
+def test_parameters_and_url_author():
+    api = arcas.Ieee()
+    parameters = api.parameters_fix(author='Glynatsi')
+    assert parameters == ['author=Glynatsi']
+
+    url = api.create_url_search(parameters)
+    assert url == 'https://ieeexploreapi.ieee.org/api/v1/search/articles?author=Glynatsi&apikey=Your key here'
+
+def test_parameters_and_url_title():
+    api = arcas.Ieee()
+    parameters = api.parameters_fix(title='Game')
+    assert parameters == ['article_title=Game']
+
+    url = api.create_url_search(parameters)
+    assert url == 'https://ieeexploreapi.ieee.org/api/v1/search/articles?article_title=Game&apikey=Your key here'
+\end{minted}
+\caption{Unit tests for class Ieee.}\label{fig:test_ieee}
+\end{figure}
+
 
 The \totalarticles articles metadata~\cite{pd_data_2018} explored in this Chapter has been collected
 using Arcas. More specifically, articles for which any of the terms
