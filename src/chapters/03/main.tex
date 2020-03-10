@@ -821,7 +821,7 @@ close to 0.418.
 \begin{table}[!hbtp]
     \begin{center}
     \resizebox{\textwidth}{!}{
-    \input{src/chapters/03/topics_keywords_n_6.tex}}
+    \input{src/chapters/03/tex/topics_keywords_n_6.tex}}
     \end{center}
     \caption{Keywords for each topic when \(n=6\). The highlighted keywords are overlapping keywords between topics.}
     \label{table:topics_keywords_n_6}
@@ -1058,16 +1058,16 @@ network are given by Tables~\ref{table:cumulative_graphs} and~\ref{table:cumulat
 
 \begin{table}[!hbtp]
     \centering
-    \resizebox{\textwidth}{!}{
-    \input{src/chapters/03/paper/bibliometric-study-of-the-prisoners-dilemma/assets/cumulative_graphs_table.tex}}
-    \caption{Collaborativeness metrics for cumulative graphs, \(\tilde{G} \subseteq G\)}\label{table:cumulative_graphs}
+    \resizebox{.9\textwidth}{!}{
+    \input{src/chapters/03/tex/cumulative_clusters_table.tex}}
+    \caption{Collaborativeness metrics for cumulative graphs' main clusters, \(\tilde{G} \subseteq \bar{G}\)}\label{table:cumulative_clusters}
 \end{table}
 
 \begin{table}[!hbtp]
     \centering
     \resizebox{\textwidth}{!}{
-    \input{src/chapters/03/paper/bibliometric-study-of-the-prisoners-dilemma/assets/cumulative_clusters_table.tex}}
-    \caption{Collaborativeness metrics for cumulative graphs' main clusters, \(\tilde{G} \subseteq \bar{G}\)}\label{table:cumulative_clusters}
+    \input{src/chapters/03/tex/cumulative_graphs_table.tex}}
+    \caption{Collaborativeness metrics for cumulative graphs, \(\tilde{G} \subseteq G\)}\label{table:cumulative_graphs}
 \end{table}
 
 The results, similarly to the results of~\cite{Liu2015}, confirm that the
@@ -1127,13 +1127,6 @@ Valerio Capraro which have access to information due to their
 positioning but do not influence the network as much, and the opposite is true
 for Attila Szolnoki, Luo-Luo Jiang Sandro Meloni, Cheng-Yi Xia and Xiaojie Chen.
 
-It is obvious that in \(G\) the centralities values are low which suggests
-that in the PD authors do not benefit from their positions. This could be an
-effect of information not flowing from one community to another as authors tend
-to write with people from their communities. Nevertheless,
-there are authors that do benefit from their position, but these are
-only the authors connected to the main cluster.
-
 \begin{table}[!hbtp]
     \begin{center}
     \resizebox{.9\textwidth}{!}{\input{src/chapters/03/paper/bibliometric-study-of-the-prisoners-dilemma/assets/centralities_pd_graph.tex}}
@@ -1141,6 +1134,13 @@ only the authors connected to the main cluster.
 \caption{10 most central authors based on betweenness and closeness centralities
 for \(G\) and \(\bar{G}\).}\label{table:central_authors}
 \end{table}
+
+It is obvious that in \(G\) the centralities values are low which suggests
+that in the PD authors do not benefit from their positions. This could be an
+effect of information not flowing from one community to another as authors tend
+to write with people from their communities. Nevertheless,
+there are authors that do benefit from their position, but these are
+only the authors connected to the main cluster.
 
 The centrality measures for the topic networks have also been estimated and are
 given in
@@ -1153,13 +1153,6 @@ part of \(\bar{G}\), and that the network of Topic D is a sub network of \(\bar{
 This confirms the results. The people benefiting from their position in the co-authorship networks
 corresponding to research topics of the PD are only the people from the main
 cluster of \(G\).
-
-The fact that most authors of the main cluster are primarily publishing in
-evolutionary dynamics on networks indicates that publishing in this specific
-topic differs from the other topics covered in this manuscript. There appears to
-be more collaboration and influence in the publications on evolutionary
-dynamics and authors are more likely to gain from their position,
-though it is not clear as to why.
 
 \newcolumntype{g}{>{\columncolor{Gray}}l}
 \begin{table}[!hbtp]
@@ -1178,6 +1171,13 @@ for topics' networks.}\label{table:central_authors_bc_topics}
 \caption{10 most central authors based on closeness centrality
 for topics' networks.}\label{table:central_authors_cc_topics}
 \end{table}
+
+The fact that most authors of the main cluster are primarily publishing in
+evolutionary dynamics on networks indicates that publishing in this specific
+topic differs from the other topics covered in this manuscript. There appears to
+be more collaboration and influence in the publications on evolutionary
+dynamics and authors are more likely to gain from their position,
+though it is not clear as to why.
 
 The distributions of both centrality measures for all the networks of this
 work are given in the Appendix~\ref{appendix:distributions}.
