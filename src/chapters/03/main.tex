@@ -148,10 +148,9 @@ code for querying the API of Nature.
 
 The only distinction between the two code snippets is their respective line 2
 where the API is specified by creating an instance of a class corresponding
-to the publisher's API. The differences between the two APIs are visible from
-lines 6 and 12 onwards. Lines 5 show the requesting message generated for the
-APIs and lines 12 onwards show the metadata of the article received by the
-requesting phases.
+to the publisher's API. The differences between querying the two APIs are visible from
+lines 6 and 12-onwards. Lines 6 show the requesting message and lines 12-onwards
+show the metadata of the article received by each source.
 
 \begin{figure}[!hbtp]
 \begin{minted}
@@ -256,12 +255,9 @@ in a Prisoner's Dilemma""",
     the title.}\label{fig:arcas_query_nature}
 \end{figure}
 
-The are differences and similarities between the metadata of each API. Arcas
-includes a function which standarises the format of the metadata. Figure~\ref{fig:arcas_to_dataframe}
-demonstrates the usage of the function. Namely, the metadata reported by Arcas are
-the url, a generated key and a unique key, the title, the authors, the abstract,
-the doi, the date, the journal, the provenance, the category, the articles score
-and whether it's open access or not.
+There are differences and similarities between the retrievable metadata of each API. Arcas
+includes a function which standarises the format of querying results. Figure~\ref{fig:arcas_to_dataframe}
+demonstrates the usage of the function.
 
 \begin{figure}[!hbtp]
     \begin{minted}
@@ -284,7 +280,8 @@ the queries regarding the API.}\label{fig:arcas_to_dataframe}
 \end{figure}
 
 There are a total of five different APIs implemented within the project. These
-five include four prominent publishers in the field and a preprint server:
+five include APIs of four prominent publishers in the field and a preprint
+server. Namely these are:
 
 \begin{multicols}{2}
     \begin{itemize}
@@ -312,9 +309,182 @@ five include four prominent publishers in the field and a preprint server:
     \end{itemize}
 \end{multicols}
 
-Each source has been implemented as a class. For example the class for A, and B
-are given by Figures and respectively. The functions are the. As mentioned in
-to these includes tests to test their corresponding changes.
+Each APIs has a corresponding class implemented in Arcas. The classes include
+a series of function which allow Arcas to communicate with the APIs. A example
+of an API class is given by both Figure~\ref{fig:arcas_arxiv} and Figure~\ref{fig:arcas_ieee}.
+These include the classes for the APIs of arXiv and IEEE. Note that IEEE is
+an example of an API which requires a user to have an access key
+(line 7 in Figure~\ref{fig:arcas_ieee}). An access key can be required from the
+publishers website and for the APIs of this work they can acquired for free.
+
+\begin{figure}[!hbtp]
+    \begin{minted}
+        [
+        bgcolor=orange!5,
+        framesep=2mm,
+        frame=lines,
+        baselinestretch=1.2,
+        fontsize=\scriptsize,
+        linenos
+        ]
+        {python}
+
+class Arxiv(Api):
+    def __init__(self):
+        self.standard = 'http://export.arxiv.org/api/query?search_query='
+
+    def to_dataframe(self, raw_article):
+        """A function which takes a dictionary with structure of the arXiv
+        results, transforms it to a standardized format and returns a dataframe.
+        """
+        raw_article['url'] = raw_article.get('id', None)
+
+        for key_one, key_two in [['author', 'name'], ['category', 'category']]:
+            raw_article[key_one] = raw_article.get(key_two, None)
+            if raw_article[key_one] is not None:
+                raw_article[key_one] = raw_article[key_one].split(',')
+
+        raw_article['abstract'] = raw_article.get('summary', None)
+        raw_article['date'] = int(raw_article.get('published', '0').split('-')[0])
+        raw_article['journal'] = raw_article.get('journal_ref', None)
+        if raw_article['journal'] is None:
+            raw_article['journal'] = "arXiv"
+
+        raw_article['provenance'] = 'arXiv'
+        raw_article['title'] = raw_article.get('title', None)
+        raw_article['doi'] = raw_article.get('doi', None)
+        raw_article['key'], raw_article['unique_key'] = self.create_keys(raw_article)
+
+        raw_article['open_access'] = True
+        raw_article['score'] = 'Not available'
+        return self.dict_to_dataframe(raw_article)
+
+    def parse(self, root):
+        """Removing unwanted branches."""
+        branches = root.getchildren()
+        raw_articles = []
+        for record in branches:
+            if 'entry' in record.tag:
+                raw_articles.append(self.xml_to_dict(record))
+        if not raw_articles:
+            raw_articles = False
+        return raw_articles
+
+    @staticmethod
+    def parameters_fix(author=None, title=None, abstract=None, year=None,
+                        records=None, start=None, category=None, journal=None,
+                        keyword=None):
+        parameters = []
+        if author is not None:
+            parameters.append('au:{}'.format(author))
+        if title is not None:
+            parameters.append('ti:{}'.format(title))
+        if abstract is not None:
+            parameters.append('abs:{}'.format(abstract))
+        if category is not None:
+            parameters.append('cat:{}'.format(category))
+        if journal is not None:
+            parameters.append('jr:{}'.format(journal))
+        if keyword is not None:
+            parameters.append('all:{}'.format(keyword))
+        if records is not None:
+            parameters.append('max_results={}'.format(records))
+        if start is not None:
+            parameters.append('start={}'.format(start))
+        if year is not None:
+            print('ArXiv does not support argument year.') # TODO: Add url to documentation
+
+        return parameters
+
+    @staticmethod
+    def get_root(response):
+        root = ElementTree.fromstring(response.text)
+        return root
+\end{minted}
+\caption{Class Arxiv is implemented in Arcas. It includes the code necassaty for Arcas
+to quert the API of arXiv.}\label{fig:arcas_arxiv}
+\end{figure}
+
+\begin{figure}[!hbtp]
+    \begin{minted}
+        [
+        bgcolor=orange!5,
+        framesep=2mm,
+        frame=lines,
+        baselinestretch=1.2,
+        fontsize=\scriptsize,
+        linenos
+        ]
+        {python}
+
+class Ieee(Api):
+    """
+        API argument is 'ieee'.
+    """
+    def __init__(self):
+        self.standard = 'https://ieeexploreapi.ieee.org/api/v1/search/articles?'
+        self.key_api = api_key
+
+    def create_url_search(self, parameters):
+        """Creates the search url, combining the standard url and various
+        search parameters."""
+        url = self.standard
+        url += parameters[0]
+        for i in parameters[1:]:
+            url += '&{}'.format(i)
+        url += '&apikey={}'.format(self.key_api)
+        return url
+
+    @staticmethod
+    @ratelimit.rate_limited(3)
+    def make_request(url):
+        """Request from an API and returns response."""
+        response = requests.get(url, stream=True, verify=False)
+        if response.status_code != 200:
+            raise APIError(response.status_code)
+        return response
+
+    def parse(self, root):
+        """Parsing the xml file"""
+        if root['total_records'] == 0:
+            return False
+        return root['articles']
+
+    @staticmethod
+    def parameters_fix(author=None, title=None, abstract=None, year=None,
+                        records=None, start=None, category=None, journal=None,
+                        keyword=None):
+        parameters = []
+        if author is not None:
+            parameters.append('author={}'.format(author))
+        if title is not None:
+            parameters.append('article_title={}'.format(title))
+        if abstract is not None:
+            parameters.append('abstract={}'.format(abstract))
+        if year is not None:
+            parameters.append('publication_year={}'.format(year))
+        if category is not None:
+            parameters.append('index_terms={}'.format(category))
+        if journal is not None:
+            parameters.append('publication_title={}'.format(journal))
+        if keyword is not None:
+            parameters.append('querytext={}'.format(keyword))
+        if records is not None:
+            parameters.append('max_records={}'.format(records))
+        if start is not None:
+            parameters.append('start_record={}'.format(start))
+
+        return parameters
+
+    @staticmethod
+    def get_root(response):
+        root = response.json()
+        return root
+    
+\end{minted}
+\caption{Class Ieee is implemented in Arcas. It includes the code necassaty for Arcas
+to quert the API of IEEE.}\label{fig:arcas_ieee}
+\end{figure}
 
 The \totalarticles articles metadata~\cite{pd_data_2018} explored in this Chapter has been collected
 using Arcas. More specifically, articles for which any of the terms
@@ -443,7 +613,7 @@ preliminary analysis of the data set.
 The data set~\cite{pd_data_2018} consists of \totalarticles articles with unique
 titles. In case of duplicates the preprint version of an article (collected from
 arXiv) was dropped. Similarly to~\cite{Liu2015}, \manual articles have been manually
-added throught the writting on Chapter~\ref{chapter:literature_review} because
+added throughout the writing on Chapter~\ref{chapter:literature_review} because
 they were of specific interest. These papers include~\cite{Flood1958} the first
 publication on the PD,~\cite{Ohtsuki2006, Stewart2012} two well cited
 articles in the field, and a series of works from Robert Axelrod
