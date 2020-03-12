@@ -87,6 +87,34 @@
 \usetikzlibrary{er,positioning, calc, patterns}
 \usetikzlibrary{decorations.pathreplacing}
 
+\usepackage{minted}
+
+\newenvironment{sourcepy}
+{
+\VerbatimEnvironment
+\begin{minted}[
+    bgcolor=orange!5,
+    framesep=2mm,
+    frame=lines,
+    baselinestretch=1.2,
+    fontsize=\scriptsize,
+    linenos
+    ]{python}}
+{\end{minted}}
+
+\newenvironment{usagepy}
+{
+\VerbatimEnvironment
+\begin{minted}[
+    bgcolor=orange!25,
+    framesep=2mm,
+    frame=lines,
+    baselinestretch=1.2,
+    fontsize=\scriptsize,
+    linenos
+    ]{python}}
+{\end{minted}}
+
 \usepackage{authblk}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%PARAMETERS%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newcommand{\totalarticles}{\input{src/chapters/03/paper/bibliometric-study-of-the-prisoners-dilemma/assets/total_articles.txt}}
