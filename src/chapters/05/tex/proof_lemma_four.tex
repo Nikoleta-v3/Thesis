@@ -1,0 +1,70 @@
+\begin{proof}
+The optimal behaviour of a memory-one strategy player
+\(p^* \in \R_{[0, 1]} ^ 4\)
+against a set of \(N\) opponents \(\{q^{(1)}, q^{(2)}, \dots, q^{(N)} \}\)
+for \(q^{(i)} \in \R_{[0, 1]} ^ 4\) is established by:
+
+\[p^* = \textnormal{argmax}\left(\sum\limits_{i=1} ^ N  u_q(p)\right), \ p \in S_q,\]
+
+where \(S_q\) is given by (\ref{eq:s_q_set}).
+
+The optimisation problem of (\ref{eq:mo_tournament_optimisation}) can be
+written as:
+
+\begin{equation}\label{eq:mo_tournament_optimisation_standard}
+    \begin{aligned}
+    \max_p: & \ \sum_{i=1} ^ {N} {u_q}^{(i)} (p)
+    \\
+    \text{such that}: p_i & \leq 1 \text{ for } \in \{1, 2, 3, 4\} \\
+    - p_i & \leq 0 \text{ for } \in \{1, 2, 3, 4\} \\
+    \end{aligned}
+\end{equation}
+
+The optimisation problem has two inequality constraints and regarding the optimality
+this means that:
+
+\begin{itemize}
+    \item either the optimum is away from the boundary of the optimization domain, and so the constraints plays no role;
+    \item or the optimum is on the constraint boundary.
+\end{itemize}
+
+Thus, the following three cases must be considered:
+
+\textbf{Case 1:} The solution is on the boundary and any of the possible
+combinations for $p_i \in \{0, 1\}$ for $i \in \{1, 2, 3, 4\}$ are candidate
+optimal solutions.
+
+\textbf{Case 2:} The optimum is away from the boundary of the optimization domain
+and the interior solution $p^*$ necessarily satisfies the condition
+\(\frac{d}{dp} \sum\limits_{i=1} ^ N  u_q(p^*) = 0\).
+
+\textbf{Case 3:} The optimum is away from the boundary of the optimization domain
+but some constraints are equalities. The candidate solutions in this case
+are any combinations of $p_j \in \{0, 1\} \quad \text{and} \quad \frac{d}{dp_k} 
+\sum\limits_{i=1} ^ N  u_q^{(i)}(p) = 0$ 
+forall $ j \in J \text{ \& } k \in K \text{ forall } J, K
+\text{ where } J \cap K = \O \text{ and } J \cup K = \{1, 2, 3, 4\}.$
+
+Combining cases 1-3 a set of candidate solution is constructed as:
+
+\begin{equation*}
+    \resizebox{\linewidth}{!}{ $
+    S_q =
+    \left\{p \in \mathbb{R} ^ 4 \left|
+        \begin{aligned}
+            \bullet\quad p_j \in \{0, 1\} & \quad \text{and} \quad \frac{d}{dp_k} 
+            \sum\limits_{i=1} ^ N  u_q^{(i)}(p) = 0
+            \quad \text{for all} \quad j \in J \quad \&  \quad k \in K  \quad \text{for all} \quad J, K \\
+            & \quad \text{where} \quad J \cap K = \O \quad
+            \text{and} \quad J \cup K = \{1, 2, 3, 4\}.\\
+            \bullet\quad  p \in \{0, 1\} ^ 4
+        \end{aligned}\right.
+    \right\}.
+    $}
+\end{equation*}
+
+This set is denoted as $S_q$ and the optimal solution to
+(\ref{eq:mo_tournament_optimisation}) is the point from $S_q$ for which the
+utility is maximised.
+
+\end{proof}
