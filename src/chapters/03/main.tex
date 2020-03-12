@@ -152,16 +152,7 @@ lines 6 and 12-onwards. Lines 6 show the requesting message and lines 12-onwards
 show the metadata of the article received by each source.
 
 \begin{figure}[!hbtp]
-\begin{minted}
-    [
-    bgcolor=orange!25,
-    framesep=2mm,
-    frame=lines,
-    baselinestretch=1.2,
-    fontsize=\footnotesize,
-    linenos
-    ]
-    {python}
+\begin{usagepy}
 >>> import arcas
 >>> api = arcas.Plos()
 >>> parameters = api.parameters_fix(title="Prisoner's Dilemma", records=1)
@@ -192,23 +183,14 @@ http://api.plos.org/search?q=title:"Prisoner\'s Dilemma"&rows=1
 'unique_key': '0d56101113057d99fc6d83095812735a',
 'category': 'Not available',
 'open_access': 'Not available'}]
-\end{minted}
+\end{usagepy}
 \caption{Example of using the library Arcas to communicate the API of the publisher
 PLOS. The query is for a single article with the word `prisoners dilemma' in
 the title.}\label{fig:arcas_query_plos}
 \end{figure}
 
 \begin{figure}[!hbtp]
-    \begin{minted}
-        [
-        bgcolor=orange!25,
-        framesep=2mm,
-        frame=lines,
-        baselinestretch=1.2,
-        fontsize=\footnotesize,
-        linenos
-        ]
-        {python}
+    \begin{usagepy}
 >>> import arcas
 >>> api = arcas.Nature()
 >>> parameters = api.parameters_fix(title="Prisoner's Dilemma", records=1)
@@ -248,7 +230,7 @@ in a Prisoner's Dilemma""",
 'description': "<p>Do assumptions underlying the models of ...",
 'copyright': '© 1994 Palgrave Macmillan Ltd',
 'aggregationType': 'issue'}]
-    \end{minted}
+    \end{usagepy}
     \caption{Example of using the library Arcas to communicate the API of the publisher
     Nature. The query is for a single article with the word `prisoners dilemma' in
     the title.}\label{fig:arcas_query_nature}
@@ -259,21 +241,13 @@ includes a function which standarises the format of querying results. Figure~\re
 demonstrates the usage of the function.
 
 \begin{figure}[!hbtp]
-    \begin{minted}
-        [
-        bgcolor=orange!25,
-        framesep=2mm,
-        frame=lines,
-        baselinestretch=1.2,
-        fontsize=\footnotesize,
-        ]
-        {python}
+    \begin{usagepy}
 >>> meta_data = api.to_dataframe(article[0])
 >>> meta_data.columns
 Index(['url', 'key', 'unique_key', 'title', 'author', 'abstract', 'doi',
 'date', 'journal', 'provenance', 'category', 'score', 'open_access'],
 dtype='object')
-\end{minted}
+\end{usagepy}
 \caption{Python Code. Arcas includes a function which standarises the results of
 the queries regarding the API.}\label{fig:arcas_to_dataframe}
 \end{figure}
@@ -317,16 +291,7 @@ an example of an API which requires a user to have an access key
 publishers website and for the APIs of this work they can be acquired for free.
 
 \begin{figure}[!hbtp]
-    \begin{minted}
-        [
-        bgcolor=orange!5,
-        framesep=2mm,
-        frame=lines,
-        baselinestretch=1.2,
-        fontsize=\scriptsize,
-        linenos
-        ]
-        {python}
+    \begin{sourcepy}
 class Arxiv(Api):
     def __init__(self):
         self.standard = 'http://export.arxiv.org/api/query?search_query='
@@ -396,22 +361,13 @@ class Arxiv(Api):
     def get_root(response):
         root = ElementTree.fromstring(response.text)
         return root
-\end{minted}
+\end{sourcepy}
 \caption{Class Arxiv is implemented in Arcas. It includes the code necessary for Arcas
 to query the API of arXiv.}\label{fig:arcas_arxiv}
 \end{figure}
 
 \begin{figure}[!hbtp]
-    \begin{minted}
-        [
-        bgcolor=orange!5,
-        framesep=2mm,
-        frame=lines,
-        baselinestretch=1.2,
-        fontsize=\scriptsize,
-        linenos
-        ]
-        {python}
+    \begin{sourcepy}
 class Ieee(Api):
     """
         API argument is 'ieee'.
@@ -476,7 +432,7 @@ class Ieee(Api):
         root = response.json()
         return root
     
-\end{minted}
+\end{sourcepy}
 \caption{Class Ieee is implemented in Arcas. It includes the code necessary for Arcas
 to query the API of IEEE.}\label{fig:arcas_ieee}
 \end{figure}
@@ -491,16 +447,7 @@ method \mintinline{python}{to_dataframe} of the class Arxiv. Moreover, Figure
 url for IEEE, with different search arguments, is being generated correctly.
 
 \begin{figure}[!hbtp]
-    \begin{minted}
-        [
-        bgcolor=orange!5,
-        framesep=2mm,
-        frame=lines,
-        baselinestretch=1.2,
-        fontsize=\scriptsize,
-        linenos
-        ]
-        {python}
+    \begin{sourcepy}
 import arcas
 
 def test_to_dataframe():
@@ -526,21 +473,12 @@ def test_to_dataframe():
     assert article['category'].unique()[0] == None
     assert article['score'].unique()[0] == 'Not available'
     assert article['open_access'].unique()[0] == True
-\end{minted}
+\end{sourcepy}
 \caption{Unit tests for class Arxiv. Tests the functionality of the method \mintinline{python}{to_dataframe}.}\label{fig:test_arxiv}
 \end{figure}
 
 \begin{figure}[!hbtp]
-        \begin{minted}
-            [
-            bgcolor=orange!5,
-            framesep=2mm,
-            frame=lines,
-            baselinestretch=1.2,
-            fontsize=\scriptsize,
-            linenos
-            ]
-            {python}
+    \begin{sourcepy}
 import arcas
 
 def test_setup():
@@ -562,7 +500,7 @@ def test_parameters_and_url_title():
 
     url = api.create_url_search(parameters)
     assert url == 'https://ieeexploreapi.ieee.org/api/v1/search/articles?article_title=Game&apikey=Your key here'
-\end{minted}
+\end{sourcepy}
 \caption{Unit tests for class Ieee.}\label{fig:test_ieee}
 \end{figure}
 
