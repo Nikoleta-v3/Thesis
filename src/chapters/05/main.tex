@@ -370,7 +370,208 @@ in Section~\ref{section:numerical_experiments}. The rest of
 the section focuses on an immediate theoretical result from
 Lemma~\ref{lemma:memone_group_best_response}.
 
-\section{Resultan Theory}\label{section:resultant_theory}
+\section{Reactive Strategies \& Resultant Theory}\label{section:resultant_theory}
+
+Reactive strategies are a subset of memory-one strategies, described in
+Chapter~\ref{chapter:literature_review}. As a reminder, reactive strategies only
+take into account the opponent's previous moves and thus can be written as a
+vector in \(R^2\). Thus, the optimisation problem of
+(\ref{eq:mo_tournament_optimisation}) now has an extra constraint and is re
+written as,
+
+\begin{equation}\label{eq:reactive_tournament_optimisation}
+\begin{aligned}
+\max_p: & \ \sum_{i=1} ^ N u_q(p)
+\\
+\text{such that}: & \ p_1 = p_3 \text{ and } p_2 = p_4\\
+    & \ p_1, p_2 \in \R_{[0, 1]}.
+\end{aligned}
+\end{equation}
+
+Reactive strategies allow for best responses to be studies as a problem in \(R^2\),
+and the Theorem of can.
+
+\begin{lemma}\label{lemma:reactive_best_response}
+    The optimal behaviour of a reactive strategy player
+    \(p^* \in \R_{[0, 1]} ^ 2\)
+    against a set of \(N\) opponents \(\{q^{(1)}, q^{(2)}, \dots, q^{(N)} \}\)
+    for \(q^{(i)} \in \R_{[0, 1]} ^ 2\) is given by:
+
+    \[p^* = \textnormal{argmax}\sum\limits_{i=1} ^ N  u_q(p), \ p \in S_q.\]
+
+    The set \(S_q\) is defined as all the possible combinations of:
+    
+    \begin{equation}\label{eq:s_q_reactive_set}
+        \resizebox{.9\linewidth}{!}{ $
+        S_q =
+        \left\{p \in \mathbb{R} ^ 2 \left|
+            \begin{aligned}
+                \bullet\quad p_j \in \{0, 1\} & \quad \text{and} \quad \frac{d}{dp_k} 
+                \sum\limits_{i=1} ^ N  u_q^{(i)}(p) = 0
+                \quad \text{for all} \quad j \in J \quad \&  \quad k \in K  \quad \text{for all} \quad J, K \\
+                & \quad \text{where} \quad J \cap K = \O \quad
+                \text{and} \quad J \cup K = \{1, 2\}.\\
+                \bullet\quad  p \in \{0, 1\} ^ 2
+            \end{aligned}\right.
+        \right\}.
+        $}
+    \end{equation}
+    
+    where \(\bar{p}_i\) satisfies any of (\ref{eq:cases_reactive}). Partial derivatives
+    are now given by (\ref{eq:derivative_numerator_condition}) and
+    (\ref{eq:derivative_denominator_condition}) must be true.
+\end{lemma}
+
+Note that now equation (\ref{eq:group_derivative_numerator_condition}) and (\ref{eq:derivative_numerator_condition})
+correspond to systems of maximum 2 polynomials over 2 variables. Each polynomial is equivalent
+to a partial derivative over \(p_1\) and \(p_2\). Several methods exist that allow
+for the \(2\) polynomial systems to be solved analytically. In this work the results theory
+is used to extract the roots from the partial derivatives.
+
+\subsection{Resultant Theory}
+
+In mathematics, the \textit{resultant} of two polynomials is a polynomial expression of
+their coefficients, which is equal to zero if and only if the polynomials have a
+common root. 
+
+Given a polynomial,
+
+\[ f(x) = a_n x^n + a_{(n-1)} x ^{(n-1)} + \dots +a_1 x + a_0 \]
+
+of degree \(n\) with roots \(a_i, i=1, \dots, n\) and a polynomial
+
+\[ g(x) = b_m x ^m + b_{(m-1)} x^{(m-1)} + \dots + b_1 x + b_0 \]
+
+of degree m with roots \(b_j, j=1, \dots , m,\) the resultant denoted as \(R(f, g)\)
+and also called the eliminant~\cite{Salmon1924}, is defined by
+
+ \[ R(f, g) = a_n^m b_m^n \prod_{(i=1)}^n \prod_{(j=1)}^m( a_i - b_j)  \]
+
+The resultant is widely used in number theory, either directly or through the
+discriminant, The resultant is also given by the determinant of the
+corresponding Sylvester matrix~\cite{Akritas2014}. The Sylvester matrix
+associated to \(f\) and \(g\) is the \((n+m)\times (n+m)\) matrix constructed as
+follows:
+
+\begin{algorithm}[H]
+    \If{\(n > 0\)}{
+        the \(1^{\text{st}}\) row is $\begin{pmatrix} a_{m} & a_{{m-1}} & \cdots & a_{1} & a_{0} & 0 & \cdots & 0\end{pmatrix}$ \;
+        \For{$i\gets1$ \KwTo $n-1$}{the \(i^{\text{th}}\) is the previous row shifted one column to the right; the other entries of the row are 0} \;}
+    \If{\(m > 0\)}{
+        the \((n + 1)^{\text{th}}\) is: $\begin{pmatrix} b_{m} & b_{{m-1}} & \cdots & b_{1} & b_{0} & 0 & \cdots & 0\end{pmatrix}$ \;
+        \For{$i\gets n+1$ \KwTo $(m + n)-1$}{the \(i^{\text{th}}\) is the previous row shifted one column to the right; the other entries of the row are 0}}
+\caption{Sylvester}
+\end{algorithm}
+
+Thus, if \(m = 4\) and \(n = 3\), the matrix is:
+
+\begin{equation}
+S_{f,g} = \begin{pmatrix} a_{4} & a_{3} & a_{2} & a_{1} & a_{0} & 0     & 0    \\
+                          0     & a_{4} & a_{3} & a_{2} & a_{1} & a_{0} & 0    \\
+                          0     & 0     & a_{4} & a_{3} & a_{2} & a_{1} & a_{0} \\
+                          b_{3} & b_{2} & b_{1} & b_{0} &     0 & 0     & 0     \\
+                          0     & b_{3} & b_{2} & b_{1} & b_{0} & 0     & 0     \\
+                          0     & 0     & b_{3} & b_{2} & b_{1} & b_{0} & 0     \\
+                          0     & 0     & 0     & b_{3} & b_{2} & b_{1} & b_{0}
+                        \end{pmatrix}.
+\end{equation}
+
+\begin{usagepy}
+>>> ais = sym.symbols('a0:5')
+>>> bis = sym.symbols('b0:4')
+>>> x  = sym.symbols('x')
+
+>>> f = sum([a * x ** i for i, a in enumerate(ais)])
+>>> f
+a0 + a1*x + a2*x**2 + a3*x**3 + a4*x**4
+>>> g = sum([b * x ** i for i, b in enumerate(bis)])
+>>> g
+b0 + b1*x + b2*x**2 + b3*x**3
+
+>>> from sympy.polys import subresultants_qq_zz
+
+>>> matrix = subresultants_qq_zz.sylvester(f, g, x)
+>>> matrix
+Matrix([
+[a4, a3, a2, a1, a0,  0,  0],
+[ 0, a4, a3, a2, a1, a0,  0],
+[ 0,  0, a4, a3, a2, a1, a0],
+[b3, b2, b1, b0,  0,  0,  0],
+[ 0, b3, b2, b1, b0,  0,  0],
+[ 0,  0, b3, b2, b1, b0,  0],
+[ 0,  0,  0, b3, b2, b1, b0]])
+\end{usagepy}
+
+% By calculating the determinant of Sylvester's resultant we know that the
+% system has a common root. That is because the determinant is equal to 0.
+% The common root is for \\(x=2\\) which is trivial if we were to factorise
+% \\(f\\) and \\(g\\).
+
+% {% highlight python %}
+% >>> matrix.det()
+% 0
+% >>> f.factor()
+% (x - 3)*(x - 2)
+% >>> g.factor()
+% (x - 2)*(x - 1)
+% {% endhighlight %}
+
+The resultant can do more than just assure us that systems do have roots. For
+example when we have a system of 2 polynomial equations in two variables we can
+solve for one variable where the second one is kept as a coefficient. This
+actually allow us to find the roots of the system. This methodoloyg is also
+used in this Chapter to analytically solve the roots of for the case
+of reactive strategies and thus identify explicitly the nbest response reactive
+strategy against the hti.
+
+A numerical example to be considered is that of. The \(S_q\) is constructaed
+as and the maximise is. This is also given by plotting the utility over the
+different values of \(p_1\) and \(p_2\).
+
+The resultants of The resultant of n homogeneous polynomials in n variables (also called
+multivariate resultant, or Macaulay's resultant for distinguishing it from the
+usual resultant) is a generalization, introduced by Macaulay, of the usual
+resultant.[2] It is, with Gröbner bases, one of the main tools of effective
+elimination theory (elimination theory on computers).
+
+\begin{usagepy}
+>>> from sympy.polys.multivariate_resultants import DixonResultant
+>>> p = a_1 * x ** 2 * y ** 2 + a_2 * x ** 2
+>>> q = b_1 * x ** 2 * y ** 2 + b_2 * y ** 2
+>>> h = u_1 * x + u_2 * y + u_3
+\end{usagepy}
+
+% But what if we had a more generic system? Lets say a system of \\(m\\) polynomials in
+% \\(n\\) variables. Sylvester's formulation would not be able to be applied to
+% such systems. For such systems we use **multivariate resultants**. 
+
+% A number of multivariate resultants can be found in the literature. An example of a
+% multivariate resultant is [Dixon's resultant](https://pdfs.semanticscholar.org/074d/652f97d07a2d5150764c2f448a6d98d3ab3b.pdf).
+% Let us consider our final example with a 3 polynomial system dependent on
+% \\(x\\) and \\(y\\).
+
+% {% highlight python %}
+% >>> from sympy.polys.multivariate_resultants import DixonResultant
+% >>> p = x + y
+% >>> q = x ** 2 + y ** 3
+% >>> h = x ** 2 + y
+% >>> matrix = DixonResultant(variables=[x, y], polynomials=[p, q, h])
+% >>> matrix.det()
+% 0
+% {% endhighlight %}
+
+% Dixon's resultant, the determinant of the matrix, is equal to zero. This indicates
+% that our system has indeed a common root.
+
+% Multivariate resultants have many advantages. It allow us to know if a large
+% system has roots but moreover there are several ways the roots can be extract,
+% but we will not cover those, however this great paper does
+% [Comparison of various multivariate resultant formulations](https://dl.acm.org/citation.cfm?id=220370).
+
+% Multivariate resultants were not implemented within SymPy until recently. I am very
+% happy to say that Dixon's and [Macaulay's resultant](https://projecteuclid.org/euclid.chmm/1263317746)
+% have been my first contribution to the library. Sympy is a great project that continuously
+% helps with me with my research and I am thrilled to have contributed to the project!
 
 \section{Stability of defection}\label{section:stability_of_defection}
 
@@ -436,13 +637,48 @@ source research framework for the study of the IPD.
     $q_{3}=(0.25298, 0.43479, 0.77938, 0.19769)$, Eq.~\ref{eq:defection_condition_one} fails
     and Defector does not take over the population.}\label{fig:stability_of_defection}
 \end{figure}
+
+Moreover lets us consider a constrained version of the problem once again. Lets us
+assume that in an pairwise interaction the opponent is a reactive player \(q=(q_1, q_2, q_1, q_2)\).
+By substituting \(q_3=q_1\) and \(q_4=q_2\) equations (\ref{eq:defection_condition_one})
+and (\ref{eq:defection_condition_two}) are now re written as follow,
+
+\[\left[\begin{matrix}- q_{2} \left(4 q_{1} - 5 q_{2} - 1\right)\\
+\left(q_{2} - 1\right) \left(4 q_{1} - 5 q_{2} - 1\right)\end{matrix}\right]\]
+
+The sign of both equations is now based on the same term,\(\left(4 q_{1} - 5 q_{2} - 1\right)\),
+which is a term that can have both negative and positive values. This is shown
+by Figure~\ref{fig:sign_against_reactive}. Following this the following result is retrieved,
+
+% \begin{figure}[htbp]
+%     \centering
+%     \includegraphics[width=0.45\linewidth]{img/sign_against_reactive.pdf}
+%       \caption{Sign of \(\left(4 q_{1} - 5 q_{2} - 1\right)\).}
+%       \label{fig:sign_against_reactive}
+%   \end{figure}
+
+\begin{lemma}
+Defection is the best responses of a memory one player \(p\) against a reactive
+player \(q\) if the transition probabilities of the opponent satisfy the
+condition:
+
+\begin{equation}
+    4 q_{1} - 5 q_{2} - 1 > 0
+\end{equation}
+\end{lemma}
+
+
 \section{Numerical experiments} \label{section:numerical_experiments}
 
 The results of this section rely on estimating best response memory-one strategies, but as stated in
 Section~\ref{section:best_response_mem_one}, estimating best responses
 analytically can quickly become an intractable problem. As a result, best
 responses will be estimated heuristically using Bayesian
-optimisation~\cite{Mokus1978}. Bayesian optimisation is a global optimisation
+optimisation~\cite{Mokus1978}. 
+
+\subsection{Bayesian optimisation}
+
+Bayesian optimisation is a global optimisation
 algorithm that has proven to outperform many other popular
 algorithms~\cite{Jones2001}. The algorithm builds a bayesian understanding of
 the objective function which is well suited to the potential multiple local optimas in
@@ -469,6 +705,47 @@ in the last 10\% of iterations.
     \frac{1}{3}, \frac{1}{3})\). The best response obtained is \(p^* = (0, \frac{11}{50}, 0, 0)\)}
     \label{bayesian_example}
 \end{figure}
+
+
+\subsection{SSE Method}
+
+In order to investigate whether best responses
+behave in an extortionate matter the SSE method~\cite{Knight2019} is used. More
+specifically,
+in~\cite{Knight2019} a point \(x^*\), in the space of memory-one strategies, is
+defined as the nearest extortionate strategy to a given strategy \(p\). \(x^*\) is
+given by,
+
+\begin{equation}\label{eqn:x_star_formula}
+    x^* = {\left(C^{T}C\right)}^{-1}C^{T}\bar{p}
+\end{equation}
+
+where \(\bar{p}=(p_1 - 1, p_2 - 1, p_3, p_4)\) and
+
+\begin{equation}\label{eq:definition_of_C}
+    C =
+    \begin{bmatrix}
+        R - P & R- P \\
+        S - P & T- P \\
+        T - P & S- P \\
+        0     & 0 \\
+    \end{bmatrix}.
+\end{equation}
+
+The squared norm of the remaining error is referred to as sum of squared errors
+of prediction (SSE):
+
+\begin{equation}\label{eqn:x_SSError_formula}
+    \text{SSE} = {\bar{p}} ^ T \bar{p} -
+           \bar{p} C \left(C ^ T C \right) ^ {-1} C ^ T \bar{p}
+         = {\bar{p}} ^ T \bar{p} - \bar{p} C x ^ *
+\end{equation}
+
+Thus, SSE is defined as how far a strategy is from behaving as a ZD and thus a
+high SSE implies a non extortionate behaviour. The SSE method has been applied
+to the data set. A statistics summary of the SSE distribution for the best
+response in tournaments and evolutionary dynamics is given in
+Table~\ref{table:sserror_stats}.
 
 The rest of the section is structured as follows. In
 Section~\ref{subsection:best_response_n_2}, Bayesian optimisation is used to
