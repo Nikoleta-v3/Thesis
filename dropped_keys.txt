@@ -4,8 +4,10 @@ Axelrod1995
 Turner1999
 Ashlock2008fingerprinting
 Harper2015
-Adami2013evolutionary
 Carvalho2013
+Ashlock2008fingerprinting
+Axelrod1980more
+Turner1999
 Axelrod1980
 Axelrod1980more
 Li2014
