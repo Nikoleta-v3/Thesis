@@ -12,17 +12,16 @@
     {};
 
     \node[right=1cm of dummy_up, punkt] (metatournaments)
-    {4. A meta analysis of tournaments and an evaluation of performance};
+    {\textbf{Meta Analysis of Tournaments}};
 
     \node[below right=1.5cm of metatournaments, punkt] (lstm)
-    {7. LSTM Player};
+    {\textbf{Recurrent} \\ \textbf{Neural Network}};
 
     \node[below right=1.5cm of lstm, punkt] (sequences)
-    {6. Best Response Sequences};
-    
+    {\textbf{Best Response Sequences}};
+
     \node[below right=1.5cm of sequences, punkt] (memoryone)
-    {5. Stability of defection, optimisation of strategies and the limits of
-    memory};
+    {\textbf{Best Response}\\ \textbf{Memory One Strategies}};
 
     \draw (dummy_up) edge[->, line width=2mm, out=-90, in=90] node[above, rotate=90] {\Large{\textbf{depth}}} (dummy_down);
 

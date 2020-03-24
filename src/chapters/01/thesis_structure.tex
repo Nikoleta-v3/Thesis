@@ -5,35 +5,31 @@
 
 \begin{document}
     \begin{tikzpicture}[node distance=1cm]
-    \node[punkt] (literature) {2. A systematic literature review of the Prisoner's Dilemma};
-
+    \node[punkt] (literature) {\textbf{Literature Review}};
     \node[below=1.2cm of literature] (dummy)
     {};
 
-    \node[right=5.4cm of dummy, punkt] (bibliometrics)
-    {3. A bibliometric study of research topics, collaboration and influence in
-    the field};
+    \node[left=6cm of dummy, punkt] (bibliometrics)
+    {\textbf{Bibliometric Study of the Prisoner's Dilemma}};
 
-    \node[below=4cm of literature, punkt] (metatournaments)
-    {4. A meta analysis of tournaments and an evaluation of performance};
+    \node[below=7cm of literature, punkt] (memoryone)
+    {\textbf{Best Response}\\ \textbf{Memory One Strategies}};
 
-    \node[right=1.5cm of metatournaments, punkt] (memoryone)
-    {5. Stability of defection, optimisation of strategies and the limits of
-    memory};
+    \node[right=1.5cm of memoryone, punkt] (sequences)
+    {\textbf{Best Response Sequences}};
 
-    \node[left=1.5cm of metatournaments, punkt] (sequences)
-    {6. Best Response Sequences};
+    \node[left=1.5cm of memoryone, punkt] (metatournaments)
+    {\textbf{Meta Analysis of Tournaments}};
 
-    \node[below=1.5cm of sequences, punkt] (lstm)
-    {7. LSTM Player};
+    \node[below=3cm of sequences, punkt] (lstm)
+    {\textbf{Recurrent} \\ \textbf{Neural Network}};
 
-    \draw (literature) edge[pil, out=0, in=135] node {} (bibliometrics);
-    \draw (literature) edge[pil, out=-90, in=90] node {} (metatournaments);
-    \draw (literature) edge[pil, out=-90, in=135] node {} (memoryone);
-    \draw (literature) edge[pil, out=-90, in=45] node {} (sequences);
-    \draw (metatournaments) edge[doublepil, out=0, in=180] node {} (memoryone);
-    \draw (metatournaments) edge[doublepil, out=180, in=0] node {} (sequences);
-    \draw (sequences) edge[doublepil, out=-90, in=90] node {} (lstm);
-
+    \draw (literature) edge[pil, out=180, in=45] node {} (bibliometrics);
+    \draw (literature) edge[pil, out=-90, in=90] node {} (memoryone);
+    \draw (literature) edge[pil, out=-90, in=45] node {} (metatournaments);
+    \draw (literature) edge[pil, out=-90, in=135] node {} (sequences);
+    \draw (memoryone) edge[doublepil, out=0, in=180] node {} (sequences);
+    \draw (memoryone) edge[doublepil, out=180, in=0] node {} (metatournaments);
+    \draw (sequences) edge[doublepil, out=-45, in=45] node {} (lstm);    
     \end{tikzpicture}
 \end{document}
