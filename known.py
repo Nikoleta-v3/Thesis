@@ -264,5 +264,6 @@ words = {
     "reproducibility",
     "pre",
     "viewable",
-    "APL"
+    "APL",
+    "clcc"
 }
