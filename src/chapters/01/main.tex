@@ -135,7 +135,7 @@ best response strategy.
 The game can be studied in a manner where prior outcomes matter. The repeated
 form of the game is called the Iterated Prisoner's Dilemma (IPD) and it differs
 from the original concept of a PD because participants can learn about the
-behavioral tendencies of their counter party. In the IPD defecting is no
+behavioural tendencies of their counter party. In the IPD defecting is no
 longer necessarily the dominant action, and identifying a best response is not
 always trivial.
 
@@ -255,7 +255,7 @@ A summary of each chapter is outlines:
     \item Chapter~\ref{chapter:meta_tournaments} generates and analyses a large data set of
     computer tournaments. It evaluates \numberofstrategies strategies, many of
     which are well known strategies from the literature, in 45,686 tournaments.
-    It presents the top performing strategies and analyzes their salient features.
+    It presents the top performing strategies and analyses their salient features.
     \item Chapter~\ref{chapter:memory_one} explores best responses to a
     collection of memory-one strategies as a multidimensional non linear
     optimisation problem. It presents a closed form algebraic expression for the
@@ -280,8 +280,8 @@ Chapters~\ref{chapter:meta_tournaments}-\ref{chapter:lstm} explore optimal the
 behaviour in the Iterated Prisoner's Dilemma. The disparity between the
 approaches is their depth, as illustrated in Figure~\ref{fig:depth_structure}.
 Consider Chapter~\ref{chapter:meta_tournaments}. It explores optimal behaviour
-by analysing a data set of tournaments and evaluating the performance of pre
-designed strategies. The exact opposite is done in
+by analysing a data set of tournaments and evaluating the performance of
+pre-designed strategies. The exact opposite is done in
 Chapter~\ref{chapter:best_response_sequence} whereas for a given set of two
 memory-one opponents a best response strategy is calculated explicitly.
 Similarly, a best responses sequence against a given opponent is calculated in
@@ -402,7 +402,7 @@ of these libraries can differ.
 The tool used here to keep dependencies required by the different projects
 separate is creating isolated Python \textit{virtual environments} for them. The
 virtual environments used hare are Anaconda environments which integrate easily
-with the programing language Python. Anaconda is a free and open-source
+with the programming language Python. Anaconda is a free and open-source
 distribution of the Python and R programming languages for scientific computing,
 that aims to simplify package management and deployment. Package versions are
 managed by the package management system conda.
@@ -436,8 +436,7 @@ dependencies:
     - sqlalchemy==1.2.17
     - fsspec==0.3.3
 \end{shell}
-\caption{An example of an environment file. These are saved with the extension
-\mintinline{shell}{yml}. The name of the specific environment is called
+\caption{An example of an environment file. The name of the specific environment is called
 \mintinline{shell}{opt-mo} and it corresponds to the environment associated with
 Chapter~\ref{chapter:memory_one}.}\label{fig:environment_file}
 \end{figure}
@@ -459,7 +458,7 @@ ensure the code is clean and free of bugs.
 Functional tests aim to test how the whole application functions from the
 perspective of the outside user. They feed in basic input and test whether the
 end product/final behaviour is as expected. Unit tests assert that small chunks
-of code behave as expected, and the test the application from thr point of the
+of code behave as expected, and the test the application from the point of the
 programmer. Unit tests are isolated from the rest of the code and are modular.
 There are two types of unit tests: \textit{pure} and \textit{integrated} tests.
 
