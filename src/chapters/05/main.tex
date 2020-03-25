@@ -28,27 +28,20 @@ The differences between the Chapter and the manuscript include \dots.
 
 \section{Introduction}\label{section:mem_one_introduction}
 
-This Chapter explores best response strategies. In~\cite{Press2012} the authors
-stated that ``Only a player with a theory of mind about his opponent can do
-better, in which case Iterated Prisoner's Dilemma is an Ultimatum Game''. The
-purpose of this work is to investigate the first part of this sentence, more
-specifically, to identify the best response strategy with a theory of mind about
-a given group of opponents. The outcomes of this thesis reinforce known results
-which were presented in Chapter~\ref{chapter:literature_review}. Namely that
-memory-one strategies must be forgiving to be evolutionarily
-stable~\cite{Stewart2013, Stewart2016} and that longer-memory strategies have a
-certain form of advantage over short memory strategies~\cite{Hilbe2017,
-Pan2015}.
+This Chapter explores best response strategies against memory-one opponents.
+In~\cite{Press2012} the authors stated that ``Only a player with a theory of
+mind about his opponent can do better, in which case Iterated Prisoner's Dilemma
+is an Ultimatum Game''. The purpose of this Chapter is to investigate the first
+part of this sentence, more specifically, to investigate the best response
+strategy with a theory of mind in an environment with memory-one opponents, and
+to understand the effects of extortion and restricted memory in those
+environments.
 
-In particular, the Chapter presents a compact method of identifying the best
-response memory-one strategy against a given set of opponents, and evaluates
-whether it behaves in a zero-determinant way which in turn indicates whether it
-can be extortionate. This is also done in evolutionary settings. Moreover, it
-introduces a well designed framework that allows the comparison of an optimal
-memory one strategy and a more complex strategy which has a larger memory. This
-is used to identify conditions for which defection is stable; thus identifying
-environments where cooperation will not occur. The Chapter is structured as
-follows:
+The outcomes of this Chapter reinforce known results which were presented in
+Chapter~\ref{chapter:literature_review}. Namely that memory-one strategies must
+be forgiving to be evolutionarily stable~\cite{Stewart2013, Stewart2016} and
+that longer-memory strategies have a certain form of advantage over short memory
+strategies~\cite{Hilbe2017, Pan2015}. The Chapter is structured as follows:
 
 \begin{itemize}
     \item section~\ref{section:utility}, presents a closed form algebraic expression for
@@ -61,7 +54,10 @@ follows:
     a reactive best response.
     \item section~\ref{section:stability_of_defection}, presents a compact method of identifying environments
     for which cooperation in known to not occur.
-    \item section~\ref{section:numerical_experiments}, presents a series of numerical experiments.
+    \item section~\ref{section:numerical_experiments}, presents a series of numerical experiments
+    and a well designed framework that allows the
+    comparison of an optimal memory one strategy and a more complex strategy which
+    has a larger memory.
 \end{itemize}
 
 
@@ -158,7 +154,7 @@ of two quadratic forms~\cite{kepner2011}, Theorem~\ref{theorem:quadratic_form_u}
 \input{src/chapters/05/tex/proof_theorem_one.tex}
 
 Numerical simulations have been carried out to validate the result. The simulated utility, which is
-denoted as \(U_q(p)\), has been calculated with Axelrod-Python.
+denoted as \(U_q(p)\), has been calculated with APL.
 For smoothing the simulated results the utility
 has been estimated in a tournament of 500 turns and 200 repetitions.
 Figure~\ref{fig:analytical_simulated} shows two examples demonstrating that the
@@ -256,10 +252,10 @@ to explore the conditions under which defection dominates cooperation.
 \section{Best responses to memory-one players}\label{section:best_response_mem_one}
 
 This section focuses on \textit{memory-one
-best response} strategies. A \textit{best response} is a strategy which
-corresponds to the most favourable outcome~\cite{Tadelis2013}, thus a memory-one
+best response} strategies. A best response is a strategy which
+corresponds to the most favourable outcome (Chapter~\ref{chapter:introduction}), thus a memory-one
 best response to a set of opponents \(q^{(1)}, q^{(2)}, \dots, q^{(N)}\) corresponds to a strategy \(p^*\) for which
-(\ref{eq:tournament_utility}) is maximised. This is considered as a multi
+Equation (\ref{eq:tournament_utility}) is maximised. This is considered as a multi
 dimensional optimisation problem given by:
 
 \begin{equation}\label{eq:mo_tournament_optimisation}
@@ -339,16 +335,18 @@ For \(\frac{d}{dp} \sum\limits_{i=1} ^ N  u_q(p)\) to equal zero then:
 Finding best response memory-one strategies, more specifically constructing the
 subset \(S_q\), can be done analytically. The points for any or all of \(p_i \in
 \{0, 1\}\) for \(i \in \{1, 2, 3, 4\}\) are trivial, and finding the
-roots of the partial derivatives which are a set of polynomials of equations
+roots of the partial derivatives which are a set of polynomials of Equations
 (\ref{eq:polynomials_roots}) is feasible using resultant
 theory~\cite{Jonsson2005}; however, for large systems building the resultant
-quickly becomes intractable. Nevertheless, there are constrained versions of
+quickly becomes intractable.
+
+Nevertheless, there are constrained versions of problem
 (\ref{eq:mo_tournament_optimisation}) for which calculating
 the resultant is efficient and a best response strategy can be identified
 explicitly. A constrained version is that of reactive strategies.
 Section~\ref{section:reactive_strategies} presents best response
-reactive strategies and the usage of resultant theory in identifying best
-responses.
+reactive strategies, and demonstrates the usage of resultant theory in
+identifying best responses.
 
 \section{Reactive Strategies \& Resultant Theory}\label{section:reactive_strategies}
 
