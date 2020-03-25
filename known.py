@@ -263,5 +263,6 @@ words = {
     "yml",
     "reproducibility",
     "pre",
-    "viewable"
+    "viewable",
+    "APL"
 }
