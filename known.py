@@ -221,5 +221,17 @@ words = {
     "provocable",
     "sensei",
     "arcas",
-    "pre"
+    "pre",
+    "Bezout's",
+    "DixonResultant",
+    "Pythonic",
+    "SymPy",
+    "axl",
+    "det",
+    "eliminant",
+    "qq",
+    "subresultants",
+    "sylvester",
+    "sym",
+    "zz",
 }

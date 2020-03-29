@@ -507,7 +507,7 @@ find the roots of the partial derivatives of \(\frac{d}{dp} \sum\limits_{i=1} ^
 N  u_q^{(i)}(p)\) and the candidate set of solutions \(S_q\) is constructed
 as defined in Equation~(\ref{eq:s_q_reactive_set}).
 
-A bespoke package has been developed to carrie out the calculations for this
+A bespoke package has been developed to carry out the calculations for this
 Chapter. The package is called \mintinline{python}{opt_mo} and an example of
 how \(S_q\) is calculated against a given opponent \(q =
 (0.513, 0.773, 0.870, 0.008)\) is given by
@@ -526,7 +526,7 @@ Figure~\ref{fig:reactive_example_get_candidate_set}.
 {0, 0.2775453690890986, 0.6964731896521483, (0.913428410721382+0j), 1}
 \end{usagepy}
 \caption{Code example of calculating \(S_q\) for a given opponent. The function
-\mintinline{python}{reactive_best_response.get_candinate_reactive_best_responses}
+\mintinline{python}{reactive_best_response.get_candidate_reactive_best_responses}
 retrieves the set \(S_q\) for a reactive strategy against a list of opponents.
 The set includes \(0\), \(1\) and to roots of the partial derivatives
 \(0.2775453690890986, 0.6964731896521483\). An imaginary solution has also been
@@ -986,7 +986,7 @@ to change their behaviour, and thus defection at that point is stable.
     In a tournament of \(N\) players \(\{q^{(1)}, q^{(2)}, \dots, q^{(N)} \}\)
     for \(q^{(i)} \in \R_{[0, 1]} ^ 4\)
     defection is stable if the transition probabilities of the
-    opponents satisfy conditions Eq. \ref{eq:defection_condition_one} and Equation (\ref{eq:defection_condition_two}).
+    opponents satisfy conditions Equation \ref{eq:defection_condition_one} and Equation (\ref{eq:defection_condition_two}).
 
     \begin{equation}\label{eq:defection_condition_one}
         \sum_{i=1} ^ N (c^{(i)T} \bar{a}^{(i)} - \bar{c}^{(i)T} a^{(i)}) \leq 0
@@ -1031,11 +1031,11 @@ source research framework for the study of the IPD.
     \includegraphics[width=.4\linewidth]{src/chapters/05/paper/Memory-size-in-the-prisoners-dilemma/img/stability_of_defection_plots.pdf}
     \caption{A. For \(q_{1}=(0.22199, 0.87073, 0.20672, 0.91861)\),
     $q_{2}=(0.48841, 0.61174, 0.76591, 0.51842)$ and
-    $q_{3}=(0.2968, 0.18772, 0.08074, 0.73844)$, Eq.~\ref{eq:defection_condition_one} and
-    Eq.~\ref{eq:defection_condition_two} hold and Defector takes over the
+    $q_{3}=(0.2968, 0.18772, 0.08074, 0.73844)$, Equation~\ref{eq:defection_condition_one} and
+    Equation~\ref{eq:defection_condition_two} hold and Defector takes over the
     population. B. For $q_{1}=(0.96703, 0.54723, 0.97268, 0.71482)$,
     $q_{2}=(0.69773, 0.21609, 0.97627, 0.0062)$ and
-    $q_{3}=(0.25298, 0.43479, 0.77938, 0.19769)$, Eq.~\ref{eq:defection_condition_one} fails
+    $q_{3}=(0.25298, 0.43479, 0.77938, 0.19769)$, Equation~\ref{eq:defection_condition_one} fails
     and Defector does not take over the population.}\label{fig:stability_of_defection}
 \end{figure}
 
