@@ -28,7 +28,9 @@ The differences between the Chapter and the manuscript include \dots.
 
 \section{Introduction}\label{section:mem_one_introduction}
 
-This Chapter explores best response strategies against memory-one opponents.
+This Chapter contributes to the question: what is the optimal behaviour an
+IPD strategy should adapt as a response to different environments? The environment
+considered in this Chapter are against memory-one strategies.
 In~\cite{Press2012} the authors stated that ``Only a player with a theory of
 mind about his opponent can do better, in which case Iterated Prisoner's Dilemma
 is an Ultimatum Game''. The purpose of this Chapter is to investigate the first
@@ -52,12 +54,12 @@ strategies~\cite{Hilbe2017, Pan2015}. The Chapter is structured as follows:
     \item section~\ref{section:reactive_strategies}, defines best response reactive
     strategies and demonstrate the usage of resultant theory in explicitly finding
     a reactive best response.
-    \item section~\ref{section:stability_of_defection}, presents a compact method of identifying environments
-    for which cooperation in known to not occur.
     \item section~\ref{section:numerical_experiments}, presents a series of numerical experiments
     and a well designed framework that allows the
     comparison of an optimal memory one strategy and a more complex strategy which
     has a larger memory.
+    \item section~\ref{section:stability_of_defection}, presents a compact method of identifying environments
+    for which cooperation in known to not occur.
 \end{itemize}
 
 
@@ -281,7 +283,7 @@ Theorem~\ref{theorem:memone_group_best_response}.
 
 \begin{theorem}\label{theorem:memone_group_best_response}
 
-    The optimal behaviour of a memory-one strategy player
+    The optimal behaviour of a memory-one strategy
     \(p^* \in \R_{[0, 1]} ^ 4\)
     against a set of \(N\) opponents \(\{q^{(1)}, q^{(2)}, \dots, q^{(N)} \}\)
     for \(q^{(i)} \in \R_{[0, 1]} ^ 4\) is given by:
@@ -350,14 +352,14 @@ identifying best responses.
 
 \section{Reactive Strategies \& Resultant Theory}\label{section:reactive_strategies}
 
-Reactive strategies are a subset of memory-one strategies which were introduced
+Reactive strategies are a subset of memory-one strategies discussed
 in Chapter~\ref{chapter:literature_review}. Well known reactive strategies
 include Tit For Tat and Generous Tit for Tat. As a reminder, reactive strategies
-only take into account the opponent's previous moves and thus can be described
-as elements \(p \in R^2\).
+only take into account the opponent's previous moves, and thus can be described
+as \(p = (p_1, p_2) \in R^2\).
 
-Best response reactive strategies can be incorporated in the current formulation
-used in the Chapter. More specifically, two extra constraints are added to the
+\textit{Best response reactive} strategies are incorporated in the formulation of
+this Chapter by adding two extra constraints to the
 optimisation problem of (\ref{eq:mo_tournament_optimisation}),
 
 \begin{equation}\label{eq:reactive_tournament_optimisation}
@@ -365,17 +367,17 @@ optimisation problem of (\ref{eq:mo_tournament_optimisation}),
 \max_p: & \ \sum_{i=1} ^ N u_q(p)
 \\
 \text{such that}: & \ p_1 = p_3 \\
-                  &  p_2 = p_4\\
+                  & \ p_2 = p_4\\
                   & \ p_1, p_2 \in \R_{[0, 1]}.
 \end{aligned}
 \end{equation}
 
-A best response reactive strategy to a set of opponents \((N\) opponents
+and a best response reactive strategy to a set of opponents \(N\) opponents
 \(\{q^{(1)}, q^{(2)}, \dots, q^{(N)} \}\) is given by
 Lemma~\ref{lemma:reactive_best_response}.
 
 \begin{lemma}\label{lemma:reactive_best_response}
-    The optimal behaviour of a reactive strategy player
+    The optimal behaviour of a reactive strategy
     \(p^* \in \R_{[0, 1]} ^ 2\)
     against a set of \(N\) opponents \(\{q^{(1)}, q^{(2)}, \dots, q^{(N)} \}\)
     for \(q^{(i)} \in \R_{[0, 1]} ^ 2\) is given by:
@@ -401,17 +403,16 @@ Lemma~\ref{lemma:reactive_best_response}.
     \end{equation}
 \end{lemma}
 
-Note that now \(\frac{d}{dp_k} \sum\limits_{i=1} ^ N  u_q^{(i)}(p) = 0\)
-corresponds to systems of maximum 2 polynomials over 2 variables. Each polynomial
-is equivalent to a partial derivative over \(p_1\) and \(p_2\). Several methods
-exist that allow for the \(2\) polynomial systems to be solved analytically.
-This Chapter uses resultant theory to extract the roots from the partial
-derivatives.
+Note that \(\frac{d}{dp} \sum\limits_{i=1} ^ N  u_q^{(i)}(p) = 0\) corresponds
+to a system of 2 polynomials of 2 variables, corresponding to the partial
+derivatives over \(p_1\) and \(p_2\). Solving systems of 2 polynomial of 2
+variables can be done analytically. The approach taken here to extract the roots
+from the partial derivatives is that of the resultant.
 
 \subsection{Resultant Theory}
 
-In mathematics, the \textit{resultant} of two polynomials is a polynomial expression of
-their coefficients, which is equal to zero if and only if the polynomials have a
+The \textit{resultant} of two polynomials is a polynomial expression of
+their coefficients which is equal to zero if and only if the polynomials have a
 common root. 
 
 More specifically given a polynomial,
@@ -426,14 +427,15 @@ of degree m with roots \(\beta_j, j=1, \dots , m,\) the resultant denoted as \(R
 and also called the eliminant~\cite{Salmon1924}, is defined by
 
 \begin{equation}\label{eq:resultant_definition}
-R(f, g) = a_n^m b_m^n \prod_{(i=1)}^n \prod_{(j=1)}^m ( \alpha_i - \beta_j)
+R(f, g) = a_n^m b_m^n \prod_{(i=1)}^n \prod_{(j=1)}^m ( \alpha_i - \beta_j).
 \end{equation}
 
-The resultant can be calculated by Equation~(\ref{eq:resultant_definition}) but
-it can also be expressed in the form of the Sylvester's
-matrix~\cite{Akritas2014} determinant. The Sylvester matrix associated to
-\(f\) and \(g\) is the \((n + m) \times (n + m)\)
-matrix constructed as described in Algorithm~\ref{algorithm:sylvester}.
+Interestingly, the resultant of can also be expressed as the determinant of
+matrices such as the Sylvester's, the Bezout's and the Macaulay's. For systems
+of 2 polynomials the resultant is commonly expressed as the determinant of the
+Sylvester's matrix~\cite{Akritas2014}. The Sylvester matrix associated with
+\(f\) and \(g\) is the \((n + m) \times (n + m)\) matrix constructed as
+described in Algorithm~\ref{algorithm:sylvester}.
 
 \begin{algorithm}[H]
     \If{\(n > 0\)}{
@@ -456,121 +458,141 @@ S_{f,g} = \begin{pmatrix} a_{4} & a_{3} & a_{2} & a_{1} & a_{0} & 0     & 0    \
                           0     & b_{3} & b_{2} & b_{1} & b_{0} & 0     & 0     \\
                           0     & 0     & b_{3} & b_{2} & b_{1} & b_{0} & 0     \\
                           0     & 0     & 0     & b_{3} & b_{2} & b_{1} & b_{0}
-                        \end{pmatrix}.
+                        \end{pmatrix}
 \end{equation}
 
-The determinant of the \(|S_(f, g)| = R(f, g)\) c and if the resultantis equak to zero it is known
-that the system has a common root.
-The resultant can do more than just assure us that systems do have roots. For
-example when we have a system of 2 polynomial equations in two variables we can
-solve for one variable where the second one is kept as a coefficient. This
-actually allow us to find the roots of the system.
+and,
 
-This methodoloyg is also
-used in this Chapter to analytically solve the roots of for the case
-of reactive strategies and thus identify explicitly the nbest response reactive
-strategy against the hti.
+\[|S_{f, g}| = R(f, g).\]
 
-The open source package~\cite{sympy} is used in this Chapter to obtained the
-Sylverster matrix. An example for \(m = 4\) and \(n = 3\) is shown by Figure
-\ref{figure:code_for_sylvester}.
+The resultant can assure that a system has root, nevertheless, it can also be
+used to extract those roots. In a system of 2 polynomial equations in 2
+variables, the resultant can be defined over one variable whereas the second one
+is kept as a coefficient. It is used in this Chapter to analytically solve for
+the roots of the utility, and thus explicitly identify the best response
+reactive strategy against a given set of memory-one opponents.
 
-\begin{figure}
-\begin{usagepy}
->>> ais = sym.symbols('a0:5')
->>> bis = sym.symbols('b0:4')
->>> x  = sym.symbols('x')
+The open source package~\cite{sympy} is used to calculate the Sylvester matrix
+and subsequently it's determinant. An example is demonstrated in
+Figure~\ref{figure:code_for_sylvester}.
 
->>> f = sum([a * x ** i for i, a in enumerate(ais)])
->>> f
-a0 + a1*x + a2*x**2 + a3*x**3 + a4*x**4
->>> g = sum([b * x ** i for i, b in enumerate(bis)])
->>> g
-b0 + b1*x + b2*x**2 + b3*x**3
+\begin{figure}[!htbp]
+    \begin{usagepy}
+>>> p_1 = sym.symbols('p_1')
+>>> p_2 = sym.symbols('p_2')
 
->>> from sympy.polys import subresultants_qq_zz
-
->>> matrix = subresultants_qq_zz.sylvester(f, g, x)
+>>> f = p_1 ** 2 + p_1 * p_2 + 2 * p_1 + p_2 - 1
+>>> g = p_1 ** 2 + 3 * p_1 - p_2 ** 2 + 2 * p_2 - 1
+>>> matrix = subresultants_qq_zz.sylvester(f, g, p_2)
 >>> matrix
 Matrix([
-[a4, a3, a2, a1, a0,  0,  0],
-[ 0, a4, a3, a2, a1, a0,  0],
-[ 0,  0, a4, a3, a2, a1, a0],
-[b3, b2, b1, b0,  0,  0,  0],
-[ 0, b3, b2, b1, b0,  0,  0],
-[ 0,  0, b3, b2, b1, b0,  0],
-[ 0,  0,  0, b3, b2, b1, b0]])
+[p_1 + 1, p_1**2 + 2*p_1 - 1,                  0],
+[      0,            p_1 + 1, p_1**2 + 2*p_1 - 1],
+[     -1,                  2, p_1**2 + 3*p_1 - 1]])
+>>> matrix.det().factor()
+-p_1*(p_1 - 1)*(p_1 + 3)
 \end{usagepy}
-\caption{Sylvester matrix using~\cite{sympy}}\label{figure:code_for_sylvester}
+    \caption{Example code for calculating the Sylvester matrix associated with
+    \(f = p_1^2 + p_1 p_2 + 2 p_1 + p_2 - 1\) and \(g = p_1^2 + 3 p_1 - p_2^2 +
+    2p_2 - 1\) using~\cite{sympy}. The matrix is calculated for \(p_2\) whilst
+    \(p_1\) is handled as a coefficient, and thus the determinant is expressed
+    in \(p_1\). In order for the system to have a common root, \(p_1\) must be
+    \(\in \{-3, 0, 1\}\). By substituting these values of \(p_1\), each at a
+    time, in \(f\) and \(g\) gives the roots for
+    \(p_2\).}\label{figure:code_for_sylvester}
 \end{figure}
 
-The implementation of Sylverster matrix and it's elimination method to
-for finding roots of polynomials is the methodology used in the Chapter
-to identify best response reactive strategies. For a given set of opponents
-the candidate set \(S_q\) is cobstracted 
-A numerical example to be considered is that of. The \(S_q\) is constructaed
-as and the maximise is. This is also given by plotting the utility over the
-different values of \(p_1\) and \(p_2\).
+The approach demonstrated in Figure~\ref{figure:code_for_sylvester} is used to
+find the roots of the partial derivatives of \(\frac{d}{dp} \sum\limits_{i=1} ^
+N  u_q^{(i)}(p)\) and the candidate set of solutions \(S_q\) is constructed
+as defined in Equation~(\ref{eq:s_q_reactive_set}).
 
-Consider an example where the \(p\) is playing against a single opponent
-\(q = (0.51394334, 0.77316505, 0.87042769, 0.00804695)\)
+A bespoke package has been developed to carrie out the calculations for this
+Chapter. The package is called \mintinline{python}{opt_mo} and an example of
+how \(S_q\) is calculated against a given opponent \(q =
+(0.513, 0.773, 0.870, 0.008)\) is given by
+Figure~\ref{fig:reactive_example_get_candidate_set}.
 
+\begin{figure}[!htbp]
 \begin{usagepy}
+>>> import opt_mo
 >>> axl.seed(14)
 >>> opponent = [np.random.random(4)]
 >>> opponent
 [array([0.51394334, 0.77316505, 0.87042769, 0.00804695])]
 
->>> candidate_set = opt_mo.reactive_best_response.get_candinate_reactive_best_responses(opponents)
+>>> candidate_set = opt_mo.reactive_best_response.get_candidate_reactive_best_responses(opponents)
 >>> candidate_set
 {0, 0.2775453690890986, 0.6964731896521483, (0.913428410721382+0j), 1}
->>> opt_p1, opt_p2, score = opt_mo.reactive_best_response.get_argmax(opponents, candinate_set)
->>> opt_p1, opt_p2
-(0,0.6964731896521483)
 \end{usagepy}
+\caption{Code example of calculating \(S_q\) for a given opponent. The function
+\mintinline{python}{reactive_best_response.get_candinate_reactive_best_responses}
+retrieves the set \(S_q\) for a reactive strategy against a list of opponents.
+The set includes \(0\), \(1\) and to roots of the partial derivatives
+\(0.2775453690890986, 0.6964731896521483\). An imaginary solution has also been
+calculated, however, it is ignore in the next step which calculates the best
+response.}\label{fig:reactive_example_get_candidate_set}
+\end{figure}
+
+Once \(S_q\) is calculated then defining the best response is trivial.
+Figure~\ref{fig:reactive_example_best_response} demonstrates how this is done
+using \mintinline{python}{opt_mo}, and the result is validated by
+Figure~\ref{fig:reactive_example_utility}.
+
+\begin{figure}[!htbp]
+    \begin{usagepy}
+>>> opt_p1, opt_p2, score = opt_mo.reactive_best_response.get_argmax(opponents, candidate_set)
+>>> opt_p1, opt_p2 (0,0.6964731896521483)
+\end{usagepy}
+\caption{Code example of estimating the best response
+reactive strategy from a given \(S_q\) set and a given list of
+opponents.}\label{fig:reactive_example_best_response}
+\end{figure}
 
 \begin{figure}[!htbp]
     \centering
-    \includegraphics[width=.4\linewidth]{src/chapters/05/reactive_best_response.pdf}
+    \includegraphics[width=.6\linewidth]{src/chapters/05/reactive_best_response.pdf}
+    \caption{The utility of a \(p=(p_1, p_2)\) reactive player against \(q =
+    (0.513, 0.773, 0.870, 0.008)\) for changing values of \(p_1\) and \(p_2\).
+    The point marked with X is the point identified as the best response.}
+    \label{fig:reactive_example_utility}
 \end{figure}
 
-The resultants  of \(n\) homogeneous polynomials in \(n\) variables (also called
-multivariate resultant, or Macaulay's resultant for distinguishing it from the
-usual resultant) is a generalization, introduced by Macaulay, of the usual
-resultant.[2] It is, with Gröbner bases, one of the main tools of effective
-elimination theory (elimination theory on computers).
+Sylvester's formulation can only handle systems of 2 polynomials, however, the
+resultant can still be calculated for \(n\) homogeneous polynomials in \(n\)
+variables and it's called \textit{multivariate resultant}. A number of
+multivariate resultants can be found in the literature such as
+Dixon's~\cite{ResultantKapur} resultant and the Macaulay's~\cite{Macaulay1902}
+resultant.
 
-% A number of multivariate resultants can be found in the literature. An example of a
-% multivariate resultant is [Dixon's resultant](https://pdfs.semanticscholar.org/074d/652f97d07a2d5150764c2f448a6d98d3ab3b.pdf).
-% Let us consider our final example with a 3 polynomial system dependent on
-% \\(x\\) and \\(y\\).
+Project~\cite{sympy} which was used to construct Sylvester's resultant is called
+SymPy and it is the Pythonic package for symbolic mathematics. However, the
+project did not be include the feature to calculate multivariate resultant. As
+part of this Chapter the source code for constructing both the Dixon's and
+Macaulay's resultants was developed and was integrated into
+project~\cite{sympy}. Figure~\ref{fig:dixon_example} demonstrates an example of
+using~\cite{sympy} to calculate Dixon's resultant.
 
-
-% Dixon's resultant, the determinant of the matrix, is equal to zero. This indicates
-% that our system has indeed a common root.
-
-% Multivariate resultants have many advantages. It allow us to know if a large
-% system has roots but moreover there are several ways the roots can be extract,
-% but we will not cover those, however this great paper does
-% [Comparison of various multivariate resultant formulations](https://dl.acm.org/citation.cfm?id=220370).
-
-% Multivariate resultants were not implemented within SymPy until recently. I am very
-% happy to say that Dixon's and [Macaulay's resultant](https://projecteuclid.org/euclid.chmm/1263317746)
-% have been my first contribution to the library. Sympy is a great project that continuously
-% helps with me with my research and I am thrilled to have contributed to the project!
-
+\begin{figure}
 \begin{usagepy}
 >>> from sympy.polys.multivariate_resultants import DixonResultant
->>> p = a_1 * x ** 2 * y ** 2 + a_2 * x ** 2
->>> q = b_1 * x ** 2 * y ** 2 + b_2 * y ** 2
->>> h = u_1 * x + u_2 * y + u_3
+>>> f = x + y
+>>> g = x ** 2 + y ** 3
+>>> h = x ** 2 + y
+>>> matrix = DixonResultant(variables=[x, y], polynomials=[p, q, h])
+>>> matrix.det()
+0 
 \end{usagepy}
+\caption{Code example of using~\cite{sympy} to calculate Dixon's resultant.
+\(f, g\) and \(h\) have a common root (\(x=1, y=-1\)). The determinant
+of Dixon's matrix falls to zero which confirms that the system has a common root.}\label{fig:dixon_example}
+\end{figure}
 
-However as previously stated for large systems building the resultant quickly becomes
-intractable. Thus, best response memory-one strategies are obtained only
-numerically. As a result, a numerical method taking advantage of the structure
-will be used for finding best response memory-one strategies which will be described
-in section~\ref{section:numerical_experiments}.
+Multivariate resultants theoretically can be used to explicitly identify best
+response memory one strategies, but solving a system of 4 polynomials. However,
+as previously stated for large systems building the resultant quickly becomes
+intractable. As a result in section~\ref{section:numerical_experiments}
+a numerical approach was considered instead.
 
 \section{Stability of defection}\label{section:stability_of_defection}
 
