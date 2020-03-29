@@ -594,71 +594,6 @@ as previously stated for large systems building the resultant quickly becomes
 intractable. As a result in section~\ref{section:numerical_experiments}
 a numerical approach was considered instead.
 
-\section{Stability of defection}\label{section:stability_of_defection}
-
-An immediate result from our formulation can be
-obtained by evaluating the sign of Equation (\ref{eq:tournament_utility})'s derivative
-at \(p=(0, 0, 0, 0)\). If at that point the
-derivative is negative, then the utility of a player only decreases if they were
-to change their behaviour, and thus defection at that point is stable.
-
-\begin{lemma}\label{lemma:stability_of_defection}
-    In a tournament of \(N\) players \(\{q^{(1)}, q^{(2)}, \dots, q^{(N)} \}\)
-    for \(q^{(i)} \in \R_{[0, 1]} ^ 4\)
-    defection is stable if the transition probabilities of the
-    opponents satisfy conditions Eq. \ref{eq:defection_condition_one} and Equation (\ref{eq:defection_condition_two}).
-
-    \begin{equation}\label{eq:defection_condition_one}
-        \sum_{i=1} ^ N (c^{(i)T} \bar{a}^{(i)} - \bar{c}^{(i)T} a^{(i)}) \leq 0
-    \end{equation}
-
-    while,
-
-    \begin{equation}\label{eq:defection_condition_two}
-        \sum_{i=1} ^ N \bar{a}^{(i)} \neq 0
-    \end{equation}
-\end{lemma}
-
-\begin{proof}
-    For defection to be stable the derivative of the utility
-    at the point \(p = (0, 0, 0, 0)\) must be negative.
-
-    Substituting \(p = (0, 0, 0, 0)\) in
-    Equation (\ref{eq:mo_tournament_derivative}) gives:
-
-    \begin{equation}
-        \left.\frac{d\sum\limits_{i=1} ^ {N} {u_q}^{(i)} (p)}{dp} \right\rvert_{p=(0,0,0,0)} =
-    \sum_{i=1} ^ N \frac{(c^{(i)T} \bar{a}^{(i)} - \bar{c}^{(i)T} a^{(i)})}
-    {(\bar{a}^{(i)})^2}
-    \end{equation}
-
-    The sign of the numerator \( \displaystyle\sum_{i=1} ^ N (c^{(i)T} \bar{a}^{(i)} - \bar{c}^{(i)T} a^{(i)})\)
-    can vary based on the transition probabilities of the opponents.
-    The denominator can not be negative, and otherwise is always positive.
-    Thus the sign of the derivative is negative if and only if
-    \( \displaystyle\sum_{i=1} ^ N (c^{(i)T} \bar{a}^{(i)} - \bar{c}^{(i)T} a^{(i)}) \leq 0\).
-\end{proof}
-
-Consider a population for which defection is known to be stable. In that
-population all the members will over time adopt the same behaviour; thus in such
-population cooperation will never take over. This is demonstrated in
-Figure~\ref{fig:stability_of_defection}.
-These have been simulated using~\cite{axelrodproject} an open
-source research framework for the study of the IPD.
-
-\begin{figure}[!htbp]
-    \centering
-    \includegraphics[width=.4\linewidth]{src/chapters/05/paper/Memory-size-in-the-prisoners-dilemma/img/stability_of_defection_plots.pdf}
-    \caption{A. For \(q_{1}=(0.22199, 0.87073, 0.20672, 0.91861)\),
-    $q_{2}=(0.48841, 0.61174, 0.76591, 0.51842)$ and
-    $q_{3}=(0.2968, 0.18772, 0.08074, 0.73844)$, Eq.~\ref{eq:defection_condition_one} and
-    Eq.~\ref{eq:defection_condition_two} hold and Defector takes over the
-    population. B. For $q_{1}=(0.96703, 0.54723, 0.97268, 0.71482)$,
-    $q_{2}=(0.69773, 0.21609, 0.97627, 0.0062)$ and
-    $q_{3}=(0.25298, 0.43479, 0.77938, 0.19769)$, Eq.~\ref{eq:defection_condition_one} fails
-    and Defector does not take over the population.}\label{fig:stability_of_defection}
-\end{figure}
-
 \section{Numerical experiments} \label{section:numerical_experiments}
 
 The results of this section rely on estimating best response memory-one strategies, but as stated in
@@ -1037,6 +972,71 @@ shorter memory is limiting.
     \includegraphics[width=.55\textwidth]{src/chapters/05/paper/Memory-size-in-the-prisoners-dilemma/img/gambler_performance_against_mem_one.pdf}
     \caption{Utilities of Gambler and best response memory-one strategies for
     130 different pair of opponents.}\label{fig:utilities_gambler_mem_one}
+\end{figure}
+
+\section{Stability of defection}\label{section:stability_of_defection}
+
+An immediate result from the formulation used so far in this Chapter can be
+obtained by evaluating the sign of Equation (\ref{eq:tournament_utility})'s derivative
+at \(p=(0, 0, 0, 0)\). If at that point the
+derivative is negative, then the utility of a player only decreases if they were
+to change their behaviour, and thus defection at that point is stable.
+
+\begin{lemma}\label{lemma:stability_of_defection}
+    In a tournament of \(N\) players \(\{q^{(1)}, q^{(2)}, \dots, q^{(N)} \}\)
+    for \(q^{(i)} \in \R_{[0, 1]} ^ 4\)
+    defection is stable if the transition probabilities of the
+    opponents satisfy conditions Eq. \ref{eq:defection_condition_one} and Equation (\ref{eq:defection_condition_two}).
+
+    \begin{equation}\label{eq:defection_condition_one}
+        \sum_{i=1} ^ N (c^{(i)T} \bar{a}^{(i)} - \bar{c}^{(i)T} a^{(i)}) \leq 0
+    \end{equation}
+
+    while,
+
+    \begin{equation}\label{eq:defection_condition_two}
+        \sum_{i=1} ^ N \bar{a}^{(i)} \neq 0
+    \end{equation}
+\end{lemma}
+
+\begin{proof}
+    For defection to be stable the derivative of the utility
+    at the point \(p = (0, 0, 0, 0)\) must be negative.
+
+    Substituting \(p = (0, 0, 0, 0)\) in
+    Equation (\ref{eq:mo_tournament_derivative}) gives:
+
+    \begin{equation}
+        \left.\frac{d\sum\limits_{i=1} ^ {N} {u_q}^{(i)} (p)}{dp} \right\rvert_{p=(0,0,0,0)} =
+    \sum_{i=1} ^ N \frac{(c^{(i)T} \bar{a}^{(i)} - \bar{c}^{(i)T} a^{(i)})}
+    {(\bar{a}^{(i)})^2}
+    \end{equation}
+
+    The sign of the numerator \( \displaystyle\sum_{i=1} ^ N (c^{(i)T} \bar{a}^{(i)} - \bar{c}^{(i)T} a^{(i)})\)
+    can vary based on the transition probabilities of the opponents.
+    The denominator can not be negative, and otherwise is always positive.
+    Thus the sign of the derivative is negative if and only if
+    \( \displaystyle\sum_{i=1} ^ N (c^{(i)T} \bar{a}^{(i)} - \bar{c}^{(i)T} a^{(i)}) \leq 0\).
+\end{proof}
+
+Consider a population for which defection is known to be stable. In that
+population all the members will over time adopt the same behaviour; thus in such
+population cooperation will never take over. This is demonstrated in
+Figure~\ref{fig:stability_of_defection}.
+These have been simulated using~\cite{axelrodproject} an open
+source research framework for the study of the IPD.
+
+\begin{figure}[!htbp]
+    \centering
+    \includegraphics[width=.4\linewidth]{src/chapters/05/paper/Memory-size-in-the-prisoners-dilemma/img/stability_of_defection_plots.pdf}
+    \caption{A. For \(q_{1}=(0.22199, 0.87073, 0.20672, 0.91861)\),
+    $q_{2}=(0.48841, 0.61174, 0.76591, 0.51842)$ and
+    $q_{3}=(0.2968, 0.18772, 0.08074, 0.73844)$, Eq.~\ref{eq:defection_condition_one} and
+    Eq.~\ref{eq:defection_condition_two} hold and Defector takes over the
+    population. B. For $q_{1}=(0.96703, 0.54723, 0.97268, 0.71482)$,
+    $q_{2}=(0.69773, 0.21609, 0.97627, 0.0062)$ and
+    $q_{3}=(0.25298, 0.43479, 0.77938, 0.19769)$, Eq.~\ref{eq:defection_condition_one} fails
+    and Defector does not take over the population.}\label{fig:stability_of_defection}
 \end{figure}
 
 \section{Chapter Summary}
