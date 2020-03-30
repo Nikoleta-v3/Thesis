@@ -1,9 +1,6 @@
 [submodule "src/chapters/03/paper/bibliometric-study-of-the-prisoners-dilemma"]
 	path = src/chapters/03/paper/bibliometric-study-of-the-prisoners-dilemma
 	url = https://github.com/Nikoleta-v3/bibliometric-study-of-the-prisoners-dilemma.git
-[submodule "src/chapters/05/paper/Memory-size-in-the-prisoners-dilemma"]
-	path = src/chapters/05/paper/Memory-size-in-the-prisoners-dilemma
-	url = https://github.com/Nikoleta-v3/Memory-size-in-the-prisoners-dilemma.git
 [submodule "src/chapters/04/paper/meta-analysis-of-prisoners-dilemma-tournaments"]
 	path = src/chapters/04/paper/meta-analysis-of-prisoners-dilemma-tournaments
 	url = https://github.com/Nikoleta-v3/meta-analysis-of-prisoners-dilemma-tournaments.git
