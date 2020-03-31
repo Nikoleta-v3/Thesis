@@ -67,7 +67,7 @@ strategies~\cite{Hilbe2017, Pan2015}. The Chapter is structured as follows:
 
 One specific advantage of memory-one strategies is their mathematical
 tractability. They can be represented completely as an element of \(\R^{4}_{[0, 1]}\).
-As previously discussed in Chapter~\ref{chapter:literature_review}, 
+As previously discussed in Chapter~\ref{chapter:literature_review},
 if a strategy is concerned with only the outcome of a single turn then there are
 four possible `states' the strategy could be in;
 
@@ -110,8 +110,8 @@ strategy \(p\) against an opponent \(q\), denoted as \(u_q(p)\), is given by
 \end{equation}
 
 This thesis has explored the form of \(u_q(p)\), to the author's knowledge no
-previous work has done this, and it proves that \(u_q(p)\) is given by a ratio
-of two quadratic forms~\cite{kepner2011}, Theorem~\ref{theorem:quadratic_form_u}.
+previous work has done this, and Theorem~\ref{theorem_one} states that \(u_q(p)\)
+is given by a ratio of two quadratic forms~\cite{kepner2011}.
 
 \begin{theorem}\label{theorem:quadratic_form_u}
     The expected utility of a memory-one strategy \(p\in\mathbb{R}_{[0,1]}^4\)
@@ -141,7 +141,7 @@ of two quadratic forms~\cite{kepner2011}, Theorem~\ref{theorem:quadratic_form_u}
     \(c \text{ and } \bar{c}\) \(\in \R^{4 \times 1}\) are similarly defined by:
 
     \begin{equation}\label{eq:q_matrix_numerator}
-    \resizebox{0.3\linewidth}{!}{\arraycolsep=2.5pt%
+    \resizebox{0.4\linewidth}{!}{\arraycolsep=2.5pt%
     \boldmath\(c = \input{src/chapters/05/paper/Memory-size-in-the-prisoners-dilemma/tex/c_numerator}\),}
     \end{equation}
     \begin{equation}\label{eq:q_matrix_denominator}
@@ -185,8 +185,7 @@ opponents. The IPD is commonly studied in tournaments and/or Moran Processes
 where a strategy interacts with a number of opponents. The payoff of a player in
 such interactions is given by the average payoff the player received against
 each opponent. More specifically the expected utility of a memory-one strategy
-against a \(N\) number of opponents is given by
-Theorem~\ref{theorem:tournament_utility}.
+against \(N\) opponents is given by Theorem~\ref{theorem:tournament_utility}.
 
 \begin{theorem}\label{theorem:tournament_utility}
     The expected utility of a memory-one strategy \(p\in\mathbb{R}_{[0,1]}^4\)
@@ -201,6 +200,9 @@ Theorem~\ref{theorem:tournament_utility}.
         {\prod\limits_{i=1} ^ N (\frac{1}{2} p\bar{Q}^{(i)} p^T + \bar{c}^{(i)} p + \bar{a}^ {(i)})}.
     \end{equation}
 \end{theorem}
+
+Equation~(\ref{eq:tournament_utility}) is the average score
+(using Equation~(\ref{eq:optimisation_quadratic})) against the set of opponents.
 
 Similar to the previous result, the formulation of
 Theorem~\ref{theorem:tournament_utility} is validated using numerical
@@ -245,7 +247,7 @@ Figure~\ref{fig:hypothesis}.
 
 Theorem~\ref{theorem:tournament_utility} which allows for the utility of a
 memory-one strategy against any number of opponents to be estimated without
-simulating the interactions is the main result used in this Chapter. In
+simulating the interactions is the main result used in the rest of this Chapter. In
 section~\ref{section:best_response_mem_one} it is used to define best response
 memory-one strategies, in section~\ref{section:reactive_strategies} to define best response
 reactive strategies and in section~\ref{section:stability_of_defection}
@@ -313,7 +315,7 @@ Theorem~\ref{theorem:memone_group_best_response}.
 
 Note that there is no immediate way to find the zeros of \(\frac{d}{dp} \sum\limits_{i=1} ^ N  u_q(p)\);
 
-{\small
+{\footnotesize
 \begin{align}\label{eq:mo_tournament_derivative}
     \frac{d}{dp} \sum\limits_{i=1} ^ {N} {u_q}^{(i)} (p) & = \nonumber \\
     & =  \displaystyle\sum\limits_{i=1} ^ {N}
@@ -611,6 +613,42 @@ the objective function which is well suited to the potential multiple local opti
 the described search space of this work. Differential evolution~\cite{Storn1997}
 was also considered, however, it was not selected due to Bayesian optimisation being
 computationally more efficient.
+
+As described in~\cite{Frazier2018} Bayesian optimisation consists of two main
+components: a Bayesian statistical model for modeling the objective function,
+and an acquisition function for deciding where to sample next. The algorithm
+initially evaluates the objective according to a space-filling experimental
+design, often consisting of points chosen uniformly at 2 random. They are used
+iteratively to allocate the remainder of a budget of \(K\) function evaluations, as
+shown in Algorithm~\ref{algorithm:bayesian_opt}.
+
+\begin{algorithm}[H]
+Place a Gaussian process prior on \(f\)\;
+Observe \(f\) at \(k_0\) points according to an initial space-filling experimental design, set \(k = k_0\) \;
+\While{ \(k \leq K\)}{
+Update the posterior probability distribution on \(f\) using all available data\;
+Let \(x_k\) be a maximizer of the acquisition function over \(x\), where the acquisition function is computed using the current posterior distribution\;
+Observe \(y_k\) = \(f(x_k)\)\;
+Increment \(k\)\;
+}
+\Return either the point evaluated with the largest \(f(x)\), or the point with the largest posterior mean.
+\caption{Basic pseudo-code for Bayesian optimization. As given in~\cite{Frazier2018}}\label{algorithm:bayesian_opt}
+\end{algorithm}
+
+The statistical model is invariably a Gaussian process. It provides a Bayesian
+posterior probability distribution that describes potential values for the
+objective function at a candidate point. Each time the objective function is
+observed at the new point the posterior distribution is updated.
+
+The acquisition function measures the value that would be generated by
+evaluation of the objective function at a new point, based on the current
+posterior distribution over \(f\). The most commonly used acquisition function,
+
+\begin{itemize}
+    \item Expected Improvement~\cite{Jones1998}
+    \item Knowledge Gradient~\cite{Frazier2009}
+    \item Entropy Search and Predictive Entropy Search~\cite{Hennig2012}
+\end{itemize}
 
 As an example of the algorithm's usage consider the optimisation problem
 of (\ref{eq:mo_tournament_optimisation}). Figure~\ref{bayesian_example}
