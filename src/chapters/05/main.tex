@@ -140,7 +140,7 @@ is given by a ratio of two quadratic forms~\cite{kepner2011}.
     \(c \text{ and } \bar{c}\) \(\in \R^{4 \times 1}\) are similarly defined by:
 
     \begin{equation}\label{eq:q_matrix_numerator}
-    \resizebox{0.4\linewidth}{!}{\arraycolsep=2.5pt%
+    \resizebox{0.6\linewidth}{!}{\arraycolsep=2.5pt%
     \boldmath\(c = \input{src/chapters/05/paper/Memory-size-in-the-prisoners-dilemma/tex/c_numerator}\),}
     \end{equation}
     \begin{equation}\label{eq:q_matrix_denominator}
@@ -597,17 +597,39 @@ a numerical approach was considered instead.
 
 \section{Numerical experiments} \label{section:numerical_experiments}
 
-The results of this section rely on estimating best response memory-one strategies.
-Best responses will be estimated heuristically using Bayesian
-optimisation~\cite{Mokus1978}.
+As briefly discussed in section~\ref{section:introduction}, ZDs have been
+praised for their robustness against a single opponent. ZDs are evidence that
+extortion works in pairwise interactions. Their behaviour ensures that the
+strategies will never lose a game. However, this thesis argues that in multi
+opponent interactions, where the payoffs matter, strategies trying to exploit
+their opponents will suffer. Compared to ZDs, best response memory-one
+strategies which have a theory of mind of their opponents, utilise their
+behaviour in order to gain the most from their interactions. The question that
+arises then is whether best response strategies are optimal because they behave
+in an extortionate way (section~\ref{subsection:best_response_n_2}).
 
-\subsection{Bayesian optimisation}
+The other main finding presented in~\cite{Press2012} was that short memory of
+the strategies was all that was needed. This thesis argues that the second
+limitation of ZDs in multi opponent interactions is that of their restricted
+memory. To demonstrate the effectiveness of memory in the IPD a best response
+longer-memory strategy against a given set of memory-one opponents is explored,
+and it's performance is compared to that of a memory-one best response in
+section~\ref{subsection:longer_memory_best_response}.
+
+The results of this section rely on estimating best response memory-one
+strategies and understand whether they behave in an extortionate way. Best
+responses will be estimated heuristically using Bayesian optimisation, which is
+described in section~\ref{section:bayesian_optimisation}, and in order to
+investigate whether best responses behave in an extortionate matter the SSE
+method described in section~\ref{section:sse} is used.
+
+\subsection{Bayesian optimisation}\label{section:bayesian_optimisation}
 
 Bayesian optimisation is a global optimisation
 algorithm that has proven to outperform many other popular
 algorithms~\cite{Jones2001}. The algorithm builds a bayesian understanding of
 the objective function which is well suited to the potential multiple local optimas in
-the described search space of this work. Differential evolution~\cite{Storn1997}
+the described search space of this Chapter. Differential evolution~\cite{Storn1997}
 was also considered, however, it was not selected due to Bayesian optimisation being
 computationally more efficient.
 
@@ -649,10 +671,10 @@ posterior distribution over \(f\). The most commonly used acquisition function,
 
 As an example of the algorithm's usage consider the optimisation problem
 of (\ref{eq:mo_tournament_optimisation}). Figure~\ref{bayesian_example}
-illustrates the change of the utility function over iterations of the algorithm.
+illustrates the change of the utility function over \(I\).
 The algorithm is set to run for \(I=60\). After 60 function evaluations if the
 utility has changed in the last 10\% evaluations then algorithm runs for a
-further 20 iterations. This is repeated until there is no change to the utility
+further 20 evaluations. This is repeated until there is no change to the utility
 in the last 10\% of evaluations.
 
 
@@ -667,7 +689,7 @@ in the last 10\% of evaluations.
     \label{bayesian_example}
 \end{figure}
 
-\subsection{SSE Method}
+\subsection{SSE Method}\label{section:sse}
 
 In order to investigate whether best responses behave in an extortionate matter
 the SSE method is used. The method is a linear algebraic approach presented
@@ -705,30 +727,11 @@ referred to as sum of squared errors of prediction (SSE):
 Thus, SSE is defined as how far a strategy is from behaving as a ZD. A
 high SSE implies a non extortionate behaviour.
 
-The rest of the section is structured as follows. In
-section~\ref{subsection:best_response_n_2}, Bayesian optimisation is used to
-generate a data set containing memory-one best responses against a number of
-random memory-one opponents. This is done in both tournaments with and without
-self interactions. The extortionate behaviour of these best responses is then
-evaluated using the SSE method presented in this section. Finally,
-section~\ref{subsection:longer_memory_best_response} compares the performances
-of memory-one and longer-memory best responses against a number of opponents.
-
 \subsection{Best response memory-one strategies for \(N=2\)}\label{subsection:best_response_n_2}
 
-As briefly discussed in section~\ref{section:introduction}, ZDs
-have been praised for their robustness against a single opponent.
-ZDs are evidence that extortion works in pairwise interactions.
-Their behaviour ensures that the strategies will
-never lose a game. However, this thesis
-argues that in multi opponent interactions, where the payoffs matter, strategies
-trying to exploit their opponents will suffer.
-
-Compared to ZDs, best response memory-one strategies which
-have a theory of mind of their opponents, utilise their behaviour in order to
-gain the most from their interactions. The question that arises then is whether
-best response strategies are optimal because they behave in an extortionate
-way.
+The results of this section use Bayesian optimisation to generate a data set of
+best response memory-one strategies for \(N=2\) opponents. This is done in
+tournaments with and without self interactions.
 
 In several evolutionary settings such as Moran Processes self interactions are
 key. Previous work has identified interesting results such as the appearance of
@@ -747,7 +750,6 @@ interactions that will take place.
     \end{aligned}
    \end{equation}
 
-
 For determining the memory-one best response with self interactions, an
 algorithmic approach is considered, called \textit{best response dynamics}. The
 best response dynamics approach used in this manuscript is given by
@@ -763,14 +765,15 @@ Algorithm~\ref{algo:best_response_dynamics}.
     \label{algo:best_response_dynamics}
  \end{algorithm}
 
-
 Using this approach it would be possible to create a memory-one best response
 strategy that updates on every generation of a Moran process to recalculate the
-optimal behaviour given the population. This extension of the ``theory of mind''
-is an interesting avenue for future work.
+optimal behaviour given the population.
 
-A data set of best response memory-one strategies with \(N=2\) opponents has
-been generated which is available at~\cite{glynatsi2019}. The data set contains
+For determining the memory-one best response without self interactions,
+Bayesian algorithm is used to numerically solve the problem of
+(\ref{eq:mo_tournament_optimisation}).
+
+The data set contains
 a total of 1000 trials corresponding to 1000 different instances of a best
 response strategy in tournaments with and without self interactions. For each
 trial a set of 2 opponents is randomly generated and the memory-one best
@@ -912,7 +915,7 @@ of Gambler, and actual simulated players are used. This is done using~\cite{axel
 with 500 turns and 200 repetitions, moreover, (\ref{eq:gambler_optimisation})
 is solved numerically using Bayesian optimisation.
 
-Similarly to previous section, a large data set has been generated with
+Similarly to the previous section, a large data set has been generated with
 instances of an optimal Gambler and a memory-one best response, available
 at~\cite{glynatsi2019}. Estimating a best response Gambler (17 dimensions) is
 computational more expensive compared to a best response memory-one (4
@@ -960,11 +963,15 @@ shorter memory is limiting.
 
 \section{Stability of defection}\label{section:stability_of_defection}
 
-An immediate result from the formulation used so far in this Chapter can be
-obtained by evaluating the sign of Equation (\ref{eq:tournament_utility})'s derivative
-at \(p=(0, 0, 0, 0)\). If at that point the
-derivative is negative, then the utility of a player only decreases if they were
-to change their behaviour, and thus defection at that point is stable.
+An additional theoretical result that is possible to obtain due to
+Theorem~\ref{theorem:tournament_utility}, is a condition for which in an
+environment of memory-one opponents defection is the stable choice, based only
+on the coefficients of the opponents.
+
+This result is obtained by evaluating the sign of Equation
+(\ref{eq:tournament_utility})'s derivative at \(p=(0, 0, 0, 0)\). If at that
+point the derivative is negative, then the utility of a player only decreases if
+they were to change their behaviour, and thus defection at that point is stable.
 
 \begin{lemma}\label{lemma:stability_of_defection}
     In a tournament of \(N\) players \(\{q^{(1)}, q^{(2)}, \dots, q^{(N)} \}\)
@@ -1026,10 +1033,10 @@ source research framework for the study of the IPD.
 \section{Chapter Summary}
 
 This Chapter has considered best response strategies in the IPD
-game, and more specifically, memory-one best responses.
+game, and more specifically, memory-one best responses. It has proven that:
 
 \begin{itemize}
-    \item It has proven that the utility of a memory-one strategy against a set
+    \item The utility of a memory-one strategy against a set
           of memory-one opponents can be written as a sum of ratios of quadratic
           forms (Theorem~\ref{theorem:tournament_utility}).
     \item There is a compact way of identifying a memory-one best response to a
