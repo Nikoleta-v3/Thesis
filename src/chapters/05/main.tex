@@ -28,9 +28,8 @@ The differences between the Chapter and the manuscript include \dots.
 
 \section{Introduction}\label{section:mem_one_introduction}
 
-This Chapter contributes to the question: what is the optimal behaviour an
-IPD strategy should adapt as a response to different environments? The environment
-considered in this Chapter are against memory-one strategies.
+This Chapter contributes to the question: what is the optimal behaviour an IPD
+strategy should adapt as a response to different environments?
 In~\cite{Press2012} the authors stated that ``Only a player with a theory of
 mind about his opponent can do better, in which case Iterated Prisoner's Dilemma
 is an Ultimatum Game''. The purpose of this Chapter is to investigate the first
@@ -46,15 +45,15 @@ that longer-memory strategies have a certain form of advantage over short memory
 strategies~\cite{Hilbe2017, Pan2015}. The Chapter is structured as follows:
 
 \begin{itemize}
-    \item section~\ref{section:utility}, presents a closed form algebraic expression for
+    \item section~\ref{section:utility}, describes a closed form algebraic expression for
     the utility of a memory-one strategy to a given group of opponents.
-    \item section~\ref{section:best_response_mem_one}, defines a compact method
+    \item section~\ref{section:best_response_mem_one}, produces a compact method
     of identifying the best response memory-one strategy against a given set
     of opponents.
-    \item section~\ref{section:reactive_strategies}, defines best response reactive
-    strategies and demonstrate the usage of resultant theory in explicitly finding
+    \item section~\ref{section:reactive_strategies}, explains best response reactive
+    strategies and demonstrates the usage of resultant theory in explicitly finding
     a reactive best response.
-    \item section~\ref{section:numerical_experiments}, presents a series of numerical experiments
+    \item section~\ref{section:numerical_experiments}, describes a series of numerical experiments
     and a well designed framework that allows the
     comparison of an optimal memory one strategy and a more complex strategy which
     has a larger memory.
@@ -110,7 +109,7 @@ strategy \(p\) against an opponent \(q\), denoted as \(u_q(p)\), is given by
 \end{equation}
 
 This thesis has explored the form of \(u_q(p)\), to the author's knowledge no
-previous work has done this, and Theorem~\ref{theorem_one} states that \(u_q(p)\)
+previous work has done this, and Theorem~\ref{theorem:quadratic_form_u} states that \(u_q(p)\)
 is given by a ratio of two quadratic forms~\cite{kepner2011}.
 
 \begin{theorem}\label{theorem:quadratic_form_u}
@@ -569,7 +568,7 @@ resultant.
 
 Project~\cite{sympy} which was used to construct Sylvester's resultant is called
 SymPy and it is the Pythonic package for symbolic mathematics. However, the
-project did not be include the feature to calculate multivariate resultant. As
+project did not be include the feature to calculate multivariate resultants. As
 part of this Chapter the source code for constructing both the Dixon's and
 Macaulay's resultants was developed and was integrated into
 project~\cite{sympy}. Figure~\ref{fig:dixon_example} demonstrates an example of
@@ -598,11 +597,9 @@ a numerical approach was considered instead.
 
 \section{Numerical experiments} \label{section:numerical_experiments}
 
-The results of this section rely on estimating best response memory-one strategies, but as stated in
-Section~\ref{section:best_response_mem_one}, estimating best responses
-analytically can quickly become an intractable problem. As a result, best
-responses will be estimated heuristically using Bayesian
-optimisation~\cite{Mokus1978}. 
+The results of this section rely on estimating best response memory-one strategies.
+Best responses will be estimated heuristically using Bayesian
+optimisation~\cite{Mokus1978}.
 
 \subsection{Bayesian optimisation}
 
@@ -619,17 +616,17 @@ components: a Bayesian statistical model for modeling the objective function,
 and an acquisition function for deciding where to sample next. The algorithm
 initially evaluates the objective according to a space-filling experimental
 design, often consisting of points chosen uniformly at 2 random. They are used
-iteratively to allocate the remainder of a budget of \(K\) function evaluations, as
+iteratively to allocate the remainder of a budget of \(I\) function evaluations, as
 shown in Algorithm~\ref{algorithm:bayesian_opt}.
 
 \begin{algorithm}[H]
 Place a Gaussian process prior on \(f\)\;
-Observe \(f\) at \(k_0\) points according to an initial space-filling experimental design, set \(k = k_0\) \;
-\While{ \(k \leq K\)}{
+Observe \(f\) at \(i_0\) points according to an initial space-filling experimental design, set \(i = i_0\) \;
+\While{ \(i \leq I\)}{
 Update the posterior probability distribution on \(f\) using all available data\;
-Let \(x_k\) be a maximizer of the acquisition function over \(x\), where the acquisition function is computed using the current posterior distribution\;
-Observe \(y_k\) = \(f(x_k)\)\;
-Increment \(k\)\;
+Let \(x_i\) be a maximizer of the acquisition function over \(x\), where the acquisition function is computed using the current posterior distribution\;
+Observe \(y_i\) = \(f(x_i)\)\;
+Increment \(i\)\;
 }
 \Return either the point evaluated with the largest \(f(x)\), or the point with the largest posterior mean.
 \caption{Basic pseudo-code for Bayesian optimization. As given in~\cite{Frazier2018}}\label{algorithm:bayesian_opt}
@@ -653,10 +650,10 @@ posterior distribution over \(f\). The most commonly used acquisition function,
 As an example of the algorithm's usage consider the optimisation problem
 of (\ref{eq:mo_tournament_optimisation}). Figure~\ref{bayesian_example}
 illustrates the change of the utility function over iterations of the algorithm.
-The algorithm is set to run for 60 iterations. After 60 iterations if the
-utility has changed in the last 10\% iterations then algorithm runs for a
+The algorithm is set to run for \(I=60\). After 60 function evaluations if the
+utility has changed in the last 10\% evaluations then algorithm runs for a
 further 20 iterations. This is repeated until there is no change to the utility
-in the last 10\% of iterations.
+in the last 10\% of evaluations.
 
 
 \begin{figure}[!htbp]
@@ -672,12 +669,13 @@ in the last 10\% of iterations.
 
 \subsection{SSE Method}
 
-In order to investigate whether best responses
-behave in an extortionate matter the SSE method~\cite{Knight2019} is used. More
-specifically,
-in~\cite{Knight2019} a point \(x^*\), in the space of memory-one strategies, is
-defined as the nearest extortionate strategy to a given strategy \(p\). \(x^*\) is
-given by,
+In order to investigate whether best responses behave in an extortionate matter
+the SSE method is used. The method is a linear algebraic approach presented
+in~\cite{Knight2019}.
+
+More specifically, in~\cite{Knight2019} a point \(x^*\), in the space of
+memory-one strategies, is defined as the nearest extortionate strategy to a
+given strategy \(p\). \(x^*\) is given by,
 
 \begin{equation}\label{eqn:x_star_formula}
     x^* = {\left(C^{T}C\right)}^{-1}C^{T}\bar{p}
@@ -695,8 +693,8 @@ where \(\bar{p}=(p_1 - 1, p_2 - 1, p_3, p_4)\) and
     \end{bmatrix}.
 \end{equation}
 
-The squared norm of the remaining error is referred to as sum of squared errors
-of prediction (SSE):
+Once this closest ZDs is found, the squared norm of the remaining error is
+referred to as sum of squared errors of prediction (SSE):
 
 \begin{equation}\label{eqn:x_SSError_formula}
     \text{SSE} = {\bar{p}} ^ T \bar{p} -
@@ -704,24 +702,17 @@ of prediction (SSE):
          = {\bar{p}} ^ T \bar{p} - \bar{p} C x ^ *
 \end{equation}
 
-Thus, SSE is defined as how far a strategy is from behaving as a ZD and thus a
-high SSE implies a non extortionate behaviour. The SSE method has been applied
-to the data set. A statistics summary of the SSE distribution for the best
-response in tournaments and evolutionary dynamics is given in
-Table~\ref{table:sserror_stats}.
+Thus, SSE is defined as how far a strategy is from behaving as a ZD. A
+high SSE implies a non extortionate behaviour.
 
 The rest of the section is structured as follows. In
 section~\ref{subsection:best_response_n_2}, Bayesian optimisation is used to
 generate a data set containing memory-one best responses against a number of
-random opponents. The extortionate behaviour of these best responses is then
-evaluated using a method introduced in~\cite{Knight2019}. In section
-\ref{subsection:best_respnse_evolutionary_setting}, a similar data set and
-approach are discussed but this time the best responses are memory-one best
-responses in an evolutionary setting where they also incorporate self
-interactions. This has immediate applications to Moran processes.
-Finally, section~\ref{subsection:longer_memory_best_response}
-compares the performances of memory-one and longer-memory best responses against
-a number of opponents.
+random memory-one opponents. This is done in both tournaments with and without
+self interactions. The extortionate behaviour of these best responses is then
+evaluated using the SSE method presented in this section. Finally,
+section~\ref{subsection:longer_memory_best_response} compares the performances
+of memory-one and longer-memory best responses against a number of opponents.
 
 \subsection{Best response memory-one strategies for \(N=2\)}\label{subsection:best_response_n_2}
 
@@ -737,16 +728,53 @@ Compared to ZDs, best response memory-one strategies which
 have a theory of mind of their opponents, utilise their behaviour in order to
 gain the most from their interactions. The question that arises then is whether
 best response strategies are optimal because they behave in an extortionate
-way. To estimate a strategy's extortionate
-behaviour the SSE method as described in~\cite{Knight2019} is used. SSE is
-defined as how far a strategy is from behaving extortionate, thus a high
-SSE implies a non extortionate behaviour.
+way.
 
-A data set of best response memory-one strategies with \(N=2\) opponents has been
-generated which is available at~\cite{glynatsi2019}. The data set contains a total of 1000 trials
-corresponding to 1000 different instances of a best response strategy. For each
-trial a set of 2 opponents is randomly generated and the memory-one best response
-against them is found. The probabilities \(q_i\) of the opponents are
+In several evolutionary settings such as Moran Processes self interactions are
+key. Previous work has identified interesting results such as the appearance of
+self recognition mechanisms when training strategies using evolutionary
+algorithms in Moran processes~\cite{Knight2018}. This aspect of reinforcement
+learning can be done for best response memory-one strategies by incorporating
+the strategy itself in the objective function as shown in
+Equation~\ref{eq:mo_tournament_optimisation}. \(K\) is the number of self
+interactions that will take place.
+
+\begin{equation}\label{eq:mo_evolutionary_optimisation}
+    \begin{aligned}
+    \max_p: & \ \frac{1}{N} \sum\limits_{i=1} ^ {N} {u_q}^{(i)} (p) + Ku_p(p)
+    \\
+    \text{such that}: & \ p \in \R_{[0, 1]}
+    \end{aligned}
+   \end{equation}
+
+
+For determining the memory-one best response with self interactions, an
+algorithmic approach is considered, called \textit{best response dynamics}. The
+best response dynamics approach used in this manuscript is given by
+Algorithm~\ref{algo:best_response_dynamics}.
+
+\begin{algorithm}[H]
+    $p^{(t)}\leftarrow (1, 1, 1, 1)$\;
+    \While{$p^{(t)} \neq p ^{(t -1)}$}{
+    $p^{(t + 1)} =  \text{argmax} \frac{1}{N} \sum\limits_{i=1} ^ {N} {u_q}^{(i)}
+    (p^{(t)}) + Ku_{p^{(t)}}(p^{(t)})$\;
+    }
+    \caption{Best response dynamics Algorithm}
+    \label{algo:best_response_dynamics}
+ \end{algorithm}
+
+
+Using this approach it would be possible to create a memory-one best response
+strategy that updates on every generation of a Moran process to recalculate the
+optimal behaviour given the population. This extension of the ``theory of mind''
+is an interesting avenue for future work.
+
+A data set of best response memory-one strategies with \(N=2\) opponents has
+been generated which is available at~\cite{glynatsi2019}. The data set contains
+a total of 1000 trials corresponding to 1000 different instances of a best
+response strategy in tournaments with and without self interactions. For each
+trial a set of 2 opponents is randomly generated and the memory-one best
+responses against them are found. The probabilities \(q_i\) of the opponents are
 randomly generated and Figures~\ref{fig:first_opponents_probabilities} and
 \ref{fig:second_opponents_probabilities}, show that they are uniformly
 distributed over the trials. Thus, the full space of possible opponents has been
@@ -758,7 +786,7 @@ covered.
         \includegraphics[width=\linewidth]{src/chapters/05/paper/Memory-size-in-the-prisoners-dilemma/img/first_opponent_probabilities.pdf}
         \subcaption{Distributions of first opponents' probabilities.}
         \label{fig:first_opponents_probabilities}
-    \end{subfigure}\hfill
+    \end{subfigure}
     \begin{subfigure}{0.47\textwidth}
         \centering
         \includegraphics[width=\linewidth]{src/chapters/05/paper/Memory-size-in-the-prisoners-dilemma/img/second_opponent_probabilities.pdf}
@@ -767,165 +795,84 @@ covered.
     \end{subfigure}
 \end{figure}
 
-The SSE method has been applied to the data set. The distribution of SSE for the best response is given in
-Figure~\ref{fig:sserror_mem_one} and a statistics summary in
-Table~\ref{table:sserror_stats}. The distribution of SSE is skewed to the left,
-indicating that the best response does exhibit extortionate behaviour, however,
-the best response is not uniformly extortionate. A positive measure of skewness
-and kurtosis indicates a heavy tail to the right. Therefore, in several cases the
-strategy is not trying to extort its the opponents.
-
-So although the best response strategy can exhibit extortionate behaviour, its
-performance is maximised by behaving in a more adaptable way than zero-determinant
-strategies. This is confirms similar results such as~\cite{Knight2019}.
-This analysis will now be extended to an evolutionary setting.
-
-\begin{figure}[!htbp]
-    \begin{minipage}{0.65\textwidth}
-            \begin{center}
-                \includegraphics[width=\linewidth]{src/chapters/05/paper/Memory-size-in-the-prisoners-dilemma/img/best_respones_sserror.pdf}
-            \end{center}
-                \caption{Distribution of SSE for memory-one best responses, when \(N=2\).}
-                \label{fig:sserror_mem_one}
-    \end{minipage}\hspace{1cm}
-    \begin{minipage}{0.25\textwidth}
-        \centering
-        \captionsetup{type=table}
-        \resizebox{.75\columnwidth}{!}{%
-            \input{src/chapters/05/paper/Memory-size-in-the-prisoners-dilemma/tex/sserror_table.tex}}
-            \caption{Summary statistics SSE of best response memory one strategies included
-            tournaments of \(N=2\).}
-            \label{table:sserror_stats}
-      \end{minipage}
-\end{figure}
-
-\subsection{Memory-one best responses in evolutionary dynamics}\label{subsection:best_respnse_evolutionary_setting}
-
-As mentioned in section~\ref{section:utility}, the IPD is commonly studied in
-Moran processes, and generally, in evolutionary processes. In these settings self
-interactions are key. This section extends the formulation of best responses
-in evolutionary dynamics, more specifically, the optimisation problem of
-(\ref{eq:mo_tournament_optimisation}) is extended to
-include self interactions.
-
-Self interactions can be incorporated in the formulation
-that has been used so far. The utility is given by,
-
-\begin{equation}
-    \frac{1}{N} \sum\limits_{i=1} ^ {N} {u_q}^{(i)} (p) + u_p(p)
-\end{equation}
-
-and the optimisation problem of (\ref{eq:mo_tournament_optimisation}) is modified to give:
-
-\begin{equation}\label{eq:mo_evolutionary_optimisation}
-    \begin{aligned}
-    \max_p: & \ \frac{1}{N} \sum\limits_{i=1} ^ {N} {u_q}^{(i)} (p) + u_p(p)
-    \\
-    \text{such that}: & \ p \in \R_{[0, 1]}
-    \end{aligned}
-\end{equation}
-
-For determining the memory-one best response in an evolutionary setting,
-an algorithmic approach is considered, called \textit{best
-response dynamics}. Best response dynamics are commonly used in evolutionary
-game theory. They represent a class of strategy updating rules, where players in
-the next round are determined by their best responses to some subset of the
-population. The best response dynamics approach used in this manuscript is given by
-Algorithm~\ref{algo:best_response_dynamics}.
-
-% \begin{minipage}{.6\textwidth}
-    \begin{algorithm}[H]
-        $p^{(t)}\leftarrow (1, 1, 1, 1)$\;
-        \While{$p^{(t)} \neq p ^{(t -1)}$}{
-         $p^{(t + 1)} =  \text{argmax} \frac{1}{N} \sum\limits_{i=1} ^ {N} u_{q^{(i)}}
-         (p^{(t)}) + u_{p^{(t)}}(p^{(t)})$\;
-        }
-        \caption{Best response dynamics Algorithm}
-        \label{algo:best_response_dynamics}
-    \end{algorithm}
-% \end{minipage}
-
-The best response dynamics algorithm starts by setting an initial
-solution \(p^{(1)}=(1, 1, 1, 1)\), and repeatedly finds a strategy that maximises
-(\ref{eq:mo_evolutionary_optimisation}) using Bayesian optimisation. The
-algorithm stops once a cycle (a sequence of iterated evaluated points) is
-detected. A numerical example of the algorithm is given in Figure~\ref{fig:best_response_dynamics_results}.
-
-\begin{figure}[!htbp]
-    \centering
-    \includegraphics[width=.6\textwidth]{src/chapters/05/paper/Memory-size-in-the-prisoners-dilemma/img/best_response_dynamics_example.pdf}
-    \caption{Best response dynamics with \(N=2\). More specifically, for
-    \(q ^{(1)}=(\frac{59}{250},
-                \frac{1031}{10000},
-                \frac{99}{250},
-                \frac{1549}{10000})\) and
-    \(q ^{(2)}=(\frac{133}{2000},
-                \frac{803}{2000},
-                \frac{9179}{10000},
-                \frac{2001}{2500})\).}
-\label{fig:best_response_dynamics_results}
-\end{figure}
-
-The algorithm has been used to estimate the best response in an evolutionary
-setting for each of the 1000 pairs of opponents described in
-section~\ref{subsection:best_response_n_2}. These are also included in the data
-set~\cite{glynatsi2019}, and moreover, the SSE method has also been applied. The
-distribution of SSE is given by Figure~\ref{fig:sserror_mem_one} and a
-statistical summary by Table~\ref{table:sserror_stats}.
-
-\begin{figure}[!htbp]
-    \begin{minipage}{0.65\textwidth}
-            \begin{center}
-            \includegraphics[width=\linewidth]{src/chapters/05/paper/Memory-size-in-the-prisoners-dilemma/img/evo_sserror.pdf}
-            \end{center}
-            \caption{Distribution of SSE of best response memory-one strategies in
-            evolutionary settings, when \(N=2\).}
-            \label{fig:sserror_mem_one}
-    \end{minipage}\hspace{1cm}
-    \begin{minipage}{0.25\textwidth}
-        \centering
-        \captionsetup{type=table}
-        \resizebox{.75\columnwidth}{!}{%
-            \input{src/chapters/05/paper/Memory-size-in-the-prisoners-dilemma/tex/evo_sserror_table.tex}}
-            \caption{Summary statistics SSE of best response memory-one strategies in
-            evolutionary settings, when when \(N=2\).}
-            \label{table:sserror_stats}
-      \end{minipage}
-\end{figure}
-
-Similarly to the results of section~\ref{subsection:best_response_n_2}, the
-evolutionary best response strategy does not behave uniformly extortionately. A
-larger value of both the kurtosis and the skewness of the SSE distribution
-indicates that in evolutionary settings a memory-one best response is even more
-adaptable.
-
-The difference between best responses in tournaments and in evolutionary
-settings is further explored by Fig.~\ref{fig:behaviour_violin_plots}.
-Though, no statistically significant differences have been found, from
-Fig.~\ref{fig:behaviour_violin_plots}, it seems that evolutionary best
-response has a higher median $p_2$; which corresponds to the probability of cooperating
-after receiving a defection. Thus, they are more likely to forgive after
-being tricked. This is due to the fact that they could be playing against
-themselves, and they need to be able to forgive so that future cooperation can
-occur.
-
-\begin{figure}[!htbp]
-    \centering
-    \includegraphics[width=.8\textwidth]{src/chapters/05/paper/Memory-size-in-the-prisoners-dilemma/img/behaviour_violin_plots.pdf}
-    \caption{Distributions of \(p^*\) for both best response and evolutionary memory-one
-    strategies.}
-    \label{fig:behaviour_violin_plots}
-\end{figure}
+The SSE method has been applied to the data set. The distributions of SSE for
+the best response in tournaments \((N = 2)\) with and without self interactions
+with \((K = 1)\) are given in Figure~\ref{fig:sse_distributions}. Moreover, a
+statistical summary of the SSE distributions is given in
+Table~\ref{table:sserror_stats}.
 
 \begin{table}[!htbp]
-    \centering
-    \resizebox{.7\columnwidth}{!}{%
-    \input{src/chapters/05/tex/medians_tests.tex}}
-    \caption{A non parametric test, Wilcoxon Rank Sum, has been performed to
-    tests the difference in the median values of the cooperation probabilities
-    in tournaments versus evolutionary settings. A non parametric test is used because
-    is evident that the data are skewed.}\label{table:wilcoxon_tests}
+    \begin{center}
+    \resizebox{.8\columnwidth}{!}{%
+    \begin{tabular}{lrrrrrrrrrrr}
+        \toprule
+        & mean & std  & 5\% & 50\% &  95\% & max & median & skew & kurt\\
+        \midrule
+    \textbf{Tournament without self interactions} & 0.34  & 0.40  & 0.028  & 0.17  &
+    1.05  & 2.47  & 0.17  & 1.87 & 3.60 \\
+    \textbf{Tournament with self interactions} & 0.17 & 0.23 & 0.01 &
+    0.12 & 0.67 & 1.53 & 0.12 & 3.42 & 1.92 \\
+        \bottomrule
+    \end{tabular}}
+    \end{center}
+    \caption{SSE of best response memory-one when \(N=2\)}\label{table:sserror_stats}
 \end{table}
+
+\begin{figure}[!htbp]
+    \begin{subfigure}{0.47\textwidth}
+        \begin{center}
+            \includegraphics[width=\linewidth]{src/chapters/05/paper/Memory-size-in-the-prisoners-dilemma/img/best_respones_sserror.pdf}
+        \end{center}
+        \caption{SEE distribution for best response in tournaments without self interactions.}
+    \end{subfigure}\hfill
+    \begin{subfigure}{0.47\textwidth}
+        \begin{center}
+            \includegraphics[width=\linewidth]{src/chapters/05/paper/Memory-size-in-the-prisoners-dilemma/img/evo_sserror.pdf}
+        \end{center}
+        \caption{SEE distribution for best response in tournaments with self interactions.}
+    \end{subfigure}
+    \caption{SEE distributions for best response in tournaments without and with self interactions.}\label{fig:sse_distributions}
+\end{figure}
+
+For the best response in tournaments that do not include self interactions the
+distribution of SSE is skewed to the left, indicating that the best response
+does exhibit ZDs behaviour and so could be extortionate, however, the best
+response is not uniformly a ZDs. A positive measure of skewness and kurtosis,
+and a mean of 0.34 indicate a heavy tail to the right. Therefore, in several
+cases the strategy is not trying to extort its opponents. In~\cite{Hilbe2018} a
+similar behaviour is refereed to as the \textit{partner strategy}. The partner
+strategy aims to share the payoff for mutual cooperation, but it is ready to
+fight back when being exploited. The partner strategy was designed, but the best
+responses which are defined by their opponents seem to exhibit the same
+behaviour.
+
+Similarly, when considering self interactions, the distribution of SSE for the
+best response strategy has skewness and kurtosis that indicate a heavy tail to
+the right. This indicates that evolutionary stable memory-one strategies need to
+more adaptable than a ZDs, and aim for mutual cooperation as well as
+exploitation which is in line with the results of \cite{Hilbe2018} where their
+strategy was designed to adapt and was shown to be evolutionary stable. The
+findings of this work show that an optimal strategy acts in the same way.
+
+The difference between best responses in tournaments without and with self
+interactions is further explored by Figure~\ref{fig:behaviour_violin_plots}.
+Though, no statistically significant differences have been found, from
+Figure~\ref{fig:behaviour_violin_plots}, it seems that the best response that
+incorporate self interactions has a higher median $p_2$; which corresponds to
+the probability of cooperating after receiving a defection. Thus, they are more
+likely to forgive after being tricked. This is due to the fact that they could
+be playing against themselves, and they need to be able to forgive so that
+future cooperation can occur.
+
+\begin{figure}[!htbp]
+    \centering
+    \includegraphics[width=.9\textwidth]{src/chapters/05/paper/Memory-size-in-the-prisoners-dilemma/img/behaviour_violin_plots.pdf}
+    \caption{Distributions of \(p^*\) for best responses in tournaments and
+    evolutionary settings. The medians, denoted as \(\bar{p}^*\), for tournaments
+    are \(\bar{p}^* = (0, 0, 0, 0)\), and for evolutionary settings
+    \(\bar{p}^* = (0, 0.19, 0, 0)\).}
+    \label{fig:behaviour_violin_plots}
+\end{figure}
 
 \subsection{Longer memory best response}\label{subsection:longer_memory_best_response}
 
@@ -965,15 +912,14 @@ of Gambler, and actual simulated players are used. This is done using~\cite{axel
 with 500 turns and 200 repetitions, moreover, (\ref{eq:gambler_optimisation})
 is solved numerically using Bayesian optimisation.
 
-Similarly to previous sections, a large data set has been generated with
+Similarly to previous section, a large data set has been generated with
 instances of an optimal Gambler and a memory-one best response, available
 at~\cite{glynatsi2019}. Estimating a best response Gambler (17 dimensions) is
 computational more expensive compared to a best response memory-one (4
 dimensions). As a result, the analysis of this section is based on a total of
 130 trials. For each trial two random opponents have been selected. The 130 pair
 of opponents are a sub set of the opponents used in
-section~\ref{subsection:best_response_n_2}-
-\ref{subsection:best_respnse_evolutionary_setting}. The distributions of their
+section~\ref{subsection:best_response_n_2}. The distributions of their
 transition probabilities are given in Figures
 \ref{fig:first_opponents_probabilities_with_gambler} and
 \ref{fig:first_opponents_probabilities_with_gambler}.
@@ -994,8 +940,8 @@ transition probabilities are given in Figures
 \end{figure}
 
 The ratio between Gambler's utility and the best response memory-one strategy's utility has been calculated and its distribution in
-given in Fig.~\ref{fig:utilities_gambler_mem_one}.
-It is evident from Fig.~\ref{fig:utilities_gambler_mem_one} that
+given in Figure~\ref{fig:utilities_gambler_mem_one}.
+It is evident from Figure~\ref{fig:utilities_gambler_mem_one} that
 Gambler always performs as well as the best response memory-one strategy and often performs better. There are
 no points where the ratio value is less than 1, thus Gambler never performed less
 than the best response memory-one strategy and in places outperforms it. This seems to be at odd with the
@@ -1079,45 +1025,42 @@ source research framework for the study of the IPD.
 
 \section{Chapter Summary}
 
-This Chapter has considered best response strategies in the IPD game, and
-more specifically, memory-one best responses. It has proven that there is
-a compact way of identifying a memory-one best response to a group of opponents,
-and moreover, that there exists a condition for which in an
-environment of memory-one opponents defection is the stable choice.
-The later parts of this paper focused on a series of empirical results, where it
-was shown that the performance and the evolutionary stability of memory-one
-strategies rely not on extortion but on adaptability. Finally, it was shown that
-memory-one strategies' performance is limited by their memory in cases where
-they interact with multiple opponents.
+This Chapter has considered best response strategies in the IPD
+game, and more specifically, memory-one best responses.
 
-Following the work described in~\cite{Nowak1989}, where it was shown that the
-utility between two memory-one strategies can be estimated by a Markov
-stationary state, we proved that the utilities can be written as a ration of two
-quadratic forms in $R^4$, Theorem~\ref{theorem:quadratic_form_u}. This was
-extended to include multiple opponents, as the IPD is commonly studied in such
-situations, Theorem~\ref{theorem:tournament_utility}.
-The formulation of Theorem~\ref{theorem:tournament_utility} allowed us to introduce an approach for identifying
-memory-one best responses to any number of opponents;
-Lemma~\ref{lemma:memone_group_best_response}. This does not only have game
-theoretic novelty, but also a mathematical novelty of solving quadratic ratio
-optimisation problem where the quadratics are non concave. The results of
-Lemma~\ref{lemma:memone_group_best_response} were also used to define a
-condition for which defection is known to be stable.
+\begin{itemize}
+    \item It has proven that the utility of a memory-one strategy against a set
+          of memory-one opponents can be written as a sum of ratios of quadratic
+          forms (Theorem~\ref{theorem:tournament_utility}).
+    \item There is a compact way of identifying a memory-one best response to a
+        group of opponents through a search over a discrete set
+        (Theorem~\ref{theorem:memone_group_best_response}).
+\end{itemize}
 
-Several experimental results were presented in this Chapter. These results were mainly to
-investigate the behaviour of memory-one strategies and their limitations. In
-Sections~\ref{subsection:best_response_n_2}
-and~\ref{subsection:best_respnse_evolutionary_setting}, a large data set which
-contained best responses in tournaments and in evolutionary settings for $N=2$
-was generated. This allowed us to investigate their respective behaviours, and
-whether it was extortionate acts that made them the most favourable strategies.
-However, it was shown that it was not extortion but adaptability that allowed
-the strategies to gain the most from their interactions.
-In evolutionary settings it was specifically shown that being adaptable and being
-able to forgive after being tricked were key factors. In section~\ref{subsection:longer_memory_best_response}, the performance of
-memory-one strategies was put against the performance of a longer memory
-strategy called Gambler. There were several cases where Gambler would outperform
-the memory-one strategy, however, a memory-one strategy never managed to outperform
-a Gambler. This result occurred whilst considering a Gambler with a sufficiently
-larger memory but not a sufficiently larger amount of information regarding
-the game.
+Note that Theorem~\ref{theorem:memone_group_best_response} which does not only
+have game theoretic novelty, but also the mathematical novelty of solving
+quadratic ratio optimisation problems where the quadratics are non concave.
+Moreover Theorem~\ref{theorem:tournament_utility}, allowed for a
+condition for which in an environment of memory-one opponents defection is the
+stable choice, based only on the coefficients of the opponents to be obtained..
+
+The empirical results have shown that the performance and the evolutionary
+stability of memory-one strategies rely on adaptability and not on extortion,
+and that memory-one strategies' performance is limited by their memory in cases
+where they interact with multiple opponents.
+
+These results were mainly to investigate the behaviour of memory-one strategies
+and their limitations. A large data set which contained best responses in
+tournaments whilst including or not self interactions for \(N=2\) was generated
+and is archived in~\cite{glynatsi2019}. Their
+respective behaviours were investigated, and whether it was extortionate acts that made them the
+most favorable strategies. It was shown that it was not extortion but
+adaptability that allowed the strategies to gain the most from their
+interactions. In settings with self interactions there is some evidence that it
+is more likely to forgive after being tricked.
+
+By specifically exploring the entire space of memory-one strategies to identify
+the best strategy for a variety of situations, this work adds to the literature
+casting doubt on the effectiveness of ZDs, highlights the importance of
+adaptability and provides a framework for the continued understanding of these
+important questions.
