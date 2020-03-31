@@ -3,7 +3,7 @@
 This thesis aims to reinforce the understanding of best responses in the
 Prisoner's Dilemma. The Iterated Prisoner’s Dilemma has been used for decades as
 a model of behavioural interactions. In the 1984's the book ``The Evolution of
-Cooperation'' ...
+Cooperation'' ... % TODO
 
 This thesis summarises, evaluates and builds upon previous literature to push
 the bounds of our understanding of how mathematical modelling and computer
@@ -116,7 +116,7 @@ This thesis studies the PD as given by Equation~(\ref{eq:pd_definition}). There
 are numerical experiments presented in the following Chapters. These have been
 carried out using the following payoff values: \(R = 3, P = 1, T = 5\) and \(S =
 0\), which are the values most commonly used in the
-literature~\cite{Axelrod1984, Knight2017}.
+literature~\cite{Axelrod1984, Knight2017}.  % TODO Add more (I think this can be quite a lengthy list)
 
 In non-cooperative games the players interact in order to achieve the most
 preferred outcome. A \textit{best response strategy} is a strategy
@@ -215,7 +215,7 @@ analysed using network theoretic approaches to answer research question~\ref{res
 The second part of the thesis aims to answer research
 question~\ref{research_question_one}. There are four Chapters to this part which
 explore optimal behaviour using original approaches. Namely,
-Chapter~\ref{chapter:meta_tournaments} analyses a large data set of computer
+Chapter~\ref{chapter:meta_tournaments} analyses a large data set of computer. % TODO Add the number of tournaments.
 tournaments of distinct types and evaluates \numberofstrategies strategies'
 performance. Chapter~\ref{chapter:memory_one} explores best response strategies
 to environments of memory-one opponents and
@@ -248,15 +248,15 @@ A summary of each Chapter is outlines:
     topics include evolutionary dynamics, intelligently designed strategies
     and structured strategies and training.
     \item Chapter~\ref{chapter:bibliometric_study} presents a bibliometric
-    analysis of 2,420 Iterated Prisoner's Dilemma articles. It uses natural language processing to
+    analysis of 2,420 Iterated Prisoner's Dilemma articles. It uses natural language processing to. % TODO Remove the hard coded number of articles?
     identify five research topics, and a graph theoretic approach to assert the
     collaborativeness of the field. The five identified topics are human subject
     research, biological studies, strategies, evolutionary dynamics on networks
     and modelling problems as a Prisoner's Dilemma.
-    \item Chapter~\ref{chapter:meta_tournaments} generates and analyses a large data set of
+    \item Chapter~\ref{chapter:meta_tournaments} generates and analyses a large data set of. % TODO Add number
     computer tournaments. It evaluates \numberofstrategies strategies, many of
     which are well known strategies from the literature, in 45,686 tournaments.
-    It presents the top performing strategies and analyses their salient features.
+    It presents the top performing strategies and analyses their salient features.  % TODO Add a single sentence of the main finding
     \item Chapter~\ref{chapter:memory_one} explores best responses to a
     collection of memory-one strategies as a multidimensional non linear
     optimisation problem. It presents a closed form algebraic expression for the
@@ -264,7 +264,7 @@ A summary of each Chapter is outlines:
     compact method of identifying it's best response to that given set of
     opponents whilst having a theory of mind, and it introduces a well designed
     framework that allows the comparison of an optimal memory-one strategy and a
-    more complex strategy which has a larger memory.
+    more complex strategy which has a larger memory.  % TODO Add a single sentence of the main finding, something like: its add to the literature questioning the importance of memory and adaptability in the IPD.
     \item Chapter~\ref{chapter:best_response_sequence} explores the problem of
     Iterated Prisoner's Dilemma best responses in the form of sequences.
     It heuristically identifies the best response sequence against 197 strategies,
@@ -391,7 +391,7 @@ addressed, and subsequently close from a specific pull request.
 The code for Chapters'~\ref{chapter:bibliometric_study}-\ref{chapter:lstm} is
 hosted on individual GitHub repositories,
 Table~\ref{table:source_code_data_citations}. The source code for each
-repository has been packaged and has been archived on Zenodo~\cite{zenodo}.
+repository has been packaged and has been archived on Zenodo~\cite{zenodo}.  % TODO Add a sentence or two here saying what/why archive?
 
 \subsection{Virtual environments}
 
@@ -477,7 +477,7 @@ library \mintinline{python}{pytest}. The \mintinline{shell}{pytest} framework
 makes it easy to write automated tests in a few lines. A plugin to
 \mintinline{shell}{pytest} is that of \mintinline{shell}{pytest-cov}. The plugin
 allows for coverage checks, to test how much of the code is covered by the testing
-suite.
+suite.  % TODO Add a sentence describing what "is covered" means
 
 To regularly test code which aims to be merged back into the original codebase
 continuous integration (CI) systems are used. CIs perform the tests suite and
