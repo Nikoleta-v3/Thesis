@@ -208,7 +208,7 @@ literature. Chapter~\ref{chapter:literature_review} separates the reviewed manus
 under different research topics identified manually. To complement the manual
 separation of articles under research topics,
 Chapter~\ref{chapter:bibliometric_study} automatically partitions 2,420 IPD
-articles using natural language processing. The data set of 2,420 articles' metadata has
+articles using data mining, machine learning and  natural language processing. The data set of 2,420 articles' metadata has
 been collected using a bespoke research software. The data set is further
 analysed using network theoretic approaches to answer research question~\ref{research_question_three}.
 
@@ -268,7 +268,7 @@ A summary of each Chapter is given below:
     \item Chapter~\ref{chapter:best_response_sequence} explores the problem of
     Iterated Prisoner's Dilemma best responses in the form of sequences.
     It heuristically identifies the best response sequence against 197 strategies,
-    and generates a data set of 751 best response sequences of 205 turns.
+    and generates a data set of 751 best response sequences of 205 turns. This chapter mainly serves as a foundation for Chapter~\ref{chapter:lstm} but does present a novel heuristic and a study of its performance.
     \item Chapter~\ref{chapter:lstm} uses the data set of best response strategies
     obtained from Chapter~\ref{chapter:best_response_sequence} to train a recurrent
     neural network to play the Iterated Prisoner's Dilemma.
@@ -408,7 +408,8 @@ the Python and R programming languages for scientific computing, that aims to
 simplify package management and deployment. Package versions are managed by the
 package management system conda.
 
-Conda allows users to create, export, list, remove, and update environments that
+The Anaconda
+ distribution manager: conda allows users to create, export, list, remove, and update environments that
 have different versions of Python and/or packages installed in them. Switching
 or moving between environments is called activating the environment. An environment
 can be shared and kept under version control as a file. An example of
