@@ -1,1 +1,468 @@
 \chapter{Best Response Sequences in the Iterated Prisoner's Dilemma}\label{chapter:best_response_sequence}
+
+\begin{center}
+    Associated data set: \cite{Glynatsi2020_sequences} \\
+    Axerod-Python library version: 4.2.0 \\ \vspace{.5cm}
+\end{center}
+
+\section{Introduction}
+
+In Chapter~\ref{chapter:memory_one} best responses were investigated, mainly, in
+the form of memory-one strategies. This Chapter aims to extend the understanding
+of best response set and explores explores best response strategies in the form
+of static sequences of moves to a collection of opponents.
+
+More specifically  best response sequences in matches of length 205. This task
+will be completed using reinforcement techniques, specifically genetic
+algorithms, to continuously improve our sequences during training, and data set
+against 193 strategies in the are. The Chapter is structured as follow:
+
+The aim of this manuscript is to train an LSTM network as an IPD strategy. LSTMs
+are capable of learning and remembering over sequences of inputs. The sequences
+which will be used in this work are a series of IPD actions. More specifically,
+the inputs to the network are sequences of play of 197 strategies for 205 turns.
+The outputs of th training process for each input is the sequences which should be
+played for 1 vs 1 games of length 200 to gain the highest score per turn upon
+the games conclusion; the best response sequences. Best response sequences will
+be obtained using reinforcement techniques, specifically genetic algorithms, to
+continuously improve our sequences during training.
+
+\begin{itemize}
+    \item section~\ref{section:ipd_as_sequences} formalises the formulation of
+    the Chapter used to express an IPD match between two strategies as
+    sequences.
+    \item section~\ref{section:genetic_algorithm} details the reinforcement
+    technique, specifically the genetic algorithm, used to find best response
+    sequences.
+    \item section~\ref{section:generating_sequences} the genetic algorithm
+    approach to generate a broad number of best response sequences for a
+    collection of strategies.
+\end{itemize}
+
+\section{Iterated Prisoner Dilemma Strategies as Sequences}\label{section:ipd_as_sequences}
+
+In a finite \(N\) round IPD match, a participants can be expressed by a sequence:
+
+\begin{equation}
+    S \in \{C, D\} ^ n
+\end{equation}
+
+where \(n\) is the length of the sequence and \(1 \leq n \leq N\).
+
+Strategies that use sequences to play an IPD are already established
+in the literature~\cite{Beaufils1997, Knight2016, Li2011, Mittal2009}. More
+specifically, the aforementioned works have considered strategies that
+periodically play a sequence \(S\). These strategies are refereed to as Periodic
+Players \(S\) in \cite{Li2011, Mittal2009} and in~\cite{Knight2016} as Cycler
+\(S\) where \(S \in \{CCD, DDC, CD, DC\}\) and thus \(n \in \{2, 3\}\). Similarly, this Chapter will
+consider such strategies of \(S\) but restrictively for \(n = N\).
+
+Consider a match of \(N = 10\) between the player \(S = \{D, D, D, C, C, C, D,
+D, C, C\}\) and a Cooperator. The match between the two strategies is play can
+be captured by the sequences:
+
+\begin{table}[htb]
+\centering
+\begin{tabular}{cccccccccccc}
+    & \textbf{1} & \textbf{2} & \textbf{3} & \textbf{4}  & \textbf{5} & \textbf{6} & \textbf{7} & \textbf{8}  & \textbf{9} & \textbf{10} & \(U\) \\ \midrule
+    \(S\) & \(D\) & \(D\) & \(D\) & \(C\) & \(C\) & \(C\) & \(D\) & \(D\) & \(C\) & \(C\) & 4.0 \\
+    Cooperator & \(C\) & \(C\) & \(C\) & \(C\) & \(C\) & \(C\) & \(C\) & \(C\) & \(C\) & \(C\) & 1.5 \\ \bottomrule
+\end{tabular}
+\caption{Match between \(S = \{D, D, D, C, C, C, D, D, C, C\}\) and Cooperator.}\label{table:s_vs_cooperator}
+\end{table}
+
+where, \(U\) is the average score per turn the strategies scored. A sequence
+player \(S\) can play against strategies that reach to the history, as demonstrated
+by:
+
+\begin{table}[htb]
+\centering
+\begin{tabular}{cccccccccccc}
+    & \textbf{1} & \textbf{2} & \textbf{3} & \textbf{4}  & \textbf{5} & \textbf{6} & \textbf{7} & \textbf{8}  & \textbf{9} & \textbf{10} & \(U\) \\ \midrule
+    \(S\) & \(D\) & \(D\) & \(D\) & \(C\) & \(C\) & \(C\) & \(D\) & \(D\) & \(C\) & \(C\) & 2.2 \\
+    Tit For Tat & \(C\) & \(D\) & \(D\) & \(D\) & \(C\) & \(C\) & \(C\) & \(D\) & \(D\) & \(C\) & 2.2 \\ \bottomrule
+\end{tabular}
+\caption{Match between \(S = \{D, D, D, C, C, C, D, D, C, C\}\) and Tit For Tat.}\label{table:s_vs_tft}
+\end{table}
+
+and against sophisticated strategies, such as Random with a probability \(0.5\) of
+cooperating at each turn:
+
+\begin{table}[htb]
+\centering
+\begin{tabular}{cccccccccccc}
+    & \textbf{1} & \textbf{2} & \textbf{3} & \textbf{4}  & \textbf{5} & \textbf{6} & \textbf{7} & \textbf{8}  & \textbf{9} & \textbf{10} & \(U\) \\ \midrule
+    \(S\) & \(D\) & \(D\) & \(D\) & \(C\) & \(C\) & \(C\) & \(D\) & \(D\) & \(C\) & \(C\) & 2.4 \\
+    Random & \(C\) & \(D\) & \(D\) & \(C\) & \(C\) & \(C\) & \(D\) & \(D\) & \(C\) & \(C\) & 1.9 \\ \bottomrule
+\end{tabular}
+\caption{Match between \(S = \{D, D, D, C, C, C, D, D, C, C\}\) and Random.}\label{table:s_vs_random}
+\end{table}
+
+Note that the specific game only captures a single behaviour of Random. Random
+is a stochastic strategy, thus the series of actions of the strategy can be
+different even for the same history. For example another interpretation of the
+game between could be:
+
+\begin{table}[htb]
+    \centering
+    \begin{tabular}{cccccccccccc}
+        & \textbf{1} & \textbf{2} & \textbf{3} & \textbf{4}  & \textbf{5} & \textbf{6} & \textbf{7} & \textbf{8}  & \textbf{9} & \textbf{10} & \(U\) \\ \midrule
+        \(S\) & \(D\) & \(D\) & \(D\) & \(C\) & \(C\) & \(C\) & \(D\) & \(D\) & \(C\) & \(C\) & 1.6 \\
+        Random & \(D\) &\(D\) &\(C\) &\(C\) &\(D\) &\(D\) &\(D\) &\(C\) &\(D\) &\(D\) & 2.6 \\ \bottomrule
+    \end{tabular}
+\end{table}
+
+In Section~\ref{section:generating_sequences} it will be explained how the usage
+of computer seeding allows the work of this Chapter to capture and reproduce
+several instances/behaviour of stochastic strategies.
+
+A best response sequence to a given opponent \(q\) is the sequence for which th
+average score per turn is maximised. More specifically,
+
+\begin{equation}\label{eq:best_response}
+    \begin{aligned}
+    \max_{S^*}: & U_{(S^*, q)}
+    \end{aligned}
+\end{equation}
+
+where \(q\) is not a memory-one opponent, but can be any IPD strategy.
+
+Identifying best responses to some opponents can be a trivial problem, for
+example the best response sequence for \(N\) turns against Cooperator is
+\(\{D\}^N\), however, for most strategies identifying best responses is a
+complex problem.
+
+For this reason, best response sequences are not manually identified but instead
+a heuristic method called genetic algorithm is used. A background on genetic
+algorithm and the exact algorithm that is used in this Chapter are detailed in
+the next section~\ref{section:genetic_algorithm}.
+
+\section{Genetic Algorithm}\label{section:genetic_algorithm}
+
+A genetic algorithm (GA) is a heuristic inspired by the process of natural
+selection that belongs to the larger class of evolutionary algorithms. As stated
+in~\cite{Whitley1994} genetic algorithms encode a potential solution to a
+specific problem on a simple chromosome-like data structure, and apply
+recombination operators to these structures in such a way as to preserve
+critical information. Genetic algorithms are often viewed as function
+optimizers, although the range of problems to which genetic algorithms have been
+applied~\cite{Hou1994, Jones1997, Yang1998} is quite broad.
+
+An implementation of a genetic algorithm begins with a population \(P\) of
+potential solutions, a number of generations \(G \in \N\) and a cut-off or
+bottleneck \(b < |P|\). At each generation the algorithm scores and potentially
+removes each member of the population \(p_i \in P\). This is done by using a
+mapping from a member of the population to an ordered set based on a evaluation
+function \(f\), such that \(f(p_i) \to \R\). At the conclusion of each
+generation the top \(b\) ranking members (or proportion of members) by score can
+be kept and the rest discarded.  By doing this critical information regarding
+the successful candidates is preserved and the population rebuilds using a
+series of \textit{crossovers} and \textit{mutations} with the ``genes'' which
+were successful.
+
+\begin{itemize}
+    \item Crossovers take in 2 members of the population and return a new member
+    based on some genes of the 2 parents.
+    \item Mutations allow a change in a single member of the population. Mutation
+    is commonly associated with a probability \(p_m\) which is the probability
+    of a mutation happening, either at the individual of at each gene of the
+    individual.
+\end{itemize}
+
+GA is designed to escape local maxima/minima when searching a solution space,
+and this is due to the properties of crossover and mutation. The property of
+mutating alterations to the members features. If a member is ‘stuck’ in a local
+maxima/minima with its fitness score, a mutation of a certain feature could
+potentially move their position in the solution space to better local
+maxima/minima. Crossover adds more variance in the population by taking
+properties of both parent members and introducing the evaluation of their
+combination to the solution space. By doing this the algorithm can search
+multiple local maxima/minima at once with its population and start to identify
+the global maxima/minima as members become more optimized.
+
+A generic algorithm style of a GA is given in Figure~\ref{fig:ga_flow_diagram}.
+
+\begin{figure}[!htbp]
+    \centering
+    \includestandalone[width=\textwidth]{ga_flow_diagram}
+    \caption{Generic genetic algorithm cycle diagram.}\label{fig:ga_flow_diagram}
+\end{figure}
+
+The specific genetic algorithm used in this work, aims to be used to identify
+best response sequences. Thus, the evaluation function \(f\) corresponds to the
+average score per turn of a sequence against an opponent, and the members of the
+population \(P\) are the sequences. Thus \(U_{(S, q)}\) where \(S \in P\). The
+detailed GA used in this Chapter is given by
+Algorithm~\ref{algorithm:genetic_algorithm}.
+
+\begin{algorithm}[!htbp]
+    \SetAlgoLined
+    \KwIn{\(q, N, b, p_m, G, s\)}
+    \KwOut{The population at the last generation and the members' scores}
+     \Begin{
+     create initial population~\ref{algorithm:initial_population} of members, where \(|P| = s\)\\
+     score each member based on \(U_{S, q}\) for \(S \in P\) \\
+     sort population based on scores \\
+     \(i\) $\gets$ 1 \\
+     \While{\(g_{i} < G\)}{
+        keep \(b\) top members \\
+        \While{\(|P|\) \(< s\)}{
+            select random members \\
+            use members to create new member through crossover \\
+            \For{gene in kid}{
+            mutate gene with probability \(p\)}
+            add kid to population\\
+        find fitness of each individual based on \(U_{S_{q}}\)\\
+        sort population based on fitness
+        \(i\) $\gets$ \(i + 1\)}
+     }}
+     \caption{Get population of potential best response sequences}\label{algorithm:genetic_algorithm}
+\end{algorithm}
+
+The initial population is generated as shown by
+Algorithm~\ref{algorithm:initial_population}. The type of crossover is to
+consider the first half of a sequence from one parent, and the second half from
+the other, merging them to form the new member, and mutations is.
+
+\begin{algorithm}[!htbp]
+        \SetAlgoLined
+        \KwIn{\(s, N\)}
+        \KwOut{A population of size \(s\).}
+    
+        \Begin{
+        set of cuts $\gets$ \(s\) evenly spaced numbers over \([1, N]\) \\
+        \For{\(c \in\) set of cuts}{
+            first new member $\gets$  \(\{C\}^{c} \cup \{D\}^{N-c}\) \\
+            second new member $\gets$  \(\{D\}^{c} \cup \{C\}^{N-c}\) \\
+            add both members to population
+        }
+            }
+     \caption{Create initial population of individuals \(S^N\)}\label{algorithm:initial_population}
+\end{algorithm}
+
+The specific GA of this Chapter has been implemented into a packages called
+\mintinline{python}{sequence_sensei} available at.
+Figure~\ref{fig:get_initial_population} demonstrates the function to generate
+an initial population \(P\) of a given size \(s\) and of members \(|S| = N\) as
+it has been implemented in the package. Note that the packages used \(s / 2\),
+however, the final population has a size \(s\).
+
+\begin{figure}[!htbp]
+\begin{sourcepy}
+import numpy as np
+
+def get_initial_population(half_size_of_population, sequence_length):
+    """
+    Generates an initial population of sequences. Note that the length
+    of the population which is being generated is 2 * half_size_of_population.
+    """
+    cuts = np.linspace(1, sequence_length, half_size_of_population, dtype=int)
+    sequences = []
+    for cut in cuts:
+        sequences.append(
+            [1 for _ in range(cut)] + [0 for _ in range(sequence_length - cut)]
+        )
+        sequences.append(
+            [0 for _ in range(cut)] + [1 for _ in range(sequence_length - cut)]
+        )
+
+    return sequences
+\end{sourcepy}
+\caption{Source code of \mintinline{python}{sequence_sensei}. Implementation of
+the inbuilt function \mintinline{python}{get_initial_population}.}\label{fig:get_initial_population}
+\end{figure}
+
+Figure~\ref{fig:get_initial_population_example} demonstrates an usage example of
+\mintinline{python}{get_initial_population}. The top members are all of 1 and
+the top of zeros where \(0 \to D\) and \(1 \to C\). In
+Figure~\ref{fig:get_initial_population_example} also shows how APL maps
+binary to IPD actions.
+
+\begin{figure}[!htbp]
+    \begin{usagepy}
+>>> import sequence_sensei as ss
+>>> initial_population = ss.get_initial_population(half_size_of_population=5, sequence_length=8)
+>>> initial_population
+[[1, 0, 0, 0, 0, 0, 0, 0],
+ [0, 1, 1, 1, 1, 1, 1, 1],
+ [1, 1, 0, 0, 0, 0, 0, 0],
+ [0, 0, 1, 1, 1, 1, 1, 1],
+ [1, 1, 1, 1, 0, 0, 0, 0],
+ [0, 0, 0, 0, 1, 1, 1, 1],
+ [1, 1, 1, 1, 1, 1, 0, 0],
+ [0, 0, 0, 0, 0, 0, 1, 1],
+ [1, 1, 1, 1, 1, 1, 1, 1],
+ [0, 0, 0, 0, 0, 0, 0, 0]]
+
+ >>> import axelrod as axl
+ >>> [[axl.Action(gene) for gene in member] for member in initial_population]
+[[C, D, D, D, D, D, D, D],
+ [D, C, C, C, C, C, C, C],
+ [C, C, D, D, D, D, D, D],
+ [D, D, C, C, C, C, C, C],
+ [C, C, C, C, D, D, D, D],
+ [D, D, D, D, C, C, C, C],
+ [C, C, C, C, C, C, D, D],
+ [D, D, D, D, D, D, C, C],
+ [C, C, C, C, C, C, C, C],
+ [D, D, D, D, D, D, D, D]]
+    \end{usagepy}
+    \caption{Example of using \mintinline{python}{get_initial_population} to
+    generate a population of \(s=10\) and \(N=8\).}\label{fig:get_initial_population_example}
+\end{figure}
+
+The source code of the course over is also given by Figure and an example
+of usage is use given.
+
+\begin{figure}[!htbp]
+\begin{sourcepy}
+def crossover(sequence_one, sequence_two):
+    sequence_length = len(sequence_one)
+    crossover_point = random.randint(0, sequence_length)
+
+    return sequence_one[:crossover_point] + sequence_two[crossover_point:]
+\end{sourcepy}
+\end{figure}
+
+The main function implemented in \mintinline{python}{sequence_sensei} perform a
+GA in \mintinline{python}{evolved} function. The function has several input
+arguments such \(q, N, b, p_m, G, s\) (the GA's argument). Details for the
+parameters' values and the scoring process are presented in the next section.
+
+\section{Generating Best Response Sequences}\label{section:generating_sequences}
+
+In order to simulate the play of two strategies and subsequently capture the
+sequences of player the APL is used. APL has a class of strategy called
+Cycler. The cycler class takes a sequence \(S\).
+
+Consider the matches given by Tables~\ref{table:s_vs_cooperator} and~\ref{table:s_vs_tft}
+theses can be easily simulated. An example
+is shown by Figure~\ref{}
+
+\begin{figure}[!htbp]
+    \begin{usagepy}
+>>> import axelrod as axl
+
+>>> players = [axl.Cycler('DDDCCCDDCC'), axl.Cooperator(),]
+>>> match = axl.Match(players, turns=10)
+>>> match.play()
+[(D, C),
+ (D, C),
+ (D, C),
+ (C, C),
+ (C, C),
+ (C, C),
+ (D, C),
+ (D, C),
+ (C, C),
+ (C, C)]
+
+>>> match.final_score_per_turn()
+(4.0, 1.5)
+
+>>> players = [axl.Cycler('DDDCCCDDCC'), axl.TitForTat()]
+>>> match = axl.Match(players, turns=10)
+>>> match.play()
+[(D, C),
+ (D, D),
+ (D, D),
+ (C, D),
+ (C, C),
+ (C, C),
+ (D, C),
+ (D, D),
+ (C, D),
+ (C, C)]
+
+ >>> match.final_score_per_turn()
+ (2.2, 2.2)
+    \end{usagepy}
+\caption{APL simulating games.}
+\end{figure}
+
+As mentioned in section a match between has stochasticity as the behaviour of
+random can differ. Computer seeding The seed method is used to initialize the
+pseudorandom number generator in Python. By setiing a seed the probilities
+of cooperating by random can in order be different. Moreover, the bahviour
+can be reproduced.
+
+As long as a match is being seeded the behaviour of a stochastic strategy can be
+reproduced.
+\begin{figure}[!htbp]
+    \begin{usagepy}
+>>> players = [axl.Cycler('DDDCCCDDCC'), axl.Random()]
+>>> for seed in range(5):
+...   axl.seed(seed)
+...   match = axl.Match(players, turns=10)
+...   actions = match.play()
+...   print(actions, match.final_score_per_turn())
+...   print("================================================================================")
+[(D, D), (D, D), (D, C), (C, C), (C, D), (C, C), (D, D), (D, C), (C, C), (C, D)] (2.2, 2.2)
+================================================================================
+[(D, C), (D, D), (D, D), (C, C), (C, C), (C, C), (D, D), (D, D), (C, C), (C, C)] (2.4, 1.9)
+================================================================================
+[(D, D), (D, D), (D, C), (C, C), (C, D), (C, D), (D, D), (D, C), (C, D), (C, D)] (1.6, 2.6)
+================================================================================
+[(D, C), (D, D), (D, C), (C, D), (C, D), (C, C), (D, C), (D, D), (C, C), (C, C)] (2.6, 2.1)
+================================================================================
+[(D, C), (D, C), (D, C), (C, C), (C, C), (C, C), (D, D), (D, D), (C, D), (C, C)] (2.9, 1.9)
+================================================================================
+    \end{usagepy}
+\caption{APL simulating games.}
+\end{figure}
+
+This work uses 197 strategies which can been found in the Appendix alongside a
+citation of their paper of origin. From these 197 strategies 62 are stochastic
+and 135 are deterministic. The outcome of a match between two deterministic
+strategies is the same for every repetition. For example a match between
+Cooperator and Defector will always lead to a series of cooperations by
+Cooperator and a series of defections by Defector, and both strategies will
+always achieve the same mean score. However, in a match with a stochastic
+strategy this does not longer holds, as the stochasticity of even one strategy
+can lead to different outcomes. In order to capture and be able to reproduce the
+results of a match with a stochastic strategy this work makes use of computer
+seeding.
+
+\begin{figure}
+    \includestandalone{src/chapters/06/data_generating_diagram}
+\end{figure}
+
+The genetic algorithm for this work is performed for each strategy considered here.
+The values used to run the genetic algorithm are given by
+Table~\ref{table:parameters_summary}.
+
+\begin{table}[!htbp]
+    \begin{center}
+    \resizebox{.5\textwidth}{!}{
+    \begin{tabular}{lllc} \toprule
+    symbol            & parameter                     & parameter values \\ \midrule
+    \(N\)             & number of turns               & \(205\) \\
+    \(p\)             & probability of gene mutating  & \(0.01, 0.05, 0.1\)\\
+    \(b\)             & bottle neck                   & \(10, 20\) \\
+    \(t_{\text{max}}\)& maximum number of generations & \(2000\) \\
+    \(s\)             & size of a population          & \(20, 30, 40\) \\ \bottomrule
+    \end{tabular}}
+    \end{center}
+    \caption{The parameters of the genetic algorithm.}\label{table:parameters_summary}
+\end{table}
+
+For each \(q\) algorithm returns the final population. The best response
+is the sequence that maximised their median score (as given by). However,
+there  can be more than one sequence that achieve the best score for a given \(q\).
+Thus, the input of the LSTM network are not 760 sequences, but more specifically,
+there are 5503 rows in the main data set. This has been archived and it
+is available here.
+
+Consider a match between the stochastic strategy Random and Cooperator.
+Using different computer seeds allows for different behaviours of Random to
+be capture as shown by Table~\ref{table:seeded_example}.
+
+
+Thus, the inputs of the training process include 135 sequences of length 205
+turns for the deterministic strategies, and \(62 \times 10\) for sequences
+for the stochastic strategies. Thus, a total of 755 sequences.
+
+The outputs of the training method will the best response sequences to these
+755 input sequences.
+
+\section{Chapter Summary}
