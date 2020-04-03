@@ -40,7 +40,7 @@ strategy with a theory of mind in an environment with memory-one opponents, and
 to understand the effects of extortion and restricted memory in those
 environments.
 
-The outcomes of this Chapter reinforce known results which were presented in
+The outcomes of this Chapter reinforce and extend known results which were presented in
 Chapter~\ref{chapter:literature_review}. Namely that memory-one strategies must
 be forgiving to be evolutionarily stable~\cite{Stewart2013, Stewart2016} and
 that longer-memory strategies have a certain form of advantage over short memory
@@ -60,7 +60,7 @@ strategies~\cite{Hilbe2017, Pan2015}. The Chapter is structured as follows:
     comparison of an optimal memory one strategy and a more complex strategy which
     has a larger memory.
     \item section~\ref{section:stability_of_defection}, presents a compact method of identifying environments
-    for which cooperation in known to not occur.
+    for which cooperation cannot occur.
 \end{itemize}
 
 
@@ -110,7 +110,7 @@ strategy \(p\) against an opponent \(q\), denoted as \(u_q(p)\), is given by
     u_q(p) = v \cdot (R, S, T, P).
 \end{equation}
 
-This thesis has explored the form of \(u_q(p)\), to the author's knowledge no
+This work gives the form of \(u_q(p)\), to the author's knowledge no
 previous work has done this, and Theorem~\ref{theorem:quadratic_form_u} states that \(u_q(p)\)
 is given by a ratio of two quadratic forms~\cite{kepner2011}.
 
@@ -340,7 +340,7 @@ For \(\frac{d}{dp} \sum\limits_{i=1} ^ N  u_q(p)\) to equal zero then:
 Finding best response memory-one strategies, more specifically constructing the
 subset \(S_q\), can be done analytically. The points for any or all of \(p_i \in
 \{0, 1\}\) for \(i \in \{1, 2, 3, 4\}\) are trivial, and finding the
-roots of the partial derivatives which are a set of polynomials of Equations
+roots of the partial derivatives which are a set of polynomial Equations
 (\ref{eq:polynomials_roots}) is feasible using resultant
 theory~\cite{Jonsson2005}; however, for large systems building the resultant
 quickly becomes intractable.
@@ -408,9 +408,9 @@ Lemma~\ref{lemma:reactive_best_response}.
 
 Note that \(\frac{d}{dp} \sum\limits_{i=1} ^ N  u_q^{(i)}(p) = 0\) corresponds
 to a system of 2 polynomials of 2 variables, corresponding to the partial
-derivatives over \(p_1\) and \(p_2\). Solving systems of 2 polynomial of 2
+derivatives over \(p_1\) and \(p_2\). Solving systems of 2 polynomials of 2
 variables can be done analytically. The approach taken here to extract the roots
-from the partial derivatives is that of the resultant.
+from the partial derivatives is to use resultants.
 
 \subsection{Resultant Theory}
 
@@ -433,9 +433,9 @@ and also called the eliminant~\cite{Salmon1924}, is defined by
 R(f, g) = a_n^m b_m^n \prod_{(i=1)}^n \prod_{(j=1)}^m ( \alpha_i - \beta_j).
 \end{equation}
 
-Interestingly, the resultant of can also be expressed as the determinant of
-matrices such as the Sylvester's, the Bezout's and the Macaulay's. For systems
-of 2 polynomials the resultant is commonly expressed as the determinant of the
+Interestingly, the resultant can also be expressed as the determinant of
+matrices such as Sylvester's, Bezout's and Macaulay's. For systems
+of 2 polynomials the resultant is commonly expressed as the determinant of 
 Sylvester's matrix~\cite{Akritas2014}. The Sylvester matrix associated with
 \(f\) and \(g\) is the \((n + m) \times (n + m)\) matrix constructed as
 described in Algorithm~\ref{algorithm:sylvester}.
@@ -468,11 +468,11 @@ and,
 
 \[|S_{f, g}| = R(f, g).\]
 
-The resultant can assure that a system has root, nevertheless, it can also be
-used to extract those roots. In a system of 2 polynomial equations in 2
+The resultant can verify that the system has a root, but also can be
+used to extract the roots. In a system of 2 polynomial equations in 2
 variables, the resultant can be defined over one variable whereas the second one
 is kept as a coefficient. It is used in this Chapter to analytically solve for
-the roots of the utility, and thus explicitly identify the best response
+the roots of the derivative of the utility, and thus explicitly identify the best response
 reactive strategy against a given set of memory-one opponents.
 
 The open source package~\cite{sympy} is used to calculate the Sylvester matrix
@@ -562,16 +562,16 @@ opponents.}\label{fig:reactive_example_best_response}
 \end{figure}
 
 Sylvester's formulation can only handle systems of 2 polynomials, however, the
-resultant can still be calculated for \(n\) homogeneous polynomials in \(n\)
-variables and it's called \textit{multivariate resultant}. A number of
+multivariate resultants can be calculated for \(n\) homogeneous polynomials in \(n\)
+variables. A number of
 multivariate resultants can be found in the literature such as
-Dixon's~\cite{ResultantKapur} resultant and the Macaulay's~\cite{Macaulay1902}
+Dixon's~\cite{ResultantKapur} resultant and Macaulay's~\cite{Macaulay1902}
 resultant.
 
 Project~\cite{sympy} which was used to construct Sylvester's resultant is called
 SymPy and it is the Pythonic package for symbolic mathematics. However, the
-project did not be include the feature to calculate multivariate resultants. As
-part of this Chapter the source code for constructing both the Dixon's and
+project did not include the feature to calculate multivariate resultants. As
+part of this Chapter the source code for constructing both Dixon's and
 Macaulay's resultants was developed and was integrated into
 project~\cite{sympy}. Figure~\ref{fig:dixon_example} demonstrates an example of
 using~\cite{sympy} to calculate Dixon's resultant.
@@ -619,7 +619,7 @@ and it's performance is compared to that of a memory-one best response in
 section~\ref{subsection:longer_memory_best_response}.
 
 The results of this section rely on estimating best response memory-one
-strategies and understand whether they behave in an extortionate way. Best
+strategies and understanding whether they behave in an extortionate way. Best
 responses will be estimated heuristically using Bayesian optimisation, which is
 described in section~\ref{section:bayesian_optimisation}, and in order to
 investigate whether best responses behave in an extortionate matter the SSE
