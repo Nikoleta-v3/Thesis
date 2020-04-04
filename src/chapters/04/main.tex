@@ -1,24 +1,47 @@
 \chapter{A meta analysis of tournaments and an evaluation of performance in the
 Iterated Prisoner's Dilemma.}\label{chapter:meta_tournaments}
 
-The Iterated Prisoner's Dilemma has been used for decades as a model of
-behavioural interactions. From the celebrated performance of Tit for Tat, to the
-introduction of the zero-determinant strategies, to the use of sophisticated
-structures such as neural networks, the literature has been exploring the
-performance of strategies in the game for years. The results of the literature,
-however, have been relying on the performance of specific strategies in a finite
-number of tournaments, whereas this manuscript evaluates
-\numberofstrategies strategies' effectiveness in more than 40000 tournaments.
-The top ranked strategies are presented, and moreover, the impact of features on
-their success are analysed using machine learning techniques. The analysis
-determines that the cooperating ratio of a
-strategy in a given tournament compared to the mean and median cooperator is the
-most important feature. The conclusions are distinct for different types of
-tournaments. For instance a strategy with a theory of mind would aim to be the mean/median
-cooperator in standard tournaments, whereas in tournaments with probabilistic
-ending it would aim to cooperate 10\% of the times the median cooperator did.
+\begin{center}
+    The research reported in this Chapter has lead in a manuscript, entitled: \\
+    \textbf{``Properties of winning Iterated Prisoner's Dilemma strategies''} \\
+    Available at: \url{https://arxiv.org/abs/2001.05911} \\
+    Associated data set: \cite{Glynatsi_2019_metatournament} \\
+    Axerod-Python library version: 3.0.0 \\ \vspace{.5cm}
+    The manuscript's abstract is the following:
+\end{center}
 
-\section{Background}
+Researchers have explored the performance of Iterated Prisoner's Dilemma strategies
+for decades: from the celebrated performance of Tit for Tat, to the
+introduction of the zero-determinant strategies, to the use of sophisticated learning
+structures such as neural networks, many new strategies have been introduced and tested
+in a variety of tournaments and population dynamics. Typical results in the literature,
+however, rely on performance against a small number of somewhat arbitrarily selected
+strategies in a very small number of tournaments, casting doubt on the generalisability
+of conclusions. We analyze a large collection of \numberofstrategies typically known
+strategies in \numberofalltournaments tournaments, present the top performing strategies across multiple
+tournament types, and distill their salient features. The results show that there is not yet a single
+strategy that performs well in diverse Iterated Prisoner's Dilemma scenarios.
+Nevertheless there are several properties that heavily influence the best performing
+strategies, refining the properties described by R. Axelrod in light of
+recent and more diverse opponent populations. These are: be nice, be provocable and contrite,
+be a little envious, be clever, and adapt to the environment, which includes the parameters
+of the tournament (e.g. noise) and the population of opponents. More precisely,
+we find that strategies perform best when their probability of cooperation
+matches the total tournament population's aggregate cooperation probabilities,
+or a proportion thereof in the case of noisy and probabilistically ending tournaments,
+and that the manner in which a strategy achieves the ideal cooperation rate is crucial.
+The features of high performing strategies reveal why strategies such as Tit For Tat
+performed historically well in tournaments and why zero-determinant strategies
+typically do not fare well in tournament settings.
+
+\hrulefill
+
+The differences between the Chapter and the manuscript include \dots.
+
+\section{Introduction}
+
+
+
 
 The Iterated Prisoner's Dilemma (IPD) is a repeated two player game that models
 behavioural interactions, and more specifically, interactions where
@@ -27,15 +50,6 @@ players, simultaneously and independently, decide between cooperation (C) and
 defection (D) whilst having memory of their prior interactions. The payoffs for each
 player, at each turn, is influenced by their own choice and the choice of the
 other player. The payoffs of the game are generally defined by:
-
-\[\begin{pmatrix}
-R & S \\
-T & P
-\end{pmatrix}\]
-
-where \(T > R > P > S\) and \(2R > T + S\). The most common values used in
-the literature~\cite{Axelrod1981} are $R=3, P=1, T=5, S=0$. These values are also
-used in this work.
 
 Conceptualising strategies and understanding the best way of playing the game
 has been of interest to the scientific community since the formulation of the
@@ -104,24 +118,31 @@ and tournaments with a probabilistic ending. The later part of the paper, evalua
 the impact of features on the performance of the strategies using modern
 machine learning techniques. These features include measures regarding a
 strategy's behaviour and measures regarding the tournaments. The data set used
-in this work has been made publicly available~\cite{data} and can be used
+in this work has been made publicly available~\cite{Glynatsi_2019_metatournament} and can be used
 for further analysis and insights.
 
-The different tournament types as well as the data collection, which is made
-possible due an open source package called Axelrod-Python~\cite{axelrodproject},
-are covered in Section~\ref{section:data_collection}.
-Section~\ref{section:top_performances}, focuses on the best performing
-strategies for each type of tournament and overall.
-Section~\ref{section:evaluation_of_performance}, explores the traits which
-contribute to good performance, and finally the results are summarised in
-Section~\ref{section:conclusion}. This manuscripts uses several parameters.
-These are introduced in the following sections, however, the full set of
-parameters and their definitions are given in Appendix~\ref{app:parameters}.
+The Chapter is structured as follows:
+
+\begin{itemize}
+    \item The different tournament types as well as the data collection, which is made
+    possible due an open source package called Axelrod-Python~\cite{axelrodproject},
+    are covered in Section~\ref{section:data_collection}.
+    \item Section~\ref{section:top_performances}, focuses on the best performing
+    strategies for each type of tournament and overall.
+    \item Section~\ref{section:evaluation_of_performance}, explores the traits which
+    contribute to good performance
+    \item the results are summarised in
+    Section~\ref{section:conclusion}.
+\end{itemize}
+
+This manuscripts uses several parameters. These are introduced in the following
+sections, however, the full set of parameters and their definitions are given in
+Appendix~\ref{app:parameters}.
 
 \section{Data collection}\label{section:data_collection}
 
 For the purposes of this manuscript a data set containing results of IPD
-tournaments has been generated and is available at~\cite{data}. This was done using the
+tournaments has been generated and is available at~\cite{Glynatsi_2019_metatournament}. This was done using the
 open source package Axelrod-Python~\cite{axelrodproject}, and more specifically,
 version 3.0.0. Axelrod-Python allows for different types of IPD computer
 tournaments to be simulated whilst containing a list of over 180 strategies.
@@ -524,7 +545,7 @@ they is not a single type of strategy which can performance well in any IPD inte
 \begin{figure}[!htbp]
     \centering
     \includegraphics[width=.7\textwidth]{src/chapters/04/paper/meta-analysis-of-prisoners-dilemma-tournaments/images/performance_merged.pdf}
-    \caption{\(r\) distributions for best performed strategies in the data set~\cite{data}.}
+    \caption{\(r\) distributions for best performed strategies in the data set~\cite{Glynatsi_2019_metatournament}.}
     \label{fig:overall_results}
 \end{figure}
 
@@ -962,7 +983,7 @@ and the tournament in which it participated on its performance were presented.
 This was done using two approaches. Correlation coefficients and a random forest
 analysis. The results of these are summarised in the following section.
 
-\section{Conclusion}\label{section:conclusion}
+\section{Chapter Summary}\label{section:conclusion}
 
 This manuscript has explored the performance of \numberofstrategies strategies of the Iterated
 Prisoner's Dilemma in a large number of computer tournaments. The results of
@@ -1013,24 +1034,8 @@ it were to identify the median cooperator and cooperated 67\% of the times that
 they did.
 
 The data set described in this work contains the largest number of IPD tournaments,
-to the authors knowledge, and it available at~\cite{data}. Further data mining
+to the authors knowledge, and it available at~\cite{glynatsi_2019_metatournament}. Further data mining
 could be applied and provide new insights in the field.
-
-% \bibliographystyle{plain}
-% \bibliography{bibliography}
-
-% \section{Acknowledgements}
-
-% A variety of software have been used in this work:
-
-% \begin{itemize}
-%     \item The Axelrod library for IPD simulations~\cite{axelrodproject}.
-%     \item The Matplotlib library for visualisation~\cite{hunter2007matplotlib}.
-%     \item The Numpy library for data manipulation~\cite{walt2011numpy}.
-%     \item The scikit-learn library for data analysis~\cite{scikit-learn}.
-% \end{itemize}
-
-% \appendix
 
 \section{A summary of parameters}\label{app:parameters}
 
