@@ -234,4 +234,8 @@ words = {
     "sylvester",
     "sym",
     "zz",
+    "iteratively",
+    "Ku",
+    "lrrrrrrrrrrr",
+    "maximiser"
 }

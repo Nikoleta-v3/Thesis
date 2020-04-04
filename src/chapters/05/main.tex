@@ -636,7 +636,7 @@ was also considered, however, it was not selected due to Bayesian optimisation b
 computationally more efficient.
 
 As described in~\cite{Frazier2018} Bayesian optimisation consists of two main
-components: a Bayesian statistical model for modeling the objective function,
+components: a Bayesian statistical model for modelling the objective function,
 and an acquisition function for deciding where to sample next. The algorithm
 initially evaluates the objective according to a space-filling experimental
 design, often consisting of points chosen uniformly at 2 random. They are used
@@ -648,7 +648,7 @@ Place a Gaussian process prior on \(f\)\;
 Observe \(f\) at \(i_0\) points according to an initial space-filling experimental design, set \(i = i_0\) \;
 \While{ \(i \leq I\)}{
 Update the posterior probability distribution on \(f\) using all available data\;
-Let \(x_i\) be a maximizer of the acquisition function over \(x\), where the acquisition function is computed using the current posterior distribution\;
+Let \(x_i\) be a maximiser of the acquisition function over \(x\), where the acquisition function is computed using the current posterior distribution\;
 Observe \(y_i\) = \(f(x_i)\)\;
 Increment \(i\)\;
 }
@@ -808,10 +808,10 @@ Table~\ref{table:sserror_stats}.
 
 \begin{table}[!htbp]
     \begin{center}
-    \resizebox{.8\columnwidth}{!}{%
+    \resizebox{\columnwidth}{!}{%
     \begin{tabular}{lrrrrrrrrrrr}
         \toprule
-        & mean & std  & 5\% & 50\% &  95\% & max & median & skew & kurt\\
+        & mean & standard deviation  & 5\% & 50\% &  95\% & max & median & skewness & kurtosis \\
         \midrule
     \textbf{Tournament without self interactions} & 0.34  & 0.40  & 0.028  & 0.17  &
     1.05  & 2.47  & 0.17  & 1.87 & 3.60 \\
@@ -1063,7 +1063,7 @@ and their limitations. A large data set which contained best responses in
 tournaments whilst including or not self interactions for \(N=2\) was generated
 and is archived in~\cite{glynatsi2019}. Their
 respective behaviours were investigated, and whether it was extortionate acts that made them the
-most favorable strategies. It was shown that it was not extortion but
+most favourable strategies. It was shown that it was not extortion but
 adaptability that allowed the strategies to gain the most from their
 interactions. In settings with self interactions there is some evidence that it
 is more likely to forgive after being tricked.
