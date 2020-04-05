@@ -158,12 +158,13 @@ show the metadata of the article received by each source.
 >>> parameters = api.parameters_fix(title="Prisoner's Dilemma", records=1)
 >>> url = api.create_url_search(parameters)
 >>> url
-http://api.plos.org/search?q=title:"Prisoner\'s Dilemma"&rows=1
+'http://api.plos.org/search?q=title:"Prisoner\'s Dilemma"&rows=1'
 
 >>> request = api.make_request(url)
 >>> root = api.get_root(request)
 >>> article = api.parse(root)
->>> article
+
+>> article
 [{'id': '10.1371/journal.pone.0028576',
 'journal': 'PLoS ONE',
 'eissn': '1932-6203',
@@ -183,6 +184,7 @@ http://api.plos.org/search?q=title:"Prisoner\'s Dilemma"&rows=1
 'unique_key': '0d56101113057d99fc6d83095812735a',
 'category': 'Not available',
 'open_access': 'Not available'}]
+
 \end{usagepy}
 \caption{Example of using the library Arcas to communicate the API of the publisher
 PLOS. The query is for a single article with the word `prisoners dilemma' in
@@ -196,12 +198,13 @@ the title.}\label{fig:arcas_query_plos}
 >>> parameters = api.parameters_fix(title="Prisoner's Dilemma", records=1)
 >>> url = api.create_url_search(parameters)
 >>> url
-http://www.nature.com/opensearch/request?&query=dc.title adj Prisoner's Dilemma&maximumRecords=1
+"http://www.nature.com/opensearch/request?&query=dc.title adj Prisoner's Dilemma&maximumRecords=1"
 
 >>> request = api.make_request(url)
 >>> root = api.get_root(request)
 >>> article = api.parse(root)
->>> article
+
+>> article
 [{'records': None,
 'record': None,
 'recordSchema': 'info:srw/schema/11/pam-v2.1',
@@ -230,10 +233,11 @@ in a Prisoner's Dilemma""",
 'description': "<p>Do assumptions underlying the models of ...",
 'copyright': '© 1994 Palgrave Macmillan Ltd',
 'aggregationType': 'issue'}]
-    \end{usagepy}
-    \caption{Example of using the library Arcas to communicate the API of the publisher
-    Nature. The query is for a single article with the word `prisoners dilemma' in
-    the title.}\label{fig:arcas_query_nature}
+
+\end{usagepy}
+\caption{Example of using the library Arcas to communicate the API of the publisher
+Nature. The query is for a single article with the word `prisoners dilemma' in
+the title.}\label{fig:arcas_query_nature}
 \end{figure}
 
 There are differences and similarities between the retrievable metadata of each API. Arcas
@@ -242,11 +246,12 @@ demonstrates the usage of the function.
 
 \begin{figure}[!hbtp]
     \begin{usagepy}
->>> meta_data = api.to_dataframe(article[0])
->>> meta_data.columns
+>> meta_data = api.to_dataframe(article[0])
+>> meta_data.columns
 Index(['url', 'key', 'unique_key', 'title', 'author', 'abstract', 'doi',
-'date', 'journal', 'provenance', 'category', 'score', 'open_access'],
-dtype='object')
+       'date', 'journal', 'provenance', 'category', 'score', 'open_access'],
+      dtype='object')
+
 \end{usagepy}
 \caption{Python Code. Arcas includes a function which standarises the results of
 the queries regarding the API.}\label{fig:arcas_to_dataframe}
