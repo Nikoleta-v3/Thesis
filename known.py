@@ -127,5 +127,7 @@ words = {
     "prosocial",
     "assortative",
     "bimodal",
-    "PHP"
+    "PHP",
+    "np",
+    "numpy"
 }

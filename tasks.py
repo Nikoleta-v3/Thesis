@@ -139,3 +139,15 @@ def bibliography(c):
     with open("dropped_keys.txt", "w") as outfile:
         for key in dropped_keys:
             outfile.write(f"{key}\n")
+
+@task
+def doctest(c):
+    """
+    Check spelling
+    """
+
+    book = list(pathlib.Path("./src/").glob("chapters/0*/main.tex"))
+    for path in book:
+        chapter = chapter = str(path).split('chapters/')[-1][:2]
+        print(f'Testing chapter {chapter}')
+        c.run(f"python -m doctest -v {path}")

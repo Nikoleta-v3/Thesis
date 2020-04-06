@@ -47,3 +47,6 @@ jobs:
     - name: Test spellcheck
       run: |
         inv spellcheck
+    - name: Run doc tests
+      run: |
+        inv doctest
