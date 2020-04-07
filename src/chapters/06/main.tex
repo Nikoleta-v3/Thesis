@@ -288,34 +288,37 @@ implemented in \mintinline{python}{sequence_sensei}.}\label{fig:get_initial_popu
 \begin{figure}[!htbp]
     \begin{usagepy}
 >>> import sequence_sensei as ss
->>> initial_population = ss.get_initial_population(half_size_of_population=5, sequence_length=8)
->>> initial_population
-[[1, 0, 0, 0, 0, 0, 0, 0],
- [0, 1, 1, 1, 1, 1, 1, 1],
- [1, 1, 0, 0, 0, 0, 0, 0],
- [0, 0, 1, 1, 1, 1, 1, 1],
- [1, 1, 1, 1, 0, 0, 0, 0],
- [0, 0, 0, 0, 1, 1, 1, 1],
- [1, 1, 1, 1, 1, 1, 0, 0],
- [0, 0, 0, 0, 0, 0, 1, 1],
- [1, 1, 1, 1, 1, 1, 1, 1],
- [0, 0, 0, 0, 0, 0, 0, 0]]
+>>> import numpy as np
 
- >>> import axelrod as axl
- >>> [[axl.Action(gene) for gene in member] for member in initial_population]
-[[C, D, D, D, D, D, D, D],
- [D, C, C, C, C, C, C, C],
- [C, C, D, D, D, D, D, D],
- [D, D, C, C, C, C, C, C],
- [C, C, C, C, D, D, D, D],
- [D, D, D, D, C, C, C, C],
- [C, C, C, C, C, C, D, D],
- [D, D, D, D, D, D, C, C],
- [C, C, C, C, C, C, C, C],
- [D, D, D, D, D, D, D, D]]
-    \end{usagepy}
-    \caption{Example of using \mintinline{python}{get_initial_population} to
-    generate a population of \(s=10\) and \(N=8\).}\label{fig:get_initial_population_example}
+>>> initial_population = ss.get_initial_population(half_size_of_population=5, sequence_length=8)
+>>> np.matrix(initial_population)
+matrix([[1, 0, 0, 0, 0, 0, 0, 0],
+        [0, 1, 1, 1, 1, 1, 1, 1],
+        [1, 1, 0, 0, 0, 0, 0, 0],
+        [0, 0, 1, 1, 1, 1, 1, 1],
+        [1, 1, 1, 1, 0, 0, 0, 0],
+        [0, 0, 0, 0, 1, 1, 1, 1],
+        [1, 1, 1, 1, 1, 1, 0, 0],
+        [0, 0, 0, 0, 0, 0, 1, 1],
+        [1, 1, 1, 1, 1, 1, 1, 1],
+        [0, 0, 0, 0, 0, 0, 0, 0]])
+
+>>> import axelrod as axl
+>>> np.matrix([[axl.Action(gene) for gene in member] for member in initial_population])
+matrix([[D, C, C, C, C, C, C, C],
+        [C, D, D, D, D, D, D, D],
+        [D, D, C, C, C, C, C, C],
+        [C, C, D, D, D, D, D, D],
+        [D, D, D, D, C, C, C, C],
+        [C, C, C, C, D, D, D, D],
+        [D, D, D, D, D, D, C, C],
+        [C, C, C, C, C, C, D, D],
+        [D, D, D, D, D, D, D, D],
+        [C, C, C, C, C, C, C, C]], dtype=object)
+
+\end{usagepy}
+\caption{Example of using \mintinline{python}{get_initial_population} to
+generate a population of \(s=10\) and \(N=8\).}\label{fig:get_initial_population_example}
 \end{figure}
 
 The implementations of the crossover and mutation properties are given in Figure~\ref{fig:crossover_mutation},
@@ -395,16 +398,7 @@ of each strategy is accessible once the match has been performed.
 >>> players = [axl.Cycler('DDDCCCDDCC'), axl.Cooperator()]
 >>> match = axl.Match(players, turns=10)
 >>> match.play()
-[(D, C),
- (D, C),
- (D, C),
- (C, C),
- (C, C),
- (C, C),
- (D, C),
- (D, C),
- (C, C),
- (C, C)]
+[(D, C), (D, C), (D, C), (C, C), (C, C), (C, C), (D, C), (D, C), (C, C), (C, C)]
 
 >>> match.final_score_per_turn()
 (4.0, 1.5)
@@ -412,20 +406,12 @@ of each strategy is accessible once the match has been performed.
 >>> players = [axl.Cycler('DDDCCCDDCC'), axl.TitForTat()]
 >>> match = axl.Match(players, turns=10)
 >>> match.play()
-[(D, C),
- (D, D),
- (D, D),
- (C, D),
- (C, C),
- (C, C),
- (D, C),
- (D, D),
- (C, D),
- (C, C)]
+[(D, C), (D, D), (D, D), (C, D), (C, C), (C, C), (D, C), (D, D), (C, D), (C, C)]
 
- >>> match.final_score_per_turn()
- (2.2, 2.2)
-    \end{usagepy}
+>>> match.final_score_per_turn()
+(2.2, 2.2)
+
+\end{usagepy}
 \caption{Simulating matches using a Cycler to play a given sequence.}\label{fig:apl_simulations_cycler}
 \end{figure}
 
@@ -469,7 +455,8 @@ Random strategy are different each time.
 ================================================================================
 [(D, C), (D, C), (D, C), (C, C), (C, C), (C, C), (D, D), (D, D), (C, D), (C, C)] (2.9, 1.9)
 ================================================================================
-    \end{usagepy}
+
+\end{usagepy}
 \caption{Example code of using seeding to generate different instances of Random.
 The above code snipped will always have the same output even if the matches are
 ``random'' because of a computer seed is set before performing the
