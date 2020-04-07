@@ -37,9 +37,9 @@
 \draw (new_members) edge[pil, out=0, in=180] node {} (crossover);
 \draw (crossover) edge[pil, out=0, in=180] node {} (mutation);
 \draw (mutation) edge[pil, out=-90, in=90] node {} (decision);
-\draw (decision) edge[pil, out=-90, in=90] node {} (end);
+\draw (decision) edge[pil, out=-90, in=90] node[left] {\textbf{Yes}} (end);
 
-\draw [->, ultra thick] (decision) -- ++(4, 0) -- ++(0, 9) -| node {} (score);
+\draw [->, ultra thick] (decision) -- ++(4, 0) -- ++(0, 9) -| node[above right] {\textbf{No}} (score);
 
 
 \end{tikzpicture}
