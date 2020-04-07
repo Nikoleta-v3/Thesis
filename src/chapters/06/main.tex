@@ -305,16 +305,16 @@ matrix([[1, 0, 0, 0, 0, 0, 0, 0],
 
 >>> import axelrod as axl
 >>> np.matrix([[axl.Action(gene) for gene in member] for member in initial_population])
-matrix([[D, C, C, C, C, C, C, C],
-        [C, D, D, D, D, D, D, D],
-        [D, D, C, C, C, C, C, C],
+matrix([[C, D, D, D, D, D, D, D],
+        [D, C, C, C, C, C, C, C],
         [C, C, D, D, D, D, D, D],
-        [D, D, D, D, C, C, C, C],
+        [D, D, C, C, C, C, C, C],
         [C, C, C, C, D, D, D, D],
-        [D, D, D, D, D, D, C, C],
+        [D, D, D, D, C, C, C, C],
         [C, C, C, C, C, C, D, D],
-        [D, D, D, D, D, D, D, D],
-        [C, C, C, C, C, C, C, C]], dtype=object)
+        [D, D, D, D, D, D, C, C],
+        [C, C, C, C, C, C, C, C],
+        [D, D, D, D, D, D, D, D]], dtype=object)
 
 \end{usagepy}
 \caption{Example of using \mintinline{python}{get_initial_population} to

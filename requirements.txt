@@ -1,6 +1,6 @@
 invoke
-jupyter
+jupyter==1.0.0
+ipython==5.0.0
 bibtexparser
 axelrod==4.2.1
-numpy==1.18.1
-arcas
+numpy==1.18.1arcas
