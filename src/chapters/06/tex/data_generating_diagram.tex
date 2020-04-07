@@ -1,0 +1,38 @@
+\documentclass{standalone}
+
+\begin{document}
+\begin{tikzpicture}[
+    font=\sffamily,
+    construct/.style={draw,thick,rounded corners,fill=orange!40,inner sep=.3cm, text width=13em, font=\large, minimum height=5em},
+    write/.style={draw,thick,rounded corners,fill=black!10,inner sep=.3cm, text width=13em, font=\large, minimum height=5em},
+    seed/.style={draw,thick,rounded corners,fill=cyan!40,inner sep=.3cm, text width=10em, font=\large, minimum height=5em},
+    decision/.style={diamond,draw, thick, fill=yellow!60,inner sep=.2cm, font=\large, text width=7em},
+    source/.style={draw,thick,circle,fill=green!40, font=\large, text width=4em},
+    pil/.style={
+        ->,
+        ultra thick,},
+    every node/.style={align=center}]
+
+\node[source] (start) at (0, 0) {\textbf{start}};
+\node[construct] (strategy_selection) at ($(start)+(5, 0)$) {\textbf{assign a strategy from the collection as \(q\)}};
+\node[decision] (decision) at ($(strategy_selection)+(6, 0)$) {\textbf{Is \(q\)} \\ \textbf{stochastic?}};
+\node[construct] (ga) at ($(decision)+(6, 0)$) {\textbf{Perform GAs}};
+\node[write] (csv) at ($(ga)+(7, 0)$) {\textbf{write last} \\ \textbf{generation to csv}};
+\node[source] (end) at ($(csv)+(0, -4)$) {\textbf{end}};
+\node[decision] (decision_2) at ($(ga)+(0, -4)$) {\textbf{seed \(< 10\)?}};
+\node[seed] (seed) at ($(decision)+(0, -4)$) {\textbf{seed \(q\)}};
+
+\draw (start) edge[pil, out=0, in=180] node {} (strategy_selection);
+\draw (strategy_selection) edge[pil, out=0, in=180] node[left] {} (decision);
+\draw (decision) edge[pil, out=0, in=180] node[above] {\textbf{No}} (ga);
+\draw (decision) edge[pil, out=-90, in=90] node[left] {\textbf{Yes}} (seed);
+\draw (ga) edge[pil, out=0, in=180] node[above] {} (csv);
+\draw (csv) edge[pil, out=-90, in=90] node[above] {} (end);
+\draw (seed) edge[pil, out=0, in=180] node[above] {} (decision_2);
+\draw (decision_2) edge[pil, out=0, in=180] node[above] {\textbf{Yes}} (end);
+\draw (decision_2) edge[pil, out=90, in=-90] node[left] {\textbf{No}} (ga);
+\draw [->, ultra thick] (ga) -- ++(-2.6, -.5) -- (seed);
+
+
+\end{tikzpicture}
+\end{document}
