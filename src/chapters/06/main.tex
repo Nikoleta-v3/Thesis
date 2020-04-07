@@ -148,7 +148,7 @@ in~\cite{Whitley1994} GAs encode a potential solution to a
 specific problem on a simple chromosome-like data structure, and apply
 recombination operators to these structures in such a way as to preserve
 critical information. GAs are often viewed as function
-optimizers, although the range of problems to which they have been
+optimisers, although the range of problems to which they have been
 applied~\cite{Hou1994, Jones1997, Yang1998} is quite broad.
 
 An implementation of a GA begins with a population \(P\) of
@@ -177,7 +177,7 @@ mutation. Crossover adds variance in the population by taking properties of both
 parent members and introducing the evaluation of their combination to the
 solution space. The algorithm can search multiple local optimal at once with its
 population and start to identify the global optimal as members become more
-optimized. Moreover, if an a member if trapped in a local optimal with its
+optimised. Moreover, if an a member if trapped in a local optimal with its
 fitness score, a mutation of a certain feature could potentially move their
 position in the solution space to better local optimal.
 
@@ -319,7 +319,7 @@ implemented in \mintinline{python}{sequence_sensei}.}\label{fig:get_initial_popu
 \end{figure}
 
 The implementations of the crossover and mutation properties are given in Figure~\ref{fig:crossover_mutation},
-futhermore, an example of a crossover between a Cooperator and an Alternator and the
+furthermore, an example of a crossover between a Cooperator and an Alternator and the
 mutation of the crossover's result is given in Figure~\ref{fig:crossover_mutation}.
 
 \begin{figure}[!htbp]
@@ -438,8 +438,8 @@ does not include noise. In comparison, the outcomes of a match which includes ev
 stochastic strategy can be significantly different. In order to
 capture distinct behaviours of stochastic strategies, and to be able to
 reproduce the results of a match with a stochastic strategy, this work considers
-\textit{computer seeding}. In Python a computer seed is used to initialize the
-pseudorandom number generator. Seeds are set before generating a random number,
+\textit{computer seeding}. In Python a computer seed is used to initialise the
+pseudo random number generator. Seeds are set before generating a random number,
 and if the same seed is used on initialisation then the random output remains
 the same. Thus, as long as a match is being seeded the behaviour of a stochastic
 strategy can be reproduced, and different seeds lead to different series of
@@ -479,7 +479,7 @@ match.}\label{fig:random_apl_example}
 The data generating process selects one opponent from the collection of the
 \numberofstrategiesbestsequences strategies and performs a series of GAs with
 different parameters' values. The population at the last generation as well as
-the scores of the sequences are exported in a cvs file. Each time an opponent is
+the scores of the sequences are exported in a csv file. Each time an opponent is
 selected it is evaluated whether that opponent is deterministic or not. For
 deterministic opponents the process is repeated only once, however, for
 stochastic opponents a series of GAs are performed for 10 different seeded
@@ -534,7 +534,7 @@ final population is a best response. This is intuitive and expected following th
 work of Chapter~\ref{chapter:memory_one} where it was proven that the utility
 of even a memory one player is not concave, and thus, there is not one single
 point which maximises the score against an IPD opponent. The total amount
-fo best response sequences which has been retrieved following the process
+of best response sequences which has been retrieved following the process
 discussed in this section is 5503.
 
 \section{Chapter Summary}
