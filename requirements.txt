@@ -1,5 +1,6 @@
 invoke
 jupyter
 bibtexparser
-axelrod
-numpy==1.18.1arcas
+axelrod==4.2.1
+numpy==1.18.1
+arcas
