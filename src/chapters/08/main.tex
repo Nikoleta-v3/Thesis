@@ -68,7 +68,7 @@ tournament types.
     and these are: be nice, be provocable and contrite, be a little envious, be
     clever, and adapt to the environment, which includes the parameters of the
     tournament (e.g. noise) and the population of opponents.
-    \item Chapter~\ref{chapter:memory_one} investigated  best response memory-one
+    \item Chapter~\ref{chapter:memory_one} investigated best response memory-one
     strategies with a theory of mind. The results add to the 
     literature that has shown that extortionate play is not always optimal by
     showing that optimal play is often not extortionate. Moreover, it provided
@@ -174,17 +174,38 @@ improve or compliment it.
 
 \textbf{Future research - Meta tournament Analysis}
 
-Re running with constrained noise. The results were a bit biased due to
-the high levels of noise, and potentially evolve a strategy that is effective
-for a broad spectrum of noise values.
+In Chapter~\ref{chapter:meta_tournaments} during the data collection the
+probability of noise was allowed to vary between values of \(0\) and \(1\).
+However, it was established that large values of noise (\(>
+0.1\)) caused an impactful variation to the environment. From the collection of
+\numberofstrategies strategies considered in the Chapter there was not a single
+strategy that performed well in that spectrum of noise.
+
+Strategies that have been trained specifically for noisy environments such
+as DBS, Evolved FSM 16 Noise 05, Evolved ANN 5 Noise 05, PSO Gambler 2 2 2 Noise 05
+and Omega Tit For Tat, performed adequately only in tournaments with restricted
+noise. This indicates that possibly there is not a strategy in the literature
+trained to be effective for a broad spectrum of noise values. Training such
+strategy would be an interesting avenue of further research. The analysis of the
+top performances would then be reproduced whilst including the new trained strategy.
 
 \textbf{Future research - Memory-one strategies}
 
-All the empirical results presented in this manuscript have been for the
-case of $N=2$. In future work we would consider larger values of $N$, however, we
-believe that for larger values of $N$ the results that have been presented here would
-only be more evident. Generalisation of the results to memory-two strategies, and
-the something theory for explicitly solving the.
+In Chapter~\ref{chapter:memory_one} the empirical results supported that
+extortionate play is not always optimal and that memory-one strategies suffer
+from their limited memory in multi agent interactions. All the empirical results
+presented have been for the case of two opponents (\(N=2\)). A strictly value of \(N=2\) was
+considered due to computational efficiency. However, in the Iterate Prisoner's
+Dilemma multi agent interactions commonly include more than two strategies. A
+future research would be to validate the empirical results of the Chapter for
+larger values of \(N\).
+
+Another restricted set of strategies on memory that have been studied in the literature
+are memory-two strategies. These are strategies that take into account the past
+two turns of the match. A compelling research question that arises is whether
+the current formulation of Chapter~\ref{chapter:memory_one} can be expanded to
+include memory-two strategies, and whether the results still hold. Moreover,
+it would be aimed to generalised the results to memory-\(n\) strategies.
 
 \textbf{Future research - Training an LSTM strategy}
 
