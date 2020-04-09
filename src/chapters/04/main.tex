@@ -40,21 +40,18 @@ The differences between the Chapter and the manuscript include \dots.
 
 \section{Introduction}
 
-Conceptualising strategies and understanding the best way of playing the game
-has been of interest to the scientific community since the formulation of the
-game in 1950~\cite{Flood1958}. Following the computer tournaments of R. Axelrod in the
-1980's~\cite{Axelrod1980a, Axelrod1980b}, a strategy's performance in a round
-robin computer tournament became a common evaluation technique for newly designed
-strategies. Many tournaments have followed Axelrod's~\cite{Beaufils1997, Bendor1991,
-Harper2017, Kendall2007, Stephens2002, Stewart2012} and now the
-literature and various codebases contain hundreds of strategies.
+As stated in Chapter~\ref{chapter:introduction} conceptualising strategies and
+understanding the best way of playing the game has been of interest to the
+scientific community since the formulation of the game, and in
+Chapter~\ref{chapter:literature_review} it was established that following the
+computer tournaments of Axelrod in the 1980's, a strategy's performance in a
+round robin computer tournament became a common evaluation technique for newly
+designed strategies.
 
-The winner of both of R. Axelrod's tournaments~\cite{Axelrod1980a, Axelrod1980b}
-was the simple strategy Tit For Tat (TFT) which cooperates
-on the first turn and thereafter copies the previous action of its opponent,
-retailiating against defections with a defection, and forgiving a defection if followed
-by a cooperation. R. Axelrod concluded that the strategy's robustness was due to four
-properties, which he adapted into four suggestions on doing well in an IPD:
+The winner of both of Axelrod's tournaments~\cite{Axelrod1980a, Axelrod1980b}
+was the simple strategy Tit For Tat and Axelrod concluded that the strategy's
+robustness was due to four properties, which he adapted into four suggestions on
+doing well in an IPD:
 
 \begin{itemize}
     \item Do not be envious by striving for a payoff larger than the opponent's payoff
@@ -82,66 +79,33 @@ strategy with the same intuition as Gradual is Adaptive Tit for
 Tat~\cite{tzafestas-2000a}. Adaptive Tit for Tat maintains a continually updated estimate of the
 opponent's behaviour and uses this estimate to condition its future actions.
 
-Other work has built upon the limitations of TFT, and in some cases have shown
-that suggestions made by R. Axelrod did not necessarily apply in alternative environmental settings.
-In~\cite{Bendor1991, Donninger1986, Molander1985, Hammerstein1984} it was shown
-that TFT suffered in environments with noise. This was
-mainly due to the strategy being too provocable and its lack of generosity and contrition. Since TFT immediately
-punishes a defection, in a noisy environment it can get stuck in a
-repeated cycle of defections and cooperations. Some new strategies, more
-robust in tournaments with noise, were soon introduced, including
-Nice and Forgiving~\cite{Bendor1991}, Generous Tit For Tat~\cite{Nowak1992},
-and Pavlov (aka Win Stay Lose Shift)~\cite{Nowak1993}, as well as later
-variants such as OmegaTFT \cite{kendall2007iterated}. The introduction of a new strategy
-is often accompanied by a claim that the new strategy is the best known, despite
-only being tested against a small number of opponents or against specific classes of
-opponents not necessarily representative of all possible or all published strategies.
-The lack of testing against formally defined strategies and tournament winners
-is understandable given the effort required to implement the hundreds of published IPD strategies.
-Implementing prior strategies faithfully is often extremely difficult or
-impossible due to insufficient descriptions and lack of published
-implementations or code.
-This calls into question any claims of superiority or robustness of newly introduced strategies.
-
-A set of envious IPD strategies were introduced called zero-determinant strategies (ZDs)
-in~\cite{Press2012}. These strategies attempt to force a linear relationship between
-stationary payoffs against other memory-one opponents, potentially ensuring that they
-receive a higher average payout. While ZDs were introduced with a small tournament in
-which some were reportedly successful \cite{Stewart2012}, this result has not generally
-held in future work. In~\cite{Harper2017} a series of strategies trained using
-reinforcement learning were introduced, and a tournament containing over 200 strategies
-featured no ZDs ranking in top spots. Instead, the top ranked strategies
-were a set of ``clever'' (in the sense of R. Axelrod's characteristics) trained
-strategies based on lookup tables~\cite{Axelrod1987}, hidden Markov
-models~\cite{Harper2017}, and finite state automata~\cite{Miller1996}.
-Similarly, in \cite{mathieu2017}, a set of evolutionarily-trained strategies,
-and a pre-selected set of known strategies, outperformed a collection of 12 ZDs.
-
 Though only select pieces of work have been discussed, there is a broad collection
 of strategies in the literature, and new strategies and competitions are
 published frequently~\cite{Glynatsi2019}. The question, however, still remains
 the same: what is the best way to play the game?
 
-Compared to other works, where typically a few selected or introduced strategies
-are evaluated on a small number of tournaments and/or small number of opponents,
-this manuscript evaluates the performance of \numberofstrategies
-strategies in \numberofalltournaments tournaments. Furthermore, a large portion
-of the strategies used in this manuscript are drawn from known and named strategies
-in IPD literature, including many previous tournament winners,
-in contrast to other work that may have randomly generated many essentially arbitrary
-strategies (typically restrained to a class such as memory-one strategies,
-or those of a certain structural form such as finite state machines or deterministic
-memory-two strategies). Additionally, our tournaments come in a
-number of variations including standard tournaments emulating R. Axelrod's original tournaments,
-tournaments with noise, probabilistic match length, and both noise and probabilistic match length.
-This diversity of strategies and tournament types yields new insights and tests
-earlier claims in alternative settings against known powerful strategies.
+Compared to the works reviewed in Chapter~\ref{chapter:literature_review}, where
+typically a few selected or introduced strategies are evaluated on a small
+number of tournaments and/or small number of opponents, this Chapter evaluates
+the performance of \numberofstrategies strategies in \numberofalltournaments
+tournaments. Furthermore a large portion of the strategies used in this Chapter
+are drawn from the known and named strategies in IPD literature, including many
+previous tournament winners, in contrast to other work that may have randomly
+generated many essentially arbitrary strategies (typically restrained to a class
+such as memory-one strategies, or those of a certain structural form such as
+finite state machines or deterministic memory two strategies). Additionally, our
+tournaments come in a number of variations including standard tournaments
+emulating Axelrod's original tournaments, tournaments with noise, probabilistic
+match length, and both noise and probabilistic match length. This diversity of
+strategies and tournament types yields new insights and tests earlier claims in
+alternative settings against known powerful strategies.
 
-The later part of the paper evaluates the impact of various strategy features
-on the performance of the strategies using standard statistical and machine learning techniques. These
-features include measures regarding a strategy's behaviour and measures regarding
-the tournaments. This rigorous analysis reinforces the discussion started by R. Axelrod
-and concludes that the properties of a successful strategy in the IPD are:
+The later part of the Chapter evaluates the impact of features on the performance
+of the strategies using modern machine learning techniques. These features
+include measures regarding a strategy's behaviour and measures regarding the
+tournaments. The outcomes of our work reinforce the discussion started by
+Axelrod, and it concludes that the properties of a successful strategy in the
+IPD are:
 
 \begin{itemize}
     \item \st{Do not be envious} Be a little bit envious
@@ -306,7 +270,7 @@ The performance of each strategy is evaluated in the four tournament types
 presented in Section \ref{section:data_collection}, followed by an
 evaluation of their performance over all the \numberofalltournaments simulated
 tournaments of this work. Each strategy participated in multiple tournaments of
-the same type (on average 5154). For example TFT participated in a
+the same type (on average 5154). For example TIT FOR TAT participated in a
 total of 5114 tournaments of each type. The strategy's normalised rank
 distribution in these is given in Figure~\ref{fig:tit_for_tat_r_distribution}. A
 value of \(r = 0\) corresponds to a strategy winning the tournament where a
@@ -316,8 +280,8 @@ strategies' multiple entries their overall performance is evaluated based on the
 
 \begin{figure}[!htbp]
     \centering
-    \includegraphics[width=.8\textwidth]{src/chapters/04/paper/meta-analysis-of-prisoners-dilemma-tournaments/images/tit_for_tat_r_distributions.pdf}
-    \caption{TFT's $r$ distribution in tournaments. Lower values of \(r\)
+    \includegraphics[width=.60\textwidth]{src/chapters/04/paper/meta-analysis-of-prisoners-dilemma-tournaments/images/tit_for_tat_r_distributions.pdf}
+    \caption{TIT FOR TAT's $r$ distribution in tournaments. Lower values of \(r\)
     correspond to better performances. The best performance
     of the strategy has been in standard tournaments where it achieved a $\bar{r}$
     of 0.34.}
@@ -681,7 +645,6 @@ the only features that had a moderate effect are $C_r/C_{\text{mean}},
 C_r/C_{\text{max}}$ and $C_r$. In such environments cooperative behaviour
 appears to be punished less than in noisy and probabilistic ending
 tournaments.
-
 
 \begin{figure}[!htbp]
     \centering
