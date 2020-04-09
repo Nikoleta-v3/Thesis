@@ -121,14 +121,12 @@ The Chapter is structured as follows:
 \begin{itemize}
     \item The different tournament types as well as the data collection, made
     possible due to an open source library called Axelrod-Python (APL),
-    are covered in Section~\ref{section:data_collection}.
-    \item Section~\ref{section:top_performances}, focuses on the best performing
+    are covered in section~\ref{section:data_collection}.
+    \item section~\ref{section:top_performances}, focuses on the best performing
     strategies for each type of tournament and overall.
-    \item Section~\ref{section:evaluation_of_performance}, explores the traits which
+    \item section~\ref{section:evaluation_of_performance}, explores the traits which
     contribute to good performance
 \end{itemize}
-
-\section{Data collection}\label{section:data_collection}
 
 \section{Data collection}\label{section:data_collection}
 
@@ -143,15 +141,15 @@ APL features several tournament types, this work considers
 standard, noisy, probabilistic ending, and noisy probabilistic ending
 tournaments.
 
-\textbf{Standard tournaments} are tournaments similar to that of R. Axelrod's well-known
+\textit{Standard tournaments} are tournaments similar to that of R. Axelrod's well-known
 tournaments~\cite{Axelrod1980a}. There are \(N\) strategies which all play an iterated
 game of \(n\) number of turns against each other. Note that self-interactions
-are not included. Similarly, \textbf{noisy
+are not included. Similarly, \textit{noisy
 tournaments} have \(N\) strategies and \(n\) number of turns, but at each turn
 there is a probability \(p_n\) that a player's action will be flipped.
-\textbf{Probabilistic ending tournaments}, are of size \(N\) and after each turn
+\textit{Probabilistic ending tournaments}, are of size \(N\) and after each turn
 a match between strategies ends with a given probability \(p_e\). Finally,
-\textbf{noisy probabilistic ending} tournaments have both a noise probability
+\textit{noisy probabilistic ending} tournaments have both a noise probability
 \(p_n\) and an ending probability \(p_e\). For smoothing the simulated results a
 tournament is repeated for \(k\) number of times. This was allowed to vary
 in order to evaluate the effect of smoothing. The winner of each tournament
@@ -228,7 +226,7 @@ tournament. The information includes the strategy's rank, median score, the rate
 with which the strategy cooperated $(C_r)$, its match win count, and the
 probability that the strategy cooperated in the opening move. Moreover, the
 probabilities of a strategy being in any of the four states ($CC, CD, DC, DD$),
-and the rate of which the strategy cooperated after each state. The \textbf{normalised rank}
+and the rate of which the strategy cooperated after each state. The \textit{normalised rank}
 is a feature that has been manually added to the result summary. The rank \(R\) of a given
 strategy can vary between 0 (first) and \(N-1\) (last), and thus the normalised rank,
 denoted as $r$, is calculated as a strategy's rank divided by \(N - 1\).
@@ -262,22 +260,22 @@ denoted as $r$, is calculated as a strategy's rank divided by \(N - 1\).
 
 \section{Top ranked strategies}\label{section:top_performances}
 
-The performance of each strategy is evaluated in the four tournament types
-presented in Section \ref{section:data_collection}, followed by an
+The performance of each strategy is evaluated in four tournament types, as
+presented in section \ref{section:data_collection}, followed by an
 evaluation of their performance over all the \numberofalltournaments simulated
 tournaments of this work. Each strategy participated in multiple tournaments of
-the same type (on average 5154). For example TIT FOR TAT participated in a
+the same type (on average 5154). For example Tit For Tat participated in a
 total of 5114 tournaments of each type. The strategy's normalised rank
 distribution in these is given in Figure~\ref{fig:tit_for_tat_r_distribution}. A
 value of \(r = 0\) corresponds to a strategy winning the tournament where a
 value of \(r = 1\) corresponds to the strategy coming last. Because of the
-strategies' multiple entries their overall performance is evaluated based on the
-\textbf{median normalised rank} denoted as \(\bar{r}\).
+strategies' multiple entries their performance is evaluated based on the
+\textit{median normalised rank} denoted as \(\bar{r}\).
 
 \begin{figure}[!htbp]
     \centering
     \includegraphics[width=.60\textwidth]{src/chapters/04/paper/meta-analysis-of-prisoners-dilemma-tournaments/images/tit_for_tat_r_distributions.pdf}
-    \caption{TIT FOR TAT's $r$ distribution in tournaments. Lower values of \(r\)
+    \caption{Tit For Tat's $r$ distribution in tournaments. Lower values of \(r\)
     correspond to better performances. The best performance
     of the strategy has been in standard tournaments where it achieved a $\bar{r}$
     of 0.34.}
@@ -391,7 +389,7 @@ In the case of noisy tournaments with smaller noise \(p_n < 0.1\) the top
 performing strategies
 include strategies specifically designed for noisy tournaments. These are DBS,
 Evolved FSM 16 Noise 05, Evolved ANN 5 Noise 05, PSO Gambler 2 2 2 Noise 05 and
-Omega Tit For Tat~\cite{kendall2007iterated}. Omega TFT, a strategy designed
+Omega Tit For Tat~\cite{kendall2007iterated}. Omega Tit For Tat, a strategy designed
 to break the deadlocking cycles of \(CD\) and \(DC\) that TFT can fall into in noisy
 environments, places 10th. The rest of the top ranks are
 occupied by strategies which performed well in standard tournaments and
@@ -513,8 +511,8 @@ These have been strategies that have been trained, strategies that retailiate,
 and strategies that would adapt their behaviour based on preassigned rules
 to achieve the highest outcome. These results contradict some of R. Axelrod's suggestions,
 and more specifically, the suggestions `Do not be clever' and `Do not be envious'.
-We dig deeper into the crucial strategy features for success in the following section.
-
+The features and properties contributing a strategy's success are further
+explored in section~\ref{section:evaluation_of_performance}.
 
 \section{Evaluation of performance}\label{section:evaluation_of_performance}
 
@@ -631,7 +629,7 @@ the mean and median cooperator in such settings. In probabilistic ending
 tournaments the correlation coefficients have larger values, indicating a
 stronger effect. Thus a strategy will be punished more by its cooperative
 behaviour in probabilistic ending environments, supporting the results of
-Section~\ref{section:evaluation_of_performance}
+section~\ref{section:evaluation_of_performance}
 as well. The distributions of the $C_r$ of the winners in
 both tournaments are given by Figure~\ref{fig:c_r_distributions}. It confirms
 that the winners in noisy tournaments cooperated less than 35\% of the time
@@ -717,7 +715,7 @@ tournaments with noise and a probabilistic ending the winners cooperated 60\%,
 whereas in settings that the type of the tournament can vary between all the
 types the winners cooperated 67\% of the time the mean cooperator did. Lastly,
 in probabilistic ending tournaments above more defecting
-strategies prevail (Section~\ref{section:top_performances}), and this result is
+strategies prevail (section~\ref{section:top_performances}), and this result is
 reflected here.
 
 \begin{figure}[!htbp]
