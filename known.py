@@ -211,5 +211,13 @@ words = {
     "Random's",
     "PRNGs",
     "Parallelisation",
-    "TF"
+    "TF",
+    "Arcas",
+    "LSTM",
+    "SymPy",
+    "Zenodo",
+    "devaluating",
+    "impactful",
+    "provocable",
+    "sensei",
 }
