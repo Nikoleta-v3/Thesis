@@ -88,7 +88,7 @@ Compared to the works reviewed in Chapter~\ref{chapter:literature_review}, where
 typically a few selected or introduced strategies are evaluated on a small
 number of tournaments and/or small number of opponents, this Chapter evaluates
 the performance of \numberofstrategies strategies in \numberofalltournaments
-tournaments. Furthermore a large portion of the strategies used in this Chapter
+tournaments. Furthermore, a large portion of these strategies
 are drawn from the known and named strategies in IPD literature, including many
 previous tournament winners, in contrast to other work that may have randomly
 generated many essentially arbitrary strategies (typically restrained to a class
@@ -98,7 +98,7 @@ tournaments come in a number of variations including standard tournaments
 emulating Axelrod's original tournaments, tournaments with noise, probabilistic
 match length, and both noise and probabilistic match length. This diversity of
 strategies and tournament types yields new insights and tests earlier claims in
-alternative settings against known powerful strategies.
+alternative settings against known powerful strategies. %TODO rewrite and just describe the novelty of this chapter
 
 The later part of the Chapter evaluates the impact of features on the performance
 of the strategies using modern machine learning techniques. These features
@@ -130,18 +130,17 @@ The Chapter is structured as follows:
 
 \section{Data collection}\label{section:data_collection}
 
-The data set generated for this manuscript was created with APL version 3.0.0.
+The data set generated for this Chapter was created with APL version 3.0.0.
 APL allows for different types of IPD computer
 tournaments to be simulated and contains a large list of strategies.
 Most of these are strategies described in the literature with a few exceptions
-of strategies that have been contributed specifically to the package. This
-paper makes use of \numberofstrategies strategies implemented in version 3.0.0. A
+of strategies that have been contributed specifically to the package. A
 list of the strategies is given in the Appendix~\ref{app:list_of_players}.
-APL features several tournament types, this work considers
+Although APL features several tournament types, only
 standard, noisy, probabilistic ending, and noisy probabilistic ending
-tournaments.
+tournaments are considered here.
 
-\textit{Standard tournaments} are tournaments similar to that of R. Axelrod's well-known
+\textit{Standard tournaments} are tournaments similar to that of R. Axelrod's
 tournaments~\cite{Axelrod1980a}. There are \(N\) strategies which all play an iterated
 game of \(n\) number of turns against each other. Note that self-interactions
 are not included. Similarly, \textit{noisy
@@ -183,11 +182,6 @@ Table~\ref{table:parameters_values}.
     \caption{Data collection; parameters' values}
     \label{table:parameters_values}
 \end{table}
-
-The source code for the data collection, as well as the source code for
-the analysis, which will be discussed in the following sections, have been written
-following best practices~\cite{Aberdour2007, Benureau2018}
-and is available here. %TODO archive code and include github url as well.
 
 \begin{algorithm}[!htbp]
     \setstretch{1.35}
@@ -478,13 +472,13 @@ competition.
 \begin{figure}[!htbp]
         \centering
         \includegraphics[width=.65\textwidth]{src/chapters/04/paper/meta-analysis-of-prisoners-dilemma-tournaments/images/performance_merged.pdf}
-        \caption{Normalised rank \(r\) distributions for best performed strategies in the data set~\cite{data}.
+        \caption{\(r\) distributions for best performed strategies in the data set~\cite{Glynatsi2019_meta}.
         A lower value of \(\bar{r}\) corresponds to a more successful
         performance.}
         \label{fig:overall_results}
 \end{figure}
 
-On the whole, the analysis of this manuscript has shown that:
+On the whole, the analysis of this section has shown that:
 
 \begin{itemize}
     \item In standard tournaments the dominating strategies were
@@ -570,7 +564,7 @@ $k$ & The number of repetitions of a given tournament & trial summary & integer 
     to $C$, $CD$ to $C$, $DC$ to $C$, and $DD$ to $C$ rates as well as
     cooperating ratio of a strategy, the minimum (\(C_{min}\)), maximum
     (\(C_{max}\)), mean (\(C_{mean}\)) and median (\(C_{median}\)) cooperating
-    ratios of each tournament.}
+    ratios of each tournament.} %TODO reminder for SSE
     \label{table:manual_features}
 \end{table}
 
@@ -821,7 +815,7 @@ but in the rest of the settings a strategy should be more generous.
 
 Further statistically significant features with strong effects include \(C_r /
 C_{\text{min}}\), \(C_r / C_{\text{max}}\), \(C_{\text{min}}\) and
-\(C_{\text{max}}\). These add more emphasis on how important it is for a  a
+\(C_{\text{max}}\). These add more emphasis on how important it is for a
 strategy to adapt to its environment. Finally, the features number of turns,
 repetitions and the probabilities of noise and the game ending had no
 significant effects based on the multivariate regression models.
@@ -837,13 +831,14 @@ significant effects based on the multivariate regression models.
 
 A third method that evaluates the importance of the features in
 Table~\ref{table:manual_features} using clustering and random forests can be found in
-the Appendix~\ref{app:clustering}. The results uphold the outcomes of the
+the Appendix~\ref{app:clustering_approach}. The results uphold the outcomes of the
 correlation and multivariate regression. It also evaluates the effects
-of the whether or not a strategy is stochastic, makes use of the knowledge of the utility values, or makes use of match length. These were not evaluated by the methods above because there are binary variables.
-The results showed that they have no significant effect on a strategy's
-performance.
+of the classifiers stochastic, make use of game, and make use of length which
+have not been evaluated by the methods above because there are binary variables.
+The results imply that they have no significant effect on a strategy's
+performance. %TODO fix appendix
 
-\section{Chapter Summary}\label{section:conclusion}
+\section{Chapter Summary}\label{section:conclusion} %TODO re write
 
 This manuscript explored the performance of \numberofstrategies strategies of
 the IPD in \numberofalltournaments computer tournaments. The collection of
