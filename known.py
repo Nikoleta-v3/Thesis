@@ -127,5 +127,15 @@ words = {
     "prosocial",
     "assortative",
     "bimodal",
-    "PHP"
+    "PHP",
+    "APL",
+    "Axerod",
+    "Eugine",
+    "Nier",
+    "TODO",
+    "bimodality",
+    "generalisability",
+    "pre",
+    "probabilistically",
+    "provocable",
 }
