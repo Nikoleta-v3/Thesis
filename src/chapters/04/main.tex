@@ -69,16 +69,6 @@ As a result of the strategy's strong performance in both tournaments, and moreov
 series of evolutionary experiments~\cite{Axelrod1981}, TFT was often
 claimed to be a highly robust (and sometimes the most robust) strategy for the IPD.
 
-There are strategies which have built upon TFT and the reciprocity based approach.
-In~\cite{Beaufils1997} a strategy called Gradual was introduced, constructed to have the
-same qualities as those of TFT with one addition. Gradual has a memory
-of the previous rounds of play of the game, recording the number of defections
-by the opponent and punishing them with a growing number of defections. It
-then enters a calming state in which it cooperates for two rounds. A
-strategy with the same intuition as Gradual is Adaptive Tit for
-Tat~\cite{tzafestas-2000a}. Adaptive Tit for Tat maintains a continually updated estimate of the
-opponent's behaviour and uses this estimate to condition its future actions.
-
 Though only select pieces of work have been discussed, there is a broad collection
 of strategies in the literature, and new strategies and competitions are
 published frequently~\cite{Glynatsi2019}. The question, however, still remains
@@ -100,6 +90,27 @@ match length, and both noise and probabilistic match length. This diversity of
 strategies and tournament types yields new insights and tests earlier claims in
 alternative settings against known powerful strategies. %TODO rewrite and just describe the novelty of this chapter
 
+The aim of this Chapter is to perform a similar analysis and to revisit the
+properties proposed by Axelrod which have in turn influenced several
+publications across the years.
+
+Compared to many of these publications (many reviewed in
+Chapter~\ref{chapter:literature_review}) where typically a few selected or
+introduced strategies are evaluated on a small number of tournaments and/or
+small number of opponents, this Chapter evaluates the performance of
+\numberofstrategies strategies in \numberofalltournaments tournaments. Many of
+the \numberofstrategies strategies are known strategies from the literature and
+include many previous tournament winners, in contrast to other works that may
+have randomly generated a collection of essentially arbitrary strategies
+(typically restrained to a class such as memory-one strategies, finite state
+machines or deterministic memory two strategies). Additionally, the analysis of
+this Chapter considers tournament variations including
+standard tournaments, tournaments with
+noise, probabilistic match length, and both noise and probabilistic match
+length. This diversity of strategies and tournament types yields new insights
+and tests earlier claims in alternative settings against known powerful
+strategies.
+
 The later part of the Chapter evaluates the impact of features on the performance
 of the strategies using modern machine learning techniques. These features
 include measures regarding a strategy's behaviour and measures regarding the
@@ -116,16 +127,15 @@ IPD are:
     \item Adapt to the environment; Adjust to the mean population cooperation
 \end{itemize}
 
-The Chapter is structured as follows:
+The rest of the Chapter is structured as follows:
 
 \begin{itemize}
-    \item The different tournament types as well as the data collection, made
-    possible due to an open source library called Axelrod-Python (APL),
-    are covered in section~\ref{section:data_collection}.
-    \item section~\ref{section:top_performances}, focuses on the best performing
+    \item section~\ref{section:data_collection} covers the different tournament
+    types and the data collection which are made possible due to APL.
+    \item section~\ref{section:top_performances} focuses on the best performing
     strategies for each type of tournament and overall.
-    \item section~\ref{section:evaluation_of_performance}, explores the traits which
-    contribute to good performance
+    \item section~\ref{section:evaluation_of_performance},explores the traits
+    which contribute to a good performance.
 \end{itemize}
 
 \section{Data collection}\label{section:data_collection}
@@ -283,7 +293,8 @@ that the probabilities of noise and ending of the match varied between 0 and
 Thus,
 Table~\ref{table:top_performances} also includes the top 15 strategies in noisy
 tournaments with \(p_n < 0.1\) and probabilistic ending tournaments with \(p_e <
-0.1\).
+0.1\). The \(r\) distributions for the top ranked strategies of Table~\ref{table:top_performances}
+are given by Figure~\ref{fig:r_distributions}.
 
 \newcolumntype{g}{>{\columncolor{Gray}}l}
 \begin{table}[!htbp]
@@ -304,18 +315,15 @@ ending tournaments have the highest medians.}
 \label{table:top_performances}
 \end{table}
 
-The \(r\) distributions for the top ranked strategies of Table~\ref{table:top_performances}
-are given by Figure~\ref{fig:r_distributions}.
-
 \begin{figure*}[!htbp]
     \centering
-    \begin{subfigure}{0.485\textwidth}
+    \begin{subfigure}{0.47\textwidth}
         \centering
         \includegraphics[width=\textwidth]{src/chapters/04/paper/meta-analysis-of-prisoners-dilemma-tournaments/images/r_distribution_standard.pdf}
         \caption{$r$ distributions of top 15 strategies in standard tournaments.}\label{fig:std_results}
     \end{subfigure}
     \hfill
-    \begin{subfigure}{0.485\textwidth}
+    \begin{subfigure}{0.47\textwidth}
         \centering
         \includegraphics[width=\textwidth]{src/chapters/04/paper/meta-analysis-of-prisoners-dilemma-tournaments/images/r_distribution_noise_subset.pdf}
         \caption{$r$ distributions of top 15 strategies in noisy tournaments with \(p_n < 0.1\).}\label{fig:noise_subset_results}
@@ -327,7 +335,7 @@ are given by Figure~\ref{fig:r_distributions}.
         \caption{$r$ distributions of top 15 strategies in noisy tournaments.}\label{fig:noise_results}
     \end{subfigure}
     \quad
-    \begin{subfigure}{0.485\textwidth}
+    \begin{subfigure}{0.47\textwidth}
         \centering
         \includegraphics[width=\textwidth]{src/chapters/04/paper/meta-analysis-of-prisoners-dilemma-tournaments/images/r_distribution_probend_subset.pdf}
         \caption{\(r\) distributions of top 15 strategies in 1139 probabilistic ending
@@ -341,7 +349,7 @@ are given by Figure~\ref{fig:r_distributions}.
         \caption{$r$ distributions of top 15 strategies in probabilistic ending tournaments.}\label{fig:probend_results}
     \end{subfigure}
     \quad
-    \begin{subfigure}{0.485\textwidth}
+    \begin{subfigure}{0.47\textwidth}
         \centering
         \includegraphics[width=\textwidth]{src/chapters/04/paper/meta-analysis-of-prisoners-dilemma-tournaments/images/r_distribution_probend_noise.pdf}
         \caption{$r$ distributions of top 15 strategies in noisy probabilistic ending tournaments.}
@@ -383,8 +391,8 @@ In the case of noisy tournaments with smaller noise \(p_n < 0.1\) the top
 performing strategies
 include strategies specifically designed for noisy tournaments. These are DBS,
 Evolved FSM 16 Noise 05, Evolved ANN 5 Noise 05, PSO Gambler 2 2 2 Noise 05 and
-Omega Tit For Tat~\cite{kendall2007iterated}. Omega Tit For Tat, a strategy designed
-to break the deadlocking cycles of \(CD\) and \(DC\) that TFT can fall into in noisy
+Omega Tit For Tat~\cite{kendall2007iterated}. Omega Tit For Tat, another strategy designed
+to break the deadlocking cycles of \(CD\) and \(DC\) that Tit For Tat can fall into in noisy
 environments, places 10th. The rest of the top ranks are
 occupied by strategies which performed well in standard tournaments and
 deterministic strategies such as Spiteful Tit For Tat~\cite{prison}, Level
@@ -456,7 +464,7 @@ competition.
 
 \begin{table}[!htbp]
     \centering
-    \resizebox{.30\textwidth}{!}{
+    \resizebox{.25\textwidth}{!}{
     \input{src/chapters/04/paper/meta-analysis-of-prisoners-dilemma-tournaments/paper/performance_merged_table.tex}}
     \caption{Top performances over all the tournaments. The top ranks include
     strategies that have been previously mentioned. The set of Retaliate
@@ -558,13 +566,14 @@ $k$ & The number of repetitions of a given tournament & trial summary & integer 
     turns. The SSE (introduced in~\cite{Knight2019}) shows how close a strategy
     is to behaving as a ZDs, and subsequently, in an extortionate way. The
     method identifies the ZDs closest to a given strategy and calculates the
-    algebraic distance between them as the sum of squared error (SSE). A SSE value of 1 indicates
+    algebraic distance between them, defined as SSE. More details on the measure
+    are presented in Chapter~\ref{chapter:memory_one}. A SSE value of 1 indicates
     no extortionate behaviour at all whereas a value of 0 indicates that a
     strategy is behaving as a ZDs. The rest of the features considered are the $CC$
     to $C$, $CD$ to $C$, $DC$ to $C$, and $DD$ to $C$ rates as well as
     cooperating ratio of a strategy, the minimum (\(C_{min}\)), maximum
     (\(C_{max}\)), mean (\(C_{mean}\)) and median (\(C_{median}\)) cooperating
-    ratios of each tournament.} %TODO reminder for SSE
+    ratios of each tournament.}
     \label{table:manual_features}
 \end{table}
 
@@ -661,7 +670,8 @@ in the distinct tournaments and their regression coefficients.
 
 A multivariate linear regression has also be fitted on the median score. The
 coefficients and \(p\) values of the features can be found in
-Appendix~\ref{app:regression_median_score}. This approach leads to similar conclusions.
+Appendix~\ref{app:further_regression}. The results of the two methods
+are in agreement.
 
 The feature \(C_{r} / C_{\text{mean}}\) has a statistically significant effect
 across all models and a high regression coefficient. It has both a positive and
@@ -831,12 +841,12 @@ significant effects based on the multivariate regression models.
 
 A third method that evaluates the importance of the features in
 Table~\ref{table:manual_features} using clustering and random forests can be found in
-the Appendix~\ref{app:clustering_approach}. The results uphold the outcomes of the
+the Appendix~\ref{app:clustering}. The results uphold the outcomes of the
 correlation and multivariate regression. It also evaluates the effects
 of the classifiers stochastic, make use of game, and make use of length which
 have not been evaluated by the methods above because there are binary variables.
 The results imply that they have no significant effect on a strategy's
-performance. %TODO fix appendix
+performance.
 
 \section{Chapter Summary}\label{section:conclusion} %TODO re write
 
