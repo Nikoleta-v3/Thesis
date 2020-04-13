@@ -220,4 +220,6 @@ words = {
     "impactful",
     "provocable",
     "sensei",
+    "arcas",
+    "pre"
 }
