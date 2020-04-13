@@ -18,7 +18,7 @@ separate approaches:
 
 \begin{itemize}
     \item In Chapter~\ref{chapter:literature_review} whilst conducting a
-    condensed literature review it became clear how several of the reviewed
+    literature review it became clear how several of the reviewed
     manuscripts fitted under research topics. These research topics were
     determined manually by inspecting the manuscripts individually. Namely, the
     research topics determined by this approach have been evolutionary dynamics,
@@ -38,7 +38,7 @@ and the bespoke data set of articles resulted in a further research question.
 This was whether the academic field of the Prisoner’s Dilemma is cooperative and
 whether there is influence between the authors.
 
-It was deduced that the field of the Iterated Prisoner's Dilemma is a
+It was shown that the field of the Iterated Prisoner's Dilemma is a
 collaborative field and authors are likely to write with a collaborator's
 co-authors whilst on average having 4 co-authors. The field is not
 necessarily more collaborative than other fields, as many authors authors just
@@ -80,19 +80,19 @@ tournament types.
 
 \section{Contributions}
 
-This thesis has made novel contributions across various themes. Initially, numerous
+This thesis has made novel contributions across various themes. Numerous
 research software packages have been implemented as part of this thesis. These
 packages have been written following the highest standards of software
 development, and have been made available so that other researchers can
-contribute to and use them. The packages include Arcas a tool designed for
+contribute to and use them. The packages include \mintinline{python}{arcas} a tool designed for
 scraping academic articles from various APIs and
 \mintinline{python}{sequences-sensei} a project for performing genetic
 algorithms. Additionally, software contributions were made to well established
 Python libraries such as SymPy~\cite{sympy} and Axelrod-Python
 library~\cite{axelrodproject}.
 
-A total of six accompanying data sets have been generated as a result of this
-work. These have been achieved and made available via Zenodo, and likewise, are
+A total of six accompanying data sets have been generated as a result of this. % TODO Include itemise list with each of them and a super brief description (the title of the data set).
+work. These have been archived and made available via Zenodo, and likewise, are
 available to other researchers. They can be use to conduct further analysis and
 provide new insights to the field. These data sets include one of the largest
 collection of Iterated Prisoner's Dilemma tournaments known to the field.
@@ -103,21 +103,20 @@ strategies which can be of interest to researchers designing a new strategy
 for new environments, or just to understand the reasons behind some strategies
 being better than others. Complementing this, a new mathematical framework has
 been developed for the better understanding of memory-one strategies and an
-early attempt of using recurrent neural networks to train Iterate Prisoner's
-Dilemma strategies has been presented which researchers can improve on.
+an initial understanding of using recurrent neural networks to train Iterate Prisoner's
+Dilemma strategies has been presented.
 
-Finally, it has contributed to the continuous understanding of the emergence of
+Finally, this thesis has contributed to the continuous understanding of the emergence of
 cooperation by providing a condition for which cooperation can not occur in
-memory-one environments, and it has proven that constrained quadratic
+memory-one environments. It has also has proven that constrained quadratic
 ratio optimisation problems that are non concave can be solved explicitly by
 using resultant theory.
 
 \section{Complementary Research}
 
-The results of this thesis are not the only scientific results produced
-during the course of this doctoral research.
+The results of this thesis are not the only scientific results to which I contributed during this doctoral research.
 
-Two further undertaken projects which likewise focused on the Iterated
+Two other projects which focused on the Iterated
 Prisoner's Dilemma have been
 \cite{Knight2017, Harper2017}. The works of~\cite{Knight2017, Harper2017}
 focused on the usage of reinforcement learning algorithms (genetic algorithms
@@ -129,7 +128,7 @@ models and neural networks. These strategies were trained in two settings:
     \item A Moran process which is an evolutionary model of invasion and
     resistance across time during which high performing individuals are more
     likely to be replicated.
-    \item A standard tournament
+    \item A standard tournament.
 \end{itemize}
 
 The results of~\cite{Knight2017} were confirmed in
@@ -158,7 +157,7 @@ the lively debate on legalising rhino horn trade.
 Finally, providing science outreach workshops is a great way to gain a deeper
 understanding of science and its applications, and enhancing students interest
 in science. With that in mind an open source educational tutorial, called Game
-Theory and Python~\cite{Glynatsi2017_game}, aimed at introducing participants to
+Theory and Python~\cite{Glynatsi2017_game}, aimed at introducing participants to. % TODO Add JOSE paper when it's done
 game theory and more specifically to repeated games was created. The tutorial is
 aimed at two groups of individuals, familiar with Python (programmers) who want
 to start to learn game theory, mathematicians with little or no programming
@@ -186,7 +185,7 @@ as DBS, Evolved FSM 16 Noise 05, Evolved ANN 5 Noise 05, PSO Gambler 2 2 2 Noise
 and Omega Tit For Tat, performed adequately only in tournaments with restricted
 noise. This indicates that possibly there is not a strategy in the literature
 trained to be effective for a broad spectrum of noise values. Training such
-strategy would be an interesting avenue of further research. The analysis of the
+a strategy would be an interesting avenue of further research. The analysis of the
 top performances would then be reproduced whilst including the new trained strategy.
 
 \textbf{Future research - Memory-one strategies}
@@ -194,18 +193,15 @@ top performances would then be reproduced whilst including the new trained strat
 In Chapter~\ref{chapter:memory_one} the empirical results supported that
 extortionate play is not always optimal and that memory-one strategies suffer
 from their limited memory in multi agent interactions. All the empirical results
-presented have been for the case of two opponents (\(N=2\)). A strictly value of \(N=2\) was
-considered due to computational efficiency. However, in the Iterate Prisoner's
-Dilemma multi agent interactions commonly include more than two strategies. A
-future research would be to validate the empirical results of the Chapter for
+presented have been for the case of two opponents (\(N=2\)). A
+future research direction would be to validate the empirical results of the Chapter for
 larger values of \(N\).
 
 Another restricted set of strategies on memory that have been studied in the literature
 are memory-two strategies. These are strategies that take into account the past
 two turns of the match. A compelling research question that arises is whether
 the current formulation of Chapter~\ref{chapter:memory_one} can be expanded to
-include memory-two strategies, and whether the results still hold. Moreover,
-it would be aimed to generalised the results to memory-\(n\) strategies.
+include memory-two strategies, and whether the results still hold.
 
 \textbf{Future research - Training an LSTM strategy}
 
