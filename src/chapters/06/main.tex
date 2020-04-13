@@ -72,15 +72,14 @@ by Table~\ref{table:s_vs_cooperator},
 \centering
 \begin{tabular}{cccccccccccc}
     & \textbf{1} & \textbf{2} & \textbf{3} & \textbf{4}  & \textbf{5} & \textbf{6} & \textbf{7} & \textbf{8}  & \textbf{9} & \textbf{10} & 
-    \(U_{(S, \text{Cooperator})}\) \\ \midrule
+    \(U(S, \text{Cooperator})\) \\ \midrule
     \(S\) & \(D\) & \(D\) & \(D\) & \(C\) & \(C\) & \(C\) & \(D\) & \(D\) & \(C\) & \(C\) & 4.0 \\
     Cooperator & \(C\) & \(C\) & \(C\) & \(C\) & \(C\) & \(C\) & \(C\) & \(C\) & \(C\) & \(C\) & 1.5 \\ \bottomrule
 \end{tabular}
 \caption{Match between \(S = \{D, D, D, C, C, C, D, D, C, C\}\) and Cooperator.}\label{table:s_vs_cooperator}
 \end{table}
 
-where \(U(S, q)\) is the average score per turn the strategies scored against a
-given opponent \(q\).
+where \(U(S_1, S_2)\in \mathbb{R}^2\) is the average scores per turn scored by strategies \(S_1\) and \(S_2\).
 
 A sequence strategy \(S\) can play against strategies that react to the history,
 as demonstrated by Table~\ref{table:s_vs_tft}
@@ -89,7 +88,7 @@ as demonstrated by Table~\ref{table:s_vs_tft}
 \centering
 \begin{tabular}{cccccccccccc}
     & \textbf{1} & \textbf{2} & \textbf{3} & \textbf{4}  & \textbf{5} & \textbf{6} & \textbf{7} & \textbf{8}  & \textbf{9} & \textbf{10} &
-    \(U_{(S, \text{Tit For Tat})}\) \\ \midrule
+    \(U(S, \text{Tit For Tat})\) \\ \midrule
     \(S\) & \(D\) & \(D\) & \(D\) & \(C\) & \(C\) & \(C\) & \(D\) & \(D\) & \(C\) & \(C\) & 2.2 \\
     Tit For Tat & \(C\) & \(D\) & \(D\) & \(D\) & \(C\) & \(C\) & \(C\) & \(D\) & \(D\) & \(C\) & 2.2 \\ \bottomrule
 \end{tabular}
@@ -103,7 +102,7 @@ of cooperating at each turn, Table~\ref{table:s_vs_random}.
 \centering
 \begin{tabular}{cccccccccccc}
     & \textbf{1} & \textbf{2} & \textbf{3} & \textbf{4}  & \textbf{5} & \textbf{6} & \textbf{7} & \textbf{8}  & \textbf{9} & \textbf{10} &
-    \(U_{(S, \text{Random})}\) \\ \midrule
+    \(U(S, \text{Random})\) \\ \midrule
     \(S\) & \(D\) & \(D\) & \(D\) & \(C\) & \(C\) & \(C\) & \(D\) & \(D\) & \(C\) & \(C\) & 2.4 \\
     Random & \(C\) & \(D\) & \(D\) & \(C\) & \(C\) & \(C\) & \(D\) & \(D\) & \(C\) & \(C\) & 1.9 \\ \bottomrule
 \end{tabular}
@@ -123,7 +122,7 @@ average score per turn is maximised. More specifically,
 
 \begin{equation}\label{eq:best_response}
     \begin{aligned}
-    \max_{S^*}: & U_{(S^*, q)}
+    \max_{S^*}: & U(S^*, q)
     \end{aligned}
 \end{equation}
 
@@ -131,7 +130,7 @@ where \(q\) is not a memory-one opponent, but can be any IPD strategy.
 
 Identifying best responses to some opponents can be a trivial problem, for
 example the best response sequence for \(N\) turns against Cooperator is
-\(\{D\}^N\), however, for most strategies identifying best responses is a
+\(\{D\}^N\), however, for most strategies identifying best responses is a. % TODO Chat about correct way to describe this mathematically.
 complex problem.
 
 For this reason, best response sequences are not manually identified but instead
