@@ -6,8 +6,8 @@ brief.
 
 \section{Research Summary}
 
-The fundamental research question of this thesis is the same question which has
-troubled the scientific community since the formulation of the Iterated
+The fundamental research question of this thesis has been the same question that
+has troubled the scientific community since the formulation of the Iterated
 Prisoner's Dilemma in 1950. Namely, what is the optimal behaviour an Iterated
 Prisoner's Dilemma strategy should adapt as a response to different
 environments.
@@ -23,51 +23,55 @@ specifically for the game.
 
 In Chapter~\ref{chapter:bibliometric_study} a bespoke research software tool
 called \mintinline{python}{arcas} was developed and used to collect a data set
-of articles metadata on the Iterate Prisoner's Dilemma. A topic modelling
-technique called Latent Dirichlet Allocation used the abstracts of these
-articles and identified five research topics of the field. These were human
+of articles' metadata on the Iterate Prisoner's Dilemma. A topic modelling
+technique, called Latent Dirichlet Allocation, was applied to the abstracts of these
+articles and allocated them into five different research topics. These were human
 subject research, biological studies, strategies, evolutionary dynamics on
-networks and modelling problems as a Prisoner's Dilemma. The bespoke data set
-was further analysed to explore whether the academic field of the Prisoner's Dilemma
-is cooperative and whether there is influence between the authors.
+networks and modelling problems as a Prisoner's Dilemma.
 
-It was shown that the field of the Iterated Prisoner's Dilemma is a
-collaborative field and authors are likely to write with a collaborator's
-co-authors whilst on average having 4 co-authors. The field is not
-necessarily more collaborative than other fields, as many authors authors just
-tend to collaborate with authors from one community but not many authors are
-involved in multiple communities. Exploring the influence of authors based on
-their publications concluded that authors do not gain much influence, and the
-authors with influence are only the ones connected to a ``main'' group of
-authors.
+The bespoke data set was further analysed to explore whether the academic field
+of the Prisoner's Dilemma is cooperative and whether there is influence between
+the authors. It was shown that the field of the Iterated Prisoner's Dilemma is a
+collaborative field, yet it is not necessarily more collaborative than other
+fields. Many authors tend to collaborate with authors from one community
+and are not involved in multiple communities. Exploring the influence of authors
+in the field based on the specific publications showed that authors do not gain
+much influence, and the only ones with influence are the ones connected to a
+``main'' group.
 
-Chapter~\ref{chapter:meta_tournaments} examined a collection of
-\numberofstrategies strategies in the largest and more diverse collection of
-computer tournaments in the field. The results across the
-\numberofalltournaments tournaments deduced that there was not a single strategy
-that performs well in diverse Iterated Prisoner's Dilemma scenarios. The later
-parts of the Chapter analysed and extracted the salient features of the best
-performing strategies across various tournament types, casting the results in
-terms of Axelrod's original suggested features of good Iterated Prisoner's
-Dilemma strategies. Chapter~\ref{chapter:meta_tournaments} established that the
-properties of a successful strategy are: be nice, be provocable and contrite, be
+Chapter~\ref{chapter:meta_tournaments} examined the performance of a collection
+of \numberofstrategies strategies in the largest collection of computer
+tournaments in the field. The results across the \numberofalltournaments
+tournaments of various tournaments types deduced that there was not a single strategy that
+performs well in diverse Iterated Prisoner's Dilemma scenarios.
+The later parts of the Chapter analysed and extracted the salient features of the best
+performing strategies across the various tournament types and established that there
+are several properties that heavily influence the best performing
+strategies. There were: be nice, be provocable and forgiving, be
 a little envious, be clever, and adapt to the environment.
 
 Chapter~\ref{chapter:memory_one} investigated best response memory-one
-strategies with a theory of mind. Chapter~\ref{chapter:memory_one} presented
-several theoretical and numerical results. It proved that the utility of a
-memory-one strategy against a set of memory-one opponents can be written as a
-sum of ratios of quadratic forms and that there is a compact way of identifying
-a memory-one best response to a group of opponents through a search over a
-discrete set. Moreover, that there is a condition for which in an environment of
-memory-one opponents defection is the stable choice, based only on the
-coefficients of the opponents.
-The numerical results of Chapter~\ref{chapter:memory_one} reinforced established
-result of the literature that have shown that extortionate play is not always
-optimal by showing that optimal play is often not extortionate, and that
-memory-one strategies suffer from their limited memory in multi agent
-interactions and can be out performed by optimised strategies with longer
-memory.
+strategies with a theory of mind. It presented
+several theoretical and numerical results. More specifically, it proved that:
+
+\begin{itemize}
+    \item The utility of a
+    memory-one strategy against a set of memory-one opponents can be written as a
+    sum of ratios of quadratic forms.
+    \item There is a compact way of identifying
+    a memory-one best response to a group of opponents through a search over a
+    discrete set.
+    \item There is a condition for which in an environment of
+    memory-one opponents defection is the stable choice, based only on the
+    coefficients of the opponents.
+\end{itemize}
+
+Additionally, the numerical results of Chapter~\ref{chapter:memory_one}
+reinforced established result of the literature. Namely, they showed that
+extortionate play is not always optimal by showing that optimal play is often
+not extortionate, and that memory-one strategies suffer from their limited
+memory in multi agent interactions and can be out performed by optimised
+strategies with longer memory.
 
 Chapter~\ref{chapter:lstm} %TODO include results.
 
@@ -84,7 +88,9 @@ algorithms. Additionally, software contributions were made to well established
 Python libraries such as SymPy~\cite{sympy} and Axelrod-Python
 Library~\cite{axelrodproject}.
 
-A total of six accompanying data sets have been generated as a result of this thesis.
+A total of six accompanying data sets have been generated as a result of this thesis,
+which include one of the largest collection of Iterated Prisoner's Dilemma
+tournaments known to the field:
 
 \begin{enumerate}
     \item Articles' meta data on the Prisoner's Dilemma~\cite{pd_data_2018}.
@@ -97,15 +103,12 @@ A total of six accompanying data sets have been generated as a result of this th
 \end{enumerate}
 
 These have been archived and made available via Zenodo, and likewise, are
-available to other researchers to conduct further analysis and
-provide new insights to the field. These data sets include one of the largest
-collection of Iterated Prisoner's Dilemma tournaments known to the field.
+available to other researchers. They can be used to conduct further analysis and
+provide new insights to the field.
 
 A total of four scientific manuscripts presenting the methodology, analysis and
 results of this thesis have been prepared and are currently under submission to
-respective academic journals. The manuscripts have been uploaded on the pre
-print server arXiv and are currently available and accessible to the scientific
-community.
+respective academic journals. The title of these manuscripts are:
 
 \begin{enumerate}
     \item A bibliometric study of research topics, collaboration and influence
@@ -118,6 +121,10 @@ community.
     memory in the Prisoner's Dilemma.
 \end{enumerate} %TODO add citations
 
+These manuscripts have been uploaded on the pre
+print server arXiv and are currently available and accessible to the scientific
+community.
+
 Designing new strategies is an important type of research for the field.
 This thesis has introduced an abundant number of properties of successful
 strategies which can be of interest to researchers designing a new strategy
@@ -126,12 +133,6 @@ being better than others. Complementing this, a new mathematical framework has
 been developed for the better understanding of memory-one strategies and an
 an initial understanding of using recurrent neural networks to train Iterate Prisoner's
 Dilemma strategies has been presented.
-Chapters~\ref{chapter:meta_tournaments},~\ref{chapter:memory_one},
-and~\ref{chapter:lstm} reinforce and disprove well established results on optimal
-behaviour by
-exploring new mathematical and computing avenues, and moreover, they have introduced
-crucial properties that drive and explain the success of strategies across all
-tournament types.
 
 Finally, this thesis has contributed to the continuous understanding of the emergence of
 cooperation by providing a condition for which cooperation can not occur in
@@ -142,9 +143,8 @@ using resultant theory.
 \section{Complementary Research}
 
 The results of this thesis are not the only scientific results to which I
-contributed during this doctoral research. This section discusses undertaken
-projects and publications to which I have been involved as a contributor and
-an author.
+contributed during this doctoral research. The publications that will be
+discussed in this section are publications to which I am an author.
 
 Two other projects which focused on the Iterated
 Prisoner's Dilemma have been
@@ -164,7 +164,7 @@ models and neural networks. These strategies were trained in two settings:
 The results of~\cite{Knight2017} were confirmed in
 Chapter~\ref{chapter:meta_tournaments}. The trained strategies performed at
 the top of the standard tournament surpassing well established
-strategies such as Tit For Tat, Pavlov, Gradual and zero determinant strategies.
+strategies such as Tit For Tat, Pavlov, Gradual and zero-determinant strategies.
 In~\cite{Harper2017} it was observed that the trained strategies (with no manual
 input) evolved the ability to have a handshake, to recognise themselves. This
 was particularly important in a Moran process of resisting invasion where a
@@ -177,7 +177,7 @@ level today and in protected areas devaluation approaches are used to secure the
 life of the animals. The effectiveness of these approaches, however, relies on
 poachers behaviour as they can be selective and not kill devalued rhinos or
 indiscriminate. Populations of differently behaving poachers were modelled using
-evolutionary game theory, and the results
+evolutionary game theory. The results
 demonstrated that full devaluation of all rhinos is likely to lead to
 indiscriminate poaching and that devaluating of rhinos can only be effective
 when implemented along with a strong disincentive framework. The paper aimed to
@@ -186,11 +186,11 @@ the lively debate on legalising rhino horn trade.
 
 Finally, providing science outreach workshops is a great way to gain a deeper
 understanding of science and its applications, and enhancing students interest
-in science. With that in mind an open source educational tutorial, called Game
-Theory and Python~\cite{Glynatsi2017_game}, aimed at introducing participants to. % TODO Add JOSE paper when it's done
-game theory and more specifically to repeated games was created. The tutorial is
-aimed at two groups of individuals, familiar with Python (programmers) who want
-to start to learn game theory, mathematicians with little or no programming
+in science. With that in mind I created an open source educational tutorial, called Game
+Theory and Python~\cite{Glynatsi2017_game}, aimed at introducing participants to % TODO Add JOSE paper when it's done
+game theory and more specifically to repeated games. The tutorial is
+aimed at two groups of individuals: individuals familiar with Python (programmers) who want
+to start to learn game theory and mathematicians with little or no programming
 knowledge as a pathway to programming through the interesting subject. The
 tutorial has gained much interest and is currently under submission at the
 Journal of Open Source Education.
