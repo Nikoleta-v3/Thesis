@@ -41,25 +41,25 @@ Chapter is structured as follow:
 \section{Iterated Prisoner Dilemma Strategies as Sequences}\label{section:ipd_as_sequences}
 
 In a finite \(N\) round IPD match a player that does not react to their opponent
-can be defined by a sequence,
+is defined by a sequence,
 
 \begin{equation}
-    S \in \{C, D\} ^ n
+    S \in \{C, D\} ^ n, \text{where } 1 \leq n \leq N.
 \end{equation}
 
-where \(n\) is the length of the sequence and \(1 \leq n \leq N\).
-
-Strategies that play sequences, and more specifically play sequences periodically, are already established in the
-literature~\cite{Beaufils1997}. These strategies include Periodic Player \(CD\), Periodic Player \(DC\),
+Strategies that base their actions on sequences are already established in the
+literature~\cite{Beaufils1997}. Such strategies include Periodic Player \(CD\), Periodic Player \(DC\),
 Periodic Player \(CCD\) and Periodic Player \(DDC\)~\cite{Li2011, Mittal2009},
-or as refereed to in~\cite{Knight2016} Cycler \(CD\), Cycler \(DC\),
-Cycler \(CCD\) and Cycler \(DDC\). Similarly to these works, this Chapter will
-consider strategies that play sequences, however for strictly \(n = N\), thus
-a sequence is repeated once.
+or as referred to in~\cite{Knight2016} Cycler \(CD\), Cycler \(DC\),
+Cycler \(CCD\) and Cycler \(DDC\). These are strategies that given sequences
+periodically, compared to these, the strategies concerned with here play a given
+sequence only once. Thus \(n = N\).
 
-As an example of such a strategy consider a match of \(N = 10\) between the strategy \(S = \{D, D, D, C, C, C, D,
-D, C, C\}\) and a Cooperator. The match between the two strategies is captured
-by Table~\ref{table:s_vs_cooperator},
+As an example consider a match of 10 turns between the strategy \(S = \{D, D, D,
+C, C, C, D, D, C, C\}\) and a Cooperator. The match between the two strategies
+is captured by Table~\ref{table:s_vs_cooperator} where \(U(s_1, s_2)\in
+\mathbb{R}^2\) is the average scores per turn scored by strategies \(s_1\) and
+\(s_2\).
 
 \begin{table}[htb]
 \centering
@@ -69,13 +69,12 @@ by Table~\ref{table:s_vs_cooperator},
     \(S\) & \(D\) & \(D\) & \(D\) & \(C\) & \(C\) & \(C\) & \(D\) & \(D\) & \(C\) & \(C\) & 4.0 \\
     Cooperator & \(C\) & \(C\) & \(C\) & \(C\) & \(C\) & \(C\) & \(C\) & \(C\) & \(C\) & \(C\) & 1.5 \\ \bottomrule
 \end{tabular}
-\caption{Match between \(S = \{D, D, D, C, C, C, D, D, C, C\}\) and Cooperator.}\label{table:s_vs_cooperator}
+\caption{The interactions of a 10 turns match between \(S = \{D, D, D, C, C, C, D, D, C, C\}\) and
+Cooperator as well as the average score per turn achieved by each strategy.}\label{table:s_vs_cooperator}
 \end{table}
 
-where \(U(s_1, s_2)\in \mathbb{R}^2\) is the average scores per turn scored by strategies \(s_1\) and \(s_2\).
-
-A sequence strategy \(S\) can play against strategies that react to the history,
-as demonstrated by Table~\ref{table:s_vs_tft}
+A sequence strategy \(S\) can play against strategies that react to the history.
+For example against Tit Tor Tat as demonstrated by Table~\ref{table:s_vs_tft},
 
 \begin{table}[htb]
 \centering
@@ -85,86 +84,92 @@ as demonstrated by Table~\ref{table:s_vs_tft}
     \(S\) & \(D\) & \(D\) & \(D\) & \(C\) & \(C\) & \(C\) & \(D\) & \(D\) & \(C\) & \(C\) & 2.2 \\
     Tit For Tat & \(C\) & \(D\) & \(D\) & \(D\) & \(C\) & \(C\) & \(C\) & \(D\) & \(D\) & \(C\) & 2.2 \\ \bottomrule
 \end{tabular}
-\caption{Match between \(S = \{D, D, D, C, C, C, D, D, C, C\}\) and Tit For Tat.}\label{table:s_vs_tft}
+\caption{The interactions and average score per turn of a 10 turns match between
+\(S = \{D, D, D, C, C, C, D, D, C, C\}\) and Tit For Tat.}\label{table:s_vs_tft}
 \end{table}
 
-and against sophisticated strategies, such as Random with a probability \(0.5\)
-of cooperating at each turn, Table~\ref{table:s_vs_random}.
+and against stochastic strategies such as Random. Random cooperates with a
+probability of \(0.5\) at ech turn. The actions of the strategy are
+probabilistic and not deterministic and due to that its actions can differ
+between repetitions. The actions of stochastic strategies that react to the
+history also differ between repetitions even when the history of the match is
+the same. Tables~\ref{table:s_vs_random} and~\ref{table:s_vs_random}, both
+capture a match between \(S\) and a Random player. For a match of 10 turns
+Random has a total of \(2^{10}\) %TODO check my maths is right possible plays.
+In order to capture several instances of stochastic strategies' plays computer
+seeding is used in section~\ref{section:generating_sequences}.
 
 \begin{table}[htb]
 \centering
 \begin{tabular}{cccccccccccc}
     & \textbf{1} & \textbf{2} & \textbf{3} & \textbf{4}  & \textbf{5} & \textbf{6} & \textbf{7} & \textbf{8}  & \textbf{9} & \textbf{10} &
     \(U(S, \text{Random})\) \\ \midrule
+    \(S\) & \(D\) & \(D\) & \(D\) & \(C\) & \(C\) & \(C\) & \(D\) & \(D\) & \(C\) & \(C\) & 2.2 \\
+    Random & \(D\) & \(D\) & \(C\) & \(C\) & \(D\) & \(C\) & \(D\) & \(C\) & \(C\) & \(D\) & 2.2 \\ \bottomrule
+\end{tabular}
+\caption{The interactions and average score per turn of a 10 turns match between
+\(S = \{D, D, D, C, C, C, D, D, C, C\}\) and Random.}\label{table:s_vs_random}
+\end{table}
+
+\begin{table}[htb]
+\centering
+\begin{tabular}{cccccccccccc}
+    & \textbf{1} & \textbf{2} & \textbf{3} & \textbf{4}  & \textbf{5} & \textbf{6} & \textbf{7} & \textbf{8}  & \textbf{9} & \textbf{10} & \(U(S, \text{Random})\) \\ 
+    \midrule 
     \(S\) & \(D\) & \(D\) & \(D\) & \(C\) & \(C\) & \(C\) & \(D\) & \(D\) & \(C\) & \(C\) & 2.4 \\
     Random & \(C\) & \(D\) & \(D\) & \(C\) & \(C\) & \(C\) & \(D\) & \(D\) & \(C\) & \(C\) & 1.9 \\ \bottomrule
 \end{tabular}
-\caption{Match between \(S = \{D, D, D, C, C, C, D, D, C, C\}\) and Random.}\label{table:s_vs_random}
+\caption{The interactions and average score per turn of a 10 turns match between
+\(S = \{D, D, D, C, C, C, D, D, C, C\}\) and Random. The actions make by Random
+are different to that Table~\ref{table:s_vs_random}.}\label{table:s_vs_random_2}
 \end{table}
 
-Note that the game of Table~\ref{table:s_vs_random} only captures a single
-behaviour of Random against \(S = \{D, D, D, C, C, C, D, D, C, C\}\). Random is
-a stochastic strategy, and thus the strategy's series of actions can differ even
-when the history of plays is the same. For example Table~\ref{table:s_vs_random_2} demonstrates
-another possible set of interactions between \(S\) and Random.
+As discussed in Chapters~\ref{chapter:introduction} and~\ref{chapter:memory_one},
+a best response strategy is a strategy that achieves that most favourable outcome.
+Thus a best response sequence against a given opponent \(Q\) corresponds
+to a sequence \(S^*\) for which the average score per turn is maximised,
+as given in~(\ref{eq:best_response_sequence}).
 
-\begin{table}[htb]
-    \centering
-    \begin{tabular}{cccccccccccc}
-        & \textbf{1} & \textbf{2} & \textbf{3} & \textbf{4}  & \textbf{5} & \textbf{6} & \textbf{7} & \textbf{8}  & \textbf{9} & \textbf{10} &
-        \(U(S, \text{Random})\) \\ \midrule
-        \(S\) & \(D\) & \(D\) & \(D\) & \(C\) & \(C\) & \(C\) & \(D\) & \(D\) & \(C\) & \(C\) & 2.4 \\
-        Random & \(C\) & \(D\) & \(D\) & \(C\) & \(C\) & \(C\) & \(D\) & \(D\) & \(C\) & \(C\) & 1.9 \\ \bottomrule
-    \end{tabular}
-\caption{Match between \(S = \{D, D, D, C, C, C, D, D, C, C\}\) and Random.
-The actions make by Random are different to that Table~\ref{table:s_vs_random} though the
-actions of \(S\) are the same.}\label{table:s_vs_random_2}
- \end{table}
-
-In section~\ref{section:generating_sequences} computer seeding is introduced.
-Computer seeding allows this work to capture and reproduce several
-instances/behaviour of stochastic strategies.
-
-A best response sequence to a given opponent \(Q\) is the sequence for which the
-average score per turn is maximised. More specifically,
-
-\begin{equation}\label{eq:best_response}
+\begin{equation}\label{eq:best_response_sequence}
     \begin{aligned}
     \max_{S^*}: & U(S^*, Q)
     \end{aligned}
 \end{equation}
 
-Identifying best responses to some opponents can be a trivial problem. The
-optimal sequence against a Cooperator is in an all \(D\) sequence. In fact an
-all \(D\) sequence is optimal against any sequence player whose plays are
-independent of the history.  % TODO Chat about correct way to describe this mathematically.
-There are strategies that have multiple best responses.
-Adaptive, introduced in~\cite{Li2011}, opens by playing a sequence of \(\{\underbrace{C, \dots, C}_{6}\}\)
-followed by a sequence of \(\{\underbrace{D, \dots, D}_{5}\}\). The strategy then proceeds to play
-either \(C\) or \(D\) depending on which action had a higher average score for
-the strategy (the average score is recalculated at each turn). A sequence
+Identifying best responses to some opponents can be a trivial problem, the
+optimal sequence against a Cooperator is in an all \(D\) sequence, however,
+for some strategies identifying best responses is a complex problem. Note that
+in fact the sequence \(\{\underbrace{D, \dots, D}_{N}\}\) is a best response
+against any sequence player whose plays are independent of the history.
+
+Futhermore, there are strategies that have multiple best response sequences. For
+instance the strategy Adaptive introduced in~\cite{Li2011}. Adaptive opens by
+playing a sequence of \(\{\underbrace{C, \dots, C}_{6}\}\) followed by a
+sequence of \(\{\underbrace{D, \dots, D}_{5}\}\). The strategy then proceeds to
+play either \(C\) or \(D\) depending on which action had a higher average score
+for the strategy (the average score is recalculated at each turn). A sequence
 maximises its average score against Adaptive by locking the strategy into
-unconditional cooperations following its opening 11 turns sequence. This is
-achieved by cooperating twice against the strategies whilst it is cooperating
-in its opening moves, because \(2 \times 3 + 0 \times 4 = 6\) is a
-higher average score than \(1 \times 5 = 5\). Thus, there can be multiple best
-responses to Adaptive, two best response sequences to the strategy, for \(N=15\),
-are the sequences:
+unconditional cooperations following its opening 11 turns sequence. In order
+for cooperation to be the most favourable action for Adaptive needs to achieve
+two mutual cooperations at its opening sequence. Because  the score achieved
+by playing \(C\) is \(2 \times 3 + 0 \times 4 = 6\) which is greater than the
+score achieved by \(D\) \(1 \times 5 = 5\).
+Thus, any sequence which incorporates two cooperations in the first 6 turns
+and defects thereafter is a best response sequence to Adaptive. Thus, there
+can be \(2^{6}\) best response sequences. For example \(S_{1}^*\) and \(S_{2}^*\),
 
 \[S_{1}^* = \{C, D, D, D, D, C, D, D, D, D, D, D, D, D, D\}\]
 
-where \(U(S_{1}^*, \text{Adaptive}) = 3.4\) and
-
 \[S_{2}^* = \{D, D, C, C, D, D, D, D, D, D, D, D, D, D, D\}\]
 
-where \(U(S_{2}^*, \text{Adaptive}) = 3.4\).
+where \(U(S_{1}^*, \text{Adaptive}) = U(S_{2}^*, \text{Adaptive}) = 3.4\).
 
-However, identifying best responses and whether there are more than one is
-a complex problem against specific opponents.
-For this reason, best response sequences are not manually identified
-but instead a genetic algorithm is used. A background on genetic algorithms and
-the exact algorithm that is used in this Chapter are detailed in
-section~\ref{section:genetic_algorithm}.
+Due to identifying best response sequences to some opponents being a complex
+problem, and moreover, multiple best response sequences existing for some
+opponents the best response sequences are not manually identified. Instead a
+genetic algorithm is used to estimate them. A background on genetic algorithms
+as well as the details of the specific genetic algorithm devised for this Chapter
+are presented in the following section.
 
 \section{Genetic Algorithm}\label{section:genetic_algorithm}
 
@@ -175,37 +180,29 @@ specific problem on a simple chromosome-like data structure, and apply
 recombination operators to these structures in such a way as to preserve
 critical information. GAs are often viewed as function
 optimisers, although the range of problems to which they have been
-applied~\cite{Hou1994, Jones1997, Yang1998} is quite broad.
+applied is quite broad~\cite{Hou1994, Jones1997, Yang1998}.
 
-An implementation of a GA begins with a population \(P\) of
-potential solutions, a number of generations \(G \in \N\) and a cut-off or
-bottleneck \(b < |P|\). At each generation the algorithm scores and potentially
+An implementation of a GA begins with a \textit{population} \(P\) of
+potential solutions, a number of \textit{generations} \(G \in \N\) and a cut-off or
+\textit{bottleneck} \(b < |P|\). At each generation the algorithm scores and potentially
 removes each member of the population \(p_i \in P\). This is done by using a
 mapping from a member of the population to an ordered set based on an evaluation
-function \(f\), such that \(f(p_i) \to \R\). At the conclusion of each
-generation the top \(b\) ranking members (or proportion of members) by score are
-kept and the rest are discarded. By doing so, critical information regarding
-the successful candidates is preserved and the population rebuilds on it using a
-series of \textit{crossovers} and \textit{mutations}.
+function \(f\), such that \(f(p_i) \to \R\), and by only keeping the top \(b\)
+ranking members (or proportion of members) by score at the end of each
+generation. The rest of the member are discarded. By keeping the top ranked
+individuals critical information regarding the successful candidates is
+preserved and the population rebuilds on it using a series of
+\textit{crossovers} and \textit{mutations}.
 
 \begin{itemize}
-    \item Crossovers take in 2 members of the population and return a new member
-    based on some ``genes'' of the 2 selected members (commonly refereed to as parents).
-    \item Mutations allow a change in a single member of the population. Mutation
-    is commonly associated with a probability \(p_m\) which is the probability
-    of a mutation happening, either at the individual or at each gene of the
-    individual.
+    \item During a crossovers 2 members of the population are selected and a new
+    member is created based on a ``gene'' combination of the 2 selected members
+    (commonly referred to as parents).
+    \item Mutation is a probabilistic change that occurs at an individual,
+    Mutation is commonly associated with a probability, denoted as \(p_m\),
+    which is the probability of a mutation happening, either at the individual
+    or at each gene of the individual.
 \end{itemize}
-
-GA has the ability to avoid being trapped in local optimal solution like
-traditional methods. This ability is due to the properties of crossover and
-mutation. Crossover adds variance in the population by taking properties of both
-parent members and introducing the evaluation of their combination to the
-solution space. The algorithm can search multiple local optimal at once with its
-population and start to identify the global optimal as members become more
-optimised. Moreover, if an a member is trapped in a local optimal with its
-fitness score, a mutation of a certain feature could potentially move their
-position in the solution space to a better local optimal.
 
 A diagrammatical representation of a generic GA is given in Figure~\ref{fig:ga_flow_diagram}.
 
@@ -215,16 +212,24 @@ A diagrammatical representation of a generic GA is given in Figure~\ref{fig:ga_f
     \caption{Generic flow diagram of a GA.}\label{fig:ga_flow_diagram}
 \end{figure}
 
-The purpose of a GA in this Chapter is to estimate the best response sequence to
-a given opponent. Consequently, the members of the population correspond to
-sequences \(S\) of length \(N\), and the evaluation function corresponds to the
-average score per turn of the sequence against its opponent. The detailed GA of
-this work is given by Algorithm~\ref{algorithm:genetic_algorithm}.
+The purpose of a GA here is to estimate the best response sequence to
+a given opponent \(Q\). Consequently, the members of the population correspond to
+sequences,
+
+\[S_i \in P \text{ where } |S_i| = N\]
+
+and the evaluation function corresponds to the
+average score per turn of the sequence against \(Q\),
+
+\[U(S_i, Q) \to \R \text{ for } S_i \in P\]
+
+More specifically, the specific GA used in this Chapter is given
+by Algorithm~\ref{algorithm:genetic_algorithm}.
 
 \begin{algorithm}[!htbp]
     \SetAlgoLined
     \KwIn{\(Q, N, b, p_m, G, K\)}
-    \KwOut{Population at the last generation and the members' scores}
+    \KwOut{The populations at each generation and the members' scores}
      \Begin{
      create initial population (Algorithm~\ref{algorithm:initial_population}) of members \(S\), where \(|S| = N\) and \(|P| = K\)\\
      \While{\(g_{i} < G\)}{
@@ -239,46 +244,48 @@ this work is given by Algorithm~\ref{algorithm:genetic_algorithm}.
             add new member to population\\
             }
      }}
-     \caption{Get population of potential best response sequences}\label{algorithm:genetic_algorithm}
+     \caption{GA for estimating best response sequences to a given opponent \(Q\).}\label{algorithm:genetic_algorithm}
 \end{algorithm}
 
-The initial population is generated using Algorithm~\ref{algorithm:initial_population}.
+The initial population is created using Algorithm~\ref{algorithm:initial_population}.
+
+\begin{algorithm}[!htbp]
+    \SetAlgoLined
+    \KwIn{\(K, N\)}
+    \KwOut{A population of size \(K\).}
+
+    \Begin{
+    set of cuts $\gets$ \(K\) evenly spaced numbers over \([1, N]\) \\
+    \For{\(c \in\) set of cuts}{
+        first new member $\gets$  \(\{\underbrace{C, \dots, C}_{c}\} \cup \{\underbrace{D, \dots, D}_{N-c}\}\) \\
+        second new member $\gets$ \(\{\underbrace{D, \dots, D}_{c}\} \cup \{\underbrace{C, \dots, C}_{N-c}\}\) \\
+        add both members to population
+    }
+        }
+ \caption{Create initial population of individuals \(S\)}\label{algorithm:initial_population}
+\end{algorithm}
+
 Using a starting population of random guesses is a generally common approach in
 the GA literature~\cite{Hou1994}. However, there is efficiency in using non
 random starting populations~\cite{Drezner2005, Osaba2014}.
-In the IPD the best responses to a board number of well established strategies
-are either of the deterministic plays of always cooperating or defecting.
-Thus, both of these are included in the initial population and the rest of
-the population is filled with a combination of these two strategies.
+As discussed in section~\ref{section:ipd_as_sequences} the best response sequence
+to any strategy that does not react to the history is a Defector. Moreover,
+the best response sequence to several strategies such as Tit For Tat and Grudger,
+for a finite match, is \(\{\underbrace{C, \dots, C}_{N-1}, D\}\). These are
+sequences that have been incorporated in the initial population. More specifically,
+Algorithm~\ref{algorithm:initial_population} consider all the possible combinations
+of:
 
-\begin{algorithm}[!htbp]
-        \SetAlgoLined
-        \KwIn{\(K, N\)}
-        \KwOut{A population of size \(K\).}
-    
-        \Begin{
-        set of cuts $\gets$ \(K\) evenly spaced numbers over \([1, N]\) \\
-        \For{\(c \in\) set of cuts}{
-            first new member $\gets$  \(\{\underbrace{C, \dots, C}_{c}\} \cup \{\underbrace{D, \dots, D}_{N-c}\}\) \\
-            second new member $\gets$ \(\{\underbrace{D, \dots, D}_{c}\} \cup \{\underbrace{C, \dots, C}_{N-c}\}\) \\
-            add both members to population
-        }
-            }
-     \caption{Create initial population of individuals \(S\)}\label{algorithm:initial_population}
-\end{algorithm}
+\[\bullet \{\underbrace{C, \dots, C}_{c}, \underbrace{D, \dots, D}_{N-c}\} \text{ for } c \in {1, 2, \dots, N-1} \text{ and}\]
+\[\bullet \{\underbrace{D, \dots, D}_{c}, \underbrace{C, \dots, C}_{N-c}\} \text{ for } c \in {1, 2, \dots, N-1.}\]
 
-The GA of this Chapter has been implemented in the programming language Python
+The GA of Algorithm~\ref{algorithm:genetic_algorithm} has been implemented in the programming language Python
 and it has been organised into a open source package called
 \mintinline{python}{sequence_sensei} available at. %TODO archive
-Figure~\ref{fig:get_initial_population} demonstrates the implementation of
-Algorithm~\ref{algorithm:initial_population} in the package. Moreover,
-Figure~\ref{fig:get_initial_population_example} gives a usage example of
-generating a starting population of a given size using
-\mintinline{python}{sequence_sensei}.
-The bottom members of the populations are the sequences \(\{\underbrace{1, \dots, 1}_{N}\}\) and
-\(\{\underbrace{0, \dots, 0}_{N}\}\), where \(0 \to D\) and \(1 \to C\), as expected. In
-Figure~\ref{fig:get_initial_population_example} it is also illustrated how APL
-can map binary numbers to the IPD actions.
+The properties of creating an initial population, crossover and mutation have been
+implemented as individual functions.
+The implementation of Algorithm~\ref{algorithm:initial_population} in the package
+is given by Figure~\ref{fig:get_initial_population}.
 
 \begin{figure}[!htbp]
 \begin{sourcepy}
@@ -300,9 +307,16 @@ def get_initial_population(half_size_of_population, sequence_length):
 
     return sequences
 \end{sourcepy}
-\caption{Source code of the \mintinline{python}{get_initial_population} function
-implemented in \mintinline{python}{sequence_sensei}.}\label{fig:get_initial_population}
+\caption{Source code for the function \mintinline{python}{get_initial_population}
+implemented in \mintinline{python}{sequence_sensei} which is used to create an
+initial population of a given size.}\label{fig:get_initial_population}
 \end{figure}
+
+Figure~\ref{fig:get_initial_population_example} gives an example of creating an
+initial population using the package. Note that the sequences are of 0s and 1s
+and not IPD actions. The APL project can map binary number to actions such that
+\(0 \to D\) and \(1 \to C\). This is also demonstrated in
+Figure~\ref{fig:get_initial_population_example}.
 
 \begin{figure}[!htbp]
     \begin{usagepy}
@@ -340,23 +354,30 @@ matrix([[C, D, D, D, D, D, D, D],
 generate a population of \(s=10\) and \(N=8\).}\label{fig:get_initial_population_example}
 \end{figure}
 
-The crossover between two members of the population occurs by randomly selecting
-a crossover point (smaller than \(N\)) and by combining the genes right to the
-crossover point from the first parent and the left genes to the crossover point
-from the second parent. Given two member of the population \(S_1 = \{C, C, C, C, C, C, C, C, C, C\}\)
-and \(S_2 = \{C, D, C, D, C, D, C, D, C, D\}\) and given that the crossover point is 4:
+In the GA, as given by Algorithm~\ref{algorithm:genetic_algorithm}, the
+crossover occurs by randomly selecting two member of the population, while \(|P|
+< K\), and randomly selecting a crossover over point. Note that the crossover
+over point need to be smaller than \(N\). The new member initially inherits the
+genes right to the crossover point from the first parent, and then the left
+genes to the crossover point from the second parent.
+
+For instance, given two member of the population \(S_1 = \{C, C, C, C, C, C, C, C, C, C\}\)
+and \(S_2 = \{C, D, C, D, C, D, C, D, C, D\}\) and given that the crossover point is
+4:
 
 \begin{itemize}
-    \item the right genes to the crossover point for \(S_1\) are \(\{\underbrace{C, C, C, C}_{\text{to inherit}}, C, C, C, C, C, C\}\)
-    \item the left genes to the crossover point for \(S_2\) are \(\{C, D, C, D,\underbrace{C, D, C, D, C, D}_{\text{to inherit}}\}\)
+    \item The right genes to the crossover point for \(S_1\) are \(\{\underbrace{C, C, C, C}_{\text{to inherit}}, C, C, C, C, C, C\}.\)
+    \item The left genes to the crossover point for \(S_2\) are \(\{C, D, C, D,\underbrace{C, D, C, D, C, D}_{\text{to inherit}}\}.\)
 \end{itemize}
 
-and thus the new member \(S_3\) is given by,
+Thus, the new member \(S_3\) is given by,
 
-\[S_3 = \{C, C, C, C, C, D, C, D, C, D\}.\]
+\[S_3 = \{\underbrace{C, C, C, C}_{\text{from } S_1}, \underbrace{C, D, C, D, C, D}_{\text{from } S_2}\}.\]
 
-The crossover property has been implemented as a function in the \mintinline{python}{sequence_sensei},
-the source code is given in Figure~\ref{fig:crossover_implementation}.
+The implementation of crossover in \mintinline{python}{sequence_sensei} is given
+by Figure~\ref{fig:crossover_implementation}, and Figure~\ref{fig:crossover_usage}
+demonstrates the usage of the \mintinline{python}{crossover} function to crossover
+\(S_1\) and \(S_2\).
 
 \begin{figure}[!htbp]
 \begin{sourcepy}
@@ -369,11 +390,8 @@ def crossover(sequence_one, sequence_two):
     return sequence_one[:crossover_point] + sequence_two[crossover_point:]
 
 \end{sourcepy}
-\caption{Source code of the crossover property in \mintinline{python}{sequence_sensei}.}\label{fig:crossover_implementation}
+\caption{Source code of the \mintinline{python}{crossover} function.}\label{fig:crossover_implementation}
 \end{figure}
-
-An example of the crossover between a \(S_1\) and \(S_2\) using the \mintinline{python}{crossover}
-function is given in Figure~\ref{fig:crossover_usage}.
 
 \begin{figure}[!htbp]
     \begin{usagepy}
@@ -390,22 +408,34 @@ function is given in Figure~\ref{fig:crossover_usage}.
 [1, 1, 1, 1, 1, 1, 0, 1, 0, 1]
 
 \end{usagepy}
-\caption{Usage example of crossover between \(S_1\) and \(S_2\)}\label{fig:crossover_usage}
+\caption{An example of using \mintinline{python}{crossover} function to crossover \(S_1\) and \(S_2\)}\label{fig:crossover_usage}
 \end{figure}
 
-Following the crossover, a mutation is applied to new member before they are
-added to the population. During the mutation property there is probability
-\(p_m\) that each gene of the new member is flipped. The code to implementation
-the mutation is given by Figure~\ref{fig:mutation_implementation}.
+Following the crossover between two members, a mutation is applied to new member
+before it is are added to the population. Mutation has been implemented as a
+given probability \(p_m\) that each gene of the new member is flipped. A total
+of \(N\) random numbers between \([0, 1]\) are sampled. If the sampled
+probability at time \(i\) in less than \(p_m\) then the \(i^{th}\) gene of the
+individual is flipped, as demonstrated by
+Figure~\ref{fig:mutation_diagrammatic_example}.
+
+\begin{figure}[!htbp]
+    \centering
+    \includestandalone[width=.6\textwidth]{src/chapters/06/tex/mutation_example}
+    \caption{Mutation example of \(S_3\).}\label{fig:mutation_diagrammatic_example}
+\end{figure}
+
+The implementation of mutation in \mintinline{python}{sequence_sensei} is given
+by Figure~\ref{fig:mutation_implementation}, and an example of mutating \(S_3\)
+using the function is given in Figure~\ref{fig:mutation_usage}.
 
 \begin{figure}[!htbp]
     \begin{sourcepy}
 def mutation(gene, mutation_probability): if random.random() <
     mutation_probability: return abs(gene - 1) return gene
 \end{sourcepy}
-\caption{Source code of crossover and mutation properties in \mintinline{python}{sequence_sensei}.}\label{fig:mutation_implementation}
+\caption{Source code of the \mintinline{python}{mutation} function.}\label{fig:mutation_implementation}
 \end{figure}
-
 
 \begin{figure}[!htbp]
     \begin{usagepy}
@@ -415,30 +445,19 @@ def mutation(gene, mutation_probability): if random.random() <
 >>> [ss.mutation(gene, mutation_probability=0.05) for gene in new_member]
 [1, 1, 1, 1, 1, 1, 0, 1, 0, 0]
 
->>> random.seed(1)
->>> [round(random.random(), 3) for gene in new_member]
-[0.134, 0.847, 0.764, 0.255, 0.495, 0.449, 0.652, 0.789, 0.094, 0.028]
 \end{usagepy}
-\caption{Mutation of new member.}\label{fig:crossover_usage}
-\end{figure}
-
-The only gene that has been mutated is the last gene. That means that the
-sampled probabibilites were greatetr than the \(p_m = 0.05\). This can be checked
-by Figure
-
-\begin{figure}[!htbp]
-    \centering
-    \includestandalone[width=.6\textwidth]{src/chapters/06/tex/mutation_example}
-    % \caption{Generic flow diagram of a GA.}\label{fig:ga_flow_diagram}
+\caption{An example of using the \mintinline{python}{mutation} function to mutate
+\(S_3\).}\label{fig:mutation_usage}
 \end{figure}
 
 The main function implemented in \mintinline{python}{sequence_sensei} for
 performing a GA is the \mintinline{python}{evolved} function. The function has
-several input arguments which correspond to the input as given in
-Algorithm~\ref{algorithm:genetic_algorithm}. Details for the parameters' values
-and the scoring process of the populations, and the process of generating a best
-response sequence data set are presented in
-section~\ref{section:generating_sequences}.
+several input arguments which correspond to the inputs of
+Algorithm~\ref{algorithm:genetic_algorithm}. In the following section the
+\mintinline{python}{evolved} function is used to run several trials and estimate
+best response sequence. The parameters' values for each run will be presented there.
+Moreover, the details of the best response sequence collection against the
+\numberofstrategiesbestsequences strategies are presented in the following section.
 
 \section{Generating Best Response Sequences}\label{section:generating_sequences}
 
