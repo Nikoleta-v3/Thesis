@@ -1,1 +1,75 @@
 \chapter{Training a recurrent neural network player}\label{chapter:lstm}
+
+\section{Introduction}
+
+\section{Artificial Neural Networks in the Prisoner's Dilemma Literature}
+
+Literature on artificial neural networks being used in the prisoner's dilemma,
+the luck of recurrent neural networks.
+
+\section{Artificial \& Recurrent Neural Networks}
+
+Introduction to artificial neural networks.
+
+\begin{figure}
+    \centering
+    \includestandalone[width=.1\textwidth]{src/chapters/07/neural_network}
+\end{figure}
+
+Introduction to recurrent neural networks.
+
+\begin{figure}
+    \centering
+    \includestandalone[width=\textwidth]{src/chapters/07/reccurent_neural_network}
+\end{figure}
+
+\section{Training a Recurrent Neural Network as a Strategy}
+
+The two models that we have trained.
+
+The data set we have been trained on.
+
+\subsection{GPU}
+
+Using GPU. Using Keras this becomes trivial. The advantages of GPU. The super
+computer hawk.
+
+\section{Meta Tournament Analysis}
+
+To evaluate the performance of the players similar to chapter~\ref{chapter:meta_tournaments}
+a series of tournaments but not to that scale. The collection process is as.
+
+\begin{table}[!htbp]
+    \begin{center}
+        \resizebox{.6\textwidth}{!}{
+        \begin{tabular}{lcccc}
+    \toprule
+    parameter & parameter explanation &   min value & max value \\
+    \midrule
+    $N$ & number of strategies  & 3 & 195 \\
+    $k$ & number of repetitions  & 10 & 100 \\
+    $n$ & number of turns      & 1 & 200 \\
+    \bottomrule
+        \end{tabular}}
+    \end{center}
+    \caption{Data collection; parameters' values}
+    \label{table:parameters_values}
+\end{table}
+
+
+\begin{algorithm}[!htbp]
+    \setstretch{1.35}
+    \ForEach{\text{seed} $\in [0, 11420]$}{
+        $N \gets \text{randomly select integer}\in [N_{min}, N_{max}]$\;
+        $\text{players} \gets  \text{randomly select $N$ players}$\;
+        $k \gets  \text{randomly select integer}\in [k_{min}, k_{max}]$\;
+        $n \gets  \text{randomly select integer}\in [n_{min}, n_{max}]$\;
+        \vspace{0.4cm}
+        $\text{result standard}$ $\gets$ Axelrod.tournament$(\text{players}, n, k)$\;
+    }
+    \KwRet{result standard}\;
+    \caption{Data collection Algorithm}
+    \label{algorithm:meta_tournament_generation}
+\end{algorithm}
+
+\section{Chapter Summary}

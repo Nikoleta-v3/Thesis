@@ -1,0 +1,16 @@
+\documentclass{standalone}
+\usepackage{tikz}
+\usepackage{standalone}
+\usetikzlibrary{calc}
+
+
+\begin{document}
+    \begin{tikzpicture}
+        \node[chain] (layer) {\textbf{L}};
+        \node[below=1cm of layer, circle, draw=black] (i) {$x$};
+        \node[above=1cm of layer, circle, draw=black] (o) {$h$};
+
+        \draw (layer) edge[->, out=90, in=-90, thick, orange] (o);
+        \draw (i) edge[->, out=90, in=-90, thick, orange] (layer);
+    \end{tikzpicture}
+\end{document}
