@@ -459,22 +459,23 @@ best response sequence. The parameters' values for each run will be presented th
 Moreover, the details of the best response sequence collection against the
 \numberofstrategiesbestsequences strategies are presented in the following section.
 
-\section{Generating Best Response Sequences}\label{section:generating_sequences}
+\section{Data Collection}\label{section:generating_sequences}
 
-In order to generate the data set of best response sequences a collection of
-\numberofstrategiesbestsequences strategies is considered as opponents. This
-collection of strategies is accessible from the APL, and moreover,
-the library is used to simulate the IPD games and to calculate the score
-of the sequence strategies.
+The data set generated in this Chapter was created using the GA and the
+\mintinline{python}{sequence_sensei} packaged introduced in
+section~\ref{section:genetic_algorithm}, and the APL project. The GA of Algorithm
+\ref{algorithm:genetic_algorithm} estimates the best response sequence for a given
+opponent, and in order to generate a collection of best responses a list of
+opponents is obtained from APL. More specifically \numberofstrategiesbestsequences strategies are used
+in this Chapter. These can be found in the Appendix.
 
-The APL projects contains a strategy called Cycler which plays a given sequence
-\(S\). The Cycler strategy is considered to simulate the matches between the
-\numberofstrategiesbestsequences strategies and the potential best response
-sequences. An example of using the strategy Cycler is given in
-Figure~\ref{fig:apl_simulations_cycler}. Figure~\ref{fig:apl_simulations_cycler}
-illustrates how the matches of Tables~\ref{table:s_vs_cooperator}
-and~\ref{table:s_vs_tft} can be simulated using APL, and moreover, how the score
-of each strategy is accessible once the match has been performed.
+The APL project is also used to calculate the average score per turn (\(U(S, Q)\))
+player \(S\) can achieve against an opponent \(Q\). The project contains a specific
+class that can simulate the play any given sequence of Cs and Ds. The player class
+is called Cycler and the class takes as an argument a series of actions in a
+string format. An example of creating and using such player is given by
+Figure~\ref{fig:apl_simulations_cycler}. Once a match has been simulated
+\(U\) can be obtained using an in build method of APL.
 
 \begin{figure}[!htbp]
     \begin{usagepy}
@@ -497,29 +498,30 @@ of each strategy is accessible once the match has been performed.
 (2.2, 2.2)
 
 \end{usagepy}
-\caption{Simulating matches using a Cycler to play a given sequence.}\label{fig:apl_simulations_cycler}
+\caption{Simulating a match between Cycler and Cooperator and Cycler and Tit For Tat.
+The class Cycler takes a given sequence as an input argument in a string format
+('DDDCCCDDCC'). Once a match has been simulate with the \mintinline{python}{play} method
+the average score per turn is obtained using the \mintinline{python}{final_score_per_turn}
+method.}\label{fig:apl_simulations_cycler}
 \end{figure}
 
-The \numberofstrategiesbestsequences strategies used in this Chapter are found
-in the Appendix alongside a citation of their paper of origin.
-From these \numberofstrategiesbestsequences strategies, 62 are stochastic and
-135 are deterministic. As it has been established, the outcome of a match
-between two deterministic strategies never changes, as longs as the environment
-does not include noise. In comparison, the outcomes of a match which includes even a single
-stochastic strategy can be significantly different. In order to
-capture distinct behaviours of stochastic strategies, and to be able to
-reproduce the results of a match with a stochastic strategy, this work considers
-\textit{computer seeding}. In Python a computer seed is used to initialise the
-pseudo random number generator. Seeds are set before generating a random number,
-and if the same seed is used on initialisation then the random output remains
-the same. Thus, as long as a match is being seeded the behaviour of a stochastic
-strategy can be reproduced, and different seeds lead to different series of
-random numbers.
+From the \numberofstrategiesbestsequences strategies, 62 are stochastic and
+135 are deterministic. In section~\ref{section:ipd_as_sequences} it was explained
+that the outcome of match between two deterministic strategies is always the same.
+In comparison, the outcome of match with even a single stochastic strategy can
+differ.
+The concept of a stochastic opponent can be somewhat ``overridden'' by using
+\textit{computer seeding} for seeding the pseudo random number generator (PRNG) that creates the
+parameters that define what moves the strategy will take. Seeds are set before
+generating a random number, and if the same seed is used on initialisation then
+the random output remains the same. Thus, as long as a match is being seeded the
+behaviour of a stochastic strategy can be reproduced, and different seeds lead
+to different series of random numbers.
 
-Consider the example of Random of Table~\ref{table:s_vs_random}. In
-Figure~\ref{fig:random_apl_example} a different seed is being set five times
-before the match between the sequence strategy and Random. The actions of the
-Random strategy are different each time.
+Consider the between Random and \(S = \{D, D, D, C, C, C, D, D, C, C\}\)
+presented in section~\ref{section:ipd_as_sequences}. Random has a total of
+\(2^{10}\) possible plays. Using different computer seeds a number of these
+plays can be simulated and reproduced, Figure~\ref{fig:random_apl_example}.
 
 \begin{figure}[!htbp]
     \begin{usagepy}
@@ -542,24 +544,18 @@ Random strategy are different each time.
 ================================================================================
 
 \end{usagepy}
-\caption{Example code of using seeding to generate different instances of Random.
-The above code snipped will always have the same output even if the matches are
-``random'' because a computer seed is set before performing the
-match.}\label{fig:random_apl_example}
+\caption{Example code of using seeding to generate different plays of Random.
+THe value of seed changes to \{0, 1, 2, 3, 4, 5\} and the seed is set with
+the command axl.seed(seed) before simulating tha game. This initialises the
+pseudo random generator that define what moves Random will take.
+The above code snipped will always have the same output each time it is
+repeated.}\label{fig:random_apl_example}
 \end{figure}
 
-The data generating process selects one opponent from the collection of the
-\numberofstrategiesbestsequences strategies and performs a series of GAs with
-different parameters' values. The population at the last generation as well as
-the scores of the sequences are exported in a csv file. Each time an opponent is
-selected it is evaluated whether that opponent is deterministic or not. For
-deterministic opponents the process is repeated only once, however, for
-stochastic opponents a series of GAs are performed for 10 different seeded
-version of the strategy. Thus, in total the process is repeated (\(135 + 62
-\times 10\)) 755 times. Only a single value for the length of the
-sequences has been considered and that the value of \(N=205\). A diagrammatical
-representation of the collection process is given by
-Figure~\ref{fig:data_generating_process_diagram}.
+A total of 10 different plays are captured for each of the stochastic strategies
+of this Chapter. Thus, a total of 10 different seeds are used for each strategy.
+
+The data collection process is given by Figure~\ref{fig:data_generating_process_diagram}.
 
 \begin{figure}[!htbp]
     \centering
@@ -568,46 +564,189 @@ Figure~\ref{fig:data_generating_process_diagram}.
     sequences generating process.}\label{fig:data_generating_process_diagram}
 \end{figure}
 
-A series of GAs are performed for each of the of 755 distinct \(q\)s with
-different parameter values. These values alongside a short explanation of the
-parameters are given in Table~\ref{table:parameters_summary}. Moreover,
-an example of an exported generation (which is exported in a csv format)
-is given by Table~\ref{table:ouput_summary}.
+From the collections of opponents a strategy is selected at each trial. If the
+strategy is deterministic a set of GAs with different parameters values are
+performed for 2000 generations. The summary of each generation, for each GA
+trial, is written to a csv file and the next opponent is selected. If the
+opponent is stochastic the above process is repeated 10 times. Each time the
+stochastic strategy is accompanied by a different seed value which is used to
+initialise the pseudo random generator before the strategy plays against the
+members of the population. For each stochastic strategy and each seed value the
+generations' details for each GA trial are written to individual csv files.
+
+For each opponent, or opponent-seed combination a total of 18 GAs are performed.
+The different values for each parameter are given by
+Table~\ref{table:parameters_summary}.
 
 \begin{table}[!htbp]
     \begin{center}
-    \resizebox{.7\textwidth}{!}{
-    \begin{tabular}{lllc} \toprule
-    Parameter's symbol& Explanation                   & Values \\ \midrule
-    \(N\)             & number of turns               & \(205\) \\
-    \(p_m\)           & probability of gene mutating  & \(\{0.01, 0.05, 0.1\}\)\\
-    \(b\)             & bottle neck                   & \(10, 20\) \\
-    \(G\)             & number of generations         & \(2000\) \\
-    \(s\)             & size of a population          & \(20, 30, 40\) \\ \bottomrule
+    \resizebox{.5\textwidth}{!}{
+    \begin{tabular}{cccccc} \toprule
+Parameter         & Explanation                   &  Values  \\ \midrule
+\(N\)             & number of turns               &  205 \\
+\(G\)             & number of generations         &  2000 \\
+\(b\)             & bottleneck                    &  10, 20 \\
+\(K\)             & size of a population          &  20, 30, 40 \\
+\(p_m\)           & probability of gene mutating  &  0.01, 0.05, 0.1 \\ \bottomrule
     \end{tabular}}
     \end{center}
     \caption{The parameters of the genetic algorithm.}\label{table:parameters_summary}
 \end{table}
 
+All the best response sequences generated are best response sequences to the
+strategies for \(205\) turns. Moreover, the best response sequences are not to
+\numberofstrategiesbestsequences opponents but more specifically because of the
+seeding (\(135 + 62 \times 10\)) 755. Thus, a total of 755 trials of
+Figure~\ref{fig:data_generating_process_diagram} have been performed.
+
+An example of an exported summary of the GA trials for a deterministic strategy
+is given by Table~\ref{table:alternator_summary}.
+
 \begin{table}[!htbp]
     \resizebox{\textwidth}{!}{
-    \input{src/chapters/06/tex/output_table.tex}}
-    \caption{An exampled of an exported csv. The output has \(s\) number of rows because
-    each row contains information for each member of the population. Alternator is
-    a deterministic strategy, consequently,
-    the value of seed in NaN.}\label{table:ouput_summary}
+    \input{src/chapters/06/tex/alternator_table.tex}}
+    \caption{An exampled of an exported summary. The specific output is for
+    the opponent Alternator. Alternator is a deterministic strategy,
+    consequently, the value of seed in NaN. The values of the different GA
+    parameters are recorded in the summary, as well as the details of each
+    member of each generation. The best responses sequences are the individuals
+    that have the maximum score at \(G_i\) = 2000.}\label{table:alternator_summary}
 \end{table}
 
-An output (Table~\ref{table:ouput_summary}) has \(s\) number of rows because
-each row contains information for each member of the population. At each of these
-members are a potential best response sequence to the given opponent they have
-been trained against. There are cases that more than a single member of the
-final population is a best response. This is intuitive and expected following the
-work of Chapter~\ref{chapter:memory_one} where it was proven that the utility
-of even a memory one player is not concave, and thus, there is not one single
-point which maximises the score against an IPD opponent. The total amount
-of best response sequences which has been retrieved following the process
-discussed in this section is 5503.
+For a stochastic strategy there are a total of 9 exported summaries. An example
+of the export summary when the selected opponent was Champion is given by
+Table~\ref{table:champion_summary}.
+
+\begin{table}[!htbp]
+    \resizebox{\textwidth}{!}{
+    \input{src/chapters/06/tex/champion_seed_nine_table.tex}}
+    \caption{An exampled of an exported summary for a stochastic strategy. The
+    column seed does not have a value of NaN anymore but records the seed that
+    was used to generate the specific play of the stochastic opponent.}\label{table:champion_summary}
+\end{table}
+
+
+\subsection{Data Collection Error}
+
+The data collection process of this Chapter was carried out using parallel
+programming. In parallel programming many calculations or executions of
+tasks are carried out simultaneously. In the case of the data collection here
+the tasks that were parallelised was the scoring process the population. More
+specifically, at most 10 members of the population were being scored at the same
+time.
+
+Parallel programming was executed using \textit{multi
+threading}~\cite{Shameem2005}. Threads are“light-weight” processes, a unit of
+execution within a process.Threads have shared memory and they can manipulate
+global variables of main thread. A task of scoring a member against a given
+strategy was executed in an individual thread. In the case of the stochastic
+opponents, the tasks were designed so that the PRNG was set for each thread
+before simulating a match. Unfortunately, the seeding process was not done in a
+safe thread way. Each thread was designed to set the global PRNG, which is then
+shared across all the threads without synchronization. Since the threads are
+running in parallel, at the same time, and their access to this global PRNG is
+not synchronized between them errors occur.
+
+There are several ways that this error can be corrected. The solutions include
+using multiprocessing instead of threading, that runs another subprocess in
+memory and it does not have shared memory like threading. Or Giving each thread
+its own PRNG solves this problem because there is no longer any state that's
+shared by multiple threads without synchronization.
+
+\subsection{The collection of best response sequences}
+
+Never th less, the collections process
+(Figure~\ref{fig:data_generating_process_diagram}) was performed for trials.
+Each trial exported a summary of the history of the GA generations. The
+sequences at the final generation with the highest score are the estimated best
+responses.
+
+All sequences considered here have been of 205 turns, and the given choice will
+be explained the following chapter. For each of the deterministic opponent the
+best response sequences were estimated correctly. As discussed in
+section~\ref{section:ipd_as_sequences}the
+best response to the strategy is tit for that is that of:
+
+\[\{\underbrace{C, \dots, C}_{N-1}, D\}\]
+
+That was correctly identified by the collection process.
+Figure~\ref{fig:tit_for_tat_ga_score} shows the maximum score achieved by a
+member of the population at each generation. In the case of TiT For Tat the GA
+convergence was at generation 23.
+
+\begin{figure}[!htbp]
+    \centering
+    \includegraphics[width=.65\textwidth]{src/chapters/06/img/maximum_score_per_generation_tit_for_tat.pdf}
+    \caption{The maximum score a sequence achieved against Tit For Tat over the generations.
+    Each line represents a different GA trial. The trails that managed to identify the
+    the best response against Tit For Tat are included.}\label{fig:tit_for_tat_ga_score}
+\end{figure}
+
+In section~\ref{section:ipd_as_sequences} is was explained that several
+strategies have more than a single best response sequence. In the case of the
+strategy Adaptive, any strategy that cooperated twice in the opening 6 moves and
+defected thereafter is a best response. The data collection has managed to
+identify multiple best responses. For example in the case of Adaptive the
+following sequences were the sequences with the highest average score per turn
+in the final generation.
+
+\begin{table}[!htbp]
+    \resizebox{\textwidth}{!}{
+    \input{src/chapters/06/tex/best_responses_adaptive_table.tex}}
+    \caption{Best responses sequences estimated by the data collection process.}
+    \label{table:adaptive_best_responses}
+\end{table}
+
+Several GA trial managed to converged to best response sequence for Adaptive. A
+smaller population in the case of Adaptive converged faster $(g_i)$ than a
+larger one, Figure~\ref{fig:adaptive_ga_score}.
+
+\begin{figure}[!htbp]
+    \centering
+    \includegraphics[width=.7\textwidth]{src/chapters/06/img/maximum_score_per_generation_adaptive.pdf}
+    \caption{The maximum score a sequence achieved against Tit For Tat over the generations.
+    Each line represents a different GA trial. The trails that managed to identify the
+    the best response against Tit For Tat are included.}\label{fig:adaptive_ga_score}
+\end{figure}
+
+There are a total of 130 deterministic opponents. Several of those have numerous
+best response sequences. More specifically, a total of 2949 best response
+sequences have been collected for the deterministic opponents of the collection.
+
+Due to the error which occurred for the stochastic opponents during the data
+collection it is not guaranteed that the best response sequences have been estimated
+for the seeded version of the stochastic players. Several sequences have still
+been obtained from the collections process. More specifically, for the 62 \(\times\)
+10 stochastic opponents a total of 2309 have been estimated. The final sequence
+with the maximum score is accurate 66\% of the time.
+
+For instance the strategy Champion while being seeded with \(seed=9\). The best
+responses is shown in Figure~\ref{fig:champion_ga_score}. The spiked instances
+are instance where the seeding process occurred. The final sequence managed
+to score a to the opponent.
+
+\begin{figure}[!htbp]
+    \centering
+    \includegraphics[width=.7\textwidth]{src/chapters/06/img/maximum_score_per_generation_champion.pdf}
+    \caption{The maximum score a sequence achieved against Tit For Tat over the generations.
+    Each line represents a different GA trial. The trails that managed to identify the
+    the best response against Tit For Tat are included.}\label{fig:champion_ga_score}
+\end{figure}
+
+Instance where the final sequence does and it's score do not represent the correct
+seeded version are of Random with \(seed=1\).
+
+\begin{figure}[!htbp]
+    \centering
+    \includegraphics[width=.7\textwidth]{src/chapters/06/img/maximum_score_per_generation_random.pdf}
+    \caption{The maximum score a sequence achieved against Tit For Tat over the generations.
+    Each line represents a different GA trial. The trails that managed to identify the
+    the best response against Tit For Tat are included.}\label{fig:random_ga_score}
+\end{figure}
+
+From the list of 192 strategies, 750 different opponents, a total of 5258 best
+response sequences of length 205 were retrieved.
+
 
 \section{Chapter Summary}
 
