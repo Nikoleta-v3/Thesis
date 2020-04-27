@@ -41,8 +41,9 @@ for file in tqdm.tqdm(Path("/Volumes/ext/Data/raw_data/").glob("*")):
         continue
     df = pd.read_csv(file + "/main.csv")
     df = df[df["generation"] == 2000]
+    columns = ['score', 'seed', 'opponent'] + genes
 
-    for i, row in df[df["score"] == df["score"].max()].reset_index().iterrows():
+    for i, row in df[df["score"] == df["score"].max()][columns].drop_duplicates().reset_index().iterrows():
         try:
             opponent = strategies[row["opponent"]]
         except KeyError:
