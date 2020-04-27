@@ -89,7 +89,7 @@ For example against Tit Tor Tat as demonstrated by Table~\ref{table:s_vs_tft},
 \end{table}
 
 and against stochastic strategies such as Random. Random cooperates with a
-probability of \(0.5\) at ech turn. The actions of the strategy are
+probability of \(0.5\) at each turn. The actions of the strategy are
 probabilistic and not deterministic and due to that its actions can differ
 between repetitions. The actions of stochastic strategies that react to the
 history also differ between repetitions even when the history of the match is
@@ -142,7 +142,7 @@ for some strategies identifying best responses is a complex problem. Note that
 in fact the sequence \(\{\underbrace{D, \dots, D}_{N}\}\) is a best response
 against any sequence player whose plays are independent of the history.
 
-Futhermore, there are strategies that have multiple best response sequences. For
+Furthermore, there are strategies that have multiple best response sequences. For
 instance the strategy Adaptive introduced in~\cite{Li2011}. Adaptive opens by
 playing a sequence of \(\{\underbrace{C, \dots, C}_{6}\}\) followed by a
 sequence of \(\{\underbrace{D, \dots, D}_{5}\}\). The strategy then proceeds to
@@ -545,8 +545,8 @@ plays can be simulated and reproduced, Figure~\ref{fig:random_apl_example}.
 
 \end{usagepy}
 \caption{Example code of using seeding to generate different plays of Random.
-THe value of seed changes to \{0, 1, 2, 3, 4, 5\} and the seed is set with
-the command axl.seed(seed) before simulating tha game. This initialises the
+The value of seed changes to \{0, 1, 2, 3, 4, 5\} and the seed is set with
+the command axl.seed(seed) before simulating the game. This initialises the
 pseudo random generator that define what moves Random will take.
 The above code snipped will always have the same output each time it is
 repeated.}\label{fig:random_apl_example}
@@ -643,15 +643,15 @@ strategy was executed in an individual thread. In the case of the stochastic
 opponents, the tasks were designed so that the PRNG was set for each thread
 before simulating a match. Unfortunately, the seeding process was not done in a
 safe thread way. Each thread was designed to set the global PRNG, which is then
-shared across all the threads without synchronization. Since the threads are
+shared across all the threads without synchronisation. Since the threads are
 running in parallel, at the same time, and their access to this global PRNG is
-not synchronized between them errors occur.
+not synchronised between them errors occur.
 
 There are several ways that this error can be corrected. The solutions include
 using multiprocessing instead of threading, that runs another subprocess in
 memory and it does not have shared memory like threading. Or Giving each thread
 its own PRNG solves this problem because there is no longer any state that's
-shared by multiple threads without synchronization.
+shared by multiple threads without synchronisation.
 
 \subsection{The collection of best response sequences}
 
@@ -665,13 +665,13 @@ All sequences considered here have been of 205 turns, and the given choice will
 be explained the following chapter. For each of the deterministic opponent the
 best response sequences were estimated correctly. As discussed in
 section~\ref{section:ipd_as_sequences}the
-best response to the strategy is tit for that is that of:
+best response to the strategy is Tit For Tat is that of:
 
 \[\{\underbrace{C, \dots, C}_{N-1}, D\}\]
 
 That was correctly identified by the collection process.
 Figure~\ref{fig:tit_for_tat_ga_score} shows the maximum score achieved by a
-member of the population at each generation. In the case of TiT For Tat the GA
+member of the population at each generation. In the case of Tit For Tat the GA
 convergence was at generation 23.
 
 \begin{figure}[!htbp]

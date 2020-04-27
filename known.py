@@ -202,4 +202,9 @@ words = {
     "randint",
     "sensei",
     "ss",
+    "Ds",
+    "PRNG",
+    "cccccc",
+    "parallelised",
+    "subprocess",
 }
