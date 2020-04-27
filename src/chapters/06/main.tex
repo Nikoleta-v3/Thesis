@@ -41,24 +41,24 @@ Chapter is structured as follow:
 \section{Iterated Prisoner Dilemma Strategies as Sequences}\label{section:ipd_as_sequences}
 
 In a finite \(N\) round IPD match a player that does not react to their opponent
-is defined by a sequence,
+can be defined by a sequence,
 
 \begin{equation}
     S \in \{C, D\} ^ n, \text{where } 1 \leq n \leq N.
 \end{equation}
 
 Strategies that base their actions on sequences are already established in the
-literature~\cite{Beaufils1997}. Such strategies include Periodic Player \(CD\), Periodic Player \(DC\),
+literature~\cite{Beaufils1997}, such as Periodic Player \(CD\), Periodic Player \(DC\),
 Periodic Player \(CCD\) and Periodic Player \(DDC\)~\cite{Li2011, Mittal2009},
 or as referred to in~\cite{Knight2016} Cycler \(CD\), Cycler \(DC\),
-Cycler \(CCD\) and Cycler \(DDC\). These are strategies that given sequences
-periodically, compared to these, the strategies concerned with here play a given
+Cycler \(CCD\) and Cycler \(DDC\). These are strategies that play a given sequences
+periodically, however, the strategies concerned with here play a given
 sequence only once. Thus \(n = N\).
 
 As an example consider a match of 10 turns between the strategy \(S = \{D, D, D,
-C, C, C, D, D, C, C\}\) and a Cooperator. The match between the two strategies
+C, C, C, D, D, C, C\}\) and Cooperator. The match between the two strategies
 is captured by Table~\ref{table:s_vs_cooperator} where \(U(s_1, s_2)\in
-\mathbb{R}^2\) is the average scores per turn scored by strategies \(s_1\) and
+\mathbb{R}^2\) is the average score per turn scored by strategies \(s_1\) and
 \(s_2\).
 
 \begin{table}[htb]
@@ -73,8 +73,8 @@ is captured by Table~\ref{table:s_vs_cooperator} where \(U(s_1, s_2)\in
 Cooperator as well as the average score per turn achieved by each strategy.}\label{table:s_vs_cooperator}
 \end{table}
 
-A sequence strategy \(S\) can play against strategies that react to the history.
-For example against Tit Tor Tat as demonstrated by Table~\ref{table:s_vs_tft},
+A sequence strategy \(S\) can play against strategies that react to the history,
+for example against Tit Tor Tat as demonstrated by Table~\ref{table:s_vs_tft},
 
 \begin{table}[htb]
 \centering
@@ -89,14 +89,15 @@ For example against Tit Tor Tat as demonstrated by Table~\ref{table:s_vs_tft},
 \end{table}
 
 and against stochastic strategies such as Random. Random cooperates with a
-probability of \(0.5\) at each turn. The actions of the strategy are
-probabilistic and not deterministic and due to that its actions can differ
-between repetitions. The actions of stochastic strategies that react to the
+probability of \(0.5\) at each turn, and thus the actions of the strategy are
+probabilistic and not deterministic. Due to that Random's actions can differ
+between repetitions. Random is a strategy that does react to the history, however,
+the actions of stochastic strategies that react to the
 history also differ between repetitions even when the history of the match is
-the same. Tables~\ref{table:s_vs_random} and~\ref{table:s_vs_random}, both
+the same. Tables~\ref{table:s_vs_random} and~\ref{table:s_vs_random_2} both
 capture a match between \(S\) and a Random player. For a match of 10 turns
-Random has a total of \(2^{10}\) %TODO check my maths is right possible plays.
-In order to capture several instances of stochastic strategies' plays computer
+Random has a total of \(2^{10}\) possible plays. %TODO check my maths is right possible plays.
+In order to capture several different plays of stochastic strategies computer
 seeding is used in section~\ref{section:generating_sequences}.
 
 \begin{table}[htb]
@@ -121,7 +122,7 @@ seeding is used in section~\ref{section:generating_sequences}.
 \end{tabular}
 \caption{The interactions and average score per turn of a 10 turns match between
 \(S = \{D, D, D, C, C, C, D, D, C, C\}\) and Random. The actions make by Random
-are different to that Table~\ref{table:s_vs_random}.}\label{table:s_vs_random_2}
+are different to that of Table~\ref{table:s_vs_random}.}\label{table:s_vs_random_2}
 \end{table}
 
 As discussed in Chapters~\ref{chapter:introduction} and~\ref{chapter:memory_one},
@@ -136,27 +137,29 @@ as given in~(\ref{eq:best_response_sequence}).
     \end{aligned}
 \end{equation}
 
-Identifying best responses to some opponents can be a trivial problem, the
-optimal sequence against a Cooperator is in an all \(D\) sequence, however,
-for some strategies identifying best responses is a complex problem. Note that
-in fact the sequence \(\{\underbrace{D, \dots, D}_{N}\}\) is a best response
+Identifying best responses to some opponents can be a trivial problem. The
+optimal sequence against a Cooperator is in an all \(D\) sequence. In fact the
+sequence \(\{\underbrace{D, \dots, D}_{N}\}\) is a best response
 against any sequence player whose plays are independent of the history.
+However,
+for some strategies identifying best responses is a complex problem. Note that
 
-Furthermore, there are strategies that have multiple best response sequences. For
+Additionally, there are strategies that have multiple best response sequences. For
 instance the strategy Adaptive introduced in~\cite{Li2011}. Adaptive opens by
 playing a sequence of \(\{\underbrace{C, \dots, C}_{6}\}\) followed by a
 sequence of \(\{\underbrace{D, \dots, D}_{5}\}\). The strategy then proceeds to
-play either \(C\) or \(D\) depending on which action had a higher average score
-for the strategy (the average score is recalculated at each turn). A sequence
+play either \(C\) or \(D\) depending on which action had a higher total score
+for the strategy (the total score is recalculated at each turn). A sequence
 maximises its average score against Adaptive by locking the strategy into
-unconditional cooperations following its opening 11 turns sequence. In order
-for cooperation to be the most favourable action for Adaptive needs to achieve
-two mutual cooperations at its opening sequence. Because  the score achieved
-by playing \(C\) is \(2 \times 3 + 0 \times 4 = 6\) which is greater than the
-score achieved by \(D\) \(1 \times 5 = 5\).
-Thus, any sequence which incorporates two cooperations in the first 6 turns
+unconditional cooperations following its opening 11 turns sequence while the sequence
+defects. In order
+for cooperation to be the most favourable action for Adaptive the strategy needs to achieve
+two mutual cooperations at its opening sequence. That is because the score achieved
+by cooperating \(2 \times 3 + 4 \times 0 = 6\) is greater than the
+score achieved by defecting \(1 \times 5 = 5\).
+Any sequence which incorporates two cooperations in the first 6 turns
 and defects thereafter is a best response sequence to Adaptive. Thus, there
-can be \(2^{6}\) best response sequences. For example \(S_{1}^*\) and \(S_{2}^*\),
+can be \(2^{6}\) best response sequences to the strategy, for example \(S_{1}^*\) and \(S_{2}^*\),
 
 \[S_{1}^* = \{C, D, D, D, D, C, D, D, D, D, D, D, D, D, D\}\]
 
