@@ -194,16 +194,16 @@ function \(f\), such that \(f(p_i) \to \R\), and by only keeping the top \(b\)
 ranking members (or proportion of members) by score at the end of each
 generation. The rest of the member are discarded. By keeping the top ranked
 individuals critical information regarding the successful candidates is
-preserved and the population rebuilds on it using a series of
+preserved and the population rebuilds on it by using a series of
 \textit{crossovers} and \textit{mutations}.
 
 \begin{itemize}
-    \item During a crossovers 2 members of the population are selected and a new
-    member is created based on a ``gene'' combination of the 2 selected members
-    (commonly referred to as parents).
+    \item During a crossover 2 members of the population are selected, and a new
+    member is created based on combination of their ``genes''. The 2 selected members
+    are commonly referred to as parents.
     \item Mutation is a probabilistic change that occurs at an individual,
-    Mutation is commonly associated with a probability, denoted as \(p_m\),
-    which is the probability of a mutation happening, either at the individual
+    Mutation is commonly associated with a probability, denoted as \(p_m\).
+    \(p_m\) is the probability of a mutation happening, either at the individual
     or at each gene of the individual.
 \end{itemize}
 
@@ -211,22 +211,22 @@ A diagrammatical representation of a generic GA is given in Figure~\ref{fig:ga_f
 
 \begin{figure}[!htbp]
     \centering
-    \includestandalone[width=\textwidth]{src/chapters/06/tex/ga_flow_diagram}
+    \includestandalone[width=.77\textwidth]{src/chapters/06/tex/ga_flow_diagram}
     \caption{Generic flow diagram of a GA.}\label{fig:ga_flow_diagram}
 \end{figure}
 
-The purpose of a GA here is to estimate the best response sequence to
+The purpose of a GA here is to estimate a best response sequence to
 a given opponent \(Q\). Consequently, the members of the population correspond to
 sequences,
 
 \[S_i \in P \text{ where } |S_i| = N\]
 
 and the evaluation function corresponds to the
-average score per turn of the sequence against \(Q\),
+average score per turn of a sequence against \(Q\),
 
-\[U(S_i, Q) \to \R \text{ for } S_i \in P\]
+\[U(S_i, Q) \to \R \text{ for } S_i \in P.\]
 
-More specifically, the specific GA used in this Chapter is given
+More specifically, the exact GA used in this Chapter is given
 by Algorithm~\ref{algorithm:genetic_algorithm}.
 
 \begin{algorithm}[!htbp]
@@ -260,8 +260,8 @@ The initial population is created using Algorithm~\ref{algorithm:initial_populat
     \Begin{
     set of cuts $\gets$ \(K\) evenly spaced numbers over \([1, N]\) \\
     \For{\(c \in\) set of cuts}{
-        first new member $\gets$  \(\{\underbrace{C, \dots, C}_{c}\} \cup \{\underbrace{D, \dots, D}_{N-c}\}\) \\
-        second new member $\gets$ \(\{\underbrace{D, \dots, D}_{c}\} \cup \{\underbrace{C, \dots, C}_{N-c}\}\) \\
+        first new member $\gets$  \(\{\underbrace{C, \dots, C}_{c}, \underbrace{D, \dots, D}_{N-c}\}\) \\
+        second new member $\gets$ \(\{\underbrace{D, \dots, D}_{c}, \underbrace{C, \dots, C}_{N-c}\}\) \\
         add both members to population
     }
         }
@@ -273,14 +273,14 @@ the GA literature~\cite{Hou1994}. However, there is efficiency in using non
 random starting populations~\cite{Drezner2005, Osaba2014}.
 As discussed in section~\ref{section:ipd_as_sequences} the best response sequence
 to any strategy that does not react to the history is a Defector. Moreover,
-the best response sequence to several strategies such as Tit For Tat and Grudger,
-for a finite match, is \(\{\underbrace{C, \dots, C}_{N-1}, D\}\). These are
+the best response sequence to several strategies include sequences mainly dominated
+by cooperation expect in the last turns. These are
 sequences that have been incorporated in the initial population. More specifically,
 Algorithm~\ref{algorithm:initial_population} consider all the possible combinations
 of:
 
-\[\bullet \{\underbrace{C, \dots, C}_{c}, \underbrace{D, \dots, D}_{N-c}\} \text{ for } c \in {1, 2, \dots, N-1} \text{ and}\]
-\[\bullet \{\underbrace{D, \dots, D}_{c}, \underbrace{C, \dots, C}_{N-c}\} \text{ for } c \in {1, 2, \dots, N-1.}\]
+\[\bullet \{\underbrace{C, \dots, C}_{c}, \underbrace{D, \dots, D}_{N-c}\} \text{ for } c \in \text{evenly spaced numbers over } [1, N] \text{ and}\]
+\[\bullet \{\underbrace{D, \dots, D}_{c}, \underbrace{C, \dots, C}_{N-c}\} \text{ for } c \in \text{evenly spaced numbers over } [1, N].\]
 
 The GA of Algorithm~\ref{algorithm:genetic_algorithm} has been implemented in the programming language Python
 and it has been organised into a open source package called
@@ -359,10 +359,10 @@ generate a population of \(s=10\) and \(N=8\).}\label{fig:get_initial_population
 
 In the GA, as given by Algorithm~\ref{algorithm:genetic_algorithm}, the
 crossover occurs by randomly selecting two member of the population, while \(|P|
-< K\), and randomly selecting a crossover over point. Note that the crossover
-over point need to be smaller than \(N\). The new member initially inherits the
-genes right to the crossover point from the first parent, and then the left
-genes to the crossover point from the second parent.
+< K\), and randomly selecting a crossover point. Note that the crossover
+point is smaller than \(N\). The new member initially inherits the
+genes right to the crossover point of the first parent, and then the left
+genes to the crossover point of the second parent.
 
 For instance, given two member of the population \(S_1 = \{C, C, C, C, C, C, C, C, C, C\}\)
 and \(S_2 = \{C, D, C, D, C, D, C, D, C, D\}\) and given that the crossover point is
@@ -434,8 +434,10 @@ using the function is given in Figure~\ref{fig:mutation_usage}.
 
 \begin{figure}[!htbp]
     \begin{sourcepy}
-def mutation(gene, mutation_probability): if random.random() <
-    mutation_probability: return abs(gene - 1) return gene
+def mutation(gene, mutation_probability):
+    if random.random() < mutation_probability:
+        return abs(gene - 1)
+    return gene
 \end{sourcepy}
 \caption{Source code of the \mintinline{python}{mutation} function.}\label{fig:mutation_implementation}
 \end{figure}
