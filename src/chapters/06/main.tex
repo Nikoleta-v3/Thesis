@@ -660,7 +660,10 @@ does not reflect the opponent's behaviour for its given seed.
 There are several ways that this error can be corrected. There is a thread safe
 way of implementing seeding which involves giving each thread its own local
 PRNG. Then there is no longer any state that's shared by multiple threads
-without synchronisation.
+without synchronisation. However % TODO Add a discussion here along the lines of
+                                                           % - from our data 45% of the data is not reproducible
+                                                            % - this is a reasonable ratio to ensure more variability to the training data for the purposes of chapter...
+
 
 \subsection{The collection of best response sequences}
 
@@ -695,7 +698,9 @@ sequences. There are two reason that as to why this happened:
     of all the 18 trials for the given set of opponents.}\label{fig:ga_trials}
 \end{figure}
 
-Nevertheless, there are several trials that have managed to reach convergence,
+Nevertheless % TODO Add a sentence or two here saying that even if a sequence doesn't converge it's still useful.
+
+There are several trials that have managed to reach convergence,
 and they did so in less than 200 generations. This is potentially the effect of a
 non random initial population.
 Figure~\ref{fig:ga_trials_to_500}
@@ -834,4 +839,4 @@ archived and are available at \cite{Glynatsi2020_sequences}.
 
 The main purpose of this Chapter has been to generate the bespoke data set,
 which contains a large number of unique and diverse sequences, 
-so it can be used as training data set in the following Chapter.
+so it can be used as training data set for Chapter~\ref{}. % TODO Use correct reference for the chapter.
