@@ -705,8 +705,8 @@ sequences. There are two reason that as to why this happened:
 \end{figure}
 
 Nevertheless, there are several trials that have managed to reach convergence,
-and they did in less that 500 generations. This could be an effect of the initial
-population not being created randomly but in a more efficient way.
+and they did in less than 200 generations. This is potentially the effect of a
+non random initial population.
 Figure~\ref{fig:ga_trials_to_500}
 shows the highest score in a population over the generations for the four
 strategies of Figure~\ref{fig:ga_trials} but only up to \(g_i = 500\). All trials
@@ -723,14 +723,15 @@ with the parameter values of \(K/2=15, b=10\) and \(p_m=0.1\).
 
 The are a total of \deterministicstrategies deterministic strategies in the
 collection of opponents and best response sequences were estimated for each.
-Several of the known best response sequence have been manually checked and they
+Several of the known best response sequences have been manually checked and they
 have been successfully estimated by the algorithm. These include best response
-sequence to Tit For Tat, Grudger, Alternator, Pavlov and the Cycler strategies.
-In addition, in section~\ref{section:ipd_as_sequences} is was explained that strategies can
+sequences to Tit For Tat, Grudger, Alternator, Pavlov and the Cycler strategies.
+
+In section~\ref{section:ipd_as_sequences} is was explained that strategies can
 have more than a single best response sequence. In the case of the strategy
-Adaptive, any strategy that cooperated twice in the opening 6 moves and defected
-thereafter is a best response. The data collection has managed to identify
-multiple best responses to Adaptive. There are given by
+Adaptive any strategy that cooperated twice in the opening 6 moves and defected
+thereafter is a best response. The data collection has managed to successfully identify
+multiple best responses to Adaptive, these are given by
 Table~\ref{table:adaptive_best_responses}. Adaptive is not the only
 deterministic strategy with multiple best response sequences. More specifically,
 for the \deterministicstrategies deterministic opponents a total of of 2949 best
@@ -816,7 +817,7 @@ opponents the sequences are diverse.
 In summary, from the list of \numberofstrategiesbestsequences strategies
 examined in this Chapter, 750 different opponent instances were simulated and a
 total of 5258 best response sequences of length 205 were retrieved. The choice of
-205 turns will be explained the following Chapter. The best response sequences have
+205 turns will be explained in the following Chapter. The best response sequences have
 been archived and made available at~\cite{Glynatsi2020_sequences}.
 
 \section{Chapter Summary}
@@ -824,9 +825,7 @@ been archived and made available at~\cite{Glynatsi2020_sequences}.
 This Chapter has explored the concept of best responses in the IPD game in the
 form of static sequences of moves. It introduced an evolutionary algorithm,
 Algorithm~\ref{algorithm:genetic_algorithm}, which can successfully identify
-best response sequences. Furthermore, the implementation of
-Algorithm~\ref{algorithm:genetic_algorithm} suggested that there is efficiency in
-using non random starting populations.
+best response sequences.
 
 The algorithm was executed to estimate best response sequences to the majority
 of opponents listed in the APL. More specifically, a total of
