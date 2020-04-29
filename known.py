@@ -207,4 +207,6 @@ words = {
     "cccccc",
     "parallelised",
     "subprocess",
+    "Aggravater",
+    "Random's"
 }
