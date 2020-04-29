@@ -23,7 +23,7 @@ The purpose of a large collection of best response sequences is
 to serve as training data in Chapter~\ref{chapter:lstm} which aims to train a
 recurrent neural network as an IPD strategy. In Chapter~\ref{chapter:lstm} the
 usage of the bespoke data set, which has been archived and made publicly
-available~\cite{Glynatsi2020_sequences}, is be discussed in more details. This
+available~\cite{Glynatsi2020_sequences}, is discussed in more details. This
 Chapter is structured as follow:
 
 \begin{itemize}
@@ -34,8 +34,7 @@ Chapter is structured as follow:
     sequences.
     \item section~\ref{section:generating_sequences} details the process of
     generating best response sequences to a collection of
-    \numberofstrategiesbestsequences strategies, and presents a brief analysis
-    of its results.
+    \numberofstrategiesbestsequences strategies.
 \end{itemize}
 
 \section{Iterated Prisoner Dilemma Strategies as Sequences}\label{section:ipd_as_sequences}
@@ -53,7 +52,7 @@ Periodic Player \(CCD\) and Periodic Player \(DDC\)~\cite{Li2011, Mittal2009},
 or as referred to in~\cite{Knight2016} Cycler \(CD\), Cycler \(DC\),
 Cycler \(CCD\) and Cycler \(DDC\). These are strategies that play a given sequences
 periodically, however, the strategies concerned with here play a given
-sequence only once. Thus \(n = N\).
+sequence only once, thus \(n = N\).
 
 As an example consider a match of 10 turns between the strategy \(S = \{D, D, D,
 C, C, C, D, D, C, C\}\) and Cooperator. The match between the two strategies
@@ -90,15 +89,14 @@ for example against Tit Tor Tat as demonstrated by Table~\ref{table:s_vs_tft},
 
 and against stochastic strategies such as Random. Random cooperates with a
 probability of \(0.5\) at each turn, and thus the actions of the strategy are
-probabilistic and not deterministic. Due to that Random's actions can differ
-between repetitions. Random is a strategy that does react to the history, however,
+not deterministic. Random is a strategy that does react to the history, however,
 the actions of stochastic strategies that react to the
 history also differ between repetitions even when the history of the match is
 the same. Tables~\ref{table:s_vs_random} and~\ref{table:s_vs_random_2} both
 capture a match between \(S\) and a Random player. For a match of 10 turns
 Random has a total of \(2^{10}\) possible plays.
 In order to capture several different plays of stochastic strategies computer
-seeding is used in section~\ref{section:generating_sequences}.
+seeding, further details of this are given in section~\ref{section:generating_sequences}.
 
 \begin{table}[htb]
 \centering
@@ -190,7 +188,7 @@ potential solutions, a number of \textit{generations} \(G \in \N\) and a cut-off
 \textit{bottleneck} \(b < |P|\). At each generation the algorithm scores and potentially
 removes each member of the population \(p_i \in P\). This is done by using a
 mapping from a member of the population to an ordered set based on an evaluation
-function \(f\), such that \(f(p_i) \to \R\), and by only keeping the top \(b\)
+function \(f\), usually \(f(p_i) \to \R\), and by only keeping the top \(b\)
 ranking members (or proportion of members) by score at the end of each
 generation. The rest of the member are discarded. By keeping the top ranked
 individuals critical information regarding the successful candidates is
@@ -201,10 +199,10 @@ preserved and the population rebuilds on it by using a series of
     \item During a crossover 2 members of the population are selected, and a new
     member is created based on combination of their ``genes''. The 2 selected members
     are commonly referred to as parents.
-    \item Mutation is a probabilistic change that occurs at an individual,
+    \item Mutation is a probabilistic change that occurs to an individual,
     Mutation is commonly associated with a probability, denoted as \(p_m\).
-    \(p_m\) is the probability of a mutation happening, either at the individual
-    or at each gene of the individual.
+    \(p_m\) is the probability of a mutation happening, either to the individual
+    or to each gene of the individual.
 \end{itemize}
 
 A diagrammatical representation of a generic GA is given in Figure~\ref{fig:ga_flow_diagram}.
@@ -361,19 +359,12 @@ In the GA, as given by Algorithm~\ref{algorithm:genetic_algorithm}, the
 crossover occurs by randomly selecting two member of the population, while \(|P|
 < K\), and randomly selecting a crossover point. Note that the crossover
 point is smaller than \(N\). The new member initially inherits the
-genes right to the crossover point of the first parent, and then the left
-genes to the crossover point of the second parent.
+genes to the left of the crossover point of the first parent, and to the right
+of the crossover point of the second parent.
 
 For instance, given two member of the population \(S_1 = \{C, C, C, C, C, C, C, C, C, C\}\)
 and \(S_2 = \{C, D, C, D, C, D, C, D, C, D\}\) and given that the crossover point is
-4:
-
-\begin{itemize}
-    \item The right genes to the crossover point for \(S_1\) are \(\{\underbrace{C, C, C, C}_{\text{to inherit}}, C, C, C, C, C, C\}.\)
-    \item The left genes to the crossover point for \(S_2\) are \(\{C, D, C, D,\underbrace{C, D, C, D, C, D}_{\text{to inherit}}\}.\)
-\end{itemize}
-
-Thus, the new member \(S_3\) is given by,
+4, this gives a new member \(S_3\):
 
 \[S_3 = \{\underbrace{C, C, C, C}_{\text{from } S_1}, \underbrace{C, D, C, D, C, D}_{\text{from } S_2}\}.\]
 
@@ -415,7 +406,7 @@ def crossover(sequence_one, sequence_two):
 \end{figure}
 
 Following the crossover between two members, a mutation is applied to new member
-before it is are added to the population. Mutation has been implemented as a
+before it is added to the population. Mutation has been implemented as a
 given probability \(p_m\) that each gene of the new member is flipped. A total
 of \(N\) random numbers between \([0, 1]\) are sampled. If the sampled
 probability at time \(i\) in less than \(p_m\) then the \(i^{th}\) gene of the
@@ -481,9 +472,9 @@ is called Cycler and it takes as an input argument a series of actions as a
 string\footnote{In Python, Strings are arrays of bytes representing Unicode
 characters. However, Python does not have a character data type, a single
 character is simply a string with a length of 1}.
-An example of creating and using such player in a match is given by
+An example of creating and using such a player in a match is given by
 Figure~\ref{fig:apl_simulations_cycler}. The average score per turn is obtained
-using an in build method of APL once a match has been simulated.
+using an in built method of APL once a match has been simulated.
 
 \begin{figure}[!htbp]
     \begin{usagepy}
@@ -516,13 +507,13 @@ method.}\label{fig:apl_simulations_cycler}
 From the \numberofstrategiesbestsequences strategies, \stochasticstrategies are stochastic and
 \deterministicstrategies are deterministic. In section~\ref{section:ipd_as_sequences} it was explained
 that the outcome of a match between two deterministic strategies is always the same.
-In comparison, the outcome of a match with even a single stochastic strategy can
+In comparison, the outcome of a match with a stochastic strategy can
 differ, because the actions of a stochastic opponent are not deterministic.
-The concept of a stochastic opponent can be somewhat ``overridden'' by using
+The actions of a stochastic opponent can be repeated by using
 \textit{computer seeding} for seeding the pseudo random number generator (PRNG) that creates the
 parameters that define what moves the strategy will take. Seeds are set before
 generating a random number, and if the same seed is used on initialisation then
-the random output remains the same. Thus, as long as a match is being seeded the
+the random output remains the same. Thus, as long as a match is seeded the
 behaviour of a stochastic strategy can be reproduced, and different seeds lead
 to different plays of stochastic strategies.
 
@@ -576,12 +567,12 @@ by Figure~\ref{fig:data_generating_process_diagram}.
 From the collection of opponents a strategy is selected at each trial. If the
 strategy is deterministic a set of GAs with different parameters values are
 performed for 2000 generations. The summary of the GA trials which contain information
-for each generation is exported in a single csv file, then the next opponent is
+for each generation is exported to a single csv file, then the next opponent is
 selected. If the
 opponent is stochastic the above process is repeated 10 times. Each time the
 stochastic strategy is accompanied by a different seed value which is used to
 initialise the pseudo random generator. For each combination of stochastic
-opponent - seed the GAs summary is exported to a csv file.
+opponent and seed the GAs summary is exported to a csv file.
 
 For each opponent, or opponent-seed combination a total of 18 GAs are performed.
 The different values for each parameter are given by
@@ -641,7 +632,7 @@ Table~\ref{table:champion_summary}.
     \(1 \to C\).}\label{table:champion_summary}
 \end{table}
 
-\subsection{Data Collection Error}
+\subsection{Parallelisation and stochastic results}
 
 The data collection process of this Chapter was carried out using parallel
 programming. In parallel programming many calculations or executions of tasks
@@ -655,7 +646,7 @@ execution within a process. Threads are designed to have shared memory and can
 manipulate global variables of main thread. Scoring a member of the population
 corresponded to a single task which was executed on a single thread. For the
 stochastic opponents the task included seeding/setting the PRNG state before
-simulating the match. Seeding at the time of developing the data
+simulating the match. Seeding at the time of generating the data
 collection was not implemented in a safe thread way.
 
 The data collection was implemented in a way that each thread was setting the
@@ -705,7 +696,7 @@ sequences. There are two reason that as to why this happened:
 \end{figure}
 
 Nevertheless, there are several trials that have managed to reach convergence,
-and they did in less than 200 generations. This is potentially the effect of a
+and they did so in less than 200 generations. This is potentially the effect of a
 non random initial population.
 Figure~\ref{fig:ga_trials_to_500}
 shows the highest score in a population over the generations for the four
@@ -721,7 +712,7 @@ with the parameter values of \(K/2=15, b=10\) and \(p_m=0.1\).
     Grudger, FSM 16 and Aggravater up to \(g_i = 500\).}\label{fig:ga_trials_to_500}
 \end{figure}
 
-The are a total of \deterministicstrategies deterministic strategies in the
+There are a total of \deterministicstrategies deterministic strategies in the
 collection of opponents and best response sequences were estimated for each.
 Several of the known best response sequences have been manually checked and they
 have been successfully estimated by the algorithm. These include best response
@@ -746,14 +737,14 @@ response sequences were collected.
 \end{table}
 
 An interesting questions that arises is: how diverse are the set of best response
-sequences? Out of the 2949 sequences 2836 are unique. Moreover, a graphical
+sequences? Out of the 2949 sequences 2836 are unique. A graphical
 representation of 1000 of these sequences is given by Figure~\ref{fig:brs_visualisation}.
 The two distinct colours represent genes of \(C\) and \(D\). Overall, it can be
 seen that there is diversity in the best response sequences, and they are not just
 long sequences of either \(C\) or \(D\). A common trend appears to be a series
 of defections at the last turns. In a finite IPD this is to expected. As it was
 mentioned in Chapter~\ref{chapter:meta_tournaments}, as the likelihood of a
-match ending in the following turn increases strategies become more defecting.
+match ending in the following turn increases the effectiveness of defecting.
 
 \begin{figure}[!htbp]
     \centering
@@ -762,15 +753,11 @@ match ending in the following turn increases strategies become more defecting.
     1000 sequences have been estimated using deterministic opponents.}\label{fig:brs_visualisation}
 \end{figure}
 
-Regarding the stochastic opponents, it is not guaranteed that the best response
-sequences have been estimated for the seeded versions of the stochastic players.
-That is due to the seeding process not being executed correctly during the data
-collection. Nevertheless, a
-total of 2309 sequences have been estimated for the stochastic opponents. From
+A total of 2309 sequences have been estimated for the stochastic opponents. From
 these sequences, 66\% did indeed play against the correct seeded opponent and
 achieved their respective scores at the final generation.
 
-For instance the strategy - seed combination of Champion - seed\(=9\). The highest score
+For instance for the strategy - seed combination of Champion - seed\(=9\) the highest score
 achieved by a member of the population over the generations is given by
 Figure~\ref{fig:champion_ga_score}. There is variation in the highest score
 occurring over the generations with several increasing and decreasing peeks. However,
@@ -787,8 +774,7 @@ Champion, and it reflected the score of the sequence against Champion - seed\(=9
 \end{figure}
 
 There are stochastic opponents for which more variation occurred over the
-generations. An example of that is Random. Random samples a random number at
-each turn, and thus the strategy was prone to more mistakes. The highest score
+generations. An example of that is Random. The highest score
 of the population in a single GA trial, for opponent - seed combination Random -
 seed\(=1\), is given by Figure~\ref{fig:random_ga_score}.
 In the case of Random - seed\(=1\) the score of the best response sequence that
@@ -802,7 +788,7 @@ seed\(=1\).
     over the generations.}\label{fig:random_ga_score}
 \end{figure}
 
-From the 2309 sequences 2130 are unique. A graphical representation of 1000 of
+From the 2309 sequences against stochastic strategies 2130 are unique. A graphical representation of 1000 of
 those sequences are given by Figure~\ref{fig:brs_visualisation_stochastic}.
 Similar to the results of the best response sequences against deterministic
 opponents the sequences are diverse.
@@ -837,15 +823,14 @@ were simulated.
 
 For the \deterministicstrategies deterministic strategies a total of 2949
 sequences, from which 2836 were unique, were estimated. These sequences were not
-just a set of long sequences of either \(C\) or \(D\), but a graphical
-representation showed that they were way more variant. A common trait in the
+just a set of trivial sequences of either \(C\) or \(D\). A common trait in the
 best response sequences appeared to be a series of defection closer to the final
 turns. For the seeded versions of the \stochasticstrategies stochastic opponents
-the best response sequences are not guaranteed to have been captured.
+the best response sequences are not guaranteed to have been captured due to issues related to PRNGs and multithreading.
 Nevertheless, a total of 2309 sequences from which 2130 are unique were
 collected. Similar, these sequences are more diverse than just a series of
 a single action. The 5258 sequences that were collected have been
-archive and is available at \cite{Glynatsi2020_sequences}.
+archived and are available at \cite{Glynatsi2020_sequences}.
 
 The main purpose of this Chapter has been to generate the bespoke data set,
 which contains a large number of unique and diverse sequences, 
