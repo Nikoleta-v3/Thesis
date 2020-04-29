@@ -208,5 +208,7 @@ words = {
     "parallelised",
     "subprocess",
     "Aggravater",
-    "Random's"
+    "Random's",
+    "PRNGs",
+    "Parallelisation",
 }
