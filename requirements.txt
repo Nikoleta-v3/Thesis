@@ -6,3 +6,4 @@ axelrod==4.2.1
 numpy==1.18.1
 arcas
 fsspec>=0.3.3 # req. for dask.dataframe currently not being installed with dask=2.1.0 installed with axelrod
+blackbook==0.0.6

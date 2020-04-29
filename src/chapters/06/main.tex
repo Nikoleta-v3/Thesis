@@ -324,7 +324,9 @@ Figure~\ref{fig:get_initial_population_example}.
 >>> import sequence_sensei as ss
 >>> import numpy as np
 
->>> initial_population = ss.get_initial_population(half_size_of_population=5, sequence_length=8)
+>>> initial_population = ss.get_initial_population(
+...     half_size_of_population=5, sequence_length=8
+... )
 >>> np.matrix(initial_population)
 matrix([[1, 0, 0, 0, 0, 0, 0, 0],
         [0, 1, 1, 1, 1, 1, 1, 1],
