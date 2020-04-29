@@ -3,4 +3,6 @@ jupyter==1.0.0
 ipython==5.0.0
 bibtexparser
 axelrod==4.2.1
-numpy==1.18.1arcas
+numpy==1.18.1
+arcas
+fsspec>=0.3.3 # req. for dask.dataframe currently not being installed with dask=2.1.0 installed with axelrod
