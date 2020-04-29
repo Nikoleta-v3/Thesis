@@ -751,13 +751,6 @@ of defections at the last turns. In a finite IPD this is to expected. As it was
 mentioned in Chapter~\ref{chapter:meta_tournaments}, as the likelihood of a
 match ending in the following turn increases the effectiveness of defecting.
 
-\begin{figure}[!htbp]
-    \centering
-    \includegraphics[width=\textwidth]{src/chapters/06/img/deterministic_best_responses.pdf}
-    \caption{A graphical representation of 1000 best response sequence. These
-    1000 sequences have been estimated using deterministic opponents.}\label{fig:brs_visualisation}
-\end{figure}
-
 A total of 2309 sequences have been estimated for the stochastic opponents. From
 these sequences, 66\% did indeed play against the correct seeded opponent and
 achieved their respective scores at the final generation.
@@ -799,10 +792,18 @@ Similar to the results of the best response sequences against deterministic
 opponents the sequences are diverse.
 
 \begin{figure}[!htbp]
+    \begin{subfigure}{0.45\textwidth}
     \centering
-    \includegraphics[width=\textwidth]{src/chapters/06/img/stochastic_best_responses.pdf}
+    \includegraphics[width=.74\textwidth]{src/chapters/06/img/deterministic_best_responses.pdf}
+    \caption{A graphical representation of 1000 best response sequence. These
+    1000 sequences have been estimated using deterministic opponents.}\label{fig:brs_visualisation}
+    \end{subfigure}\hfill
+    \begin{subfigure}{0.45\textwidth}
+    \centering
+    \includegraphics[width=.74\textwidth]{src/chapters/06/img/stochastic_best_responses.pdf}
     \caption{A graphical representation of 1000 best response sequence. These
     1000 sequences have been estimated using stochastic opponents.}\label{fig:brs_visualisation_stochastic}
+    \end{subfigure}
 \end{figure}
 
 In summary, from the list of \numberofstrategiesbestsequences strategies
