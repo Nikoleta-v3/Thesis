@@ -671,10 +671,15 @@ does not reflect the opponent's behaviour for its given seed.
 There are several ways that this error can be corrected. There is a thread safe
 way of implementing seeding which involves giving each thread its own local
 PRNG. Then there is no longer any state that's shared by multiple threads
-without synchronisation. However % TODO Add a discussion here along the lines of
-                                                           % - from our data 45% of the data is not reproducible
-                                                            % - this is a reasonable ratio to ensure more variability to the training data for the purposes of chapter...
+without synchronisation.
 
+For the stochastic opponents 45\% of the collected sequences are not
+reproducible. The aim of this Chapter is to generate a collection of well
+performed sequences in the IPD, so they can be used as the training data for the
+purposes of Chapter~\ref{chapter:lstm}. For the stochastic opponents well
+performed sequences have been collected, and a 45\% percentage of non
+reproducible sequences is a reasonable ratio which also ensures more variability
+to the sequence collection.
 
 \subsection{The collection of best response sequences}
 
