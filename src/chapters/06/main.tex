@@ -632,16 +632,66 @@ Table~\ref{table:champion_summary}.
     \(1 \to C\).}\label{table:champion_summary}
 \end{table}
 
-% TODO Can we include a discussion of the best response sequence against some
-% specific strategies: did the algorithm find them? I think this should be
-% before what the overall analysis of them.
+The best response sequences are collected from the last generation of the
+exported summaries. More specifically, the sequences with the highest scores at
+the last generations (over the GA trials) are the best response sequences. The
+data collection has successfully identified best response sequences. Though this
+can not been verified for each opponent, it has been verified for several
+opponents with established best response sequences in finite IPD matches.
 
-% So for example:
+In section~\ref{section:ipd_as_sequences} it was stated that the best response
+to a strategy that does not react to the history is to always defect. Such
+strategies include Cooperator, Defector, Alternator and the family of the Cycler
+strategies. Algorithm~\ref{algorithm:genetic_algorithm} successfully identified their best responses, as
+shown in Table~\ref{table:always_defect_best_responses}.
 
-% TfT Grudger Some fancy extortionate ZD one (did it end up just defecting which
-% is the only thing it could do) TF1 (or whatever it's called): the trained FSM
-% from the Moran paper which has the handshake (did the algorithm find the
-% handshake?)
+\begin{table}[!htbp]
+    \resizebox{\textwidth}{!}{
+    \input{src/chapters/06/tex/always_defect_best_responses.tex}}
+    \caption{Best response sequences to a number of opponents that do not react
+    to the history of the match. The best response to such strategies are to always
+    defect. This was successfully captured by the best sequence collection process
+    of this Chapter.}\label{table:always_defect_best_responses}
+\end{table}
+
+The best response sequence to Tit For Tat and Grudger is the sequence that
+cooperates until before the last turn. That way the sequence receives the payoff
+for mutual cooperation for \(N -1 turns\), and then betrays its opponent in the
+last turn to maximise its score, receiving a payoff of \(T\). It only defects
+on the last turn because then it can not be punished. The sequence is also the
+best response to the strategy Hard Tit For Tat. The strategy is a variant of Tit
+For Tat that uses that uses a longer history for retaliation. The best response
+sequences were captured for all three strategies,
+Table~\ref{table:known_strategies_best_responses}.
+
+\begin{table}[!htbp]
+    \resizebox{\textwidth}{!}{
+    \input{src/chapters/06/tex/known_strategies_best_responses.tex}}
+    \caption{Best response sequences to strategies Tit For Tat, Grudger
+    and Hard Tit For Tat.}
+    \label{table:known_strategies_best_responses}
+\end{table}
+
+There are more sophisticated yet still established best response sequences.
+These include the best response to TF1~\cite{Knight2018}. In~\cite{Knight2018}
+the strategy TF1 was trained using a 16 state finite state machine in a Moran
+process setting. The TF1 strategy developed a hand shake mechanism that allowed
+it to identify strategies that play like itself. Once two copies of TF1
+identify each other they go into mutually cooperations until the end of their
+interactions. The best response to the strategy is the a sequence that performs
+the handshake, and goes into mutual cooperations until before the final turn.
+This best response sequence was also captured by the data collection process.
+The handshake is performed in the opening three turns, and it is the sequence
+\(\{C, C, D\}\) as shown in Table~\ref{table:hand_shake_best_response}.
+
+\begin{table}[!htbp]
+    \resizebox{\textwidth}{!}{
+    \input{src/chapters/06/tex/hand_shake_best_response.tex}}
+    \caption{Best response sequence to TF1 introduced in~\cite{Knight2018}. The strategy
+    performs a handshake in the first three moves. The hand shake is the sequence
+    \(CDC\). If the opponent plays that same then the strategies go into mutual
+    cooperation.}\label{table:hand_shake_best_response}
+\end{table}
 
 \subsection{Parallelisation and stochastic results}
 
