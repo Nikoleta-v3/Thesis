@@ -633,11 +633,7 @@ Table~\ref{table:champion_summary}.
 \end{table}
 
 The best response sequences are collected from the last generation of the
-exported summaries. More specifically, the sequences with the highest scores at
-the last generations (over the GA trials) are the best response sequences. The
-data collection has successfully identified best response sequences. Though this
-can not been verified for each opponent, it has been verified for several
-opponents with established best response sequences in finite IPD matches.
+exported summaries. 
 
 In section~\ref{section:ipd_as_sequences} it was stated that the best response
 to a strategy that does not react to the history is to always defect. Such
@@ -724,12 +720,11 @@ PRNG. Then there is no longer any state that's shared by multiple threads
 without synchronisation.
 
 For the stochastic opponents 45\% of the collected sequences are not
-reproducible. The aim of this Chapter is to generate a collection of well
-performed sequences in the IPD, so they can be used as the training data for the
-purposes of Chapter~\ref{chapter:lstm}. For the stochastic opponents well
-performed sequences have been collected, and a 45\% percentage of non
+reproducible. Recalling that the aim of this Chapter is to generate a collection of well
+performing sequences in the IPD, so that they can be used as the training data for the
+purposes of Chapter~\ref{chapter:lstm}. A 45\% percentage of non
 reproducible sequences is a reasonable ratio which also ensures more variability
-to the sequence collection.
+to the data for training.
 
 \subsection{The collection of best response sequences}
 
@@ -764,8 +759,8 @@ sequences. There are two reason that as to why this happened:
     of all the 18 trials for the given set of opponents.}\label{fig:ga_trials}
 \end{figure}
 
-Nevertheless, a sequence that has not converged it is still useful. Even though
-it is not the highest scored members, it is a sequence that was not arbitrarily
+Nevertheless, a sequence that has not converged is still useful. Even though
+it is not the highest scoring member, it is a sequence that was not arbitrarily
 generated but has some critical information regarding playing against given
 opponents.
 
