@@ -652,7 +652,7 @@ shown in Table~\ref{table:always_defect_best_responses}.
 
 The best response sequence to Tit For Tat and Grudger is the sequence that
 cooperates until before the last turn. That way the sequence receives the payoff
-for mutual cooperation for \(N -1 turns\), and then betrays its opponent in the
+for mutual cooperation for \(N - 1\) turns, and then betrays its opponent in the
 last turn to maximise its score, receiving a payoff of \(T\). It only defects
 on the last turn because then it can not be punished. The sequence is also the
 best response to the strategy Hard Tit For Tat. The strategy is a variant of Tit
@@ -719,10 +719,10 @@ way of implementing seeding which involves giving each thread its own local
 PRNG. Then there is no longer any state that's shared by multiple threads
 without synchronisation.
 
-For the stochastic opponents 45\% of the collected sequences are not
+For the stochastic opponents \nonreproducible of the collected sequences are not
 reproducible. Recalling that the aim of this Chapter is to generate a collection of well
 performing sequences in the IPD, so that they can be used as the training data for the
-purposes of Chapter~\ref{chapter:lstm}. A 45\% percentage of non
+purposes of Chapter~\ref{chapter:lstm}. A \nonreproducible percentage of non
 reproducible sequences is a reasonable ratio which also ensures more variability
 to the data for training.
 
@@ -816,7 +816,7 @@ mentioned in Chapter~\ref{chapter:meta_tournaments}, as the likelihood of a
 match ending in the following turn increases the effectiveness of defecting.
 
 A total of \stochasticsequences sequences have been estimated for the stochastic opponents. From
-these sequences, 66\% did indeed play against the correct seeded opponent and
+these sequences, \reproducible did indeed play against the correct seeded opponent and
 achieved their respective scores at the final generation.
 
 For instance for the strategy - seed combination of Champion - seed\(=9\) the highest score
