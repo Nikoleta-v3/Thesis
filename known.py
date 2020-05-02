@@ -129,7 +129,7 @@ words = {
     "bimodal",
     "PHP",
     "np",
-    "numpy"
+    "numpy",
     "APIError",
     "Api",
     "ArXiv",
