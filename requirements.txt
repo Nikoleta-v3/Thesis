@@ -2,3 +2,4 @@ invoke
 jupyter
 bibtexparser
 numpy==1.18.1
+arcas
