@@ -1,11 +1,256 @@
-\chapter{Conclusion}\label{chapter:conclusion}
+\chapter{Conclusions}\label{chapter:conclusion}
 
-\begin{usagepy}
->>> 1 + 1
-2
+This Chapter serves to summarise the work and contributions of this thesis. Each
+chapter contains a detailed chapter summary section, and so the summary here will be
+brief.
 
->>> import numpy as np
->>> np.mean([1, 2, 3, 4, 5])
-3.0
+\section{Research Summary}
 
-\end{usagepy}
+The fundamental research question of this thesis has been the same question that
+has troubled the scientific community since the formulation of the Iterated
+Prisoner's Dilemma in 1950. Namely, what is the optimal behaviour an Iterated
+Prisoner's Dilemma strategy should adapt as a response to different
+environments.
+
+Chapter~\ref{chapter:introduction} introduced the Iterated Prisoner's Dilemma,
+carried out an initial literature review and outlined the research tasks of this
+thesis. A more detailed literature review was presented in
+Chapter~\ref{chapter:literature_review}. The literature reviewed in
+Chapter~\ref{chapter:literature_review} was divided into different research
+topics. These included evolutionary dynamics, intelligently designed strategies,
+structured strategies and training and software that has been developed
+specifically for the game.
+
+In Chapter~\ref{chapter:bibliometric_study} a bespoke research software tool
+called \mintinline{python}{arcas} was developed and used to collect a data set
+of articles' metadata on the Iterate Prisoner's Dilemma. A topic modelling
+technique, called Latent Dirichlet Allocation, was applied to the abstracts of these
+articles and allocated them into five different research topics. These were human
+subject research, biological studies, strategies, evolutionary dynamics on
+networks and modelling problems as a Prisoner's Dilemma.
+
+The bespoke data set was further analysed to explore whether the academic field
+of the Prisoner's Dilemma is cooperative and whether there is influence between
+the authors. It was shown that the field of the Iterated Prisoner's Dilemma is a
+collaborative field, yet it is not necessarily more collaborative than other
+fields. Many authors tend to collaborate with authors from one community
+and are not involved in multiple communities. The collaborativeness was also
+explored over time, and it was shown that since the first publications authors
+tended to write only with a single community and that it is not an effect of a
+specific time period. Exploring the influence of authors
+in the field based on the specific publications showed that authors do not gain
+much influence, and the only ones with influence are the ones connected to a
+``main'' group.
+
+Chapter~\ref{chapter:meta_tournaments} examined the performance of a collection
+of \numberofstrategies strategies in the largest collection of computer
+tournaments in the field. The results across the \numberofalltournaments
+tournaments of various tournaments types deduced that there was not a single strategy that
+performs well in diverse Iterated Prisoner's Dilemma scenarios.
+The later parts of the Chapter analysed and extracted the salient features of the best
+performing strategies across the various tournament types and established that there
+are several properties that heavily influence the best performing
+strategies. There were: be nice, be provocable and forgiving, be
+a little envious, be clever, and adapt to the environment.
+
+Chapter~\ref{chapter:memory_one} investigated best response memory-one
+strategies with a theory of mind. It presented
+several theoretical and numerical results. More specifically, it proved that:
+
+\begin{itemize}
+    \item The utility of a
+    memory-one strategy against a set of memory-one opponents can be written as a
+    sum of ratios of quadratic forms.
+    \item There is a compact way of identifying
+    a memory-one best response to a group of opponents through a search over a
+    discrete set.
+    \item There is a condition for which in an environment of
+    memory-one opponents defection is the stable choice, based only on the
+    coefficients of the opponents.
+\end{itemize}
+
+Additionally, the numerical results of Chapter~\ref{chapter:memory_one}
+reinforced established result of the literature. Namely, they showed that
+extortionate play is not always optimal by showing that optimal play is often
+not extortionate, and that memory-one strategies suffer from their limited
+memory in multi agent interactions and can be out performed by optimised
+strategies with longer memory.
+
+Chapter~\ref{chapter:lstm} %TODO include results.
+
+\section{Contributions}
+
+This thesis has made novel contributions across various themes. Numerous
+research software packages have been implemented as part of this thesis. These
+packages have been written following the highest standards of software
+development, and have been made available so that other researchers can
+contribute to and use them. The packages include \mintinline{python}{arcas} a tool designed for
+scraping academic articles from various APIs and
+\mintinline{python}{sequences-sensei} a project for performing genetic
+algorithms. Additionally, software contributions were made to well established
+Python libraries such as SymPy~\cite{sympy} and Axelrod-Python
+Library~\cite{axelrodproject}.
+
+A total of six accompanying data sets have been generated as a result of this thesis,
+which include one of the largest collection of Iterated Prisoner's Dilemma
+tournaments known to the field:
+
+\begin{enumerate}
+    \item Articles' meta data on the Prisoner's Dilemma~\cite{pd_data_2018}.
+    \item Articles' meta data on the Price of Anarchy~\cite{anarchy_data_2018}.
+    \item Articles' meta data on Auction Games~\cite{auction_data_2018}.
+    \item Raw data for: ``Stability of defection, optimisation of strategies and
+    the limits of memory in the Prisoner's Dilemma''~\cite{glynatsi2019}.
+    \item A data set of 45686 Iterated Prisoner's Dilemma tournaments' results~\cite{data} %TODO include raw data citation, check citation is still data.
+    \item Best response sequences in the Prisoner's Dilemma. %TODO include citation
+\end{enumerate}
+
+These have been archived and made available via Zenodo, and likewise, are
+available to other researchers. They can be used to conduct further analysis and
+provide new insights to the field.
+
+A total of four scientific manuscripts presenting the methodology, analysis and
+results of this thesis have been prepared and are currently under submission to
+respective academic journals. The title of these manuscripts are:
+
+\begin{enumerate}
+    \item A bibliometric study of research topics, collaboration and influence
+    in the field of the Iterated Prisoner's Dilemma.
+    \item A meta analysis of tournaments and an evaluation of performance in the
+    Iterated Prisoner's Dilemma.
+    \item Recognising and evaluating the effectiveness of extortion in the
+    Iterated Prisoner's Dilemma~\cite{Knight2019}.
+    \item Stability of defection, optimisation of strategies and the limits of
+    memory in the Prisoner's Dilemma~\cite{glynatsi2019}.
+\end{enumerate} %TODO add citations
+
+These manuscripts have been uploaded on the pre
+print server arXiv and are currently available and accessible to the scientific
+community.
+
+Designing new strategies is an important type of research for the field.
+This thesis has introduced an abundant number of properties of successful
+strategies which can be of interest to researchers designing a new strategy
+for new environments, or just to understand the reasons behind some strategies
+being better than others. Complementing this, a new mathematical framework has
+been developed for the better understanding of memory-one strategies and an
+an initial understanding of using recurrent neural networks to train Iterate Prisoner's
+Dilemma strategies has been presented.
+
+Finally, this thesis has contributed to the continuous understanding of the emergence of
+cooperation by providing a condition for which cooperation can not occur in
+memory-one environments. It has also has proven that constrained quadratic
+ratio optimisation problems that are non concave can be solved explicitly by
+using resultant theory.
+
+% Finally, this thesis has shown the potential for an unsupervised learning approach to training a neural network ... drop previous "Finally"
+
+\section{Complementary Research}
+
+The results of this thesis are not the only scientific results to which I
+contributed during this doctoral research. The publications that will be
+discussed in this section are publications to which I am an author.
+
+Two other projects which focused on the Iterated
+Prisoner's Dilemma have been
+\cite{Knight2017, Harper2017}. The works of~\cite{Knight2017, Harper2017}
+focused on the usage of reinforcement learning algorithms (genetic algorithms
+and particle swarm optimisation algorithms) in training a series of strategies
+based on different structures such as finite state machines, hidden Markov
+models and neural networks. These strategies were trained in two settings:
+
+\begin{itemize}
+    \item A Moran process which is an evolutionary model of invasion and
+    resistance across time during which high performing individuals are more
+    likely to be replicated.
+    \item A standard tournament.
+\end{itemize}
+
+The results of~\cite{Knight2017} were confirmed in
+Chapter~\ref{chapter:meta_tournaments}. The trained strategies performed at
+the top of the standard tournament surpassing well established
+strategies such as Tit For Tat, Pavlov, Gradual and zero-determinant strategies.
+In~\cite{Harper2017} it was observed that the trained strategies (with no manual
+input) evolved the ability to have a handshake, to recognise themselves. This
+was particularly important in a Moran process of resisting invasion where a
+single individual of another type is introduced and the strategies need to
+resist the invasion.
+
+Another undertaken project included exploring rhino poaching behaviour using
+evolutionary game theory~\cite{Glynatsi2018}. Rhino populations are at critical
+level today and in protected areas devaluation approaches are used to secure the
+life of the animals. The effectiveness of these approaches, however, relies on
+poachers behaviour as they can be selective and not kill devalued rhinos or
+indiscriminate. Populations of differently behaving poachers were modelled using
+evolutionary game theory. The results
+demonstrated that full devaluation of all rhinos is likely to lead to
+indiscriminate poaching and that devaluating of rhinos can only be effective
+when implemented along with a strong disincentive framework. The paper aimed to
+contribute to the necessary research required for an informed discussion about
+the lively debate on legalising rhino horn trade.
+
+Finally, providing science outreach workshops is a great way to gain a deeper
+understanding of science and its applications, and enhancing students interest
+in science. With that in mind I created an open source educational tutorial, called Game
+Theory and Python~\cite{Glynatsi2017_game}, aimed at introducing participants to % TODO Add JOSE paper when it's done
+game theory and more specifically to repeated games. The tutorial is
+aimed at two groups of individuals: individuals familiar with Python (programmers) who want
+to start to learn game theory and mathematicians with little or no programming
+knowledge as a pathway to programming through the interesting subject. The
+tutorial has gained much interest and is currently under submission at the
+Journal of Open Source Education.
+
+A full list of the publications produced during the research presented in this
+section is:
+
+\begin{enumerate}
+    \item Reinforcement Learning Produces Dominant Strategies for the
+    Iterated Prisoner's Dilemma~\cite{Knight2017}.
+    \item Evolution Reinforces Cooperation with the Emergence of Self-Recognition
+    Mechanisms: an empirical study of the Moran process for the iterated
+    Prisoner's dilemma~\cite{Harper2017}.
+    \item An Evolutionary Game Theoretic Model of Rhino Horn Devaluation~\cite{Glynatsi2018}.
+    \item Game Theory and Python~\cite{Glynatsi2017_game}.
+\end{enumerate}
+
+\section{Future research directions}
+
+Each part of this thesis has given rise to further interesting questions and
+research directions that, although not in the scope of the current work, would
+improve or compliment it.
+
+\textbf{Future research - Meta tournament Analysis}
+
+In Chapter~\ref{chapter:meta_tournaments} during the data collection the
+probability of noise was allowed to vary between values of \(0\) and \(1\).
+However, it was established that large values of noise (\(>
+0.1\)) caused an impactful variation to the environment. From the collection of
+\numberofstrategies strategies considered in the Chapter there was not a single
+strategy that performed well in that spectrum of noise.
+
+Strategies that have been trained specifically for noisy environments such
+as DBS, Evolved FSM 16 Noise 05, Evolved ANN 5 Noise 05, PSO Gambler 2 2 2 Noise 05
+and Omega Tit For Tat, performed adequately only in tournaments with restricted
+noise. This indicates that possibly there is not a strategy in the literature
+trained to be effective for a broad spectrum of noise values. Training such
+a strategy would be an interesting avenue of further research. The analysis of the
+top performances would then be reproduced whilst including the new trained strategy.
+
+\textbf{Future research - Memory-one strategies}
+
+In Chapter~\ref{chapter:memory_one} the empirical results supported that
+extortionate play is not always optimal and that memory-one strategies suffer
+from their limited memory in multi agent interactions. All the empirical results
+presented have been for the case of two opponents (\(N=2\)). A
+future research direction would be to validate the empirical results of the Chapter for
+larger values of \(N\).
+
+Another restricted set of strategies on memory that have been studied in the literature
+are memory-two strategies. These are strategies that take into account the past
+two turns of the match. A compelling research question that arises is whether
+the current formulation of Chapter~\ref{chapter:memory_one} can be expanded to
+include memory-two strategies, and whether the results still hold.
+
+\textbf{Future research - Training an LSTM strategy}
+
+%TODO based on the conclusions of the Chapter.
