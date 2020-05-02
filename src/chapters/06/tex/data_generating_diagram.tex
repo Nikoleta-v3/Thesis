@@ -1,0 +1,37 @@
+\documentclass{standalone}
+
+\begin{document}
+\begin{tikzpicture}[
+    font=\sffamily,
+    construct/.style={draw,thick,rounded corners,fill=orange!40,inner sep=.3cm, text width=13em, font=\large, minimum height=5em},
+    write/.style={draw,thick,rounded corners,fill=black!10,inner sep=.3cm, text width=13em, font=\large, minimum height=5em},
+    seed/.style={draw,thick,rounded corners,fill=cyan!40,inner sep=.3cm, text width=10em, font=\large, minimum height=5em},
+    decision/.style={diamond,draw, thick, fill=yellow!60,inner sep=.2cm, font=\large, text width=7em},
+    source/.style={draw,thick,circle,fill=green!40, font=\large, text width=4em},
+    pil/.style={
+        ->,
+        ultra thick,},
+    every node/.style={align=center}]
+
+\node[source] (start) at (0, 0) {\textbf{start}};
+\node[construct] (strategy_selection) at ($(start)+(5, 0)$) {\textbf{assign a strategy from the collection as \(Q\)}};
+\node[decision] (decision) at ($(strategy_selection)+(6, 0)$) {\textbf{Is \(Q\)} \\ \textbf{stochastic?}};
+\node[construct] (ga) at ($(decision)+(6, 0)$) {\textbf{Perform GA trials}};
+\node[write] (csv) at ($(ga)+(7, 0)$) {\textbf{write generations} \\ \textbf{history to csv}};
+\node[seed] (seed_1) at ($(decision)+(0, -4)$) {\textbf{seed \(\in \{0, \dots, 9\}\)}};
+\node[seed] (seed_2) at ($(decision)+(0, 4)$) {\textbf{seed=NaN}};
+\node[source] (end) at ($(csv)+(0, 4)$) {\textbf{end}};
+
+\draw (start) edge[pil, out=0, in=180] node {} (strategy_selection);
+\draw (strategy_selection) edge[pil, out=0, in=180] node[left] {} (decision);
+\draw (decision) edge[pil, out=-90, in=90] node[left] {\textbf{Yes}} (seed_1);
+\draw (decision) edge[pil, out=90, in=-90] node[left] {\textbf{No}} (seed_2);
+\draw (seed_1) edge[pil, out=0, in=-90] node[left] {} (ga);
+\draw (seed_2) edge[pil, out=0, in=90] node[left] {} (ga);
+\draw (ga) edge[pil, out=0, in=180] node[above] {} (csv);
+
+\draw (csv) edge[pil, out=90, in=-90] node[left] {\textbf{seed=NaN or seed\(=9\)}} (end);
+\draw [->, ultra thick] (csv) -- ++ (0, -5.5)  node[above left] {\textbf{seed\(\ne\)NaN and seed\(<9\)}} -|  (seed_1);
+
+\end{tikzpicture}
+\end{document}

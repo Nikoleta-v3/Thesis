@@ -38,6 +38,11 @@ jobs:
     - name: Clone submodules
       run: |
         git submodule update --init --recursive
+    - name: Install submodules' packages
+      run: |
+        cd src/chapters/06/paper/Training-IPD-strategies-with-RNN
+        python setup.py install
+        cd -
     - name: Combine and clean bibliography
       run: |
         inv bibliography

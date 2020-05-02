@@ -7,3 +7,6 @@
 [submodule "src/chapters/04/paper/meta-analysis-of-prisoners-dilemma-tournaments"]
 	path = src/chapters/04/paper/meta-analysis-of-prisoners-dilemma-tournaments
 	url = https://github.com/Nikoleta-v3/meta-analysis-of-prisoners-dilemma-tournaments.git
+[submodule "src/chapters/06/paper/Training-IPD-strategies-with-RNN"]
+	path = src/chapters/06/paper/Training-IPD-strategies-with-RNN
+	url = https://github.com/Nikoleta-v3/Training-IPD-strategies-with-RNN.git

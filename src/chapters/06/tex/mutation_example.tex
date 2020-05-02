@@ -1,0 +1,44 @@
+\documentclass{standalone}
+
+\begin{document}
+\begin{tikzpicture}
+
+\node (s) at (-.7, 0) {\(S_3 = \{\)};
+\node (0) at (0, 0) {\(C,\)};
+\node (1) at ($(0)+(.5, 0)$) {\(C,\)};
+\node (2) at ($(1)+(.5, 0)$) {\(C,\)};
+\node (3) at ($(2)+(.5, 0)$) {\(C,\)};
+\node (4) at ($(3)+(.5, 0)$) {\(C,\)};
+\node (5) at ($(4)+(.5, 0)$) {\(C,\)};
+\node (6) at ($(5)+(.5, 0)$) {\(D,\)};
+\node (7) at ($(6)+(.5, 0)$) {\(C,\)};
+\node (8) at ($(7)+(.5, 0)$) {\(D,\)};
+\node (9) at ($(8)+(.5, 0)$) {\(C\}\)};
+
+\node (s) at (-1.4, -1.3) {mutated \(S_3 = \{\)};
+\node (10) at ($(0)+(0, -1.3)$) {\(C,\)};
+\node (11) at ($(10)+(.5, 0)$) {\(C,\)};
+\node (12) at ($(11)+(.5, 0)$) {\(C,\)};
+\node (13) at ($(12)+(.5, 0)$) {\(C,\)};
+\node (14) at ($(13)+(.5, 0)$) {\(C,\)};
+\node (15) at ($(14)+(.5, 0)$) {\(C,\)};
+\node (16) at ($(15)+(.5, 0)$) {\(D,\)};
+\node (17) at ($(16)+(.5, 0)$) {\(C,\)};
+\node (18) at ($(17)+(.5, 0)$) {\(D,\)};
+\node (19) at ($(18)+(.5, 0)$) {\(\textcolor{red}{D}\}\)};
+
+% \node (mut) at ($(10)+(-1.2, 0)$) {mutated};
+
+\draw (0) edge[out=-90, in=90, ->, thick] node [above, rotate=90] {\tiny{$0.134$}} (10);
+\draw (1) edge[out=-90, in=90, ->, thick] node [above, rotate=90] {\tiny{$0.847$}} (11);
+\draw (2) edge[out=-90, in=90, ->, thick] node [above, rotate=90] {\tiny{$0.764$}} (12);
+\draw (3) edge[out=-90, in=90, ->, thick] node [above, rotate=90] {\tiny{$0.255$}} (13);
+\draw (4) edge[out=-90, in=90, ->, thick] node [above, rotate=90] {\tiny{$0.495$}} (14);
+\draw (5) edge[out=-90, in=90, ->, thick] node [above, rotate=90] {\tiny{$0.449$}} (15);
+\draw (6) edge[out=-90, in=90, ->, thick] node [above, rotate=90] {\tiny{$0.652$}} (16);
+\draw (7) edge[out=-90, in=90, ->, thick] node [above, rotate=90] {\tiny{$0.789$}} (17);
+\draw (8) edge[out=-90, in=90, ->, thick] node [above, rotate=90] {\tiny{$0.094$}} (18);
+\draw (9) edge[out=-90, in=90, ->, thick] node [above, rotate=90] {\tiny{$0.028$}} (19);
+
+\end{tikzpicture}
+\end{document}

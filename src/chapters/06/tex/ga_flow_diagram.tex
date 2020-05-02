@@ -1,0 +1,46 @@
+\documentclass{standalone}
+
+\begin{document}
+\begin{tikzpicture}[
+    font=\sffamily,
+    construct/.style={draw,thick,rounded corners,fill=orange!40,inner sep=.3cm, text width=17em, font=\large, minimum height=5em},
+    mutate/.style={draw,thick,rounded corners,fill=black!10,inner sep=.3cm, text width=17em, font=\large, minimum height=5em},
+    score/.style={draw,thick,rounded corners,fill=cyan!40,inner sep=.3cm, text width=17em, font=\large, minimum height=5em},
+    decision/.style={diamond,draw, thick, fill=yellow!60,inner sep=.2cm, font=\large, text width=7em},
+    source/.style={draw,thick,circle,fill=green!40, font=\large, text width=4em},
+    pil/.style={
+        ->,
+        ultra thick,},
+    every node/.style={align=center}]
+
+\node[source] (start) at (0, 0) {\textbf{start}};
+\node[construct] (initial_population) at ($(start)+(5, 0)$) {\textbf{Generate} \\ \textbf{population members}};
+\node[construct] (new_members) at ($(initial_population)+(0, -3)$) {\textbf{Construct new members to rebuild the population}};
+
+
+\node[score] (score) at ($(initial_population)+(7, 0)$) {\textbf{Score and rank} \\ \textbf{population members}};
+\node[construct] (crossover) at ($(score)+(0, -3)$) {\textbf{Use crossover}};
+
+\node[score] (retain) at ($(score)+(7, 0)$) {\textbf{Retain top ranking members}};
+\node[mutate] (mutation) at ($(retain)+(0, -3)$) {\textbf{Mutate population}};
+\node[decision] (decision) at ($(mutation)+(0, -4)$) {\textbf{Generations complete?}};
+
+\node[source] (end) at ($(decision)+(0, -4)$) {\textbf{end}};
+\node[mutate, text width=7em, minimum height=3em] (type_1) at ($(end)+(-5, 0)$) {\textbf{Mutating}};
+\node[score, text width=7em, minimum height=3em] (type_2) at ($(type_1)+(-4, 0)$) {\textbf{Scoring}};
+\node[construct, text width=8em, minimum height=3em] (type_3) at ($(type_2)+(-4, 0)$) {\textbf{Constructing}};
+
+\draw (start) edge[pil, out=0, in=180] node {} (initial_population);
+\draw (initial_population) edge[pil, out=0, in=180] node {} (score);
+\draw (score) edge[pil, out=0, in=180] node {} (retain);
+\draw [->, ultra thick] (retain) -- ++(0,-.87) -- ++(0,-.7) -| (new_members);
+\draw (new_members) edge[pil, out=0, in=180] node {} (crossover);
+\draw (crossover) edge[pil, out=0, in=180] node {} (mutation);
+\draw (mutation) edge[pil, out=-90, in=90] node {} (decision);
+\draw (decision) edge[pil, out=-90, in=90] node[left] {\textbf{Yes}} (end);
+
+\draw [->, ultra thick] (decision) -- ++(4, 0) -- ++(0, 9) -| node[above right] {\textbf{No}} (score);
+
+
+\end{tikzpicture}
+\end{document}
