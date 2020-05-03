@@ -567,7 +567,51 @@ Table~\ref{table:source_code_data_citations}.
 \end{table}
 
 Throughout the thesis, parts of the source code and examples of it's usage are
-going to be presented in the corresponding Chapters.
+going to be presented in the corresponding Chapters. Two types of code snippets
+are used in this thesis to present code. Code snippets that demonstrate the
+source code of a specific software, Figure~\ref{figure:source_code_example}, and
+code snippets that demonstrate the usage of code,
+Figure~\ref{figure:usage_code_example}. These can be distinguish by the three arrows,
+\mintinline{python}{>>>}, which are only found in the usage code snippets.
+The three arrows are followed by a command. It
+demonstrates that the command is executed in an Python interpreter, and the result of executing the command
+is the one in the following lines without the arrows.
+The code snippets can also be distinguish by their background color. The usage
+snippets have a barker background.
+
+\begin{figure}[htbp]
+\begin{sourcepy}
+import axelrod as axl
+
+def simulate_match_utility(player, opponent, turns=500, repetitions=200):
+    """
+    Returns the simulated utility of a memory one player against a single opponent.
+    """
+    total = 0
+    players = [axl.MemoryOnePlayer(vector) for vector in [player, opponent]]
+    for rep in range(repetitions):
+        match = axl.Match(players=players, turns=turns)
+        _ = match.play()
+
+        total += match.final_score_per_turn()[0]
+
+    return total / repetitions
+\end{sourcepy}
+\caption{Example of a function implemented withing the package
+\mintinline{python}{opt_mo} which is the package that has been developed to
+carry out the research of Chapter~\ref{chapter:memory_one}.}\label{figure:source_code_example}
+\end{figure}
+
+\begin{figure}[htbp]
+\begin{usagepy}
+>>> import opt_mo
+>>> opt_mo.utility.simulate_match_utility([1, 0, 1, 0], [1, 1, 1, 1])
+3
+
+\end{usagepy}
+\caption{An example of using the function \mintinline{python}{simulate_match_utility}
+given by Figure~\ref{figure:source_code_example}.}\label{figure:usage_code_example}
+\end{figure}
 
 The results of this thesis heavily rely not only on the projects of
 Table~\ref{table:source_code_data_citations} but also on the open source package
@@ -582,6 +626,28 @@ This thesis itself is hosted on a GitHub repository at
 \url{https://github.com/Nikoleta-v3/Thesis}. It is written in the document
 preparation system \LaTeX, and automated tests have been setup to tests
 that the document compiles, spelling is correct, every time
-an updated version of the document is pushed on GitHub.
+an updated version of the document is pushed on GitHub. The usage code examples
+of this thesis are also automatically tested. Each command beginning with the
+symbol \mintinline{python}{>>>} is executed each time the document is pushed on GitHub.
+The test executes the commands and checks that the outcome is the
+same as the one following the command in the code snippets.
 
-% TODO Add a final conclusion of this chapter (super brief)
+\section{Chapter Summary}
+
+This Chapter has introduced the Iterated Prisoner's Dilemma which is the
+strategic game used in this thesis. It has presented a review of the Axelrod's
+tournaments in the 1980s, and presented a list of tournaments that have been
+performed ever since.
+
+The research questions of this thesis and how each Chapter contributes to these
+questions have been outlined. The research of this thesis heavily reliefs on
+software. The software include already established packages and packages that
+have been developed specifically for this thesis. These have been developed
+following best practices. A number of best practices were introduced in
+section~\ref{section:introduction_software_development}.
+
+The software packages and the data sets used in the following Chapters have been
+archived and made available online. This reassures that all the results
+presented in the following Chapters are reproducible. The developed packages as
+well as this thesis are being hosted on GitHub repositories and are being tested
+using automated tests.
