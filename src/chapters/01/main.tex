@@ -217,7 +217,7 @@ analysed using network theoretic approaches to answer research question~\ref{res
 The second part of the thesis aims to answer research
 question~\ref{research_question_one}. There are four Chapters to this part which
 explore optimal behaviour using original approaches. Namely,
-Chapter~\ref{chapter:meta_tournaments} analyses a large data set of computer. % TODO Add the number of tournaments.
+Chapter~\ref{chapter:meta_tournaments} analyses a set of \numberofalltournaments computer.
 tournaments of distinct types and evaluates \numberofstrategies strategies'
 performance. Chapter~\ref{chapter:memory_one} explores best response strategies
 to environments of memory-one opponents and
@@ -250,15 +250,20 @@ A summary of each Chapter is given below:
     topics include evolutionary dynamics, intelligently designed strategies
     and structured strategies and training.
     \item Chapter~\ref{chapter:bibliometric_study} presents a bibliometric
-    analysis of 2,420 Iterated Prisoner's Dilemma articles. It uses natural language processing to. % TODO Remove the hard coded number of articles?
+    analysis of \totalarticles Iterated Prisoner's Dilemma articles. It uses natural language processing to.
     identify five research topics, and a graph theoretic approach to quantify the
     collaborativeness of the field. The five identified topics are human subject
     research, biological studies, strategies, evolutionary dynamics on networks
     and modelling problems as a Prisoner's Dilemma.
-    \item Chapter~\ref{chapter:meta_tournaments} generates and analyses a large data set of. % TODO Add number
-    computer tournaments. It evaluates \numberofstrategies strategies, many of
-    which are well known strategies from the literature.
-    It presents the top performing strategies and analyses their salient features.  % TODO Add a single sentence of the main finding
+    \item Chapter~\ref{chapter:meta_tournaments} generates and analyses a set of
+    \numberofalltournaments computer tournaments. It evaluates
+    \numberofstrategies strategies, many of which are well known strategies from
+    the literature. It presents the top performing strategies and analyses their
+    salient features. The results show that there is not yet a single strategy
+    that performs well in diverse Iterated Prisoner's Dilemma scenarios,
+    nevertheless there are several properties that heavily influence the best
+    performing strategies. These are: be nice, be provocable and generous, be a
+    little envious, be clever, and adapt to the environment.
     \item Chapter~\ref{chapter:memory_one} explores best responses to a
     collection of memory-one strategies as a multidimensional non linear
     optimisation problem. It presents a closed form algebraic expression for the
@@ -266,11 +271,15 @@ A summary of each Chapter is given below:
     compact method of identifying it's best response to that given set of
     opponents whilst having a theory of mind, and it introduces a well designed
     framework that allows the comparison of an optimal memory-one strategy and a
-    more complex strategy which has a larger memory.  % TODO Add a single sentence of the main finding, something like: its add to the literature questioning the importance of memory and adaptability in the IPD.
+    more complex strategy which has a larger memory. The results add to the
+    literature that has shown that extortionate play is not always optimal by
+    showing that optimal play is often not extortionate.
     \item Chapter~\ref{chapter:best_response_sequence} explores the problem of
     Iterated Prisoner's Dilemma best responses in the form of sequences.
-    It heuristically identifies the best response sequence against 197 strategies,
-    and generates a data set of 751 best response sequences of 205 turns. This chapter mainly serves as a foundation for Chapter~\ref{chapter:lstm} but does present a novel heuristic and a study of its performance.
+    It heuristically identifies the best response sequence against \numberofstrategiesbestsequences strategies,
+    and generates a data set of 750 best response sequences of 205 turns.
+    This chapter mainly serves as a foundation for Chapter~\ref{chapter:lstm}
+    but does present a novel heuristic and a study of its performance.
     \item Chapter~\ref{chapter:lstm} uses the data set of best response strategies
     obtained from Chapter~\ref{chapter:best_response_sequence} to train a recurrent
     neural network to play the Iterated Prisoner's Dilemma.
