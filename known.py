@@ -265,5 +265,7 @@ words = {
     "pre",
     "viewable",
     "APL",
-    "clcc"
+    "clcc",
+    "MemoryOnePlayer",
+    "codebases",
 }
