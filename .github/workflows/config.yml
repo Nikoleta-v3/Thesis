@@ -40,6 +40,9 @@ jobs:
         git submodule update --init --recursive
     - name: Install submodules' packages
       run: |
+        cd src/chapters/05/paper/memory-size-in-the-prisoners-dilemma
+        python setup.py install
+        cd -
         cd src/chapters/06/paper/Training-IPD-strategies-with-RNN
         python setup.py install
         cd -
