@@ -106,7 +106,7 @@ are:
     \item Be ``nice'' in non-noisy environments or when game lengths are longer
     \item Reciprocate both cooperation and defection appropriately;
     Be provocable in tournaments with short matches, and generous when matches are longer
-    \item \st{Do not be too clever} It's ok to be clever
+    \item \st{Do not be too clever} It is okay to be clever
     \item Adapt to the environment; Adjust to the mean population cooperation
 \end{itemize}
 
@@ -406,7 +406,7 @@ The most effective strategies in probabilistic ending
 tournaments with \(p_e< 0.1\) are a series of ensemble Meta strategies, trained strategies
 which performed well
 in standard tournaments, and Grudger~\cite{axelrodproject} and Spiteful Tit for
-Tat~\cite{prison}. The Meta strategies~\cite{axelrodproject} utilize a team of
+Tat~\cite{prison}. The Meta strategies~\cite{axelrodproject} utilise a team of
 strategies and aggregate the potential actions of the team members into a single action
 in various ways. Figure~\ref{fig:probend_subset_results} indicates that these strategies
 performed well in any probabilistic ending tournament.
@@ -773,7 +773,7 @@ all opponents and cannot actively adapt back to mutual cooperation against
 stronger strategies, which requires more depth of memory. Note that
 ZDs also tend to perform poorly in population games for a similar reason: they
 attempt to exploit other players using ZDs, failing to form a cooperative
-subpopulation~\cite{Knight2018}. This makes them good invaders but poor resisters of invasion.
+sub population~\cite{Knight2018}. This makes them good invaders but poor resisters of invasion.
 
 \begin{figure}[!htbp]
     \centering
@@ -892,7 +892,7 @@ population average is important.
 
 This could potentially explain the early success of Tit For Tat. Tit For Tat naturally achieves
 a cooperation rate near $C_{\text{mean}}$ by virtue of copying its opponent's
-last move while also minimizing instances where it is exploited by an opponent
+last move while also minimising instances where it is exploited by an opponent
 (cooperating while the opponent defects), at least in non-noisy tournaments. It
 could also explain why Tit For \(N\) Tats does not fare well for $N > 1$ -- it
 fails to achieve the proper cooperation ratio by tolerating too many defections.
@@ -901,8 +901,8 @@ Similarly, the results could suggest an explanation regarding the intuitively
 unexpected effectiveness of memory-one strategies historically. Given that among
 the important features associated with success are the relative cooperation rate
 to the population average and the four memory-one probabilities of cooperating
-conditional on the previous round of play, these features can be optimized by a
-memory-one strategy such as TFT. Usage of more history becomes valuable when
+conditional on the previous round of play, these features can be optimised by a
+memory-one strategy such as Tit For Tat. Usage of more history becomes valuable when
 there are exploitable opponent patterns. This is indicated by the importance of
 SSE as a feature, showing that the first-approximation provided by a memory-one
 strategy is no longer sufficient.
@@ -911,10 +911,10 @@ These results highlight a central idea in evolutionary game theory in this
 context: the fitness landscape is a function of the population (where fitness in
 this case is tournament performance). While that may seem obvious now, it shows
 why historical tournament results on small or arbitrary populations of
-strategies have so often failed to produce generalizable results.
+strategies have so often failed to produce generalisable results.
 
 Overall, the five properties successful strategies need to have in a IPD competition
-based on the analysis that has been presented in this manuscript are:
+based on the analysis that has been presented in this Chapter are:
 
 \begin{itemize}
     \item Be ``nice'' in non-noisy environments or when game lengths are longer

@@ -138,4 +138,9 @@ words = {
     "pre",
     "probabilistically",
     "provocable",
+    "Axerlod",
+    "analyze",
+    "distill",
+    "generalizability",
+    "generalisable"
 }
