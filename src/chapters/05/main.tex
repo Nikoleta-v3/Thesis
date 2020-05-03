@@ -482,8 +482,9 @@ Figure~\ref{figure:code_for_sylvester}.
 
 \begin{figure}[!htbp]
     \begin{usagepy}
->>> p_1 = sym.symbols('p_1')
->>> p_2 = sym.symbols('p_2')
+>>> import sympy as sym
+>>> from sympy.polys import subresultants_qq_zz
+>>> p_1, p_2 = sym.symbols('p_1, p_2')
 
 >>> f = p_1 ** 2 + p_1 * p_2 + 2 * p_1 + p_2 - 1
 >>> g = p_1 ** 2 + 3 * p_1 - p_2 ** 2 + 2 * p_2 - 1
@@ -495,6 +496,7 @@ Matrix([
 [     -1,                  2, p_1**2 + 3*p_1 - 1]])
 >>> matrix.det().factor()
 -p_1*(p_1 - 1)*(p_1 + 3)
+
 \end{usagepy}
     \caption{Example code for calculating the Sylvester matrix associated with
     \(f = p_1^2 + p_1 p_2 + 2 p_1 + p_2 - 1\) and \(g = p_1^2 + 3 p_1 - p_2^2 +
@@ -520,14 +522,20 @@ Figure~\ref{fig:reactive_example_get_candidate_set}.
 \begin{figure}[!htbp]
 \begin{usagepy}
 >>> import opt_mo
+>>> import numpy as np
+>>> import axelrod as axl
+
 >>> axl.seed(14)
->>> opponent = [np.random.random(4)]
->>> opponent
+>>> opponents = [np.random.random(4)]
+>>> opponents
 [array([0.51394334, 0.77316505, 0.87042769, 0.00804695])]
 
->>> candidate_set = opt_mo.reactive_best_response.get_candidate_reactive_best_responses(opponents)
->>> candidate_set
-{0, 0.2775453690890986, 0.6964731896521483, (0.913428410721382+0j), 1}
+>>> candinate_set = opt_mo.reactive_best_response.get_candinate_reactive_best_responses(
+...     opponents
+... )
+>>> candinate_set
+{(0.913428410721382+0j), 0.6964731896521483, 0.2775453690890986, 0, 1}
+
 \end{usagepy}
 \caption{Code example of calculating \(S_q\) for a given opponent. The function
 \mintinline{python}{reactive_best_response.get_candidate_reactive_best_responses}
@@ -545,8 +553,20 @@ Figure~\ref{fig:reactive_example_utility}.
 
 \begin{figure}[!htbp]
     \begin{usagepy}
->>> opt_p1, opt_p2, score = opt_mo.reactive_best_response.get_argmax(opponents, candidate_set)
->>> opt_p1, opt_p2 (0,0.6964731896521483)
+>>> import numpy as np
+>>> import opt_mo
+
+>>> opponents = [np.array([0.51394334, 0.77316505, 0.87042769, 0.00804695])]
+>>> candinate_set = opt_mo.reactive_best_response.get_candinate_reactive_best_responses(
+...     opponents
+... )
+
+>>> opt_p1, opt_p2, score = opt_mo.reactive_best_response.get_argmax(
+...     opponents, candinate_set
+... )
+>>> opt_p1, opt_p2
+(0, 0.6964731842832972)
+
 \end{usagepy}
 \caption{Code example of estimating the best response
 reactive strategy from a given \(S_q\) set and a given list of
@@ -592,12 +612,26 @@ Figure~\ref{fig:dixon_example} demonstrates an example of using~\cite{sympy} to 
 \begin{figure}
 \begin{usagepy}
 >>> from sympy.polys.multivariate_resultants import DixonResultant
->>> f = x + y
->>> g = x ** 2 + y ** 3
->>> h = x ** 2 + y
->>> matrix = DixonResultant(variables=[x, y], polynomials=[p, q, h])
+>>> p_1, p_2 = sym.symbols('p_1, p_2')
+
+>>> f = p_1 + p_2
+>>> g = p_1 ** 2 + p_2 ** 3
+>>> h = p_1 ** 2 + p_2
+
+>>> dixon = DixonResultant(variables=[p_1, p_2], polynomials=[f, g, h])
+>>> poly = dixon.get_dixon_polynomial()
+>>> matrix = dixon.get_dixon_matrix(polynomial=poly)
+>>> matrix
+Matrix([
+[ 0,  0, -1,  0, -1],
+[ 0, -1,  0, -1,  0],
+[-1,  0,  1,  0,  0],
+[ 0, -1,  0,  0,  1],
+[-1,  0,  0,  1,  0]])
+
 >>> matrix.det()
-0 
+0
+
 \end{usagepy}
 \caption{Code example of using~\cite{sympy} to calculate Dixon's resultant.
 \(f, g\) and \(h\) have a common root (\(x=1, y=-1\)). The determinant

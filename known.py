@@ -237,5 +237,6 @@ words = {
     "iteratively",
     "Ku",
     "lrrrrrrrrrrr",
-    "maximiser"
+    "maximiser",
+    "codebase"
 }
