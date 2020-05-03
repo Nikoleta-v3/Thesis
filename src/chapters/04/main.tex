@@ -5,7 +5,7 @@ Iterated Prisoner's Dilemma.}\label{chapter:meta_tournaments}
     The research reported in this Chapter has lead in a manuscript, entitled: \\
     \textbf{``Properties of winning Iterated Prisoner's Dilemma strategies''} \\
     Available at: \url{https://arxiv.org/abs/2001.05911} \\
-    Associated data set: \cite{Glynatsi2019_meta, Glynatsi2019_meta_raw_data} \\
+    Associated data sets: \cite{Glynatsi2019_meta, Glynatsi2019_meta_raw_data} \\
     Axerod-Python library version: 3.0.0 \\ \vspace{.5cm}
     The manuscript's abstract is the following:
 \end{center}
@@ -46,30 +46,7 @@ scientific community since the formulation of the game. In
 Chapter~\ref{chapter:literature_review} it was established that following the
 computer tournaments of Axelrod in the 1980's, a strategy's performance in a
 round robin computer tournament became a common evaluation technique for newly
-designed strategies.
-
-The winner of both of Axelrod's tournaments~\cite{Axelrod1980a, Axelrod1980b}
-was the simple strategy Tit For Tat and Axelrod concluded that the strategy's
-robustness was due to four properties, which he adapted into four suggestions on
-doing well in an IPD:
-
-\begin{itemize}
-    \item Do not be envious by striving for a payoff larger than the opponent's payoff
-    \item Be ``nice''; Do not be the first to defect
-    \item Reciprocate both cooperation and defection; Be provocable to retaliation and forgiveness
-    \item Do not be too clever by scheming to exploit the opponent
-\end{itemize}
-
-Forgiveness is a strategy's ability to go from a \(DC\) to \(C\) aiming to achieve
-mutual cooperation again, the only way Tit For Tat would end up in \(DC\), in
-environments without noise, is if it had received a defection and then retaliated.
-Subsequently, Tit For Tat would forgive an opponent that apologises (in a \(DC\) round)
-by returning to cooperation, since mutual cooperation is better than mutual defection.
-As a result of the strategy's strong performance in both tournaments, and moreover in a
-series of evolutionary experiments~\cite{Axelrod1981}, Tit For Tat was often
-claimed to be a highly robust (and sometimes the most robust) strategy for the IPD.
-
-A large collection of works were discussed in
+designed strategies. A large collection of works were discussed in
 Chapter~\ref{chapter:literature_review} which introduced a broad collection of
 strategies, and new strategies and competitions are published frequently,
 as established in Chapter~\ref{chapter:bibliometric_study}. The question,
@@ -84,10 +61,7 @@ known and named strategies in IPD literature, including many previous tournament
 winners, in contrast to other work that may have randomly generated many
 essentially arbitrary strategies (typically restrained to a class such as
 memory-one strategies, or those of a certain structural form such as finite
-state machines or deterministic memory two strategies). Additionally, our
-tournaments come in a number of variations including standard tournaments
-emulating Axelrod's original tournaments, tournaments with noise, probabilistic
-match length, and both noise and probabilistic match length. Additionally, the
+state machines or deterministic memory two strategies). Additionally, the
 analysis of this Chapter considers tournament variations including standard
 tournaments, tournaments with noise, probabilistic match length, and both noise
 and probabilistic match length. This diversity of strategies and tournament
@@ -98,8 +72,8 @@ The later part of the Chapter evaluates the impact of features on the
 performance of the strategies using modern machine learning techniques. These
 features include measures regarding a strategy's behaviour and measures
 regarding the tournaments. The outcomes reinforce the discussion started by
-Axelrod, and conclude that the properties of a successful strategy in the IPD
-are:
+Axelrod on properties of successful strategies (as presented in
+section~\ref{section:intelligent_design}), and conclude that the properties are:
 
 \begin{itemize}
     \item \st{Do not be envious} Be a little bit envious
@@ -117,7 +91,7 @@ The rest of the Chapter is structured as follows:
     types and the data collection which are made possible due to APL.
     \item section~\ref{section:top_performances} focuses on the best performing
     strategies for each type of tournament and overall.
-    \item section~\ref{section:evaluation_of_performance},explores the traits
+    \item section~\ref{section:evaluation_of_performance}, explores the traits
     which contribute to a good performance.
 \end{itemize}
 
@@ -767,7 +741,7 @@ appeared in the top ranked strategies of section~\ref{section:top_performances}
 did. In~\cite{Harper2017} it was shown that clever strategies managed to achieve
 mutual cooperation with stronger strategies whilst exploiting the weaker
 strategies. This could explain the clever winners
-of our analysis, and would explain the SSE distributions. This could also
+of this analysis, and would explain the SSE distributions. This could also
 be the reason why ZDs fail to appear in the tops ranks -- they try to exploit
 all opponents and cannot actively adapt back to mutual cooperation against
 stronger strategies, which requires more depth of memory. Note that
@@ -905,13 +879,8 @@ conditional on the previous round of play, these features can be optimised by a
 memory-one strategy such as Tit For Tat. Usage of more history becomes valuable when
 there are exploitable opponent patterns. This is indicated by the importance of
 SSE as a feature, showing that the first-approximation provided by a memory-one
-strategy is no longer sufficient.
-
-These results highlight a central idea in evolutionary game theory in this
-context: the fitness landscape is a function of the population (where fitness in
-this case is tournament performance). While that may seem obvious now, it shows
-why historical tournament results on small or arbitrary populations of
-strategies have so often failed to produce generalisable results.
+strategy is no longer sufficient. The limitations of memory are further explored
+in Chapter~\ref{chapter:memory_one}.
 
 Overall, the five properties successful strategies need to have in a IPD competition
 based on the analysis that has been presented in this Chapter are:
@@ -925,6 +894,5 @@ based on the analysis that has been presented in this Chapter are:
 \end{itemize}
 
 In this Chapter optimal behaviour was explored whilst considering a collection
-of pre defined strategies. Chapter~\ref{chapter:memory_one} thought it considers
-environments of only a specific set of IPD strategies, it estimates the exact
-best responses to those environments.
+of pre defined strategies. Chapter~\ref{chapter:memory_one} estimates
+exact best responses to environments of memory-one opponents.
