@@ -1,11 +1,11 @@
-Kendall2007
 Carvalho2013
 Ashlock2008fingerprinting
-Axelrod1980more
-Axelrod1995
-Axelrod1980
 Turner1999
+Axelrod1980more
+Axelrod1980
+Axelrod1995
 Adami2013evolutionary
 Harper2015
+Kendall2007
 Glynatsi2019
 Li2014
