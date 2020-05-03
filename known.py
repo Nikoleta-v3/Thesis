@@ -238,5 +238,8 @@ words = {
     "Ku",
     "lrrrrrrrrrrr",
     "maximiser",
-    "codebase"
+    "codebase",
+    "candinate",
+    "dixon",
+    "sympy",
 }
