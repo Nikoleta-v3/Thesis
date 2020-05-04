@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 Axelrod1980
 Kendall2007
 Carvalho2013
@@ -9,4 +10,16 @@ Adami2013evolutionary
 Axelrod1980more
 Stewart2013extortion
 Li2014
+=======
+Carvalho2013
+Ashlock2008fingerprinting
+Turner1999
+Axelrod1980more
+Axelrod1980
+Axelrod1995
+Adami2013evolutionary
+Harper2015
+Kendall2007
+>>>>>>> Meta tournament chapter (#197)
 Glynatsi2019
+Li2014
