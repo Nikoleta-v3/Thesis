@@ -120,11 +120,12 @@
 
 \usepackage{minted}
 
+\definecolor{source_bg}{RGB}{253,246,227}
 \newenvironment{sourcepy}
 {
 \VerbatimEnvironment
 \begin{minted}[
-    bgcolor=orange!5,
+    bgcolor=source_bg,
     framesep=2mm,
     frame=lines,
     baselinestretch=1.2,
@@ -133,11 +134,12 @@
     ]{python}}
 {\end{minted}}
 
+\definecolor{bg}{RGB}{254, 252, 254}
 \newenvironment{usagepy}
 {
 \VerbatimEnvironment
 \begin{minted}[
-    bgcolor=orange!25,
+    bgcolor=bg,
     framesep=2mm,
     frame=lines,
     baselinestretch=1.2,
@@ -229,9 +231,9 @@
 \input{src/chapters/03/appendix.tex}
 
 \chapter{List of Strategies}
-\input{src/chapters/04/strategies_appendix_04.tex}
+\input{src/chapters/04/tex/strategies_appendix_04.tex}
 
-\input{src/chapters/04/correlations_graphical_representations_appendix.tex}
+\input{src/chapters/04/tex/correlations_graphical_representations_appendix.tex}
 
 \chapter{Further Analysis on Features Importance}
 \input{src/chapters/04/tex/regression_appendix.tex}
