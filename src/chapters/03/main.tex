@@ -305,7 +305,7 @@ class Arxiv(Api):
 
     def to_dataframe(self, raw_article):
         """A function which takes a dictionary with structure of the arXiv results,
-        transforms it to a standardized format and returns a dataframe."""
+        transforms it to a standardised format and returns a dataframe."""
         raw_article['url'] = raw_article.get('id', None)
 
         for key_one, key_two in [['author', 'name'], ['category', 'category']]:
@@ -597,7 +597,7 @@ here are closeness and betweenness centrality.
 
 The articles contained in the data set will be classified
 into research topics using LDA, a topic modelling technique
-designed to summarize large collections of documents by a small number of
+designed to summarise large collections of documents by a small number of
 conceptually connected topics or themes~\cite{Blei2003, Grimmer2013}. LDA is
 carried out using~\cite{rehurek_lrec}.
 
@@ -1151,7 +1151,7 @@ applied to the data set to identify topics on which researchers have been
 publishing. The LDA analysis showed that the data could be classified into 5
 topics associated with human subject research, biological studies, strategies,
 evolutionary dynamics on networks and modelling
-problems as a PD. These topics summarize the field of the PD well, as they
+problems as a PD. These topics summarise the field of the PD well, as they
 demonstrate its interdisciplinarity and applications to a variety of problems. A
 temporal analysis explored how relevant these topics have been over the course
 of time, and it revealed that even though there were not the necessarily always
