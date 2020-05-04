@@ -58,6 +58,9 @@
 % A package to include graphics files (jpg, png, eps, pdf etc...)
 \usepackage{graphicx}
 
+% A package for strike through
+\usepackage{soul}
+
 % Package to add features for tables
 \usepackage{multicol,multirow,array}
 \usepackage{booktabs}
@@ -117,11 +120,12 @@
 
 \usepackage{minted}
 
+\definecolor{source_bg}{RGB}{253,246,227}
 \newenvironment{sourcepy}
 {
 \VerbatimEnvironment
 \begin{minted}[
-    bgcolor=orange!5,
+    bgcolor=source_bg,
     framesep=2mm,
     frame=lines,
     baselinestretch=1.2,
@@ -130,11 +134,12 @@
     ]{python}}
 {\end{minted}}
 
+\definecolor{bg}{RGB}{254, 252, 254}
 \newenvironment{usagepy}
 {
 \VerbatimEnvironment
 \begin{minted}[
-    bgcolor=orange!25,
+    bgcolor=bg,
     framesep=2mm,
     frame=lines,
     baselinestretch=1.2,
@@ -211,7 +216,7 @@
 \input{src/chapters/01/main.tex}
 \input{src/chapters/02/main.tex}
 \input{src/chapters/03/main.tex}
-% \input{src/chapters/04/main.tex}
+\input{src/chapters/04/main.tex}
 \input{src/chapters/05/main.tex}
 \input{src/chapters/06/main.tex}
 \input{src/chapters/07/main.tex}
@@ -224,7 +229,18 @@
 
 \begin{appendices}
 \input{src/chapters/03/appendix.tex}
+
+\chapter{List of Strategies}
+\input{src/chapters/04/tex/strategies_appendix_04.tex}
+
+\input{src/chapters/04/tex/correlations_graphical_representations_appendix.tex}
+
+\chapter{Further Analysis on Features Importance}
+\input{src/chapters/04/tex/regression_appendix.tex}
+\input{src/chapters/04/tex/random_forest_appendix.tex}
+
 \input{src/chapters/05/appendix.tex}
+
 \end{appendices}
 
 \end{document}

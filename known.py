@@ -264,4 +264,14 @@ words = {
     "clcc",
     "MemoryOnePlayer",
     "codebases",
+    "Eugine",
+    "Nier",
+    "TODO",
+    "bimodality",
+    "generalisability",
+    "pre",
+    "probabilistically",
+    "provocable",
+    "distill",
+    "generalisable"
 }
