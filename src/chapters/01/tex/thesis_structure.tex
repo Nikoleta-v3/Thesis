@@ -1,0 +1,35 @@
+\documentclass{standalone}
+
+\usepackage{standalone}
+\usepackage{tikz}
+
+\begin{document}
+    \begin{tikzpicture}[node distance=1cm]
+    \node[punkt] (literature) {\textbf{Literature Review}};
+    \node[below=1.2cm of literature] (dummy)
+    {};
+
+    \node[left=6cm of dummy, punkt] (bibliometrics)
+    {\textbf{Bibliometric Study of the Prisoner's Dilemma}};
+
+    \node[below=7cm of literature, punkt] (memoryone)
+    {\textbf{Best Response}\\ \textbf{Memory One Strategies}};
+
+    \node[right=1.5cm of memoryone, punkt] (sequences)
+    {\textbf{Best Response Sequences}};
+
+    \node[left=1.5cm of memoryone, punkt] (metatournaments)
+    {\textbf{Meta Analysis of Tournaments}};
+
+    \node[below=3cm of sequences, punkt] (lstm)
+    {\textbf{Recurrent} \\ \textbf{Neural Network}};
+
+    \draw (literature) edge[pil, out=180, in=45] node {} (bibliometrics);
+    \draw (literature) edge[pil, out=-90, in=90] node {} (memoryone);
+    \draw (literature) edge[pil, out=-90, in=45] node {} (metatournaments);
+    \draw (literature) edge[pil, out=-90, in=135] node {} (sequences);
+    \draw (memoryone) edge[doublepil, out=0, in=180] node {} (sequences);
+    \draw (memoryone) edge[doublepil, out=180, in=0] node {} (metatournaments);
+    \draw (sequences) edge[doublepil, out=-45, in=45] node {} (lstm);    
+    \end{tikzpicture}
+\end{document}

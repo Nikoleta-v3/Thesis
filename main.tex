@@ -51,6 +51,8 @@
 \newcommand{\N}{\mathbb{N}}
 \newtheorem{theorem}{Theorem}
 \newtheorem{lemma}[theorem]{Lemma}
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
 \def\arraystretch{1.5}
 
 % A package to include graphics files (jpg, png, eps, pdf etc...)
@@ -85,8 +87,33 @@
 
 \usepackage{standalone}
 \usepackage{tikz}
-\usetikzlibrary{er,positioning, calc, patterns}
+\usetikzlibrary{er,positioning, calc, patterns, arrows}
 \usetikzlibrary{decorations.pathreplacing}
+\tikzset{
+    ultra thick/.style={line width=1.6pt},
+    % Define standard arrow tip
+    >=stealth',
+    % Define style for boxes
+    punkt/.style={
+           ellipse,
+           draw=black,
+           fill=gray!7,
+           text width=15em,
+           minimum height=8em,
+           text centered,
+           font=\large},
+    % Define arrow style
+    pil/.style={
+           ->,
+           ultra thick,
+           shorten <=2pt,
+           shorten >=2pt,},
+    doublepil/.style={
+     latex'-latex',
+     ultra thick,
+     shorten <=2pt,
+     shorten >=2pt,}
+}
 
 \usepackage{minted}
 
@@ -114,6 +141,18 @@
     fontsize=\scriptsize,
     linenos
     ]{python}}
+{\end{minted}}
+
+\newenvironment{shell}
+{
+\VerbatimEnvironment
+\begin{minted}[
+    bgcolor=black!15,
+    framesep=2mm,
+    frame=lines,
+    baselinestretch=1.2,
+    fontsize=\scriptsize,
+    ]{shell}}
 {\end{minted}}
 
 \usepackage{authblk}
@@ -172,7 +211,7 @@
 \input{src/chapters/01/main.tex}
 \input{src/chapters/02/main.tex}
 \input{src/chapters/03/main.tex}
-\input{src/chapters/04/main.tex}
+% \input{src/chapters/04/main.tex}
 \input{src/chapters/05/main.tex}
 \input{src/chapters/06/main.tex}
 \input{src/chapters/07/main.tex}
