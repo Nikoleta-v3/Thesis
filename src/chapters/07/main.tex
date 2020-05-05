@@ -1,66 +1,69 @@
 \chapter{Training a recurrent neural network player}\label{chapter:lstm}
 
+\begin{center}
+    The research reported in this Chapter has been carried out with:
+
+    Axerod-Python library version: 4.2.0 \\
+    Associated data set: \\ \vspace{.5cm} % TODO archive model weights
+\end{center}
+
+\hrulefill
+
 \section{Introduction}
 
-The aim of this Chapter is to introduce a new IPD design. As it wa mentioned
-in Chapter meta tournaments consepsualating strategies has been an important
-aspect of research to the field.
+In Chapter~\ref{chapter:meta_tournaments} it was mentioned that consepsualating
+and introducing new strategies has been an important aspect of research to the
+field. The aim of this Chapter is to introduce a new IPD strategy based on a
+newly introduced archetype.
 
-In Chapter 4 it was demonstrated that there is advantage in being clever.
-Several of the archetypes strategies performed in the high rank. This
-Chapter aims to introduced a strategy similar but using an archetype that
-has not gained much attention yet in the literature. That is a type of artificial
-neural networks the recurrent network.
+In Chapter~\ref{chapter:meta_tournaments} it was demonstrated that there is
+advantage in complexity/cleverness. Complexity can confer to adaptability, and
+adaptability is important in performing well in diverse set of environments.
+This was established by the results of Chapters~\ref{chapter:meta_tournaments}
+and~\ref{chapter:memory_one}. In Chapter~\ref{chapter:meta_tournaments} the
+complex strategies that ranked highly in several tournaments included strategies
+based on archetypes such as finite state automata, hidden Markov models and
+\textit{artificial neural networks} (ANNs).
 
-Training strategies with.
-The use of artificial neural networks as a strategy archetype was introduced
-in 1996~\cite{Harrald1996}.
+The usage of ANNs to represent IPD strategies dates back to
+1996~\cite{Harrald1996}. Training ANNs to play games have had
+usefully~\cite{Chellapilla1999} player checkers.In the IPD there are works that
+trained~\cite{Franken2005} but the most usefully one being the work
+of~\cite{Harper2017} where a strategy based on ANN scored \(7^{th}\),
+\(9^{th}\), and \(11^{th}\) in a tournament of 223 strategies.
 
-2017~\cite{Harper2017}.
+A type of ANNs that have not received much attention in the literature are the
+\textit{recurrent neural networks} (RNNs). They are a type of neural networks
+that include feedback connections. In 1996, Sandholm~\cite{Sandholm1996}
+considered RNNs where a single previous step was the input to the network, and
+used a \(Q\) learning algorithm to train the model. The results
+of~\cite{Sandholm1996} were very limited and they were for pairwise interaction
+only. This could potentially have been due to the limitations of RNNs
+themselves. In 1997 a new type of RNNs was introduced called the  Long
+Short-Term Memory (LSTM) network. A course project by a Stanford University
+student considered the LSTM model with longer time steps as
+input~\cite{Wang20170}. SImilarly,~\cite{Wang20170} considered a \(Q\) learning
+algorithm and only pairwise interactions.
 
+This Chapter introduces a number of strategies based on LSTM networks that have
+been trained using the obtained collection of sequences of
+Chapter~\ref{chapter:best_response_sequence}. The performance of these strategies
+is evaluated in a meta tournament analysis similar to that of
+Chapter~\ref{chapter:meta_tournaments} by only in standard tournaments. The
+results demonstrate % TODO add results
 
-2005~\cite{Franken2005}, good paper. The trained on several environments by on
-a small list of players.
-
-1999~\cite{Chellapilla1999}
-
-This paper presents three PSO approaches to evolve IPD strategies. Each of the
-PSO approaches make use of coevolution to evolve IPD strategies. For this
-purpose, the coevolutionary approach used in [5]–[6][7] [8] for the zero-sum
-games of tic-tac-toe and checkers is used. This coevolutionary approach adapts
-the evolutionary programming approach developed by Chellapilla and Fogel [9] for
-training using PSO. In their original work, Chellapilla and Fogel evolved the
-weights of neural networks (NNs) to act as board state evaluators in a game tree
-for playing checkers. The game-playing agents were only aware of their success
-rate at winning games, a basic piece-count feature, and the principal rules of
-the game. The evolutionary process was driven through competitive coevolution,
-and the end result was an expert-level checkers player. Additional work in this
-vein has also been applied with success to chess~\cite{Harrald1996}.
-
-Fogel worked with finite-state machines (FSMs) to represent IPD strategies~\cite{Fogel1993},
-after which Harrald and Fogel replaced the FSMs with NNs~\cite{Harrald1996}.
-
-This project gets inspiration from the 1996 paper by Sandholm~\cite{Sandholm1996}, where an Elman
-recurrent neural network was used learn the Q values. Essentially a single
-previous step is taken as input to the RNN. In comparison, this project uses the
-newly developed LSTM cells for RNN, with longer time steps and up to two layers.
-This project also explores the tournament settings, where more than two players
-are involved. All these are from~\cite{Wang20171}
-
-The Chapter introduced a number of strategies based on the that have been trained
-using the obtained collection of sequences of Chapter 6. The performance
-of the strategies is evaluated in a meta tournament analysis. The result
-show that.
-
-The Chapter is structured as follows:
+This Chapter is structured as follows:
 
 \begin{itemize}
-    \item section~\ref{section:artificial_neural_networks}, covers the data collection and an introduction
-    to topic modelling and co-authorship networks.
-    \item section~\ref{section:training_a_rnn}, presents a preliminary analysis of the
-    data set.
-    \item section~\ref{section:rnn_strategy_validation},, evaluates the collaborative behaviour
-    of the field.
+    \item section~\ref{section:artificial_neural_networks}, introduces
+    artificial, recurrent neural and LSTM networks.
+    \item section~\ref{section:training_a_rnn}, cover the specific types of LSTM
+    that were trained for this Chapter. This includes details of their
+    architecture, the type of data they have been trained on and the usage of
+    the project Keras to train these models on graphics processing unit.
+    \item section~\ref{section:rnn_strategy_validation}, evaluates the
+    performance of the trained LSTMs in \metatournamentslstm standard IPD
+    tournaments.
 \end{itemize}
 
 \section{Artificial \& Recurrent Neural Networks}\label{section:artificial_neural_networks}
