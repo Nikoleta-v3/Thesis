@@ -1,4 +1,5 @@
 Axelrod1980
+Kendall2007
 Carvalho2013
 Kendall2007
 Stewart2013extortion
@@ -9,3 +10,4 @@ Adami2013evolutionary
 Turner1999
 Harper2015
 Li2014
+Wang2017

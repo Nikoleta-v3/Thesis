@@ -2,39 +2,243 @@
 
 \section{Introduction}
 
-\section{Artificial Neural Networks in the Prisoner's Dilemma Literature}
+The aim of this Chapter is to introduce a new IPD design. As it wa mentioned
+in Chapter meta tournaments consepsualating strategies has been an important
+aspect of research to the field.
 
-Literature on artificial neural networks being used in the prisoner's dilemma,
-the luck of recurrent neural networks.
+In Chapter 4 it was demonstrated that there is advantage in being clever.
+Several of the archetypes strategies performed in the high rank. This
+Chapter aims to introduced a strategy similar but using an archetype that
+has not gained much attention yet in the literature. That is a type of artificial
+neural networks the recurrent network.
 
-\section{Artificial \& Recurrent Neural Networks}
+Training strategies with.
+The use of artificial neural networks as a strategy archetype was introduced
+in 1996~\cite{Harrald1996}.
 
-Introduction to artificial neural networks.
+2017~\cite{Harper2017}.
 
-\begin{figure}
+
+2005~\cite{Franken2005}, good paper. The trained on several environments by on
+a small list of players.
+
+1999~\cite{Chellapilla1999}
+
+This paper presents three PSO approaches to evolve IPD strategies. Each of the
+PSO approaches make use of coevolution to evolve IPD strategies. For this
+purpose, the coevolutionary approach used in [5]–[6][7] [8] for the zero-sum
+games of tic-tac-toe and checkers is used. This coevolutionary approach adapts
+the evolutionary programming approach developed by Chellapilla and Fogel [9] for
+training using PSO. In their original work, Chellapilla and Fogel evolved the
+weights of neural networks (NNs) to act as board state evaluators in a game tree
+for playing checkers. The game-playing agents were only aware of their success
+rate at winning games, a basic piece-count feature, and the principal rules of
+the game. The evolutionary process was driven through competitive coevolution,
+and the end result was an expert-level checkers player. Additional work in this
+vein has also been applied with success to chess~\cite{Harrald1996}.
+
+Fogel worked with finite-state machines (FSMs) to represent IPD strategies~\cite{Fogel1993},
+after which Harrald and Fogel replaced the FSMs with NNs~\cite{Harrald1996}.
+
+This project gets inspiration from the 1996 paper by Sandholm~\cite{Sandholm1996}, where an Elman
+recurrent neural network was used learn the Q values. Essentially a single
+previous step is taken as input to the RNN. In comparison, this project uses the
+newly developed LSTM cells for RNN, with longer time steps and up to two layers.
+This project also explores the tournament settings, where more than two players
+are involved. All these are from~\cite{Wang20171}
+
+The Chapter introduced a number of strategies based on the that have been trained
+using the obtained collection of sequences of Chapter 6. The performance
+of the strategies is evaluated in a meta tournament analysis. The result
+show that.
+
+The Chapter is structured as follows:
+
+\begin{itemize}
+    \item section~\ref{section:artificial_neural_networks}, covers the data collection and an introduction
+    to topic modelling and co-authorship networks.
+    \item section~\ref{section:training_a_rnn}, presents a preliminary analysis of the
+    data set.
+    \item section~\ref{section:rnn_strategy_validation},, evaluates the collaborative behaviour
+    of the field.
+\end{itemize}
+
+\section{Artificial \& Recurrent Neural Networks}\label{section:artificial_neural_networks}
+
+Artificial neural networks (ANN) are computing systems vaguely inspired by the
+biological neural networks that constitute animal brains. ANNS can be viewed as
+weighted directed graphs in which artificial neurons are nodes and directed
+edges, with weights, are connections between the neuron outputs and the neuron
+inputs~\cite{Jain1996}.
+
+The research on ANNs has experienced three periods of extensive activity, as
+stated in~\cite{Jain1996}. The first peak was in the 1940s
+with~\cite{McCulloch1943} that opened the subject by creating a computational
+model for neural networks. The second occurred in 1960s with the Rosenblatt's
+convergence theorem of single layer networks~\cite{Rosenblatt1961}, and
+the work of~\cite{Minsky1969} which showed their limitations.
+The results of~\cite{Minsky1969} halted the enthusiasm of most
+researchers in ANNs, resulting in no activity in field for almost 20 years. In
+the early 1980s,~\cite{Werbos1974} introduced the back propagation learning
+algorithm for multilayer networks. Though the algorithm was
+initially proposed by it has been reinvented several times and it was
+popularizes by~\cite{McClelland1986}. Since then ANNs have received considerable
+interest, and today ANNs have been used in a number of innovative applications
+\cite{Kalogirou2000, Covington2016}.
+
+ANNs based on the connection pattern/archetype can be grouped into two
+categories:
+
+\begin{itemize}
+    \item \textit{feed forward} networks, in which graphs have no loops, and
+    \item \textit{recurrent} (or feedback) networks, in which loops occur
+    because of feedback connections.
+\end{itemize}
+
+
+A graphical representation of a feed forward network is given by Figure~\ref{fig:ann}.
+
+\begin{figure}[!htbp]
     \centering
-    \includestandalone[width=.1\textwidth]{src/chapters/07/neural_network}
+    \includestandalone[width=.5\textwidth]{src/chapters/07/neural_network}
+    \caption{Graphical representation of an artificial neural network (ANN)}.\label{fig:ann}
 \end{figure}
 
-Introduction to recurrent neural networks.
+A feed forward network with a single hidden layer takes as input a vector \(x\).
+Each element of the input vector is connected to a hidden layer of neurons via a
+set of learned weights. The \(j^{\text{th}}\) hidden neuron outputs \(h_j = \phi
+(\sum_{i} w_{ij} x_{i})\), where \(\phi\) is an \textit{activation function}.
 
-\begin{figure}
+The hidden layer is fully connected to an output layer, and the jth output
+neuron outputs \(y_{j} = \sum_{i} v_{ij} h_{i}\). If we need probabilities, we
+can transform the output layer via a softmax function. In matrix notation:
+
+\begin{align*}
+h & = \phi(Wx) \\
+y & = Vh
+\end{align*}
+
+where \(W\) is a weight matrix connecting the input and
+hidden layers, \(V\) is  a weight matrix connecting the hidden and output layers
+Common activation functions for \(\phi\) are the sigmoid function.
+Common activation functions include:
+
+\begin{itemize}
+    \item \(\sigma(x)\) which squashes numbers into the range \([0, 1]\)
+    \item the hyperbolic tangent, \(tanh(x)\) which squashes numbers into the range \([-1, 1]\)
+    \item the rectified linear unit, ReLU(x)=max(0,x)
+\end{itemize}
+
+Recurrent neural networks are an extension of neural networks. A recurrent neural
+network can be thought of as multiple copies of the same network, each
+passing a message to a successor, as shown by Figure~\ref{fig:rnn}.
+
+\begin{figure}[!htbp]
     \centering
     \includestandalone[width=\textwidth]{src/chapters/07/reccurent_neural_network}
+    \caption{Graphical representation of a recurrent neural network (RNN)}.\label{fig:rnn}
 \end{figure}
 
-\section{Training a Recurrent Neural Network as a Strategy}
+RNNs introduce the notion of \textit{internal knowledge}, which can be thought of
+as pieces of information that the network maintains over time.
 
-The two models that we have trained.
+we know that the hidden layers of neural networks already encode useful
+information about their inputs, so why not use these layers as the memory passed
+from one time step to the next? This gives us our RNN equations:
+
+\begin{align*}
+    h_t & = \phi(Wx_t + Uh_{t-1}) \\
+    y_t & = Vh
+    \end{align*}
+
+where \(h_{t-1}\) is the hidden state computed at time \(t-1\) multiplied by
+some weight vector \(U\).
+
+Unfortunately, as that gap grows, RNNs become unable to learn to connect the
+information In theory, RNNs are absolutely capable of handling such “long-term
+dependencies.” A human could carefully pick parameters for them to solve toy
+problems of this form. Sadly, in practice, RNNs don’t seem to be able to learn
+them. The problem was explored in depth by~\cite{Bengio1994} who found some
+pretty fundamental reasons why it might be difficult.
+
+Long Short Term Memory networks – usually just called “LSTMs” – are a special
+kind of RNN, capable of learning long-term dependencies. They were introduced by~\cite{Hochreiter1997},
+and were refined and popularized by many people
+in following work.1 They work tremendously well on a large variety of problems,
+and are now widely used.
+
+LSTMs are explicitly designed to avoid the long-term dependency problem.
+Remembering information for long periods of time is practically their default
+behavior, not something they struggle to learn!
+
+This is how we do it.
+
+\begin{itemize}
+    \item Adding a forgetting mechanism. If a scene ends, for example, the model should
+    forget the current scene location, the time of day, and reset any scene-specific
+    information; however, if a character dies in the scene, it should continue
+    remembering that he's no longer alive. Thus, we want the model to learn a
+    separate forgetting/remembering mechanism: when new inputs come in, it needs to
+    know which beliefs to keep or throw away.
+    \item Adding a saving mechanism. When the
+    model sees a new image, it needs to learn whether any information about the
+    image is worth using and saving. Maybe your mom sent you an article about the
+    Kardashians, but who cares? So when new a input comes in, the model first
+    forgets any long-term information it decides it no longer needs. Then it learns
+    which parts of the new input are worth using, and saves them into its long-term
+    memory.
+    \item Focusing long-term memory into working memory. Finally, the model needs
+    to learn which parts of its long-term memory are immediately useful. For
+    example, Bob's age may be a useful piece of information to keep in the long term
+    (children are more likely to be crawling, adults are more likely to be working),
+    but is probably irrelevant if he's not in the current scene. So instead of using
+    the full long-term memory all the time, it learns which parts to focus on
+    instead.
+\end{itemize}
+
+This, then, is an long short-term memory network. Whereas an RNN can overwrite
+its memory at each time step in a fairly uncontrolled fashion, an LSTM
+transforms its memory in a very precise way: by using specific learning
+mechanisms for which pieces of information to remember, which to update, and
+which to pay attention to. This helps it keep track of information over longer
+periods of time.
+
+At time \(t\), we receive a new input \(x_t\), the long term \(ltm_{t-1}\) and
+\(wm_{t - 1}\). Both are \(n\) length vectors, which we want to update.
+
+We'll start with our long-term memory. First, we need to know which pieces of
+long-term memory to continue remembering and which to discard, so we want to use
+the new input and our working memory to learn a remember gate of n numbers
+between 0 and 1, each of which determines how much of a long-term memory element
+to keep. (A 1 means to keep it, a 0 means to forget it entirely.)
+
+\section{Training a Recurrent Neural Network as a Strategy}\label{section:training_a_rnn}
+
+Two different models have been trained for the purpose of this Chapter. These
+are refereed to as the sequence to sequence model and the sequence to
+probability mode.
+
+\begin{figure}[!htbp]
+    \centering
+    \includestandalone[width=\textwidth]{src/chapters/07/reccurent_neural_network}
+    % \caption{Graphical representation of a recurrent neural network (RNN)}.\label{fig:rnn}
+\end{figure}
 
 The data set we have been trained on.
+
+\subsection{Keras}
+
+Here a code snippet of how the above pictures translate to code.
+
+Note that CCNLSTM is used instead of the LSTM class, which is because the training
+happended on GPU. That will be covered in section.
 
 \subsection{GPU}
 
 Using GPU. Using Keras this becomes trivial. The advantages of GPU. The super
 computer hawk.
 
-\section{Meta Tournament Analysis}
+\section{Validation of RNN as a strategy}\label{section:rnn_strategy_validation}
 
 To evaluate the performance of the players similar to chapter~\ref{chapter:meta_tournaments}
 a series of tournaments but not to that scale. The collection process is as.
@@ -72,4 +276,5 @@ a series of tournaments but not to that scale. The collection process is as.
     \label{algorithm:meta_tournament_generation}
 \end{algorithm}
 
+% THE BIG TABLE V.K. SUGGESTED HERE
 \section{Chapter Summary}
