@@ -1,0 +1,59 @@
+\documentclass{standalone}
+\usepackage{tikz}
+\usepackage{standalone}
+\usetikzlibrary{calc}
+
+\begin{document}
+    \begin{tikzpicture}
+        \node[sigmoid, font=\boldmath] (forget) at (0, 0) {$\sigma$};
+        \node[font=\boldmath] (start) at ($(forget)+(-2, 4)$) {$C_{t-1}$};
+        \node[font=\boldmath] (end) at ($(forget)+(10, 4)$) {$C_{t}$};
+
+        \draw (start) edge[->, out=0, in=180, ultra thick, black] (end);
+
+        \node[operator] (forget_o) at ($(forget)+(0, 4)$) {\textbf{x}};
+        \draw (forget) edge[->, out=90, in=-90, ultra thick, black] node[left] {$\mathbf{f_{t}}$} (forget_o);
+
+        \node[sigmoid] (input) at ($(forget)+(2, 0)$) {$\mathbf{\sigma}$};
+        \node[sigmoid] (candidate) at ($(input)+(2, 0)$) {\textbf{tanh}};
+        \node[operator] (candidate_o) at ($(candidate)+(0, 2)$) {\textbf{x}};
+        \node[operator] (output_o) at ($(candidate_o)+(4, 0)$) {\textbf{x}};
+        \node[operator, ellipse] (tanh) at ($(output_o)+(0, 1)$) {\textbf{tanh}};
+
+        \node[operator] (candidate_o_2) at ($(candidate)+(0, 4)$) {\textbf{+}};
+
+        \draw (input) edge[->, out=90, in=180, ultra thick, black] node[above left] {$\mathbf{i_{t}}$} (candidate_o);
+        \draw (candidate) edge[-, out=90, in=-90, ultra thick, black] node[left] {$\mathbf{C_{t}}$} (candidate_o);
+        \draw (candidate_o) edge[->, out=90, in=-90, ultra thick, black] (candidate_o_2);
+        \draw (output_o) edge[out=90, in=-90, ultra thick, black] (tanh);
+
+        \node[sigmoid] (output) at ($(candidate)+(2, 0)$) {$\mathbf{\sigma}$};
+
+        \node (x) at ($(input)+(-2, -2)$) {$\mathbf{x_{t}}$};
+        \draw (x) edge[out=90, in=-90, ultra thick, black] (forget);
+
+        \node (h_minus_1) at ($(forget)+(-2, -1)$) {$\mathbf{h_{t-1}}$};
+        \draw (output) edge[->, out=90, in=180, ultra thick, black] node[above left] {$\mathbf{o_{t}}$} (output_o);
+
+        \draw [ultra thick, black] (h_minus_1) -- ++ (2, 0) -- (forget);
+        \draw [ultra thick, black] (h_minus_1) -- ++ (4, 0) -- (input);
+        \draw [ultra thick, black] (h_minus_1) -- ++ (6, 0) -- (candidate);
+        \draw [ultra thick, black] (h_minus_1) -- ++ (8, 0) -- (output);
+
+        \node (h_t) at ($(forget)+(10, -1)$) {$\mathbf{h_{t}}$};
+        \draw [->, ultra thick, black] (output_o) -- ++ (0, -3) -- (h_t);
+
+        \node (h_t_out) at ($(end)+(-1, 2)$) {$\mathbf{h_{t}}$};
+        \draw [->, ultra thick, black] (output_o) -- ++ (0, -3) -- ++ (1, 0) -- (h_t_out);
+        \draw [ultra thick, black] (tanh) -- ++ (0, 1);
+
+        \node (dummy) at ($(h_t_out)+(0, -2)$) {};
+        \node (dummy_2) at ($(forget)+(0, -1.2)$) {};
+
+        \begin{pgfonlayer}{background}
+            \filldraw [line width=4mm, join=round, orange!20]
+              (forget_o.north  -| dummy.east)  rectangle (dummy_2.south -| forget.west);
+          \end{pgfonlayer}
+    
+    \end{tikzpicture}
+\end{document}
