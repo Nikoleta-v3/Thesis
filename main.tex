@@ -65,6 +65,7 @@
 \usepackage{multicol,multirow,array}
 \usepackage{booktabs}
 \usepackage{tabularx}
+\usepackage[table]{xcolor}
 \setlength{\heavyrulewidth}{1.5pt}
 \setlength{\abovetopsep}{4pt}
 
@@ -90,8 +91,10 @@
 
 \usepackage{standalone}
 \usepackage{tikz}
-\usetikzlibrary{er,positioning, calc, patterns, arrows}
+\usetikzlibrary{er,positioning, calc, patterns, arrows, backgrounds}
 \usetikzlibrary{decorations.pathreplacing}
+\definecolor{bostonuniversityred}{rgb}{0.8, 0.0, 0.0}
+\definecolor{carrotorange}{rgb}{0.93, 0.57, 0.13}
 \tikzset{
     ultra thick/.style={line width=1.6pt},
     % Define standard arrow tip
@@ -135,7 +138,21 @@
         fill=gray!30,
         text width=2em,
         minimum height=1.5em,
-        text centered}
+        text centered},
+    sigmoid/.style={
+        rectangle,
+        draw=black,
+        fill=carrotorange!70,
+        text width=3em,
+        minimum height=4em,
+        text centered},
+    operator/.style={
+        circle,
+        fill=bostonuniversityred!90,
+        draw=black,
+        text width=2em,
+        minimum height=1.5em,
+        text centered},
 }
 \usepackage{minted}
 
@@ -207,6 +224,14 @@
 \newcommand{\totalsequences}{\input{src/chapters/06/tex/total_sequences.tex}}
 \newcommand{\reproducible}{\input{src/chapters/06/tex/reproducible_percentage.tex}}
 \newcommand{\nonreproducible}{\input{src/chapters/06/tex/non_reproducible_percentage.tex}}
+
+\newcommand{\metatournamentslstm}{\input{src/chapters/07/number_of_meta_tournaments.tex}}
+\newcommand{\topstrategies}{\input{src/chapters/07/tex/top_strategies_total.tex}}
+\newcommand{\basicstrategies}{\input{src/chapters/07/tex/basic_strategies_total.tex}}
+\newcommand{\acrossstrategies}{\input{src/chapters/07/tex/strategies_across_total.tex}}
+\newcommand{\topsequences}{\input{src/chapters/07/tex/top_strategies_sequences.tex}}
+\newcommand{\basicsequences}{\input{src/chapters/07/tex/basic_strategies_sequences.tex}}
+\newcommand{\acrosssequences}{\input{src/chapters/07/tex/across_strategies_sequences.tex}}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % ----------------------------------------------------------------------------
 % The actual report
@@ -220,22 +245,13 @@
 
 \frontmatter
 \pagestyle{chapterstyle} %set header-footer style for front matter
-<<<<<<< HEAD
 \input{abstract.tex}
 \input{acknowledgements.tex}
 \input{dissemination.tex}
-=======
-% \input{executive_summary.tex}
-% \input{acknowledgements.tex}
->>>>>>> adds chapter's structure
 
 \tableofcontents
 \listoffigures
 \listoftables
-<<<<<<< HEAD
-=======
-% \input{summary.tex}
->>>>>>> adds chapter's structure
 
 \mainmatter
 \pagestyle{normal} %set header-footer style rest of report
@@ -255,20 +271,20 @@
 \bibliographystyle{plain}
 \bibliography{bibliography.bib}
 
-\begin{appendices}
-\input{src/chapters/03/appendix.tex}
+% \begin{appendices}
+% \input{src/chapters/03/appendix.tex}
 
-\chapter{List of Strategies}
-\input{src/chapters/04/tex/strategies_appendix_04.tex}
+% \chapter{List of Strategies}
+% \input{src/chapters/04/tex/strategies_appendix_04.tex}
 
-\input{src/chapters/04/tex/correlations_graphical_representations_appendix.tex}
+% \input{src/chapters/04/tex/correlations_graphical_representations_appendix.tex}
 
-\chapter{Further Analysis on Features Importance}
-\input{src/chapters/04/tex/regression_appendix.tex}
-\input{src/chapters/04/tex/random_forest_appendix.tex}
+% \chapter{Further Analysis on Features Importance}
+% \input{src/chapters/04/tex/regression_appendix.tex}
+% \input{src/chapters/04/tex/random_forest_appendix.tex}
 
-\input{src/chapters/05/appendix.tex}
+% \input{src/chapters/05/appendix.tex}
 
-\end{appendices}
+% \end{appendices}
 
 \end{document}
