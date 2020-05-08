@@ -68,8 +68,8 @@ This Chapter is structured as follows:
 
 \section{Artificial \& Recurrent Neural Networks}\label{section:artificial_neural_networks}
 
-Artificial neural networks (ANN) are computing systems vaguely inspired by the
-biological neural networks that constitute animal brains. ANNS can be viewed as
+ANNs are computing systems vaguely inspired by the
+biological neural networks that constitute animal brains. ANNs can be viewed as
 weighted directed graphs in which artificial neurons are nodes and directed
 edges, with weights, are connections between the neuron outputs and the neuron
 inputs~\cite{Jain1996}.
@@ -84,22 +84,22 @@ The results of~\cite{Minsky1969} halted the enthusiasm of most
 researchers in ANNs, resulting in no activity in field for almost 20 years. In
 the early 1980s,~\cite{Werbos1974} introduced the back propagation learning
 algorithm for multilayer networks. Though the algorithm was
-initially proposed by it has been reinvented several times and it was
+initially proposed by ? it has been reinvented several times and it was
 popularizes by~\cite{McClelland1986}. Since then ANNs have received considerable
 interest, and today ANNs have been used in a number of innovative applications
-\cite{Kalogirou2000, Covington2016}.
+such as \cite{Covington2016, Kalogirou2000}.
 
-ANNs based on the connection pattern/archetype can be grouped into two
+ANNs based on the connection pattern/architecture can be grouped into two
 categories:
 
 \begin{itemize}
     \item \textit{feed forward} networks, in which graphs have no loops, and
-    \item \textit{recurrent} (or feedback) networks, in which loops occur
+    \item recurrent (or feedback) networks, in which loops occur
     because of feedback connections.
 \end{itemize}
 
-
-A graphical representation of a feed forward network is given by Figure~\ref{fig:ann}.
+A graphical representation of a feed forward network with a single hidden layer
+is given by Figure~\ref{fig:ann}.
 
 \begin{figure}[!htbp]
     \centering
@@ -107,34 +107,37 @@ A graphical representation of a feed forward network is given by Figure~\ref{fig
     \caption{Graphical representation of an artificial neural network (ANN)}.\label{fig:ann}
 \end{figure}
 
-A feed forward network with a single hidden layer takes as input a vector \(x\).
-Each element of the input vector is connected to a hidden layer of neurons via a
-set of learned weights. The \(j^{\text{th}}\) hidden neuron outputs \(h_j = \phi
-(\sum_{i} w_{ij} x_{i})\), where \(\phi\) is an \textit{activation function}.
+A feed forward network takes as input a vector \(x\). Each element of the input
+vector is connected to a hidden layer of neurons via a set of learned weights.
+The \(j^{\text{th}}\) hidden neuron outputs \(h_j = \phi (\sum_{i} w_{ij}
+x_{i})\), where \(\phi\) is an \textit{activation function}. In turn, the hidden
+layer is fully connected to an output layer. The \(j^{\text{th}}\) output neuron
+outputs \(y_{j} = \sum_{i} v_{ij} h_{i}\). The output layer can be transformed
+to probabilities via a softmax function. 
 
-The hidden layer is fully connected to an output layer, and the jth output
-neuron outputs \(y_{j} = \sum_{i} v_{ij} h_{i}\). If we need probabilities, we
-can transform the output layer via a softmax function. In matrix notation:
+In matrix notation a single layered feed forward network can be described by
+the equations,
 
-\begin{align*}
-h & = \phi(Wx) \\
+\begin{align}\label{eq:neural_network_equations}
+h & = \phi(Wx) \\ \label{eq:neural_network_equations_two}
 y & = Vh
-\end{align*}
+\end{align}
 
-where \(W\) is a weight matrix connecting the input and
-hidden layers, \(V\) is  a weight matrix connecting the hidden and output layers
-Common activation functions for \(\phi\) are the sigmoid function.
-Common activation functions include:
+where \(W\) is a weight matrix connecting the input and hidden layers, \(V\) is
+a weight matrix connecting the hidden and output layers.
+
+Common activation functions for \(\phi\) include:
 
 \begin{itemize}
-    \item \(\sigma(x)\) which squashes numbers into the range \([0, 1]\)
+    \item the sigmoid function \(\sigma(x)\) which squashes numbers into the range \([0, 1]\)
     \item the hyperbolic tangent, \(tanh(x)\) which squashes numbers into the range \([-1, 1]\)
-    \item the rectified linear unit, ReLU(x)=max(0,x)
+    \item the rectified linear unit, \(ReLU(x)=max(0,x)\)
 \end{itemize}
 
-Recurrent neural networks are an extension of neural networks. A recurrent neural
-network can be thought of as multiple copies of the same network, each
-passing a message to a successor, as shown by Figure~\ref{fig:rnn}.
+An extension of feed forward networks are the recurrent networks. RNNs RNNs is
+the idea that they might be able to connect previous information to he present
+task. They can can be thought of as multiple copies of the same network, each
+passing a message to a successor, as demonstrated by Figure~\ref{fig:rnn}.
 
 \begin{figure}[!htbp]
     \centering
@@ -143,108 +146,578 @@ passing a message to a successor, as shown by Figure~\ref{fig:rnn}.
 \end{figure}
 
 RNNs introduce the notion of \textit{internal knowledge}, which can be thought of
-as pieces of information that the network maintains over time.
+as pieces of information that the network maintains over time. The hidden layers
+of neural networks encode useful information regarding their inputs, and that
+information is pass down by the considering,
 
-we know that the hidden layers of neural networks already encode useful
-information about their inputs, so why not use these layers as the memory passed
-from one time step to the next? This gives us our RNN equations:
-
-\begin{align*}
+\begin{align}\label{eq:recurrent_neural_network_equations}
     h_t & = \phi(Wx_t + Uh_{t-1}) \\
     y_t & = Vh
-    \end{align*}
+\end{align}
 
 where \(h_{t-1}\) is the hidden state computed at time \(t-1\) multiplied by
 some weight vector \(U\).
 
-Unfortunately, as that gap grows, RNNs become unable to learn to connect the
-information In theory, RNNs are absolutely capable of handling such “long-term
-dependencies.” A human could carefully pick parameters for them to solve toy
-problems of this form. Sadly, in practice, RNNs don’t seem to be able to learn
-them. The problem was explored in depth by~\cite{Bengio1994} who found some
-pretty fundamental reasons why it might be difficult.
+Unfortunately, in practice as that \(t\) grows, RNNs become unable to learn to
+connect the information. The problem of RNNs and it's fundamental difficulties
+were explored in depth by~\cite{Bengio1994}. However, the more time steps we
+have, the more chance we have of back-propagation gradients either accumulating
+and exploding or vanishing down to nothing.
 
-Long Short Term Memory networks – usually just called “LSTMs” – are a special
-kind of RNN, capable of learning long-term dependencies. They were introduced by~\cite{Hochreiter1997},
-and were refined and popularized by many people
-in following work.1 They work tremendously well on a large variety of problems,
-and are now widely used.
+The LSTM, introduced by~\cite{Hochreiter1997}, a network specifically designed
+to avoid the long-term dependency problem. LSTMs work tremendously well on a
+large variety of problems, and are now widely used. Remembering information for
+long periods of time is practically their default behavior, not something they
+struggle to learn.
 
-LSTMs are explicitly designed to avoid the long-term dependency problem.
-Remembering information for long periods of time is practically their default
-behavior, not something they struggle to learn!
+The way it does so is by creating an internal memory state which is simply added
+to the processed input. The time dependence and effects of previous inputs are
+controlled by an interesting concept called a forget gate, which determines
+which states are remembered or forgotten. Two other gates, the input gate and
+output gate, are also featured in LSTM cells.
 
-This is how we do it.
-
-\begin{itemize}
-    \item Adding a forgetting mechanism. If a scene ends, for example, the model should
-    forget the current scene location, the time of day, and reset any scene-specific
-    information; however, if a character dies in the scene, it should continue
-    remembering that he's no longer alive. Thus, we want the model to learn a
-    separate forgetting/remembering mechanism: when new inputs come in, it needs to
-    know which beliefs to keep or throw away.
-    \item Adding a saving mechanism. When the
-    model sees a new image, it needs to learn whether any information about the
-    image is worth using and saving. Maybe your mom sent you an article about the
-    Kardashians, but who cares? So when new a input comes in, the model first
-    forgets any long-term information it decides it no longer needs. Then it learns
-    which parts of the new input are worth using, and saves them into its long-term
-    memory.
-    \item Focusing long-term memory into working memory. Finally, the model needs
-    to learn which parts of its long-term memory are immediately useful. For
-    example, Bob's age may be a useful piece of information to keep in the long term
-    (children are more likely to be crawling, adults are more likely to be working),
-    but is probably irrelevant if he's not in the current scene. So instead of using
-    the full long-term memory all the time, it learns which parts to focus on
-    instead.
-\end{itemize}
-
-This, then, is an long short-term memory network. Whereas an RNN can overwrite
-its memory at each time step in a fairly uncontrolled fashion, an LSTM
-transforms its memory in a very precise way: by using specific learning
-mechanisms for which pieces of information to remember, which to update, and
-which to pay attention to. This helps it keep track of information over longer
-periods of time.
-
-At time \(t\), we receive a new input \(x_t\), the long term \(ltm_{t-1}\) and
-\(wm_{t - 1}\). Both are \(n\) length vectors, which we want to update.
-
-We'll start with our long-term memory. First, we need to know which pieces of
-long-term memory to continue remembering and which to discard, so we want to use
-the new input and our working memory to learn a remember gate of n numbers
-between 0 and 1, each of which determines how much of a long-term memory element
-to keep. (A 1 means to keep it, a 0 means to forget it entirely.)
-
-\section{Training a Recurrent Neural Network as a Strategy}\label{section:training_a_rnn}
-
-Two different models have been trained for the purpose of this Chapter. These
-are refereed to as the sequence to sequence model and the sequence to
-probability mode.
+The core idea to LSTMs is the \textit{cell state} also refereed to as the
+long term memory, denote as \(C_t\). The cell state is designed to pass down
+information with only a few carefully regulated changes being applied to it
+by structures called \textit{gates}. Gates are composed out of a sigmoid neural
+net layer and a point wise multiplication operator. To explain the how LSTMs
+can the cell gate work consider a LSTM cell at point \(t\) which is given by
+Figure~\ref{fig:lstm_cell}.
 
 \begin{figure}[!htbp]
     \centering
-    \includestandalone[width=\textwidth]{src/chapters/07/reccurent_neural_network}
-    % \caption{Graphical representation of a recurrent neural network (RNN)}.\label{fig:rnn}
+    \includestandalone[width=.7\textwidth]{src/chapters/07/lstm_cell}
+    \caption{An LSTM cell at point \(t\).}\label{fig:lstm_cell}
 \end{figure}
 
-The data set we have been trained on.
+The initial step is to decide what information from the cell state is to be
+discarded at the time step. This decision is made by the \textit{forget state}.
+The forget state considers the hidden state at time \(t-1\) and the input at time
+\(t\). Thus, the forget gate is given by,
+
+\begin{equation}\label{eq:forget_gate}
+    f_{t} = \sigma(W_{f}x_{t} + U_{f}h_{t-1} + b_{f})
+\end{equation}
+
+where \(b_{f}\) is the input bias.
+
+The next step is to compute the information that is going to be stored at the
+cell state from the input \(x_t\). Firstly, the input gate decides which values
+are going to be updated. The input gate is given by,
+
+\begin{equation}\label{eq:input_gate}
+    i_{t} = \sigma(W_{i}x_{t} + U_{i}h_{t-1} + b_{i}).
+\end{equation}
+
+Next, a tanh layer creates a vector of candidate values denoted as \(\tilde{C}_{t}\)
+that could be added to the cell state.
+
+\begin{equation}\label{eq:input_gate}
+    \tilde{C}_{t} = tanh(W_{c}x_{t} + U_{c}h_{t-1} + b_{c}).
+\end{equation}
+
+The cell state \(C_{t}\) using the forget and input gates and the candidate
+set of new values. The cell state \(C_{t-1}\) is multiplied by \(f_{t}\), forgetting
+the values which have been decided to discard. The new candidate values are
+scaled by how much information has been decided to keep from the input. Thus,
+
+\begin{equation}\label{eq:input_gate}
+    C_{t} = f_{t} * C_{t-1} + i_{t} * \tilde{C}_{t}.
+\end{equation}
+
+The LSTM outputs a hidden state at each step. This is either used to through
+an activation function to output \(y_{t}\), and it is passed to the next time
+step cell. The output is based on the current cell state. The cell state goes
+through a tanh function and it is multiplied by a sigmoid gate that decides which
+parts to output from the cell state.
+
+\begin{align}\label{eq:input_gate}
+    o_{t} & = \sigma(W_{o}x_{t} + U_{o}h_{t-1} + b_{o}), \\
+    h_{t} & = o_{t} * tanh(C_{t})
+\end{align}
+
+A representation of an LSTM network is given by Figure~\ref{fig:lstm}.
+
+\begin{figure}[!htbp]
+    \centering
+    \includestandalone[width=\textwidth]{src/chapters/07/lstm}
+    \caption{Graphical representation of an LSTM network.}\label{fig:lstm}
+\end{figure}
+
+The LSTM is a complex architecture and contains a large number of parameters
+that need to be trained. The LSTM networks have managed to achieve remarkable
+results. The training of an LSTM model in this Chapter is carried with the
+project. The training data is the data set of best responses generated in
+Chapter~\ref{chapter:best_response_sequences} and has been trained using the
+facilities of Cardiff's University supercomputer. The details for the training
+are presented in section~\ref{section:training_a_rnn}.
+
+\section{Training a Recurrent Neural Network as a Strategy}\label{section:training_a_rnn}
+
+The LSTMs of this Chapter are trained based on the best response sequence
+data set that was generated in Chapter~\ref{chapter:best_response_sequence}.
+Consider the strategy Adaptive and a best response to it as presented in
+section~\ref{section:the_collection_of_best_response_sequences}.
+
+\begin{table}[htb]
+    \centering
+    \begin{tabular}{cccccccccccccccc}
+        & \textbf{1} & \textbf{2} & \textbf{3} & \textbf{4}  & \textbf{5} & \textbf{6} & \textbf{7} & \textbf{8} & \textbf{9} & \textbf{10} & \textbf{11}  & \textbf{12} &  \(\dots\)  & \textbf{204} &  \textbf{205} \\ 
+        \midrule
+        Adaptive & \(C\) & \(C\) & \(C\) & \(C\) & \(C\) & \(C\) & \(D\) & \(D\) & \(D\) & \(D\) & \(D\)& \(C\)& \(\dots\) & \(C\) & \(C\) \\
+        \(S^*\) & \(C\) & \(C\) & \(D\) & \(D\) & \(D\) & \(D\) & \(D\) & \(D\) & \(D\) & \(D\) & \(D\) & \(D\)& \(\dots\) & \(D\) & \(D\) \\ \bottomrule
+    \end{tabular}
+    \caption{The interactions between Adaptive and one of the best response sequences
+    to the strategy.}\label{table:adaptive_vs_best_response}
+    \end{table}
+
+For \(0 \to D\) and \(1 \to C\) Table~\ref{table:adaptive_vs_best_response} is given by,
+
+\begin{table}[htbp]
+    \centering
+    \begin{tabular}{cccccccccccccccc}
+        & \textbf{1} & \textbf{2} & \textbf{3} & \textbf{4}  & \textbf{5} & \textbf{6} & \textbf{7} & \textbf{8} & \textbf{9} & \textbf{10} & \textbf{11} &  \textbf{12} & \(\dots\)  & \textbf{204} &  \textbf{205} \\ 
+        \midrule
+        Adaptive & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 0 & 0 & 0 & 0& 1& \(\dots\) & 1 & 1 \\
+        \(S^*\) & 1 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0& \(\dots\) & 0 & 0 \\ \bottomrule
+    \end{tabular}
+    \caption{The interactions between Adaptive and one of the best response sequences
+    to the strategy were \(0 \to D\) and \(1 \to C\).}\label{table:adaptive_vs_best_response_binary}
+\end{table}
+
+In order to train the LSTM as a player the network should predict the best
+response to strategy's action. Thus, the input to the network is the actions of
+the opponents \(Q\), discarding the last turn.
+
+\begin{figure}[!htbp]
+    \centering
+    \includestandalone[width=\textwidth]{src/chapters/07/input}
+\end{figure}
+
+and the expected output it's the response of the \(S^*\) to those actions.
+Thus the genes from \(t=2\) instead of \(t=1\).
+
+\begin{figure}[!htbp]
+    \centering
+    \includestandalone[width=\textwidth]{src/chapters/07/output}
+    % \caption{A graphical representation of a sequence to sequence LSTM model}.\label{fig:sequence_to_sequence}
+\end{figure}
+
+Two variants of LSTM network have been training in this Chapter. These are refereed to:
+
+\begin{itemize}
+    \item sequence to sequence
+    \item sequence to probability
+\end{itemize}
+
+The sequence to sequence model as an input of actions a each time step by a strategy
+an it outputs a response for each at each time step. The sequence to probability
+has an input the action of strategy up to time \(t\), and outputs a response
+to the history at time \(t\).
+
+A graphical representation of the two networks are given by Figures~\ref{fig:sequence_to_sequence} and
+\ref{fig:sequence_to_probability}.
+
+\begin{figure}[!htbp]
+    \centering
+    \includestandalone[width=\textwidth]{src/chapters/07/sequence_to_sequence}
+    \caption{A graphical representation of a sequence to sequence LSTM model}.\label{fig:sequence_to_sequence}
+\end{figure}
+
+\begin{figure}[!htbp]
+    \centering
+    \includestandalone[width=\textwidth]{src/chapters/07/sequence_to_probability}
+    \caption{A graphical representation of a sequence to probability LSTM model}.\label{fig:sequence_to_probability}
+\end{figure}
+
+The networks are constructed in such way as the length of sequences they receive
+it is not fixed. The are not trained for the \totalsequences but each
+best response sequence is broken down to 204 sets of input.
+
+\begin{equation}
+    \begin{bmatrix}
+        1 &  &  \\
+        1 & 1 &  \\
+        1 & 1 & 1 \\
+        1 & 1 & 1 & 1 \\
+        1 & 1 & 1 & 1 & 1 \\
+        1 & 1 & 1 & 1 & 1 & 1\\
+        1 & 1 & 1 & 1 & 1 & 1 & 0 \\
+        \vdots & \vdots & \vdots & \vdots & \vdots & \vdots & \vdots \\
+    \end{bmatrix} \to 
+    \begin{bmatrix}
+        1 &  &  \\
+        1 & 1 &  \\
+        1 & 1 & 0 \\
+        1 & 1 & 0 & 0 \\
+        1 & 1 & 0 & 0 & 0 \\
+        1 & 1 & 0 & 0 & 0 & 0\\
+        1 & 1 & 0 & 0 & 0 & 0 & 0 \\
+        \vdots & \vdots & \vdots & \vdots & \vdots & \vdots & \vdots \\
+    \end{bmatrix}
+\end{equation}
+
+\begin{equation}
+    \begin{bmatrix}
+        1 &  &  \\
+        1 & 1 &  \\
+        1 & 1 & 1 \\
+        1 & 1 & 1 & 1 \\
+        1 & 1 & 1 & 1 & 1 \\
+        1 & 1 & 1 & 1 & 1 & 1\\
+        1 & 1 & 1 & 1 & 1 & 1 & 0 \\
+        \vdots & \vdots & \vdots & \vdots & \vdots & \vdots & \vdots \\
+    \end{bmatrix} \to 
+    \begin{bmatrix}
+        1 \\
+        1 \\
+        0 \\
+        0 \\
+        0 \\
+        0 \\
+        0 \\
+        \vdots \\
+    \end{bmatrix}
+\end{equation}
 
 \subsection{Keras}
 
-Here a code snippet of how the above pictures translate to code.
+To construct and train the network model the open-source neural-network package
+Keras~\cite{Chollet2015} is used. Its library written in Python, designed to
+enable fast experimentation with neural networks.
+Neural layers, cost functions, optimizers, initialization schemes, activation
+functions, and regularization schemes are all standalone modules that you can
+combine to create new models.
 
-Note that CCNLSTM is used instead of the LSTM class, which is because the training
-happended on GPU. That will be covered in section.
+The code for implementing the sequence to sequence model is given by
+Figure~\ref{fig:keras_sequence_to_sequence}. There are two main types of models
+available in Keras: the Sequential model, and the Model class. The Sequential
+model is a linear stack of layers. There is a single layer of an LSTM model that
+returns the hidden state at each time step. The input shape is (None, 1) because
+there is not a fixed length and there is a single time step between the of the
+input. There are 100 the outputs turn into a probability with a sigmoid . The
+dropout layer 
+There are a total of 41301 parameters that need to be trained for the sequence
+to sequence model.
 
-\subsection{GPU}
+\begin{figure}[!htbp]
+\begin{usagepy}
+>>> from keras.models import Sequential
 
-Using GPU. Using Keras this becomes trivial. The advantages of GPU. The super
-computer hawk.
+>>> from keras.layers import (
+...     Dense,
+...     Dropout,
+...     CuDNNLSTM,
+... )
+
+>>> num_hidden_cells = 100
+>>> drop_out_rate = 0.2
+
+>>> model = Sequential()
+
+>>> model.add(
+...    CuDNNLSTM(
+...        num_hidden_cells, return_sequences=True, input_shape=(None, 1))
+...)
+
+>>> model.add(Dropout(rate=drop_out_rate))
+
+>>> model.add(Dense(1, activation="sigmoid"))
+>>> model.summary()
+Model: "sequential_1"
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+cu_dnnlstm_1 (CuDNNLSTM)     (None, None, 100)         41200     
+_________________________________________________________________
+dropout_1 (Dropout)          (None, None, 100)         0         
+_________________________________________________________________
+dense_1 (Dense)              (None, None, 1)           101       
+=================================================================
+Total params: 41,301
+Trainable params: 41,301
+Non-trainable params: 0
+_________________________________________________________________
+
+\end{usagepy}
+\caption{Keras sequence to sequence.}\label{fig:keras_sequence_to_sequence}
+\end{figure}
+
+Similarly, for the sequence to probability network the implementation of the
+network using Keras is given by Figure~\ref{fig:keras_sequence_to_probability}.
+There are now two LSTM layers. The first one outputs a hidden state at each time
+step and the second layer outputs only at time \(t\) the output then goes
+through Dropout then turned into probability with a sigmoid function. There are
+total of 122101 parameters.
+
+\begin{figure}[!htbp]
+\begin{usagepy}
+    >>> from keras.models import Sequential
+>>> from keras.layers import (
+...     Dense,
+...     Dropout,
+...     CuDNNLSTM,
+... )
+
+>>> num_hidden_cells = 100
+>>> drop_out_rate = 0.2
+
+>>> model = Sequential()
+
+>>> model.add(
+...     CuDNNLSTM(num_hidden_cells, return_sequences=True, input_shape=(None, 1))
+... )
+
+>>> model.add(CuDNNLSTM(num_hidden_cells))
+>>> model.add(Dropout(rate=drop_out_rate))
+
+>>> model.add((Dense(1, activation="sigmoid")))
+>>> model.summary()
+Model: "sequential_2"
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+cu_dnnlstm_2 (CuDNNLSTM)     (None, None, 100)         41200     
+_________________________________________________________________
+cu_dnnlstm_3 (CuDNNLSTM)     (None, 100)               80800     
+_________________________________________________________________
+dropout_2 (Dropout)          (None, 100)               0         
+_________________________________________________________________
+dense_2 (Dense)              (None, 1)                 101       
+=================================================================
+Total params: 122,101
+Trainable params: 122,101
+Non-trainable params: 0
+_________________________________________________________________
+
+\end{usagepy}
+\caption{Keras sequence to probability.}\label{fig:keras_sequence_to_probability}
+\end{figure}
+
+Keras contains two implementations on an LSTM model. That is the class LSTM and
+the CCNLSTM which was used here. CCNLSTM is a fast  LSTM implementation with
+NVIDIA CUDA Deep Neural Network library (cuDNN) which run on a graphics
+processing unit (GPU).
+
+\subsection{Training on GPU}
+
+Conventionally most training and running computer code happens on the central
+processing unit (CPU). A CPU also called a central processor or main processor
+is essentially the brain of any computing device, carrying out the instructions
+of a program by performing control, logical, and input/output (I/O) operations.
+CPUs, can have a number of cores, and its basic design and purpose—to process
+complex computations—has not really changed. A CPU core is designed to support
+an extremely broad variety of tasks.
+
+A graphical processing unit (GPU), on the other hand, has smaller-sized but many
+more logical cores (arithmetic logic units or ALUs, control units and memory
+cache) whose basic design is to process a set of simpler and more identical
+computations in parallel.
+
+Initially designed mainly as dedicated graphical rendering workhorses of
+computer games, GPUs were later enhanced to accelerate other geometric
+calculations (for instance, transforming polygons or rotating verticals into
+different coordinate systems like 3D). Nvidia created a parallel computing
+architecture and platform for its GPUs called CUDA, which gave developers access
+and the ability to express simple processing operations in parallel through
+code.
+
+While a CPU core is more powerful than a GPU core, the vast majority of this
+power goes unused by ML applications. whereas a GPU core is optimized
+exclusively for data computations. Because of this singular focus, a GPU core is
+simpler and has a smaller die area than a CPU, allowing many more GPU cores to
+be crammed onto a single chip. Consequently, ML applications, which perform
+large numbers of computations on a vast amount of data, can see huge (i.e., 5 to
+10 times) performance improvements when running on a GPU versus a CPU..
+As many have said GPUs are so fast because they are so efficient for matrix
+multiplication.
+
+Keras CCNLSTM class makes running on GPU easy. Cardiff's super computer
+was used for the training of the models.
+
+\subsection{Data set}
+
+It was explained in the the best response data set from Chapter 6 is used as
+training data. Moreover, each best responses has broken down to 204 different
+inputs. In order to understand the difference the effect of the training data
+the models have been trained on different subsets of the data set. More
+specifically in total of four different sub sets. These with a brief explanation
+and number are given by Table~\ref{table:training_data_sets}.
+
+\newcolumntype{g}{>{\columncolor{Gray}}c}
+\begin{table}[htb]
+    \centering
+    \resizebox{\textwidth}{!}{
+    \begin{tabular}{cglg}
+    \toprule
+    Data set & number of \(Q\) & Explanation & number of \(S^*\) \\
+    \midrule
+    all strategies & \numberofstrategiesbestsequences & The data set as presented in Chapter~\ref{chapter:best_response_sequence} & \totalsequences \\
+    top performing strategies & \topstrategies & Top \topstrategies performing strategies in a standard tournaments performed with APL & \topsequences \\
+    strategies across ranks & \acrossstrategies & A set \acrossstrategies that there rank is across & \acrosssequences\\
+    basic strategies & \basicstrategies & A set \basicstrategies which are classified as the basic in APL & \basicsequences \\ 
+    \bottomrule
+    \end{tabular}}
+    \caption{Subset of data set that the networks are trained on. The APL project
+    performs a round robin tournament with all the strategies implemented on every release.
+    The top strategies and the strategies across are based on the results of the tournament
+    with APL version 4.5.0.}\label{table:training_data_sets}
+\end{table}
+
+Due to the different size of the data set the networks have trained for a different
+number of epochs. The number of epochs is the number of complete passes through
+the training data set. The number of epochs each network has trained for each
+data set is given by Table~\ref{table:epochs}.
+
+\begin{table}[!htbp]
+    \begin{center}
+    \resizebox{.9\textwidth}{!}{
+        \input{src/chapters/07/tex/epochs_table.tex}
+    }
+\end{center}
+\caption{Number of epochs each both networks, sequence to sequence and 
+sequence to probability, were trained for each subset.}\label{table:epochs}
+\end{table}
+
+The data are split into training and test training set. The test set is
+20\% of the data. The validation and loss is calculated at each epoch.
+The validation is the measure that. The loss is based on the.
+
+
+\begin{figure}[!htbp]
+    \begin{subfigure}{\textwidth}
+    \centering
+    \includegraphics[width=.8\textwidth]{src/chapters/07/img/validation_plot_all_strategies.pdf}
+    \end{subfigure}\hfill
+    \begin{subfigure}{\textwidth}
+    \centering
+    \includegraphics[width=.8\textwidth]{src/chapters/07/img/validation_plot_top_strategies.pdf}
+    \end{subfigure}
+    \begin{subfigure}{\textwidth}
+    \centering
+    \includegraphics[width=.8\textwidth]{src/chapters/07/img/validation_plot_across_ranks_strategies.pdf}
+    \end{subfigure}
+    \begin{subfigure}{\textwidth}
+    \centering
+    \includegraphics[width=.8\textwidth]{src/chapters/07/img/validation_plot_basic_strategies.pdf}
+    \end{subfigure}
+    \caption{Validation of sequence to sequence}\label{fig:validation_sequence_to_sequence}
+\end{figure}
+
+\begin{figure}[!htbp]
+    \begin{subfigure}{\textwidth}
+    \centering
+    \includegraphics[width=.8\textwidth]{src/chapters/07/img/validation_plot_classification_all_strategies.pdf}
+    \end{subfigure}\hfill
+    \begin{subfigure}{\textwidth}
+    \centering
+    \includegraphics[width=.8\textwidth]{src/chapters/07/img/validation_plot_classification_top_strategies.pdf}
+    \end{subfigure}
+    \begin{subfigure}{\textwidth}
+    \centering
+    \includegraphics[width=.8\textwidth]{src/chapters/07/img/validation_plot_classification_across_ranks_strategies.pdf}
+    \end{subfigure}
+    \begin{subfigure}{\textwidth}
+    \centering
+    \includegraphics[width=.8\textwidth]{src/chapters/07/img/validation_plot_classification_basic_strategies.pdf}
+    \end{subfigure}
+    \caption{Validation of sequence to probability}\label{fig:validation_sequence_to_probability}
+\end{figure}
+
+Discussion on validation. In section~\ref{section:rnn_strategy_validation} the
+LSTM networks are validated by as an IPD strategy using a meta tournament
+analysis.
 
 \section{Validation of RNN as a strategy}\label{section:rnn_strategy_validation}
 
-To evaluate the performance of the players similar to chapter~\ref{chapter:meta_tournaments}
-a series of tournaments but not to that scale. The collection process is as.
+To evaluate the LSTM players as strategies, a strategy class was implemented
+that takes as an argument the a Keras model. The player then uses the history
+of the match translate it to an input in the form that the networks can then
+translate into an action. Note that the network was not trained to consider
+it's opening move. The opening move is also an input to the strategy class.
+In the meta tournament analysis different strategies that have a different
+opening play are considered.
+
+\begin{figure}[!htbp]
+\begin{sourcepy}
+import numpy as np
+
+import axelrod as axl
+from axelrod.random_ import random_choice
+from keras.layers import LSTM, Dense, Dropout
+from keras.models import Sequential
+
+C, D = axl.Action.C, axl.Action.D
+
+
+class LSTMPlayer(axl.Player):
+    name = "The LSTM player"
+    classifier = {
+        "memory_depth": float("inf"),
+        "stochastic": True,
+        "inspects_source": False,
+        "manipulates_source": False,
+        "manipulates_state": False,
+    }
+
+    def __init__(self, model, reshape_history_funct, opening_probability=0.78):
+        self.model = model
+        self.opening_probability = opening_probability
+        self.reshape_history_function = reshape_history_funct
+        super().__init__()
+        if opening_probability in [0, 1]:
+            self.classifier["stochastic"] = False
+
+    def strategy(self, opponent):
+        if len(self.history) == 0:
+            return random_choice(self.opening_probability)
+
+        history = [action.value for action in opponent.history]
+        prediction = float(
+            self.model.predict(self.reshape_history_function(history))[0][-1]
+        )
+
+        return axl.Action(round(prediction))
+
+    def __repr__(self):
+        return self.name
+\end{sourcepy}
+\end{figure}
+
+The implemented class can interact with any opponent from APL.
+An example of usage of the LSTMPlayer is given by Figure.
+
+To evaluate the performance of the LSTM strategy a meta tournament analysis,
+similar to Chapter~\ref{chapter:meta_tournaments}, is carried out. The
+tournament type considered here are standard tournaments. The data collections
+is given by Algorithm~\ref{meta_tournament_lstm_validation}. At each trial
+a number of opponents, a list of opponent From 5 to 10. The number of turns and repetitions
+are fixed to 200 and 50.
+
+The number 205 was hard coded. The evaluation does not want to take into account
+the last turns. 205 was selected so the last turns could have beed discarded
+and the match length would be 200 which is the number of turns commonly used
+in the literature.
+
+%TODO talk about opening probability
+
+\begin{algorithm}[!htbp]
+    \setstretch{1.35}
+    \ForEach{\text{seed} $\in [0, 300]$}{
+        \ForEach{$y \in \{0, 1, 0.78\}$}{
+        $N \gets \text{randomly select integer}\in [N_{min}, N_{max}]$\;
+        $\text{players} \gets  \text{randomly select $N$ players}$\;
+        $\text{players} \gets  \text{players} + \text{LSTM strategy}(y)$\;
+
+        $k \gets  \text{randomly select integer}\in [k_{min}, k_{max}]$\;
+        $n \gets  \text{randomly select integer}\in [n_{min}, n_{max}]$\;
+        \vspace{0.4cm}
+        $\text{result standard}$ $\gets$ Axelrod.tournament$(\text{players}, n, k)$\;}
+    }
+    \KwRet{result standard}\;
+    \caption{Data collection Algorithm}
+    \label{algorithm:meta_tournament_lstm_validation}
+\end{algorithm}
 
 \begin{table}[!htbp]
     \begin{center}
@@ -253,9 +726,9 @@ a series of tournaments but not to that scale. The collection process is as.
     \toprule
     parameter & parameter explanation &   min value & max value \\
     \midrule
-    $N$ & number of strategies  & 3 & 195 \\
-    $k$ & number of repetitions  & 10 & 100 \\
-    $n$ & number of turns      & 1 & 200 \\
+    $N$ & number of strategies   & 5 & 10 \\
+    $k$ & number of repetitions  & 50 & 50 \\
+    $n$ & number of turns        & 200 & 200 \\
     \bottomrule
         \end{tabular}}
     \end{center}
@@ -263,21 +736,130 @@ a series of tournaments but not to that scale. The collection process is as.
     \label{table:parameters_values}
 \end{table}
 
+A total of \metatournamentslstm trials of
+Algorithm~\ref{algorithm:meta_tournament_lstm_validation} have been performed.
+Similarly to Chapter~\ref{chapter:meta_tournament} each trial outputs a result
+summary of the tournament. The performance of the strategies are evaluated on
+the normalised rank \(r\), and more specifically on the median normalised rank
+\(\bar{r}\). A total of different strategies competed in the tournaments, and
+the strategy with the maximum participation, excluding the LSTM strategy, was.
 
-\begin{algorithm}[!htbp]
-    \setstretch{1.35}
-    \ForEach{\text{seed} $\in [0, 11420]$}{
-        $N \gets \text{randomly select integer}\in [N_{min}, N_{max}]$\;
-        $\text{players} \gets  \text{randomly select $N$ players}$\;
-        $k \gets  \text{randomly select integer}\in [k_{min}, k_{max}]$\;
-        $n \gets  \text{randomly select integer}\in [n_{min}, n_{max}]$\;
-        \vspace{0.4cm}
-        $\text{result standard}$ $\gets$ Axelrod.tournament$(\text{players}, n, k)$\;
+There are two distinct networks that have been trained on four different data
+sets. Moreover, each networks translates into a player that the opening
+probability can have three different values. Thus a total of $2 \times 4 \times
+3$ LSTM players performance is evaluated in this section.
+
+\begin{table}[!htbp]
+    \begin{center}
+    \resizebox{.9\textwidth}{!}{
+        \input{src/chapters/07/tex/normalised_ranks_table.tex}
     }
-    \KwRet{result standard}\;
-    \caption{Data collection Algorithm}
-    \label{algorithm:meta_tournament_generation}
-\end{algorithm}
+\end{center}
+% \caption{Number of epochs each both networks, sequence to sequence and 
+% sequence to probability, were trained for each subset.}\label{table:epochs}
+\end{table}
+
+\begin{figure}[!htbp]
+    \begin{subfigure}{\textwidth}
+    \includegraphics[width=\textwidth]{src/chapters/07/img/normalised_rank_all_strategies.pdf}
+    \end{subfigure}
+    \par\bigskip
+    \begin{subfigure}{\textwidth}
+    \includegraphics[width=\textwidth]{src/chapters/07/img/normalised_rank_top_strategies.pdf}
+    \end{subfigure}
+    \par\bigskip
+    \begin{subfigure}{\textwidth}
+    \includegraphics[width=\textwidth]{src/chapters/07/img/normalised_rank_across_ranks_strategies.pdf}
+    \end{subfigure}
+    \par\bigskip
+    \begin{subfigure}{\textwidth}
+    \includegraphics[width=\textwidth]{src/chapters/07/img/normalised_rank_basic_strategies.pdf}
+    \end{subfigure}
+    % \caption{Validation of sequence to sequence}\label{fig:validation_sequence_to_sequence}
+\end{figure}
+
+
+\begin{table}[!htbp]
+    \begin{center}
+    \resizebox{.9\textwidth}{!}{
+        \input{src/chapters/07/tex/sequence_to_sequence_rank_descriptive.tex}
+    }
+\end{center}
+% \caption{Number of epochs each both networks, sequence to sequence and 
+% sequence to probability, were trained for each subset.}\label{table:epochs}
+\end{table}
+
+
+\begin{figure}[!htbp]
+    \begin{subfigure}{\textwidth}
+    \includegraphics[width=\textwidth]{src/chapters/07/img/normalised_rank_classification_all_strategies.pdf}
+    \end{subfigure}
+    \par\bigskip
+    \begin{subfigure}{\textwidth}
+    \includegraphics[width=\textwidth]{src/chapters/07/img/normalised_rank_classification_top_strategies.pdf}
+    \end{subfigure}
+    \par\bigskip
+    \begin{subfigure}{\textwidth}
+    \includegraphics[width=\textwidth]{src/chapters/07/img/normalised_rank_classification_across_ranks_strategies.pdf}
+    \end{subfigure}
+    \par\bigskip
+    \begin{subfigure}{\textwidth}
+    \includegraphics[width=\textwidth]{src/chapters/07/img/normalised_rank_classification_basic_strategies.pdf}
+    \end{subfigure}
+    % \caption{Validation of sequence to probability}\label{fig:validation_sequence_to_probability}
+\end{figure}
+
+\begin{table}[!htbp]
+    \begin{center}
+    \resizebox{.9\textwidth}{!}{
+        \input{src/chapters/07/tex/sequence_to_probability_rank_descriptive.tex}
+    }
+\end{center}
+% \caption{Number of epochs each both networks, sequence to sequence and 
+% sequence to probability, were trained for each subset.}\label{table:epochs}
+\end{table}
+
+\begin{figure}[!htbp]
+    \begin{subfigure}{.45\textwidth}
+    \includegraphics[width=\textwidth]{src/chapters/07/img/cfd_to_sequence_all_strategies.pdf}
+    \caption{\(P(r<0.5): 0.350 P(r<0.5): 0.797 P(r<0.5): 0.717\)}
+    \end{subfigure}\hfill
+    \begin{subfigure}{.45\textwidth}
+    \includegraphics[width=\textwidth]{src/chapters/07/img/cfd_to_sequence_top_strategies.pdf}
+    \caption{\(P(r<0.5): 0.310 P(r<0.5): 0.573 P(r<0.5): 0.523\)}
+    \end{subfigure}
+    \begin{subfigure}{.45\textwidth}
+    \includegraphics[width=\textwidth]{src/chapters/07/img/cfd_to_sequence_across_ranks_strategies.pdf}
+    \caption(\(P(r<0.5): 0.313 P(r<0.5): 0.303 P(r<0.5): 0.280\))
+    \end{subfigure}\hfill
+    \begin{subfigure}{.45\textwidth}
+    \includegraphics[width=\textwidth]{src/chapters/07/img/cfd_to_sequence_basic_strategies.pdf}
+    \caption{\(P(r<0.5): 0.207 P(r<0.5): 0.420 P(r<0.5): 0.387\)}
+    \end{subfigure}
+    % \caption{Validation of sequence to probability}\label{fig:validation_sequence_to_probability}
+\end{figure}
+
+
+\begin{figure}[!htbp]
+    \begin{subfigure}{.45\textwidth}
+    \includegraphics[width=\textwidth]{src/chapters/07/img/cfd_to_probability_all_strategies.pdf}
+    \caption{\(P(r<0.5): 0.207 P(r<0.5): 0.783 P(r<0.5): 0.567\)}
+    \end{subfigure}\hfill
+    \begin{subfigure}{.45\textwidth}
+    \includegraphics[width=\textwidth]{src/chapters/07/img/cfd_to_probability_top_strategies.pdf}
+    \caption{\(P(r<0.5): 0.503 P(r<0.5): 0.633 P(r<0.5): 0.610\)}
+    \end{subfigure}
+    \begin{subfigure}{.45\textwidth}
+    \includegraphics[width=\textwidth]{src/chapters/07/img/cfd_to_probability_across_ranks_strategies.pdf}
+    \caption(\(P(r<0.5): 0.550 P(r<0.5): 0.763 P(r<0.5): 0.733\))
+    \end{subfigure}\hfill
+    \begin{subfigure}{.45\textwidth}
+    \includegraphics[width=\textwidth]{src/chapters/07/img/cfd_to_probability_basic_strategies.pdf}
+    \caption{\(P(r<0.5): 0.207, P(r<0.5): 0.779, P(r<0.5): 0.607\)}
+    \end{subfigure}
+    % \caption{Validation of sequence to probability}\label{fig:validation_sequence_to_probability}
+\end{figure}
+
 
 % THE BIG TABLE V.K. SUGGESTED HERE
 \section{Chapter Summary}
