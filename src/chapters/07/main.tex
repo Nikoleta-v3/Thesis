@@ -77,63 +77,56 @@ This Chapter is structured as follows:
 
 \section{Artificial, recurrent neural and long short-term memory networks}\label{section:artificial_neural_networks}
 
-ANNs are computing systems vaguely inspired by the
-biological neural networks that constitute animal brains. ANNs can be viewed as
-weighted directed graphs in which artificial neurons are nodes and directed
-edges, with weights, are connections between the neuron outputs and the neuron
-inputs~\cite{Jain1996}.
-
-The research on ANNs has experienced three periods of extensive activity, as
-stated in~\cite{Jain1996}. The first peak was in the 1940s
-with~\cite{McCulloch1943} that opened the subject by creating a computational
-model for neural networks. The second occurred in 1960s with the Rosenblatt's
-convergence theorem of single layer networks~\cite{Rosenblatt1961}, and
-the work of~\cite{Minsky1969} which showed their limitations.
-The results of~\cite{Minsky1969} halted the enthusiasm of most
-researchers in ANNs, resulting in no activity in field for almost 20 years. In
-the early 1980s,~\cite{Werbos1974} introduced the back propagation learning
-algorithm for multilayer networks. Though the algorithm was
-initially proposed by ? it has been reinvented several times and it was
-popularizes by~\cite{McClelland1986}. Since then ANNs have received considerable
-interest, and today ANNs have been used in a number of innovative applications
+ANNs are computing systems vaguely inspired by the biological neural networks
+that constitute animal brains. As stated in~\cite{Jain1996} the research on ANNs
+has experienced three periods of extensive activity. The first peak was in the
+1940s. The work of~\cite{McCulloch1943} opened the subject by creating a
+computational model for neural networks. The second peak occurred in 1960s with
+the introduction of the perceptron~\cite{Rosenblatt1958}. The perceptron is a
+linear binary classifier and in the 1960s in was shown that it could be used to
+learn to classify simple shapes with \(20\times20\) pixels input. However, it
+was impossible for the perceptron to be extended to classification tasks with
+many categories. The limitations of the model were presented
+in~\cite{Minsky1969} which alted the enthusiasm of most researchers in ANNs,
+resulting in no activity in field for almost 20 years. The third peak occurred
+in the early 1980s with the introduction of the back propagation algorithm for
+multilayered networks~\cite{Werbos1974}. Though the algorithm was initially
+proposed by~\cite{Werbos1974} it has been reinvented several times and it was
+popularizes by~\cite{McClelland1986}. Following the introduction of the
+algorithm and the ability to now train more complex models, ANNs have received
+considerable interest, and have been used in a number of innovative applications
 such as \cite{Covington2016, Kalogirou2000}.
 
 ANNs based on the connection pattern/architecture can be grouped into two
 categories:
 
 \begin{itemize}
-    \item \textit{feed forward} networks, in which graphs have no loops, and
-    \item recurrent (or feedback) networks, in which loops occur
-    because of feedback connections.
+    \item Feed forward networks.
+    \item Recurrent or feedback networks.
 \end{itemize}
 
-A graphical representation of a feed forward network with a single hidden layer
-is given by Figure~\ref{fig:ann}.
+ANNs can be viewed as weighted directed graphs in which artificial neurons are
+nodes and directed edges, with weights, are connections between the neuron
+outputs and the neuron inputs~\cite{Jain1996}. In feed forward networks the
+graphs have no loops whereas in recurrent loops occur because of feedback
+connections. A graphical representation of a feed forward network with a single
+hidden layer is given by Figure~\ref{fig:ann}.
 
 \begin{figure}[!htbp]
     \centering
     \includestandalone[width=.5\textwidth]{src/chapters/07/neural_network}
-    \caption{Graphical representation of an artificial neural network (ANN)}.\label{fig:ann}
+    \caption{Graphical representation of an ANN.}\label{fig:ann}
 \end{figure}
 
-A feed forward network takes as input a vector \(x\). Each element of the input
-vector is connected to a hidden layer of neurons via a set of learned weights.
-The \(j^{\text{th}}\) hidden neuron outputs \(h_j = \phi (\sum_{i} w_{ij}
-x_{i})\), where \(\phi\) is an \textit{activation function}. In turn, the hidden
-layer is fully connected to an output layer. The \(j^{\text{th}}\) output neuron
-outputs \(y_{j} = \sum_{i} v_{ij} h_{i}\). The output layer can be transformed
-to probabilities via a softmax function. 
+A feed forward network is composed by an input layer, hidden layers, and an
+output layer. The networks' input is a vector \(x\). The dimensionality, or
+number of nodes of the input layer is depended on the dimensionality of \(x\).
+Each element of the input vector is connected to the hidden layer via a set of
+learned weights. The hidden layer also consists of nodes and the number of
+node/dimensionality of it is an architectural decision. The \(j^{\text{th}}\)
+hidden neuron outputs,
 
-In matrix notation a single layered feed forward network can be described by
-the equations,
-
-\begin{align}\label{eq:neural_network_equations}
-h & = \phi(Wx) \\ \label{eq:neural_network_equations_two}
-y & = Vh
-\end{align}
-
-where \(W\) is a weight matrix connecting the input and hidden layers, \(V\) is
-a weight matrix connecting the hidden and output layers.
+\[h_j = \phi (\sum_{i} w_{ij} x_{i}), \text{where } \phi  \text{ is an activation function}.\]
 
 Common activation functions for \(\phi\) include:
 
@@ -143,109 +136,149 @@ Common activation functions for \(\phi\) include:
     \item the rectified linear unit, \(ReLU(x)=max(0,x)\)
 \end{itemize}
 
-An extension of feed forward networks are the recurrent networks. RNNs RNNs is
-the idea that they might be able to connect previous information to he present
-task. They can can be thought of as multiple copies of the same network, each
-passing a message to a successor, as demonstrated by Figure~\ref{fig:rnn}.
+In turn, the hidden layer is fully connected to an output layer. The
+\(j^{\text{th}}\) output neuron outputs,
+
+\[y_{j} = \sum_{i} v_{ij} h_{i}.\]
+
+The output layer transforms the raw scores to probabilities via a softmax function.
+
+Feed forward networks make predictions using forward propagation,
+
+\begin{align}\label{eq:neural_network_equations}
+h & = \phi(Wx) \\ \label{eq:neural_network_equations_two}
+y & = \text{softmax}(Vh)
+\end{align}
+
+where \(W\) is a weight matrix connecting the input and hidden layers, \(V\) is
+a weight matrix connecting the hidden and output layers. \(W\) and \(V\) are the
+learning parameters of the network. Their dimensionality depends on the
+dimensionality of networks layers. If \(x\) and \(x\) are  2 dimensional and the
+hidden layer had 500 nodes then \(W \in \R^{2 \times 200}\) and \(V \in \R^{2
+\times 200}\). Increasing the dimensionality of the hidden layer corresponds to
+more parameters.
+
+Training a ANN corresponds to finding the learning parameters that minimise
+the error on the training data. The function that measures error is called
+the \textit{loss function}. A common loss function with the choice of
+a softmax output is the \textit{cross entropy} loss. Consider \(N\) training
+examples and \(K\) classes, the function for a prediction \(\hat{y}\) with
+respect to the true output \(y\) us give by,
+
+\[L(y, \hat{y}) = - \frac{1}{N} \sum_{n\in N} \sum_{k \in K} y_{n, k} \text{log}(\hat{y_{n, k}})\]
+
+The minimum of the loss function is calculated using the gradients decent
+algorithm. The gradient decent algorithm relies on the gradients. The gradients
+are the vector of derivatives of the loss function with respect to the learning
+parameters. Thus, \(\frac{\partial{L}}{\partial{W}}\) and
+\(\frac{\partial{L}}{\partial{V}}\). These gradients are calculated with the
+back propagation algorithm~\cite{Wythoff1993}, which is a way to efficiently
+calculate the gradients starting from the output.
+
+An extension of feed forward networks are the recurrent networks. RNNs are
+capable of processing variable length sequences of inputs. More importantly,
+RNNs use their internal state/knowledge to a make a prediction on the input at
+time \(t\) based on the decisions made at the previous time steps. A graphical
+representation of a RNN is given by Figure~\ref{fig:rnn}. RNN are networks with
+loops. The loop represents that information can be passed down from one step of
+the network to the next. In fact they can be thought of as multiple copies of
+the same network, each passing a message to a successor, as demonstrated by
+Figure~\ref{fig:rnn}.
 
 \begin{figure}[!htbp]
     \centering
     \includestandalone[width=\textwidth]{src/chapters/07/reccurent_neural_network}
-    \caption{Graphical representation of a recurrent neural network (RNN)}.\label{fig:rnn}
+    \caption{Graphical representation of a RNN.}\label{fig:rnn}
 \end{figure}
 
-RNNs introduce the notion of \textit{internal knowledge}, which can be thought of
-as pieces of information that the network maintains over time. The hidden layers
-of neural networks encode useful information regarding their inputs, and that
-information is pass down by the considering,
+The hidden layers pass down information by considering,
+
+\begin{equation*}
+    h_t = \phi(Wx_t + Uh_{t-1})
+\end{equation*}
+
+where \(h_{t-1}\) is the hidden state computed at time \(t-1\) multiplied by
+some weight vector \(U\). In matrix notation RNNs are described by,
 
 \begin{align}\label{eq:recurrent_neural_network_equations}
     h_t & = \phi(Wx_t + Uh_{t-1}) \\
     y_t & = Vh
 \end{align}
 
-where \(h_{t-1}\) is the hidden state computed at time \(t-1\) multiplied by
-some weight vector \(U\).
+Unfortunately, in practice RNNs quickly become unable to learn to connect the
+information. The more time steps the higher the chance that the back propagation
+gradient either accumulate and explode or vanish down to zero. The fundamental
+difficulties of RNNs were explored in depth by~\cite{Bengio1994}.
 
-Unfortunately, in practice as that \(t\) grows, RNNs become unable to learn to
-connect the information. The problem of RNNs and it's fundamental difficulties
-were explored in depth by~\cite{Bengio1994}. However, the more time steps we
-have, the more chance we have of back-propagation gradients either accumulating
-and exploding or vanishing down to nothing.
-
-The LSTM, introduced by~\cite{Hochreiter1997}, a network specifically designed
-to avoid the long-term dependency problem. LSTMs work tremendously well on a
-large variety of problems, and are now widely used. Remembering information for
-long periods of time is practically their default behavior, not something they
-struggle to learn.
-
-The way it does so is by creating an internal memory state which is simply added
-to the processed input. The time dependence and effects of previous inputs are
-controlled by an interesting concept called a forget gate, which determines
-which states are remembered or forgotten. Two other gates, the input gate and
-output gate, are also featured in LSTM cells.
+A network specifically designed to avoid the long-term dependency problem. was
+introduced by~\cite{Hochreiter1997} called the long short-term memory network
+(LSTM). LSTMs work tremendously well on a large variety of problems, and are now
+widely used. Remembering information for long periods of time is practically
+their default behavior, not something they struggle to learn.
 
 The core idea to LSTMs is the \textit{cell state} also refereed to as the
 long term memory, denote as \(C_t\). The cell state is designed to pass down
 information with only a few carefully regulated changes being applied to it
 by structures called \textit{gates}. Gates are composed out of a sigmoid neural
-net layer and a point wise multiplication operator. To explain the how LSTMs
-can the cell gate work consider a LSTM cell at point \(t\) which is given by
-Figure~\ref{fig:lstm_cell}.
+net layer and a point wise multiplication operator. In order to explain
+the cell gate and subsequently how LSTMs make predictions consider
+a LSTM's hidden layer at time step \(t\) give by Figure~\ref{fig:lstm_cell}.
 
 \begin{figure}[!htbp]
     \centering
     \includestandalone[width=.7\textwidth]{src/chapters/07/lstm_cell}
-    \caption{An LSTM cell at point \(t\).}\label{fig:lstm_cell}
+    \caption{An LSTM hidden layer at time step \(t\).}\label{fig:lstm_cell}
 \end{figure}
 
-The initial step is to decide what information from the cell state is to be
-discarded at the time step. This decision is made by the \textit{forget state}.
-The forget state considers the hidden state at time \(t-1\) and the input at time
-\(t\). Thus, the forget gate is given by,
+The cell state and hidden state from from the previous time step are feed back
+into the network. Initially, the network decides what information from the
+previous cell state is to be discarded. This decision is made by the
+\textit{forget state}. The forget state considers the hidden state at time
+\(t-1\) and the input at time \(t\),
 
 \begin{equation}\label{eq:forget_gate}
-    f_{t} = \sigma(W_{f}x_{t} + U_{f}h_{t-1} + b_{f})
+    f_{t} = \sigma(W_{f}x_{t} + U_{f}h_{t-1})
 \end{equation}
 
-where \(b_{f}\) is the input bias.
-
-The next step is to compute the information that is going to be stored at the
-cell state from the input \(x_t\). Firstly, the input gate decides which values
-are going to be updated. The input gate is given by,
+Secondly, the network decides what information is going to be stored at the
+cell gate. There are two parts to this. Firstly, the input gate decides which values
+are going to be updated,
 
 \begin{equation}\label{eq:input_gate}
     i_{t} = \sigma(W_{i}x_{t} + U_{i}h_{t-1} + b_{i}).
 \end{equation}
 
-Next, a tanh layer creates a vector of candidate values denoted as \(\tilde{C}_{t}\)
-that could be added to the cell state.
+and secondly, a tanh layer creates a vector of candidate values denoted as
+\(\tilde{C}_{t}\) that could be added to the cell state. \(\tilde{C}_{t}\) 
+is given by Equation~(\ref{eq:input_gate}).
 
 \begin{equation}\label{eq:input_gate}
     \tilde{C}_{t} = tanh(W_{c}x_{t} + U_{c}h_{t-1} + b_{c}).
 \end{equation}
 
-The cell state \(C_{t}\) using the forget and input gates and the candidate
-set of new values. The cell state \(C_{t-1}\) is multiplied by \(f_{t}\), forgetting
-the values which have been decided to discard. The new candidate values are
-scaled by how much information has been decided to keep from the input. Thus,
+The cell state \(C_{t-1}\) is multiplied by \(f_{t}\), forgetting the values
+which have been decided to discard. The new candidate values are scaled by how
+much information has been decided to keep from the input. Thus,
 
 \begin{equation}\label{eq:input_gate}
     C_{t} = f_{t} * C_{t-1} + i_{t} * \tilde{C}_{t}.
 \end{equation}
 
-The LSTM outputs a hidden state at each step. This is either used to through
-an activation function to output \(y_{t}\), and it is passed to the next time
-step cell. The output is based on the current cell state. The cell state goes
-through a tanh function and it is multiplied by a sigmoid gate that decides which
-parts to output from the cell state.
+The LSTM outputs a hidden state at each time step. This is either used to
+through an activation function to output \(y_{t}\), and it is passed to the next
+time step cell. The output is based on the current cell state. The cell state
+goes through a tanh function and it is multiplied by a sigmoid gate that decides
+which parts to output from the cell state.
 
 \begin{align}\label{eq:input_gate}
     o_{t} & = \sigma(W_{o}x_{t} + U_{o}h_{t-1} + b_{o}), \\
     h_{t} & = o_{t} * tanh(C_{t})
 \end{align}
 
-A representation of an LSTM network is given by Figure~\ref{fig:lstm}.
+This process is being carried out though each time step of the input sequence.
+At each the cell state and hidden state are feed back into the network and the
+hidden state can also be used to make a prediction for each time step as
+demonstrated by Figure~\ref{fig:lstm}.
 
 \begin{figure}[!htbp]
     \centering
@@ -255,11 +288,9 @@ A representation of an LSTM network is given by Figure~\ref{fig:lstm}.
 
 The LSTM is a complex architecture and contains a large number of parameters
 that need to be trained. The LSTM networks have managed to achieve remarkable
-results. The training of an LSTM model in this Chapter is carried with the
-project. The training data is the data set of best responses generated in
-Chapter~\ref{chapter:best_response_sequences} and has been trained using the
-facilities of Cardiff's University supercomputer. The details for the training
-are presented in section~\ref{section:training_a_rnn}.
+results. The training of an LSTM model in this Chapter is carried with the open
+source project Keras. The details for the training are presented in
+section~\ref{section:training_a_rnn}.
 
 \section{Training LSTM networks to play the Iterated Prisoner's Dilemma}\label{section:training_a_rnn}
 
