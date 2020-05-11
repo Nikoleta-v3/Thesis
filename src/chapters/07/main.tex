@@ -294,24 +294,22 @@ section~\ref{section:training_a_rnn}.
 
 \section{Training LSTM networks to play the Iterated Prisoner's Dilemma}\label{section:training_a_rnn}
 
-The LSTMs of this Chapter are trained based on the best response sequence
-data set that was generated in Chapter~\ref{chapter:best_response_sequence}.
-Consider the strategy Adaptive and a best response to it as presented in
-section~\ref{section:the_collection_of_best_response_sequences}.
+LSTM are trained in a supervised fashion on a set of training sequences. The
+purpose of training a network in this Chapter is so it can learn to play the
+IPD. For that reason the networks are going to be trained on the collection of
+best response sequences generated in
+Chapter~\ref{chapter:best_response_sequences}. The collection was purposely generated
+so that the networks could be trained to play optimal against a list of known
+IPD strategies.
 
-\begin{table}[htb]
-    \centering
-    \begin{tabular}{cccccccccccccccc}
-        & \textbf{1} & \textbf{2} & \textbf{3} & \textbf{4}  & \textbf{5} & \textbf{6} & \textbf{7} & \textbf{8} & \textbf{9} & \textbf{10} & \textbf{11}  & \textbf{12} &  \(\dots\)  & \textbf{204} &  \textbf{205} \\ 
-        \midrule
-        Adaptive & \(C\) & \(C\) & \(C\) & \(C\) & \(C\) & \(C\) & \(D\) & \(D\) & \(D\) & \(D\) & \(D\)& \(C\)& \(\dots\) & \(C\) & \(C\) \\
-        \(S^*\) & \(C\) & \(C\) & \(D\) & \(D\) & \(D\) & \(D\) & \(D\) & \(D\) & \(D\) & \(D\) & \(D\) & \(D\)& \(\dots\) & \(D\) & \(D\) \\ \bottomrule
-    \end{tabular}
-    \caption{The interactions between Adaptive and one of the best response sequences
-    to the strategy.}\label{table:adaptive_vs_best_response}
-    \end{table}
+The inputs of a network are the actions of a given strategy and the expected
+output is the response of the best response sequence to that action. More
+specifically, each pair of opponent's - best response sequence's actions
+correspond to 204 training inputs with a maximum dimensionality of 204.
 
-For \(0 \to D\) and \(1 \to C\) Table~\ref{table:adaptive_vs_best_response} is given by,
+Consider the actions of the strategy Adaptive and a best response to it as
+presented in section~\ref{section:the_collection_of_best_response_sequences}
+given by Table~\ref{table:adaptive_vs_best_response_binary_lstm}.
 
 \begin{table}[htbp]
     \centering
@@ -321,42 +319,74 @@ For \(0 \to D\) and \(1 \to C\) Table~\ref{table:adaptive_vs_best_response} is g
         Adaptive & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 0 & 0 & 0 & 0& 1& \(\dots\) & 1 & 1 \\
         \(S^*\) & 1 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0& \(\dots\) & 0 & 0 \\ \bottomrule
     \end{tabular}
-    \caption{The interactions between Adaptive and one of the best response sequences
-    to the strategy were \(0 \to D\) and \(1 \to C\).}\label{table:adaptive_vs_best_response_binary}
+    \caption{The actions of the strategy Adaptive against one of the best response sequences
+    to the strategy. Note that \(0 \to D\) and \(1 \to C\).}\label{table:adaptive_vs_best_response_binary_lstm}
 \end{table}
 
-In order to train the LSTM as a player the network should predict the best
-response to strategy's action. Thus, the input to the network is the actions of
-the opponents \(Q\), discarding the last turn.
-
-\begin{figure}[!htbp]
-    \centering
-    \includestandalone[width=\textwidth]{src/chapters/07/input}
-\end{figure}
-
-and the expected output it's the response of the \(S^*\) to those actions.
-Thus the genes from \(t=2\) instead of \(t=1\).
+The highest dimensionality the input vector \(x\) to the network can have is
+204. This is because the expected output of to Adaptive's action in turn 1 is
+the action of the best response sequence at turn 2. Moreover, the expected
+output to the Adaptive's \(204^{\text{th}}\) action is the best response's
+\(205^{\text{th}}\) action. This is demonstrated by
+Figure~\ref{fig:input_output_example}.
 
 \begin{figure}[!htbp]
     \centering
     \includestandalone[width=\textwidth]{src/chapters/07/output}
-    % \caption{A graphical representation of a sequence to sequence LSTM model}.\label{fig:sequence_to_sequence}
+    \caption{An example of a networks input and output of \(t=204\). The last
+    action of Adaptive as well as the first action of the best
+    response sequence are discarded.}\label{fig:input_output_example}
 \end{figure}
 
-Two variants of LSTM network have been training in this Chapter. These are refereed to:
+The networks of this Chapter have been trained for a non fixed sequence length.
+In order to train the networks on different input lengths each pair opponent's -
+best response sequence's actions is broken down to 204 distinct inputs. This is
+done so that each input captures the play of 204 IPD matches between the pairs
+where the number of turns \(N \in [1, 204]\). For example the training points
+from Table~\ref{table:adaptive_vs_best_response_binary_lstm} are given by,
+
+\begin{equation}\label{eq:sequence_to_sequence_inputs_outputs_example}
+    \text{inputs} =
+    \begin{bmatrix}
+        1 &  &  \\
+        1 & 1 &  \\
+        1 & 1 & 1 \\
+        1 & 1 & 1 & 1 \\
+        1 & 1 & 1 & 1 & 1 \\
+        1 & 1 & 1 & 1 & 1 & 1\\
+        1 & 1 & 1 & 1 & 1 & 1 & 0 \\
+        \vdots & \vdots & \vdots & \vdots & \vdots & \vdots & \vdots \\
+    \end{bmatrix}
+    \text{expected outputs} =
+    \begin{bmatrix}
+        1 &  &  \\
+        1 & 1 &  \\
+        1 & 1 & 0 \\
+        1 & 1 & 0 & 0 \\
+        1 & 1 & 0 & 0 & 0 \\
+        1 & 1 & 0 & 0 & 0 & 0\\
+        1 & 1 & 0 & 0 & 0 & 0 & 0 \\
+        \vdots & \vdots & \vdots & \vdots & \vdots & \vdots & \vdots \\
+    \end{bmatrix}
+\end{equation}
+
+Thus the training data set created by the best response collection correspond
+to \(\totalsequences \times 204 = \trainingpoint\) training inputs.
+
+Two variants of LSTMs have been trained in this Chapter. These are refereed to:
 
 \begin{itemize}
     \item sequence to sequence
     \item sequence to probability
 \end{itemize}
 
-The sequence to sequence model as an input of actions a each time step by a strategy
-an it outputs a response for each at each time step. The sequence to probability
-has an input the action of strategy up to time \(t\), and outputs a response
-to the history at time \(t\).
-
-A graphical representation of the two networks are given by Figures~\ref{fig:sequence_to_sequence} and
-\ref{fig:sequence_to_probability}.
+The sequence to sequence model as an input of actions a each time step by a
+strategy an it outputs a response for each at each time step. The sequence to
+probability has an input the action of strategy up to time \(t\), and outputs a
+response to the history at time \(t\). Both networks output a probability which
+is translated at the probability of cooperating after the opponent's last \(t\)
+actions. A graphical representation of the two networks are given by
+Figures~\ref{fig:sequence_to_sequence} and \ref{fig:sequence_to_probability}.
 
 \begin{figure}[!htbp]
     \centering
@@ -370,11 +400,13 @@ A graphical representation of the two networks are given by Figures~\ref{fig:seq
     \caption{A graphical representation of a sequence to probability LSTM model}.\label{fig:sequence_to_probability}
 \end{figure}
 
-The networks are constructed in such way as the length of sequences they receive
-it is not fixed. The are not trained for the \totalsequences but each
-best response sequence is broken down to 204 sets of input.
+The training data of the sequence to sequence model is the form of
+Equation~(\ref{eq:sequence_to_sequence_inputs_outputs_example}) whereas the
+training data for the sequence to probability model are in the form of
+Equation~(\ref{eq:sequence_to_probability_inputs_outputs_example}).
 
-\begin{equation}
+\begin{equation}\label{eq:sequence_to_probability_inputs_outputs_example}
+    \text{inputs} =
     \begin{bmatrix}
         1 &  &  \\
         1 & 1 &  \\
@@ -383,31 +415,9 @@ best response sequence is broken down to 204 sets of input.
         1 & 1 & 1 & 1 & 1 \\
         1 & 1 & 1 & 1 & 1 & 1\\
         1 & 1 & 1 & 1 & 1 & 1 & 0 \\
-        \vdots & \vdots & \vdots & \vdots & \vdots & \vdots & \vdots \\
-    \end{bmatrix} \to 
-    \begin{bmatrix}
-        1 &  &  \\
-        1 & 1 &  \\
-        1 & 1 & 0 \\
-        1 & 1 & 0 & 0 \\
-        1 & 1 & 0 & 0 & 0 \\
-        1 & 1 & 0 & 0 & 0 & 0\\
-        1 & 1 & 0 & 0 & 0 & 0 & 0 \\
         \vdots & \vdots & \vdots & \vdots & \vdots & \vdots & \vdots \\
     \end{bmatrix}
-\end{equation}
-
-\begin{equation}
-    \begin{bmatrix}
-        1 &  &  \\
-        1 & 1 &  \\
-        1 & 1 & 1 \\
-        1 & 1 & 1 & 1 \\
-        1 & 1 & 1 & 1 & 1 \\
-        1 & 1 & 1 & 1 & 1 & 1\\
-        1 & 1 & 1 & 1 & 1 & 1 & 0 \\
-        \vdots & \vdots & \vdots & \vdots & \vdots & \vdots & \vdots \\
-    \end{bmatrix} \to 
+    \text{expected output} =
     \begin{bmatrix}
         1 \\
         1 \\

@@ -7,25 +7,25 @@
     \begin{tikzpicture}
         \node[chain, text width=5em] (layer1) at (0, 0) {};
         \node[input, font=\boldmath]  (i1) at ($(layer1)+(-.88, -2.15)$) {$1$};
-        \node[output, font=\boldmath, fill=cyan!30] (o1) at ($(layer1)+(.9, 2.25)$) {$1$};
+        \node[output, font=\boldmath, fill=cyan!30] (o1) at ($(layer1)+(.9, 2.25)$) {};
         \draw [<-, thick, black] (o1) -- ++ (0, -1.46);
         \draw [->, thick, black] (i1) -- ++ (0, 1.4);
 
         \node[right=1cm of layer1, chain, text width=5em] (layer2) {};
         \node[input, font=\boldmath]  (i2) at ($(layer2)+(-.88, -2.15)$) {$1$};
-        \node[output, font=\boldmath, fill=cyan!30] (o2) at ($(layer2)+(.9, 2.25)$) {$0$};
+        \node[output, font=\boldmath, fill=cyan!30] (o2) at ($(layer2)+(.9, 2.25)$) {};
         \draw [<-, thick, black] (o2) -- ++ (0, -1.46);
         \draw [->, thick, black] (i2) -- ++ (0, 1.4);
 
         \node[right=1cm of layer2, chain, text width=5em] (layer3) {};
         \node[input, font=\boldmath]  (i3) at ($(layer3)+(-.88, -2.15)$) {$1$};
-        \node[output, font=\boldmath, fill=cyan!30] (o3) at ($(layer3)+(.9, 2.25)$) {$0$};
+        \node[output, font=\boldmath, fill=cyan!30] (o3) at ($(layer3)+(.9, 2.25)$) {};
         \draw [<-, thick, black] (o3) -- ++ (0, -1.46);
         \draw [->, thick, black] (i3) -- ++ (0, 1.4);
 
         \node[right=1cm of layer3, chain, text width=5em] (layer5) {};
         \node[input, font=\boldmath]  (i5) at ($(layer5)+(-.88, -2.15)$) {$1$};
-        \node[output, font=\boldmath, fill=cyan!30] (o5) at ($(layer5)+(.9, 2.25)$) {$1$};
+        \node[output, font=\boldmath, fill=cyan!30] (o5) at ($(layer5)+(.9, 2.25)$) {};
         \draw [<-, thick, black] (o5) -- ++ (0, -1.46);
         \draw [->, thick, black] (i5) -- ++ (0, 1.4);
 
@@ -33,7 +33,7 @@
 
         \node[right=.5cm of dots, chain, text width=5em] (layer4) {};
         \node[input, font=\boldmath]  (i4) at ($(layer4)+(-.88, -2.15)$) {$1$};
-        \node[output, font=\boldmath, fill=cyan!30] (o4) at ($(layer4)+(.9, 2.25)$) {$0$};
+        \node[output, font=\boldmath, fill=cyan!30] (o4) at ($(layer4)+(.9, 2.25)$) {};
         \draw [<-, thick, black] (o4) -- ++ (0, -1.46);
         \draw [->, thick, black] (i4) -- ++ (0, 1.4);
 
