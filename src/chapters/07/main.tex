@@ -1,4 +1,5 @@
-\chapter{Training a recurrent neural network player}\label{chapter:lstm}
+\chapter{Training long short-term memory networks to play the Iterated Prisoner's Dilemma}\label{chapter:lstm}
+% TODO another possible title: Machine learning produces successful Iterated Prisoner's Dilemma strategies based on long short-term memory networks
 
 \begin{center}
     The research reported in this Chapter has been carried out with:
@@ -13,60 +14,68 @@
 
 In Chapter~\ref{chapter:meta_tournaments} it was mentioned that consepsualating
 and introducing new strategies has been an important aspect of research to the
-field. The aim of this Chapter is to introduce a new IPD strategy based on a
-newly introduced archetype.
+field. The aim of this Chapter is to introduce new IPD strategies based on an
+archetype that has not received much attention in the literature.
 
-In Chapter~\ref{chapter:meta_tournaments} it was demonstrated that there is
-advantage in complexity/cleverness. Complexity can confer to adaptability, and
-adaptability is important in performing well in diverse set of environments.
-This was established by the results of Chapters~\ref{chapter:meta_tournaments}
-and~\ref{chapter:memory_one}. In Chapter~\ref{chapter:meta_tournaments} the
-complex strategies that ranked highly in several tournaments included strategies
-based on archetypes such as finite state automata, hidden Markov models and
-\textit{artificial neural networks} (ANNs).
+In Chapter~\ref{chapter:meta_tournaments} it was concluded that one of the
+properties successful strategies in a IPD competition need to have is
+cleverness/complexity. Complexity can confer to adaptability, and adaptability
+is important in performing well in diverse set of environments. This was
+established not only in Chapter~\ref{chapter:meta_tournaments} but also from the
+results of Chapter~\ref{chapter:memory_one}. The set of complex strategies that
+ranked highly across distinct tournaments in
+Chapter~\ref{chapter:meta_tournaments} included strategies based on archetypes
+such as finite state automata, hidden Markov models and \textit{artificial
+neural networks} (ANNs).
 
-The usage of ANNs to represent IPD strategies dates back to
-1996~\cite{Harrald1996}. Training ANNs to play games have had
-usefully~\cite{Chellapilla1999} player checkers.In the IPD there are works that
-trained~\cite{Franken2005} but the most usefully one being the work
-of~\cite{Harper2017} where a strategy based on ANN scored \(7^{th}\),
-\(9^{th}\), and \(11^{th}\) in a tournament of 223 strategies.
+ANNs have successfully been trained to play games exterior to the IPD, such as
+checkers~\cite{Chellapilla1999} and chess~\cite{Fogel2004}. The usage of feed
+forward ANNs in the IPD was firstly introduced in~\cite{Harrald1996}, and have
+been used ever since~\cite{Ashlock2008, Ashlock2006a, Darwen2001, Franken2005}.
+Possibly, the most successful ANNs strategies are the one introduced
+in~\cite{Harper2017}, as they were ranked \(7^{th}\), \(9^{th}\), and
+\(11^{th}\) in a tournament of 223 strategies.
 
 A type of ANNs that have not received much attention in the literature are the
-\textit{recurrent neural networks} (RNNs). They are a type of neural networks
-that include feedback connections. In 1996, Sandholm~\cite{Sandholm1996}
-considered RNNs where a single previous step was the input to the network, and
-used a \(Q\) learning algorithm to train the model. The results
-of~\cite{Sandholm1996} were very limited and they were for pairwise interaction
-only. This could potentially have been due to the limitations of RNNs
-themselves. In 1997 a new type of RNNs was introduced called the  Long
-Short-Term Memory (LSTM) network. A course project by a Stanford University
-student considered the LSTM model with longer time steps as
-input~\cite{Wang20170}. SImilarly,~\cite{Wang20170} considered a \(Q\) learning
-algorithm and only pairwise interactions.
+\textit{recurrent neural networks} (RNNs). RNNs are a type of neural networks
+that include a feedback connection and are designed to work with inputs in
+the form of sequences. RNNs were firstly considered as an archetype in 1996.
+In~\cite{Sandholm1996} a RNN which considered a single previous step
+as an input was trained via a \(Q\) learning algorithm to play against a single
+strategy. The results of~\cite{Sandholm1996} were limited only in the network
+learning to play against a single strategy.
 
-This Chapter introduces a number of strategies based on LSTM networks that have
-been trained using the obtained collection of sequences of
-Chapter~\ref{chapter:best_response_sequence}. The performance of these strategies
-is evaluated in a meta tournament analysis similar to that of
-Chapter~\ref{chapter:meta_tournaments} by only in standard tournaments. The
-results demonstrate % TODO add results
+The limitations of~\cite{Sandholm1996} could potentially have been due to the
+limitations of the RNNs themselves. As it will be discussed later the RNNs
+quickly became unable to learn due to the vanishing gradient problem.
+To improve on the standard recurrent networks a new network called the
+long short-term memory networks (LSTMs) were introduced in~\cite{Hochreiter1997}.
+LSTMs do not suffer from the vanishing gradient, can be successfully trained and
+are being used in a number of innovative applications such as time series analysis
+\cite{Malhotra2015}, speech recognition~\cite{Sak2014} and prediction in
+medical care pathways~\cite{Wang2018_lstm}.
+
+LSTMs have not received attention in the IPD literature. This Chapter trains and
+introduced a number of strategies  based on LSTMs. The training has been
+possible due to the collection of best response sequences generated in
+Chapter~\ref{chapter:best_response_sequence}. The performance of the new
+strategies is evaluated and compared in a meta tournament analysis of standard
+tournaments. The results demonstrate % TODO add results
 
 This Chapter is structured as follows:
 
 \begin{itemize}
-    \item section~\ref{section:artificial_neural_networks}, introduces
-    artificial, recurrent neural and LSTM networks.
-    \item section~\ref{section:training_a_rnn}, cover the specific types of LSTM
-    that were trained for this Chapter. This includes details of their
-    architecture, the type of data they have been trained on and the usage of
-    the project Keras to train these models on graphics processing unit.
-    \item section~\ref{section:rnn_strategy_validation}, evaluates the
-    performance of the trained LSTMs in \metatournamentslstm standard IPD
-    tournaments.
+    \item section~\ref{section:artificial_neural_networks}, presents an
+    introduction to artificial, recurrent and long short-term memory networks.
+    \item section~\ref{section:training_a_rnn}, cover the specifics of the LSTMs
+    trained in ths Chapter. Their architectural details are presented as well as
+    the different training sets they have been trained on.
+    \item section~\ref{section:rnn_strategy_validation}, evaluates and compares
+    the performance of \lstmstrategies LSTMs based strategies in
+    \metatournamentslstm standard IPD computer tournaments.
 \end{itemize}
 
-\section{Artificial \& Recurrent Neural Networks}\label{section:artificial_neural_networks}
+\section{Artificial, recurrent neural and long short-term memory networks}\label{section:artificial_neural_networks}
 
 ANNs are computing systems vaguely inspired by the
 biological neural networks that constitute animal brains. ANNs can be viewed as
@@ -252,7 +261,7 @@ Chapter~\ref{chapter:best_response_sequences} and has been trained using the
 facilities of Cardiff's University supercomputer. The details for the training
 are presented in section~\ref{section:training_a_rnn}.
 
-\section{Training a Recurrent Neural Network as a Strategy}\label{section:training_a_rnn}
+\section{Training LSTM networks to play the Iterated Prisoner's Dilemma}\label{section:training_a_rnn}
 
 The LSTMs of this Chapter are trained based on the best response sequence
 data set that was generated in Chapter~\ref{chapter:best_response_sequence}.
@@ -380,7 +389,7 @@ best response sequence is broken down to 204 sets of input.
     \end{bmatrix}
 \end{equation}
 
-\subsection{Keras}
+\subsection{Building the networks with Keras}
 
 To construct and train the network model the open-source neural-network package
 Keras~\cite{Chollet2015} is used. Its library written in Python, designed to
@@ -535,7 +544,7 @@ multiplication.
 Keras CCNLSTM class makes running on GPU easy. Cardiff's super computer
 was used for the training of the models.
 
-\subsection{Data set}
+\subsection{Training data sets}
 
 It was explained in the the best response data set from Chapter 6 is used as
 training data. Moreover, each best responses has broken down to 204 different
@@ -628,7 +637,7 @@ Discussion on validation. In section~\ref{section:rnn_strategy_validation} the
 LSTM networks are validated by as an IPD strategy using a meta tournament
 analysis.
 
-\section{Validation of RNN as a strategy}\label{section:rnn_strategy_validation}
+\section{Validation of LSTM base strategies using a meta tournament analysis}\label{section:rnn_strategy_validation}
 
 To evaluate the LSTM players as strategies, a strategy class was implemented
 that takes as an argument the a Keras model. The player then uses the history
@@ -704,37 +713,18 @@ in the literature.
 \begin{algorithm}[!htbp]
     \setstretch{1.35}
     \ForEach{\text{seed} $\in [0, 300]$}{
-        \ForEach{$y \in \{0, 1, 0.78\}$}{
         $N \gets \text{randomly select integer}\in [N_{min}, N_{max}]$\;
         $\text{players} \gets  \text{randomly select $N$ players}$\;
-        $\text{players} \gets  \text{players} + \text{LSTM strategy}(y)$\;
-
-        $k \gets  \text{randomly select integer}\in [k_{min}, k_{max}]$\;
-        $n \gets  \text{randomly select integer}\in [n_{min}, n_{max}]$\;
+        $\text{players} \gets  \text{players} + \text{LSTM strategy}$\;
+        $N \gets N + 1$\;
+        $k \gets  50$\;
+        $n \gets  200$\;
         \vspace{0.4cm}
         $\text{result standard}$ $\gets$ Axelrod.tournament$(\text{players}, n, k)$\;}
-    }
     \KwRet{result standard}\;
     \caption{Data collection Algorithm}
     \label{algorithm:meta_tournament_lstm_validation}
 \end{algorithm}
-
-\begin{table}[!htbp]
-    \begin{center}
-        \resizebox{.6\textwidth}{!}{
-        \begin{tabular}{lcccc}
-    \toprule
-    parameter & parameter explanation &   min value & max value \\
-    \midrule
-    $N$ & number of strategies   & 5 & 10 \\
-    $k$ & number of repetitions  & 50 & 50 \\
-    $n$ & number of turns        & 200 & 200 \\
-    \bottomrule
-        \end{tabular}}
-    \end{center}
-    \caption{Data collection; parameters' values}
-    \label{table:parameters_values}
-\end{table}
 
 A total of \metatournamentslstm trials of
 Algorithm~\ref{algorithm:meta_tournament_lstm_validation} have been performed.
@@ -755,8 +745,8 @@ probability can have three different values. Thus a total of $2 \times 4 \times
         \input{src/chapters/07/tex/normalised_ranks_table.tex}
     }
 \end{center}
-% \caption{Number of epochs each both networks, sequence to sequence and 
-% sequence to probability, were trained for each subset.}\label{table:epochs}
+\caption{Median normalised ranks of th 24 LSTM strategies over standard tournaments.}
+% \label{table:normalised_rank_lstm_tournaments}
 \end{table}
 
 \begin{figure}[!htbp]
@@ -858,6 +848,197 @@ probability can have three different values. Thus a total of $2 \times 4 \times
     \caption{\(P(r<0.5): 0.207, P(r<0.5): 0.779, P(r<0.5): 0.607\)}
     \end{subfigure}
     % \caption{Validation of sequence to probability}\label{fig:validation_sequence_to_probability}
+\end{figure}
+
+\subsection{Fingerprinting the LSTM based strategies}
+
+\newpage
+
+\begin{figure}[!htbp]
+    \begin{subfigure}{\textwidth}
+        \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Tit For Tat_lstm_sequence_0".pdf}
+        \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Tit For Tat_lstm_sequence_1".pdf}
+        \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Tit For Tat_lstm_sequence_0_78".pdf}
+    \end{subfigure}
+    \begin{subfigure}{\textwidth}
+        \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Tit For Tat_top_twenty_sequence_0".pdf}
+        \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Tit For Tat_top_twenty_sequence_1".pdf}
+        \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Tit For Tat_top_twenty_sequence_0_78".pdf}
+    \end{subfigure}
+    \begin{subfigure}{\textwidth}
+        \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Tit For Tat_twenty_sequence_0".pdf}
+        \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Tit For Tat_twenty_sequence_1".pdf}
+        \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Tit For Tat_twenty_sequence_0_78".pdf}
+    \end{subfigure}
+    \begin{subfigure}{\textwidth}
+        \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Tit For Tat_basic_sequence_0".pdf}
+        \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Tit For Tat_basic_sequence_1".pdf}
+        \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Tit For Tat_basic_sequence_0_78".pdf}
+    \end{subfigure}
+\end{figure}
+
+\begin{figure}[!htbp]
+    \begin{subfigure}{\textwidth}
+        \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Tit For Tat_lstm_classification_0".pdf}
+        \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Tit For Tat_lstm_classification_1".pdf}
+        \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Tit For Tat_lstm_classification_0_78".pdf}
+    \end{subfigure}
+    \begin{subfigure}{\textwidth}
+        \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Tit For Tat_top_twenty_classification_0".pdf}
+        \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Tit For Tat_top_twenty_classification_1".pdf}
+        \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Tit For Tat_top_twenty_classification_0_78".pdf}
+    \end{subfigure}
+    \begin{subfigure}{\textwidth}
+        \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Tit For Tat_twenty_classification_0".pdf}
+        \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Tit For Tat_twenty_classification_1".pdf}
+        \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Tit For Tat_twenty_classification_0_78".pdf}
+    \end{subfigure}
+    \begin{subfigure}{\textwidth}
+        \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Tit For Tat_basic_classification_0".pdf}
+        \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Tit For Tat_basic_classification_1".pdf}
+        \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Tit For Tat_basic_classification_0_78".pdf}
+    \end{subfigure}
+\end{figure}
+
+\newpage
+
+
+\begin{figure}[!htbp]
+    \begin{subfigure}{\textwidth}
+        \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Win-Shift Lose-Stay_lstm_sequence_0".pdf}
+        \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Win-Shift Lose-Stay_lstm_sequence_1".pdf}
+        \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Win-Shift Lose-Stay_lstm_sequence_0_78".pdf}
+    \end{subfigure}
+    \begin{subfigure}{\textwidth}
+        \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Win-Shift Lose-Stay_top_twenty_sequence_0".pdf}
+        \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Win-Shift Lose-Stay_top_twenty_sequence_1".pdf}
+        \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Win-Shift Lose-Stay_top_twenty_sequence_0_78".pdf}
+    \end{subfigure}
+    \begin{subfigure}{\textwidth}
+        \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Win-Shift Lose-Stay_twenty_sequence_0".pdf}
+        \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Win-Shift Lose-Stay_twenty_sequence_1".pdf}
+        \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Win-Shift Lose-Stay_twenty_sequence_0_78".pdf}
+    \end{subfigure}
+    \begin{subfigure}{\textwidth}
+        \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Win-Shift Lose-Stay_basic_sequence_0".pdf}
+        \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Win-Shift Lose-Stay_basic_sequence_1".pdf}
+        \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Win-Shift Lose-Stay_basic_sequence_0_78".pdf}
+    \end{subfigure}
+\end{figure}
+
+\begin{figure}[!htbp]
+    \begin{subfigure}{\textwidth}
+        \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Win-Shift Lose-Stay_lstm_classification_0".pdf}
+        \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Win-Shift Lose-Stay_lstm_classification_1".pdf}
+        \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Win-Shift Lose-Stay_lstm_classification_0_78".pdf}
+    \end{subfigure}
+    \begin{subfigure}{\textwidth}
+        \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Win-Shift Lose-Stay_top_twenty_classification_0".pdf}
+        \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Win-Shift Lose-Stay_top_twenty_classification_1".pdf}
+        \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Win-Shift Lose-Stay_top_twenty_classification_0_78".pdf}
+    \end{subfigure}
+    \begin{subfigure}{\textwidth}
+        \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Win-Shift Lose-Stay_twenty_classification_0".pdf}
+        \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Win-Shift Lose-Stay_twenty_classification_1".pdf}
+        \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Win-Shift Lose-Stay_twenty_classification_0_78".pdf}
+    \end{subfigure}
+    \begin{subfigure}{\textwidth}
+        \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Win-Shift Lose-Stay_basic_classification_0".pdf}
+        \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Win-Shift Lose-Stay_basic_classification_1".pdf}
+        \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Win-Shift Lose-Stay_basic_classification_0_78".pdf}
+    \end{subfigure}
+\end{figure}
+
+\begin{figure}[!htbp]
+    \begin{subfigure}{\textwidth}
+        \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Stewart_lstm_sequence_0".pdf}
+        \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Stewart_lstm_sequence_1".pdf}
+        \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Stewart_lstm_sequence_0_78".pdf}
+    \end{subfigure}
+    \begin{subfigure}{\textwidth}
+        \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Stewart_top_twenty_sequence_0".pdf}
+        \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Stewart_top_twenty_sequence_1".pdf}
+        \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Stewart_top_twenty_sequence_0_78".pdf}
+    \end{subfigure}
+    \begin{subfigure}{\textwidth}
+        \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Stewart_twenty_sequence_0".pdf}
+        \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Stewart_twenty_sequence_1".pdf}
+        \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Stewart_twenty_sequence_0_78".pdf}
+    \end{subfigure}
+    \begin{subfigure}{\textwidth}
+        \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Stewart_basic_sequence_0".pdf}
+        \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Stewart_basic_sequence_1".pdf}
+        \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Stewart_basic_sequence_0_78".pdf}
+    \end{subfigure}
+\end{figure}
+
+\begin{figure}[!htbp]
+    \begin{subfigure}{\textwidth}
+        \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Stewart_lstm_classification_0".pdf}
+        \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Stewart_lstm_classification_1".pdf}
+        \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Stewart_lstm_classification_0_78".pdf}
+    \end{subfigure}
+    \begin{subfigure}{\textwidth}
+        \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Stewart_top_twenty_classification_0".pdf}
+        \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Stewart_top_twenty_classification_1".pdf}
+        \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Stewart_top_twenty_classification_0_78".pdf}
+    \end{subfigure}
+    \begin{subfigure}{\textwidth}
+        \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Stewart_twenty_classification_0".pdf}
+        \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Stewart_twenty_classification_1".pdf}
+        \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Stewart_twenty_classification_0_78".pdf}
+    \end{subfigure}
+    \begin{subfigure}{\textwidth}
+        \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Stewart_basic_classification_0".pdf}
+        \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Stewart_basic_classification_1".pdf}
+        \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Stewart_basic_classification_0_78".pdf}
+    \end{subfigure}
+\end{figure}
+
+\begin{figure}[!htbp]
+    \begin{subfigure}{\textwidth}
+        \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Beautil_lstm_sequence_0".pdf}
+        \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Beautil_lstm_sequence_1".pdf}
+        \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Beautil_lstm_sequence_0_78".pdf}
+    \end{subfigure}
+    \begin{subfigure}{\textwidth}
+        \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Beautil_top_twenty_sequence_0".pdf}
+        \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Beautil_top_twenty_sequence_1".pdf}
+        \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Beautil_top_twenty_sequence_0_78".pdf}
+    \end{subfigure}
+    \begin{subfigure}{\textwidth}
+        \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Beautil_twenty_sequence_0".pdf}
+        \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Beautil_twenty_sequence_1".pdf}
+        \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Beautil_twenty_sequence_0_78".pdf}
+    \end{subfigure}
+    \begin{subfigure}{\textwidth}
+        \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Beautil_basic_sequence_0".pdf}
+        \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Beautil_basic_sequence_1".pdf}
+        \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Beautil_basic_sequence_0_78".pdf}
+    \end{subfigure}
+\end{figure}
+
+\begin{figure}[!htbp]
+    \begin{subfigure}{\textwidth}
+        \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Beautil_lstm_classification_0".pdf}
+        \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Beautil_lstm_classification_1".pdf}
+        \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Beautil_lstm_classification_0_78".pdf}
+    \end{subfigure}
+    \begin{subfigure}{\textwidth}
+        \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Beautil_top_twenty_classification_0".pdf}
+        \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Beautil_top_twenty_classification_1".pdf}
+        \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Beautil_top_twenty_classification_0_78".pdf}
+    \end{subfigure}
+    \begin{subfigure}{\textwidth}
+        \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Beautil_twenty_classification_0".pdf}
+        \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Beautil_twenty_classification_1".pdf}
+        \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Beautil_twenty_classification_0_78".pdf}
+    \end{subfigure}
+    \begin{subfigure}{\textwidth}
+        \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Beautil_basic_classification_0".pdf}
+        \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Beautil_basic_classification_1".pdf}
+        \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Beautil_basic_classification_0_78".pdf}
+    \end{subfigure}
 \end{figure}
 
 
