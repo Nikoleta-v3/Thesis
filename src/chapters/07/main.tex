@@ -432,22 +432,22 @@ Equation~(\ref{eq:sequence_to_probability_inputs_outputs_example}).
 
 \subsection{Building the networks with Keras}
 
-To construct and train the network model the open-source neural-network package
-Keras~\cite{Chollet2015} is used. Its library written in Python, designed to
-enable fast experimentation with neural networks.
-Neural layers, cost functions, optimizers, initialization schemes, activation
-functions, and regularization schemes are all standalone modules that you can
-combine to create new models.
+The open source neural-network package Keras~\cite{Chollet2015} is used to
+construct and train the networks. Keras is a library written in Python designed
+to enable fast experimentation with neural networks. Neural layers, cost
+functions, optimizers and activation functions are all standalone modules that
+can be combined to create new network models.
 
-The code for implementing the sequence to sequence model is given by
-Figure~\ref{fig:keras_sequence_to_sequence}. There are two main types of models
-available in Keras: the Sequential model, and the Model class. The Sequential
-model is a linear stack of layers. There is a single layer of an LSTM model that
-returns the hidden state at each time step. The input shape is (None, 1) because
-there is not a fixed length and there is a single time step between the of the
-input. There are 100 the outputs turn into a probability with a sigmoid . The
-dropout layer 
-There are a total of 41301 parameters that need to be trained for the sequence
+The Python code for implementing the sequence to sequence model is given by
+Figure~\ref{fig:keras_sequence_to_sequence}. In line 12 the model is defined to
+be of the \mintinline{python}{Sequential} class. This mean that the model will
+constructed layer by layer. The sequence to sequence network has a single LSTM
+layer with 100 nodes. The input to the LSTM network is not a fixed length
+and there a single time step between the elements of each input sequence.
+Those are defined by the argument \mintinline{python}{input_shape=(None, 1)}.
+The LSTM layer outputs the hidden states at each time step and they go through
+a dropout layer then are transformed into an a probability output via a
+sigmoid layer. There are a total of 41301 learning parameters to the sequence
 to sequence model.
 
 \begin{figure}[!htbp]
@@ -490,15 +490,27 @@ Non-trainable params: 0
 _________________________________________________________________
 
 \end{usagepy}
-\caption{Keras sequence to sequence.}\label{fig:keras_sequence_to_sequence}
+\caption{Python code for implementing the sequence to sequence LSTM with Keras.}\label{fig:keras_sequence_to_sequence}
 \end{figure}
 
-Similarly, for the sequence to probability network the implementation of the
-network using Keras is given by Figure~\ref{fig:keras_sequence_to_probability}.
-There are now two LSTM layers. The first one outputs a hidden state at each time
-step and the second layer outputs only at time \(t\) the output then goes
-through Dropout then turned into probability with a sigmoid function. There are
-total of 122101 parameters.
+Regarding the dimensionality of the hidden layer there is no direct answer as to
+what is the optimal number of nodes. Several methods for determining the
+dimensionality include experimentation, intuition and examples of other trained
+networks. Trained networks and tutorial have suggested that using a number
+smaller than the maximum sequence length and around a 100 is a good value. As
+with all machine learning over fitting is an issue that can occur during
+training. A simple and yet efficient method to reduce over fitting is randomly
+dropping out nodes during training. That is the usage of the dropout layer.
+
+The Python code for implementing the sequence to probability network with Keras
+is given by Figure~\ref{fig:keras_sequence_to_probability}. The implementations
+of the networks are similar, however, the sequence to probability model contains
+2 LSTM layers. The first LSTM layer outputs the hidden states at each time steps
+and these are feed to the second layer which only output the hidden state at
+final time step. The output of the network is a probability. The sequence to
+probability network has a higher number of learning parameters due to the two
+LSTM layers. More specifically, there are 122101 learning parameters to the
+network.
 
 \begin{figure}[!htbp]
 \begin{usagepy}
@@ -541,49 +553,42 @@ Non-trainable params: 0
 _________________________________________________________________
 
 \end{usagepy}
-\caption{Keras sequence to probability.}\label{fig:keras_sequence_to_probability}
+\caption{Python code for implementing the sequence to probability LSTM with Keras.}\label{fig:keras_sequence_to_probability}
 \end{figure}
 
-Keras contains two implementations on an LSTM model. That is the class LSTM and
-the CCNLSTM which was used here. CCNLSTM is a fast  LSTM implementation with
-NVIDIA CUDA Deep Neural Network library (cuDNN) which run on a graphics
-processing unit (GPU).
+Keras includes two implementations for an LSTM layer. The class
+\mintinline{python}{LSTM} and the class \mintinline{python}{CCNLSTM} which is
+the class used here. \mintinline{python}{CCNLSTM} provides a faster
+implementation of \mintinline{python}{LSTM} the NVIDIA CUDA Deep Neural Network
+library. The \mintinline{python}{CCNLSTM} class allows the networks to be
+trained on a graphics processing unit (GPU).
 
 \subsection{Training on GPU}
 
-Conventionally most training and running computer code happens on the central
-processing unit (CPU). A CPU also called a central processor or main processor
-is essentially the brain of any computing device, carrying out the instructions
-of a program by performing control, logical, and input/output (I/O) operations.
-CPUs, can have a number of cores, and its basic design and purpose—to process
-complex computations—has not really changed. A CPU core is designed to support
-an extremely broad variety of tasks.
+Conventionally executing computer code happens on the central processing unit
+(CPU). The CPU, also called main processor, is essentially the brain of any
+computing device. Architecturally the CPU is composed of just a few cores
+designed to support an extremely broad variety of tasks.
 
-A graphical processing unit (GPU), on the other hand, has smaller-sized but many
-more logical cores (arithmetic logic units or ALUs, control units and memory
-cache) whose basic design is to process a set of simpler and more identical
-computations in parallel.
-
-Initially designed mainly as dedicated graphical rendering workhorses of
-computer games, GPUs were later enhanced to accelerate other geometric
-calculations (for instance, transforming polygons or rotating verticals into
-different coordinate systems like 3D). Nvidia created a parallel computing
-architecture and platform for its GPUs called CUDA, which gave developers access
-and the ability to express simple processing operations in parallel through
-code.
+A graphical processing unit (GPU), on the other hand, is composed of hundred of
+cores designed to process a set of simpler and more identical computations in
+parallel. GPUs were initially designed as dedicated graphical rendering
+workhorses of computer games but ere later enhanced to accelerate other
+geometric calculations. NVIDIA created a parallel computing architecture and
+platform for its GPUs called CUDA, which gave developers access and the ability
+to express simple processing operations in parallel through code.
 
 While a CPU core is more powerful than a GPU core, the vast majority of this
-power goes unused by ML applications. whereas a GPU core is optimized
-exclusively for data computations. Because of this singular focus, a GPU core is
-simpler and has a smaller die area than a CPU, allowing many more GPU cores to
-be crammed onto a single chip. Consequently, ML applications, which perform
-large numbers of computations on a vast amount of data, can see huge (i.e., 5 to
-10 times) performance improvements when running on a GPU versus a CPU..
-As many have said GPUs are so fast because they are so efficient for matrix
-multiplication.
+power goes unused by machine learning applications. A GPU core is optimised
+exclusively for data computations and because of this singular focus, a GPU core
+is simpler and has a smaller die area than a CPU, allowing many more GPU cores
+to be crammed onto a single chip. Consequently, machine learning applications,
+which perform large numbers of computations on a vast amount of data, can see
+huge performance improvements when running on a GPU versus a CPU.
 
-Keras CCNLSTM class makes running on GPU easy. Cardiff's super computer
-was used for the training of the models.
+The training process of the LSTM networks here is carried out on a GPU. More
+specifically, the training process was carried out on the High-Performance
+Computing (HPC) cluster of Cardiff University.
 
 \subsection{Training data sets}
 
