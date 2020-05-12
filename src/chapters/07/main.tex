@@ -457,7 +457,7 @@ time step between the elements of each input sequence. This is defined by the
 argument \mintinline{python}{input_shape=(None, 1)}. The LSTM layer outputs a
 hidden state at each time step. Initially, the hidden states go through a
 dropout layer. The dropout layer is a simple and yet efficient method to reduce
-over fitting by randomly dropping out nodes of the hidden
+overfitting by randomly dropping out nodes of the hidden
 states~\cite{Baldi2013}. Finally, the hidden states are transformed into
 probabilities via a sigmoid layer. There are a total of 41301 learning
 parameters to the StoS model.
@@ -639,11 +639,14 @@ A list of the strategies' names using in each subset is given in the Appendix. %
 \subsection{Training and validation}
 
 Two different LSTM networks were trained on four different training data sets.
-Thus, a total of \(4 \times 2 = 8\) networks have been trained. Due to the
-different size of the training data the networks have been trained for a
-different number of epochs. The number of epochs is the number of times the
-training algorithm has work through the entire training data set. The number of
-epochs each network has been trained for is given by Table~\ref{table:epochs}.
+Thus a total of \(4 \times 2 = \lstmnetworks\) networks have been trained in
+this Chapter.
+
+Due to the different size of the training data the networks have been trained
+for a different number of epochs. The number of epochs is the number of times
+the training algorithm has work through an entire training data set. The number
+of epochs for each of the \lstmnetworks network is given by
+Table~\ref{table:epochs}.
 
 \begin{table}[!htbp]
     \begin{center}
@@ -651,22 +654,39 @@ epochs each network has been trained for is given by Table~\ref{table:epochs}.
         \input{src/chapters/07/tex/epochs_table.tex}
     }
 \end{center}
-\caption{Number of epochs each both networks, sequence to sequence and 
-sequence to probability, were trained for each subset.}\label{table:epochs}
+\caption{Number of epochs for each of the trained networks.}\label{table:epochs}
 \end{table}
 
-The networks based on the sequence to probability architecture have a larger
-number of learning parameters. Subsequently, their training corresponds to more
-computer time. It can been seen from Table~\ref{table:epochs} that those
-networks have been trained for less epochs compared to the sequence to sequence
-networks trained on the same training data sets.
+The StoP networks have a larger number of learning parameters. Subsequently,
+their training corresponds to more computer time. It can been seen from
+Table~\ref{table:epochs} that the StoP networks have been trained for less
+epochs compared to the StoS networks.
 
-The data are split into training and test training set. The test set is
-20\% of the data. The validation and loss is calculated at each epoch.
-The validation is the measure that. The loss is based on the.
-Discussion on validation. In section~\ref{section:rnn_strategy_validation} the
-LSTM networks are validated by as an IPD strategy using a meta tournament
-analysis. % TODO
+At each training process the training data set is split into 80\% training samples
+and 20\% test samples. At each epoch the loss function is calculated for both
+the training and test samples. The loss function used to trained the networks
+is the \textit{binary cross entropy}. In essence, the task of predicting IPD
+actions is a binary classification problem as there can only be two classes.
+
+As discussed in section~\ref{section:artificial_neural_networks}, the loss
+function is used to optimise the learning algorithm. The networks that will
+be used as IPD strategies in the next section are the networks that achieved
+the lowest loss value over the epochs.
+
+Another measure which is being reported at each epoch is the accuracy. The accuracy
+is calculated after the learning parameters have been determined and it is in
+the form of a percentage. Accuracy is a measure of how accurate the predictions
+are based on the expected output. Both the measures over the number of epochs
+are given by Figures~\ref{fig:validation_sequence_to_sequence}
+and~\ref{fig:validation_sequence_to_probability}.
+
+In Figure~\ref{fig:validation_sequence_to_sequence} the loss and accuracy are
+given for the StoS networks. Overall the StoS networks, regarding the training
+data set, have maintained a high value of accuracy over the epochs. Whilst
+training on the basic strategies there was a minor decrease, however, the
+accuracy still remained over 0.85 (85\%). The loss function values have also
+remained low over the epochs for all the networks with only a few spikes
+occurring.
 
 \begin{figure}[!htbp]
     \begin{subfigure}{\textwidth}
@@ -685,9 +705,17 @@ analysis. % TODO
     \centering
     \includegraphics[width=.8\textwidth]{src/chapters/07/img/validation_plot_basic_strategies.pdf}
     \end{subfigure}
-    \caption{Loss function and accuracy of the networks based on the sequence to sequence
-    model over the number of epochs.}\label{fig:validation_sequence_to_sequence}
+    \caption{Loss function and accuracy of the networks based on the StoS model,
+    over the number of epochs.}\label{fig:validation_sequence_to_sequence}
 \end{figure}
+
+For the StoP networks there appears to be more variation in the test loss and
+accuracy, Figure~\ref{fig:validation_sequence_to_probability}. This is more evident
+in for the networks that were trained on the top strategies and the strategies
+across ranks. This could indicate that the networks are overfitting. The StoP
+networks that was trained on the entire training data set has managed to maintained
+a low loss value (at 0.5) and a training accuracy of 0.75. The most successfully
+trained StoP networks appears to be the network trained on the basic strategies.
 
 \begin{figure}[!htbp]
     \begin{subfigure}{\textwidth}
@@ -706,11 +734,15 @@ analysis. % TODO
     \centering
     \includegraphics[width=.8\textwidth]{src/chapters/07/img/validation_plot_classification_basic_strategies.pdf}
     \end{subfigure}
-    \caption{Loss function and accuracy of the networks based on the sequence to probability
-    model over the number of epochs.}\label{fig:validation_sequence_to_probability}
+    \caption{Loss function and accuracy of the networks based on the StoP
+    model, over the number of epochs.}\label{fig:validation_sequence_to_probability}
 \end{figure}
 
-
+This section has presented the \lstmnetworks trained LSTM networks of this thesis.
+These networks are based on two different architectures and have been trained
+on four different training data sets. The networks' validation based on the
+training data sets was presented in this section. In the next section the networks
+are evaluated as IPD strategies.
 
 \section{Validation of LSTM base strategies using a meta tournament analysis}\label{section:rnn_strategy_validation}
 
