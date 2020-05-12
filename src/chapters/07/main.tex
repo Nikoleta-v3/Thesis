@@ -1377,30 +1377,53 @@ cooperating rate compared to strategies that do not.
 
 \section{Chapter Summary}
 
-This Chapter introduced a total of 24 new IPD strategies based on LSTM networks.
-The LSTMs have received a lot of attention in machine learning due to their
-incredible results on. Though ANNs have been considered in the IPD literature
-LSTM have not been given attention.
+This Chapter has introduced a total of \lstmnetworks new IPD strategies based on
+LSTM networks. LSTMs have received a lot of attention in the machine learning
+literature due to their remarkable results on applications such as speech
+recognition. However, LSTMs have not received much attention in the IPD
+literature.
 
-The collection was purposely generated
-so that the networks could be trained to play optimal against a list of known
-IPD strategies.
+The advantage of using LSTMs contrary to feed forward networks is that the LSTM
+incorporate a mechanism of memory, as presented in
+section~\ref{section:artificial_neural_networks}. LSTM work with inputs in the
+form of sequences. The collection of best response sequences of
+Chapter~\ref{chapter:best_reponse_sequence} was purposely generated so that
+LSTMs could be trained to play optimal against a list of known IPD strategies.
 
-The advantage of using LSTM instead of feed forward networks is that the LSTM
-incorporate a mechanism of memory. The decision the make at time \(t\) is
-affected by their knowledge of time \(t-1\). The networks were introduced in
-section. The networks were developed and trained using the open source package
-Keras. Two different LSTM networks were trained these are the sequence to
-sequence network and the sequence to probability network. The differences
-between the networks were discussed in section. The networks were trained not
-only on a single a training data set. The training data set has been made
-possible due to the best responses sequences generated in Chapter 6. That
-allowed the network to learn how to react to actions of well established IPD
-strategies. Sub sets of that training data set were consider to understand the
-effect of the training data on the network's performance in IPD match. The
-subsets included.
+Two types of LSTM networks have been trained in this Chapter. These were
+refereed to as the sequence to sequence network and the sequence to probability
+network. The differences between the networks were discussed in
+section~\ref{section:training_a_rnn}. The networks were trained not only on a
+single a training data set, but on four different training data sets generated
+by the collection of best response strategies. Three sub sets of the training
+data set were consider to understand the effect of the training data on the
+network's performance in a IPD match. The subsets included the best response
+strategies to top performing strategies, to strategies with ranks across a
+standard tournament and the a set of basic strategies. The networks were
+developed and trained using the open source package Keras, and the training
+process was carried out on a GPU.
 
-These were trained on the GPU.
+A total of \lstmnetworks LSTM networks were trained, and those corresponded to
+\lstmstrategies strategies when the opening move was taken into account. The
+opening move of an LSTM strategy had to be manually defined and three different
+values were chosen to carried of the evaluation analysis. These were opening
+with a defection, with a cooperating, and with a 0.78 probability of
+cooperation. The performance of the \lstmstrategies LSTM strategies were
+evaluated in \metatournamentslstm standard tournaments. The results of the
+meta tournament analysis demonstrated that the strategies trained on the entire
+data set performed well in the \metatournamentslstm standard tournaments
+regardless the LSTM network type. However, the strategies trained on the
+subsets performed well only for the StoP network. The strategies that performed
+well in the analysis of this Chapter have a high probability of ranking
+in the top half of any standard tournament. This demonstrates that LSTM
+strategies trained on a collection of sequences can lead to successful behaviours
+in the IPD.
 
-A total of 8 networks were trained but these were 24 players. Their performance
-was explored in 300 tournaments. The results demonstrated that.
+An interesting result demonstrated by the analysis was the effect of the opening
+with a cooperation. The most successful strategies of this Chapter have been
+the strategies that cooperated on the first turn. Moreover, the transitive
+fingerprints demonstrated that is because these strategies achieve a higher
+cooperating rate compared to strategies based on the same training process
+that do not. This result reinforces the discussion started ny
+Axelrod: opening with a cooperation is a property that
+successful strategies in a IPD competition need to have.
