@@ -305,20 +305,19 @@ section~\ref{section:training_a_rnn}.
 \section{Training LSTM networks to play the Iterated Prisoner's Dilemma}\label{section:training_a_rnn}
 
 LSTM are trained in a supervised fashion on a set of training sequences. The
-purpose of training a network in this Chapter is so it can learn to play the
-IPD. For that reason the networks are going to be trained on the collection of
-best response sequences generated in
-Chapter~\ref{chapter:best_response_sequences}. The collection was purposely generated
-so that the networks could be trained to play optimal against a list of known
-IPD strategies.
+purpose of training a network in this Chapter is so it can learn to play
+optimally against IPD strategies. For that reason the networks are going to be
+trained on the collection of best response sequences generated in
+Chapter~\ref{chapter:best_response_sequences}.
 
-The inputs of a network are the actions of a given strategy and the expected
-output is the response of the best response sequence to that action. More
-specifically, each pair of opponent's - best response sequence's actions
-correspond to 204 training inputs with a maximum dimensionality of 204.
+The training inputs are the actions of a given strategy for \(N\) turns. The
+expected outputs are the responses to those \(N\) action by the opponent's best
+response sequence. Each pair of opponent's - best response sequence's actions,
+from the the collection of best response sequences, are transformed into 204
+unique training samples. The highest dimensionality of those samples is 204.
 
-Consider the actions of the strategy Adaptive and a best response to it as
-presented in section~\ref{section:the_collection_of_best_response_sequences}
+Consider the actions of the strategy Adaptive and its best response, as
+presented in section~\ref{section:the_collection_of_best_response_sequences},
 given by Table~\ref{table:adaptive_vs_best_response_binary_lstm}.
 
 \begin{table}[htbp]
@@ -333,8 +332,9 @@ given by Table~\ref{table:adaptive_vs_best_response_binary_lstm}.
     to the strategy. Note that \(0 \to D\) and \(1 \to C\).}\label{table:adaptive_vs_best_response_binary_lstm}
 \end{table}
 
-The highest dimensionality the input vector \(x\) to the network can have is
-204. This is because the expected output of to Adaptive's action in turn 1 is
+Initially the highest dimensionality a training sample based on
+Table~\ref{table:adaptive_vs_best_response_binary_lstm} can have is 204.
+This is because the expected output to Adaptive's action in turn 1 is
 the action of the best response sequence at turn 2. Moreover, the expected
 output to the Adaptive's \(204^{\text{th}}\) action is the best response's
 \(205^{\text{th}}\) action. This is demonstrated by
@@ -348,12 +348,12 @@ Figure~\ref{fig:input_output_example}.
     response sequence are discarded.}\label{fig:input_output_example}
 \end{figure}
 
-The networks of this Chapter have been trained for a non fixed sequence length.
-In order to train the networks on different input lengths each pair opponent's -
-best response sequence's actions is broken down to 204 distinct inputs. This is
-done so that each input captures the play of 204 IPD matches between the pairs
-where the number of turns \(N \in [1, 204]\). For example the training points
-from Table~\ref{table:adaptive_vs_best_response_binary_lstm} are given by,
+Secondly, in order to train the networks on different input lengths the training
+sample of Figure~\ref{fig:input_output_example} is transformed to 204 samples.
+This is done by considering all the possible IPD matches between
+the pairs where the number of turns \(N \in [1, 204]\). For example the training
+samples for Table~\ref{table:adaptive_vs_best_response_binary_lstm} are given
+by,
 
 \begin{equation}\label{eq:sequence_to_sequence_inputs_outputs_example}
     \text{inputs} =
@@ -380,39 +380,39 @@ from Table~\ref{table:adaptive_vs_best_response_binary_lstm} are given by,
     \end{bmatrix}
 \end{equation}
 
-Thus the training data set created by the best response collection correspond
-to \(\totalsequences \times 204 = \trainingpoint\) training inputs.
+Subsequently, the training data set retrieved from the collection of best
+responses has a total of \(\totalsequences \times 204 = \trainingpoint\)
+training samples.
 
-Two variants of LSTMs have been trained in this Chapter. These are refereed to:
+Two types of LSTMs have been trained in this Chapter. These are refereed to:
 
 \begin{itemize}
-    \item sequence to sequence
-    \item sequence to probability
+    \item Sequence to sequence (StoS).
+    \item Sequence to probability (StoP).
 \end{itemize}
 
-The sequence to sequence model as an input of actions a each time step by a
-strategy an it outputs a response for each at each time step. The sequence to
-probability has an input the action of strategy up to time \(t\), and outputs a
-response to the history at time \(t\). Both networks output a probability which
-is translated at the probability of cooperating after the opponent's last \(t\)
-actions. A graphical representation of the two networks are given by
+Both models take as input a sequence of actions. The StoS network outputs a
+response to each time step of the input sequence. The StoP network only outputs
+a response to the sequence at the last time step. Both networks output a
+probability which is the probability of cooperating given an opponent's history.
+A graphical representation of the two networks are given by
 Figures~\ref{fig:sequence_to_sequence} and \ref{fig:sequence_to_probability}.
 
 \begin{figure}[!htbp]
     \centering
     \includestandalone[width=\textwidth]{src/chapters/07/sequence_to_sequence}
-    \caption{A graphical representation of a sequence to sequence LSTM model}.\label{fig:sequence_to_sequence}
+    \caption{A graphical representation of the StoS LSTM model.}\label{fig:sequence_to_sequence}
 \end{figure}
 
 \begin{figure}[!htbp]
     \centering
     \includestandalone[width=\textwidth]{src/chapters/07/sequence_to_probability}
-    \caption{A graphical representation of a sequence to probability LSTM model}.\label{fig:sequence_to_probability}
+    \caption{A graphical representation of the StoP LSTM model.}\label{fig:sequence_to_probability}
 \end{figure}
 
-The training data of the sequence to sequence model is the form of
+The training samples for the StoS network are in the form of
 Equation~(\ref{eq:sequence_to_sequence_inputs_outputs_example}) whereas the
-training data for the sequence to probability model are in the form of
+training training samples for the StoP network are in the form of
 Equation~(\ref{eq:sequence_to_probability_inputs_outputs_example}).
 
 \begin{equation}\label{eq:sequence_to_probability_inputs_outputs_example}
@@ -448,17 +448,19 @@ to enable fast experimentation with neural networks. Neural layers, cost
 functions, optimizers and activation functions are all standalone modules that
 can be combined to create new network models.
 
-The Python code for implementing the sequence to sequence model is given by
+The Python code for implementing the StoS model is given by
 Figure~\ref{fig:keras_sequence_to_sequence}. In line 12 the model is defined to
 be of the \mintinline{python}{Sequential} class. This mean that the model will
-constructed layer by layer. The sequence to sequence network has a single LSTM
-layer with 100 nodes. The input to the LSTM network is not a fixed length
-and there a single time step between the elements of each input sequence.
-Those are defined by the argument \mintinline{python}{input_shape=(None, 1)}.
-The LSTM layer outputs the hidden states at each time step and they go through
-a dropout layer then are transformed into an a probability output via a
-sigmoid layer. There are a total of 41301 learning parameters to the sequence
-to sequence model.
+constructed layer by layer. The StoS network has a single LSTM layer with 100
+nodes. The input to the LSTM network is not a fixed length and there a single
+time step between the elements of each input sequence. This is defined by the
+argument \mintinline{python}{input_shape=(None, 1)}. The LSTM layer outputs a
+hidden state at each time step. Initially, the hidden states go through a
+dropout layer. The dropout layer is a simple and yet efficient method to reduce
+over fitting by randomly dropping out nodes of the hidden
+states~\cite{Baldi2013}. Finally, the hidden states are transformed into
+probabilities via a sigmoid layer. There are a total of 41301 learning
+parameters to the StoS model.
 
 \begin{figure}[!htbp]
 \begin{usagepy}
@@ -500,27 +502,24 @@ Non-trainable params: 0
 _________________________________________________________________
 
 \end{usagepy}
-\caption{Python code for implementing the sequence to sequence LSTM with Keras.}\label{fig:keras_sequence_to_sequence}
+\caption{Python code for implementing the StoS LSTM with Keras.}\label{fig:keras_sequence_to_sequence}
 \end{figure}
 
 Regarding the dimensionality of the hidden layer there is no direct answer as to
 what is the optimal number of nodes. Several methods for determining the
-dimensionality include experimentation, intuition and examples of other trained
-networks. Trained networks and tutorial have suggested that using a number
-smaller than the maximum sequence length and around a 100 is a good value. As
-with all machine learning over fitting is an issue that can occur during
-training. A simple and yet efficient method to reduce over fitting is randomly
-dropping out nodes during training. That is the usage of the dropout layer.
+dimensionality include experimentation, intuition and building on the work of
+other. A common practice is that the dimensionality of the hidden layer is
+smaller than the dimensionality of the input layer. The dimensionality of the
+input layer changes from 1 to 204, and thus a number of 100 nodes was chosen
+so that the dimensionality of the hidden layer is smaller 50\% of the times.
 
-The Python code for implementing the sequence to probability network with Keras
-is given by Figure~\ref{fig:keras_sequence_to_probability}. The implementations
-of the networks are similar, however, the sequence to probability model contains
-2 LSTM layers. The first LSTM layer outputs the hidden states at each time steps
-and these are feed to the second layer which only output the hidden state at
-final time step. The output of the network is a probability. The sequence to
-probability network has a higher number of learning parameters due to the two
-LSTM layers. More specifically, there are 122101 learning parameters to the
-network.
+The Python code for implementing the StoP network with Keras is given by
+Figure~\ref{fig:keras_sequence_to_probability}. The implementations of the
+networks are similar, however, the StoP model contains 2 LSTM layers. The first
+LSTM layer outputs the hidden states at each time step. In turn these are connected to
+the second layer which only output the hidden state at final time step. The StoP
+network has a higher number of learning parameters due to the two LSTM layers.
+More specifically, there are 122101 learning parameters to the network.
 
 \begin{figure}[!htbp]
 \begin{usagepy}
@@ -563,15 +562,15 @@ Non-trainable params: 0
 _________________________________________________________________
 
 \end{usagepy}
-\caption{Python code for implementing the sequence to probability LSTM with Keras.}\label{fig:keras_sequence_to_probability}
+\caption{Python code for implementing the StoP LSTM with Keras.}\label{fig:keras_sequence_to_probability}
 \end{figure}
 
 Keras includes two implementations for an LSTM layer. The class
 \mintinline{python}{LSTM} and the class \mintinline{python}{CCNLSTM} which is
 the class used here. \mintinline{python}{CCNLSTM} provides a faster
-implementation of \mintinline{python}{LSTM} the NVIDIA CUDA Deep Neural Network
-library. The \mintinline{python}{CCNLSTM} class allows the networks to be
-trained on a graphics processing unit (GPU).
+implementation of \mintinline{python}{LSTM} with the NVIDIA CUDA Deep Neural Network
+library. The use of the \mintinline{python}{CCNLSTM} class means that the networks
+can be trained on a graphics processing unit (GPU).
 
 \subsection{Training on GPU}
 
@@ -1329,6 +1328,10 @@ This Chapter introduced a total of 24 new IPD strategies based on LSTM networks.
 The LSTMs have received a lot of attention in machine learning due to their
 incredible results on. Though ANNs have been considered in the IPD literature
 LSTM have not been given attention.
+
+The collection was purposely generated
+so that the networks could be trained to play optimal against a list of known
+IPD strategies.
 
 The advantage of using LSTM instead of feed forward networks is that the LSTM
 incorporate a mechanism of memory. The decision the make at time \(t\) is
