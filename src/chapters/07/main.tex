@@ -70,11 +70,8 @@ Chapter~\ref{chapter:best_response_sequence}.
 A total of \lstmstrategies LSTMs based strategies are introduced in this
 Chapter, and their performance is evaluated and compared in a meta tournament
 analysis of \metatournamentslstm standard tournaments. The results demonstrate
-that LSTM networks can be trained to successfully compete in an IPD tournaments.
-Training over a large variety of behaviours corresponded to more successful
-strategies than training on a subset of behaviours. Finally, it was shown that
-the opening move of the LSTM strategies had an important impact on their
-success. The rest of the Chapter is structured as follows:
+that LSTM networks can be trained to successfully compete in IPD tournaments.
+The rest of the Chapter is structured as follows:
 
 \begin{itemize}
     \item section~\ref{section:artificial_neural_networks}, presents an
@@ -1002,52 +999,60 @@ standard IPD tournament.
 \begin{figure}[!htbp]
     \begin{subfigure}{.45\textwidth}
     \includegraphics[width=\textwidth]{src/chapters/07/img/cfd_to_sequence_all_strategies.pdf}
-    \caption{For \(p_o=0, P(r<0.5) = 0.350\). For \(p_o=1, P(r<0.5) =  0.797\).
-    For \(p_o=0.78, P(r<0.5) = 0.717\).}
+    \caption{For \(p_o=0\) the probability that \(r<0.5\) is 0.350.
+    For \(p_o=1\) the probability that \(r<0.5\) is 0.797.
+    For \(p_o=0.78\) the probability that \(r<0.5\) is 0.717.}
     \end{subfigure}\hfill
     \begin{subfigure}{.45\textwidth}
     \includegraphics[width=\textwidth]{src/chapters/07/img/cfd_to_sequence_top_strategies.pdf}
-    \caption{For \(p_o=0, P(r<0.5) =  0.310\). For \(p_o=1, P(r<0.5) =  0.573\).
-    For\(p_o=0.78, P(r<0.5) =  0.523\).}
+    \caption{For \(p_o=0\) the probability that \(r<0.5\) is 0.310.
+    For \(p_o=1\) the probability that \(r<0.5\) is 0.573.
+    For \(p_o=0.78\) the probability that \(r<0.5\) is 0.523.}
     \end{subfigure}
     \begin{subfigure}{.45\textwidth}
     \includegraphics[width=\textwidth]{src/chapters/07/img/cfd_to_sequence_across_ranks_strategies.pdf}
-    \caption(For \(p_o=0, P(r<0.5) =  0.313\). For \(p_o=1, P(r<0.5) =  0.303\).
-    For \(p_o=0.78, P(r<0.5) =  0.280\).)
+    \caption{For \(p_o=0\) the probability that \(r<0.5\) is 0.313.
+    For \(p_o=1\) the probability that \(r<0.5\) is 0.303.
+    For \(p_o=0.78\) the probability that \(r<0.5\) is 0.280.}
     \end{subfigure}\hfill
     \begin{subfigure}{.45\textwidth}
     \includegraphics[width=\textwidth]{src/chapters/07/img/cfd_to_sequence_basic_strategies.pdf}
-    \caption{For \(p_o=0, P(r<0.5) = 0.207\). For \(p_o=0, P(r<0.5) = 0.420\).
-    For \(p_o=0.78, P(r<0.5) =  0.387\).}
+    \caption{For \(p_o=0\) the probability that \(r<0.5\) is 0.207.
+    For \(p_o=1\) the probability that \(r<0.5\) is 0.420.
+    For \(p_o=0.78\) the probability that \(r<0.5\) is 0.387.}
     \end{subfigure}
     \caption{The cumulative distribution function (CFD)
-    for the \(r\) distributions for the LSTM strategies based on the sequence to sequence
+    for the \(r\) distributions for the LSTM strategies based on the StoS
     network.}\label{fig:cfd_s_to_s}
 \end{figure}
 
 \begin{figure}[!htbp]
     \begin{subfigure}{.45\textwidth}
     \includegraphics[width=\textwidth]{src/chapters/07/img/cfd_to_probability_all_strategies.pdf}
-    \caption{For \(p_o=0, P(r<0.5)=0.207\) For \(p_o=1, P(r<0.5)=0.783\).
-    For \(p_o=0,  P(r<0.5)=0.567\).}
+    \caption{For \(p_o=0\) the probability that \(r<0.5\) 0.207.
+    For \(p_o=1\) the probability that \(r<0.5\) 0.783.
+    For \(p_o=0.78\) the probability that \(r<0.5\) 0.567.}
     \end{subfigure}\hfill
     \begin{subfigure}{.45\textwidth}
     \includegraphics[width=\textwidth]{src/chapters/07/img/cfd_to_probability_top_strategies.pdf}
-    \caption{For \(p_o=0, P(r<0.5)=0.503\). For \(p_o=0, P(r<0.5)=0.633\).
-    For \(p_o=0, P(r<0.5)=0.610\).}
+    \caption{For \(p_o=0\) the probability that \(r<0.5\) 0.503.
+    For \(p_o=1\) the probability that \(r<0.5\) 0.633.
+    For \(p_o=0.78\) the probability that \(r<0.5\) 0.610.}
     \end{subfigure}
     \begin{subfigure}{.45\textwidth}
     \includegraphics[width=\textwidth]{src/chapters/07/img/cfd_to_probability_across_ranks_strategies.pdf}
-    \caption(For \(p_o=0, P(r<0.5)=0.550\). For \(p_o=0, P(r<0.5)=0.763\).
-    For \(p_o=0, P(r<0.5)=0.733\).)
+    \caption{For \(p_o=0\) the probability that \(r<0.5\) 0.550.
+    For \(p_o=1\) the probability that \(r<0.5\) 0.763.
+    For \(p_o=0.78\) the probability that \(r<0.5\) 0.733.}
     \end{subfigure}\hfill
     \begin{subfigure}{.45\textwidth}
     \includegraphics[width=\textwidth]{src/chapters/07/img/cfd_to_probability_basic_strategies.pdf}
-    \caption{For \(p_o=0, P(r<0.5)=0.207\). For \(p_o=0, P(r<0.5)=0.779\).
-    For \(p_o=0, P(r<0.5)= 0.607\).}
+    \caption{For \(p_o=0\) the probability that \(r<0.5\) 0.207.
+    For \(p_o=1\) the probability that \(r<0.5\) 0.779.
+    For \(p_o=0.78\) the probability that \(r<0.5\) 0.607.}
     \end{subfigure}
     \caption{The cumulative distribution function (CFD)
-    for the \(r\) distributions for the LSTM strategies based on the sequence to probability
+    for the \(r\) distributions for the LSTM strategies based on the StoP
     network.}\label{fig:cfd_s_to_p}
 \end{figure}
 
@@ -1057,58 +1062,56 @@ evaluated based on their normalised ranks over \metatournamentslstm standard
 computer tournaments. On the whole, the analysis of this section has shown that:
 
 \begin{itemize}
-    \item The strategies which were trained to play against all 192 strategies
-    of Appendix have been successful regardless of the network. Both the StoS
-    and StoP networks have produced strategies that managed to win and on
-    average score on the top 30\% of any given standard tournament.
-    \item The strategies trained on the subsets of the training data set perform
+    \item The LSTM strategies which were trained on the entire data set of best
+    responses were successful strategies regardless of the LSTM architecture.
+    Both the StoS and StoP networks have produced strategies that can win IPD
+    tournaments, and on average rank on the top 30\% of any given standard
+    tournament.
+    \item The LSTM strategies trained on subsets of the training data set, perform
     better when trained with the StoP network than the StoS network. The StoP
     networks for the subsets have been trained for a longer number of epochs
     compared to the StoP network over the entire data set. An interesting
-    question is whether the strategy based on this network would perform even
-    better than it's equivalent StoS strategy if it was trained for longer.
+    question is whether the StoP strategy, trained on the entire data set, would
+    perform even better than it's equivalent StoS strategy if it was trained for
+    longer.
     \item The successful strategies of this analysis, strategies with \(\bar{r}
     <0.33\), have a 0.70-0.80 probability of ranking in top half of a standard
     tournament.
-    \item The strategies that have been trained against the top ranked
-    strategies, overall performed poorly. This could indicate that training only
-    on the top strategies did not provide enough diverse input to the network
-    which made it less adaptable to more hostile environments.
+    \item The LSTM strategies that have been trained against the top ranked
+    strategies performed poorly. This could indicate that training only
+    on the top strategies did not provide enough diverse training samples. This
+    could have in turn made the strategies less adaptable to diverse environments.
     \item Overall the most successful strategies of the analysis have been
-    strategies that open with a cooperation. This enforces the discussion that
-    opening with cooperation is a property of a successful strategy started by
-    Axerod.
+    strategies that open with a cooperation.
 \end{itemize}
 
 \subsection{Fingerprinting the LSTM based strategies}
 
 The 24 strategies that have been introduced in this Chapter are based on an
-LSTM archetype. The strategies are based on a complex structure and interpreting
-them is not trivial. The difference between the strategies is not straightforward
-and even thought there differences between them it's not sure whether they
-behave in a completely different manner. In Chapter~\ref{chapter:literature}
-the method of fingerprinting was introduced. Fingerprinting is a method
-that produces a function signature of a strategy. Two types of fingerprinting
-were discussed in Chapter~\ref{chapter:literature}. The Ashlock's fingerprints
-and transitive fingerprints.
+LSTM archetype. These strategies are based on a complex structure and interpreting
+their behaviour is not trivial. The difference between the strategies is not
+straightforward either. In Chapter~\ref{chapter:literature} a method that
+produces a functional signature of a strategy called fingerprinting was presented.
+More specifically, two types of fingerprints were discussed which were the
+Ashlock's fingerprints and the transitive fingerprints.
 
 Ashlock's fingerprints compute the score of a strategy against a spectrum of
 opponents. The basic method is to play the strategy against a probe strategy
-with varying noise parameters. The fingerprints for the 24 strategies based on
-Ashlock's approach have been generated for probe strategy Tit For Tat and Pavlov
-(Win-Shift Lose-Stay). These are given by
-Figures~\ref{fig:ashlock_fingerprints_tft_s_to_s},
-\ref{fig:ashlock_fingerprints_tft_s_to_p},
-\ref{fig:ashlock_fingerprints_pavlov_s_to_s} and
-\ref{fig:ashlock_fingerprints_pavlov_s_to_p}.
+with varying noise parameters. The fingerprints for the \lstmstrategies strategies based on
+Ashlock's approach have been generated for the probe strategies Tit For Tat and
+Pavlov. These are given by Figures~\ref{fig:ashlock_fingerprints_tft_s_to_s} -
+\ref{fig:ashlock_fingerprints_pavlov_s_to_p}. Note that the strategies that
+appear on the same row have had the same training process. This means that they
+are based on the same network type and have been trained on the same training
+data set.
 
 For Figures~\ref{fig:ashlock_fingerprints_tft_s_to_s} and
-\ref{fig:ashlock_fingerprints_tft_s_to_p} Tit For Tat is used as a probe.
-It can been seen that between the strategies there are some similarities between
-the players based on same network, trained on the same training data set
-when they open with 1 or 0.78 change of cooperation. However, across the
-models there appears to be no similarity between the strategies.
-
+\ref{fig:ashlock_fingerprints_tft_s_to_p} Tit For Tat was used as the probe
+strategy. These demonstrate that the strategies that had the same training
+process but have a different opening move are quite similar. However, the
+strategies based on different networks and training data sets appear to behave
+in a different way. The only strategy that has some similarities regardless the
+network architecture is the strategy trained against the top strategies.
 
 \begin{figure}[!htbp]
     \begin{subfigure}{\textwidth}
@@ -1135,7 +1138,7 @@ models there appears to be no similarity between the strategies.
         \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Tit For Tat_basic_sequence_0_78".pdf}
         \caption{Strategies trained against basic strategies.}
     \end{subfigure}
-    \caption{Ashlock's fingerprints for the LSTM strategies based on the sequence to sequence
+    \caption{Ashlock's fingerprints for the LSTM strategies based on the StoS
     network when Tit For Tat is the probe strategy.}\label{fig:ashlock_fingerprints_tft_s_to_s}
 \end{figure}
 
@@ -1164,16 +1167,15 @@ models there appears to be no similarity between the strategies.
         \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Tit For Tat_basic_classification_0_78".pdf}
         \caption{Strategies trained against basic strategies.}
     \end{subfigure}
-    \caption{Ashlock's fingerprints for the LSTM strategies based on the sequence to probability
+    \caption{Ashlock's fingerprints for the LSTM strategies based on the StoP
     network when Tit For Tat is the probe strategy.}\label{fig:ashlock_fingerprints_tft_s_to_p}
 \end{figure}
 
 Figures \ref{fig:ashlock_fingerprints_pavlov_s_to_s} and
 \ref{fig:ashlock_fingerprints_pavlov_s_to_p} give the Ashlock fingerprints
-whilst Pavlov is used as a probe. The previous results still stand however
-now there is more similarities across the strategies. This includes the
-players when the only difference is the opening move but all the strategies
-that have been trained on the subsets.
+whilst Pavlov is used as a probe. The fingerprints of the strategies across the
+different training methods appear to be more similar when they are matched with
+Pavlov.
 
 \begin{figure}[!htbp]
     \begin{subfigure}{\textwidth}
@@ -1200,7 +1202,7 @@ that have been trained on the subsets.
         \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Win-Shift Lose-Stay_basic_sequence_0_78".pdf}
         \caption{Strategies trained against basic strategies.}
     \end{subfigure}
-    \caption{Ashlock's fingerprints for the LSTM strategies based on the sequence to sequence
+    \caption{Ashlock's fingerprints for the LSTM strategies based on the StoS
     network when Pavlov is the probe strategy.}\label{fig:ashlock_fingerprints_pavlov_s_to_s}
 \end{figure}
 
@@ -1229,25 +1231,28 @@ that have been trained on the subsets.
         \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Win-Shift Lose-Stay_basic_classification_0_78".pdf}
         \caption{Strategies trained against basic strategies.}
     \end{subfigure}
-    \caption{Ashlock's fingerprints for the LSTM strategies based on the sequence to probability
+    \caption{Ashlock's fingerprints for the LSTM strategies based on the StoP
     network when Pavlov is the probe strategy.}\label{fig:ashlock_fingerprints_pavlov_s_to_p}
 \end{figure}
 
-To further explore the similarities of the strategies a a set of more
-interpretable fingerprints the transitive fingerprints implemented in APL have
-also been estimated. The transitive fingerprints represent the cooperation rate
+To further explore the similarities of the strategies a set of more
+interpretable fingerprints, the transitive fingerprints, implemented in APL have
+also been generated. The transitive fingerprints represent the cooperation rate
 of a strategy against a set of opponents over a number of turns. There are two
 set of opponents used here to generate the transitive fingerprints, these are
 the collection of strategies from~\cite{Stewart2012} and
 from~\cite{Beaufils1997}.
 
-The differences now are clearer. The opening move can lead to slightly different
-behaviour but also to completely different one. Between the set of strategies
-that only their networks are different there can sometimes be some similarities
-but others there are completely different. This lead to the conclusion that the
-training process has managed to train a set of strategies that ar different.
-Though there are playing the IPD the training set or even the opening move
-can have a important effect.
+The transitive fingerprints are given by
+Figures~\ref{fig:transitive_fingerprints_stewart_s_to_s}
+-\ref{fig:transitive_fingerprints_beautil_s_to_p}. The differences between the
+strategies are more distinct using the transitive fingerprinting method. It can
+be seen that the strategies that have had different training processes behave
+differently against the same list of opponents. The strategies that have had the
+same training process but have a different opening moves, have some
+similarities, but overall behave differently. More specifically, it can been
+seen that the strategies that open with a cooperation achieve a higher
+cooperating rate compared to strategies that do not.
 
 \begin{figure}[!htbp]
     \begin{subfigure}{\textwidth}
@@ -1274,8 +1279,8 @@ can have a important effect.
         \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Stewart_basic_sequence_0_78".pdf}
         \caption{Strategies trained against basic strategies.}
     \end{subfigure}
-    \caption{Transitive fingerprints for the LSTM strategies based on the sequence to sequence
-    network against the list of opponents from~\cite{Stephens2012}.}\label{fig:transitive_fingerprints_stewart_s_to_s}
+    \caption{Transitive fingerprints for the LSTM strategies based on the StoS
+    network against the list of opponents from~\cite{Stewart2012}.}\label{fig:transitive_fingerprints_stewart_s_to_s}
 \end{figure}
 
 \begin{figure}[!htbp]
@@ -1303,8 +1308,8 @@ can have a important effect.
         \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Stewart_basic_classification_0_78".pdf}
         \caption{Strategies trained against basic strategies.}
     \end{subfigure}
-    \caption{Transitive fingerprints for the LSTM strategies based on the sequence to probability
-    network against the list of opponents from~\cite{Stephens2012}.}\label{fig:transitive_fingerprints_stewart_s_to_p}
+    \caption{Transitive fingerprints for the LSTM strategies based on the StoP
+    network against the list of opponents from~\cite{Stewart2012}.}\label{fig:transitive_fingerprints_stewart_s_to_p}
 \end{figure}
 
 \begin{figure}[!htbp]
@@ -1332,7 +1337,7 @@ can have a important effect.
         \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Beautil_basic_sequence_0_78".pdf}
         \caption{Strategies trained against basic strategies.}
     \end{subfigure}
-    \caption{Transitive fingerprints for the LSTM strategies based on the sequence to sequence
+    \caption{Transitive fingerprints for the LSTM strategies based on the StoS
     network against the list of opponents from~\cite{Beaufils1997}.}\label{fig:transitive_fingerprints_beautil_s_to_s}
 \end{figure}
 
@@ -1361,7 +1366,7 @@ can have a important effect.
         \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Beautil_basic_classification_0_78".pdf}
         \caption{Strategies trained against basic strategies.}
     \end{subfigure}
-    \caption{Transitive fingerprints for the LSTM strategies based on the sequence to probability
+    \caption{Transitive fingerprints for the LSTM strategies based on the StoP
     network against the list of opponents from~\cite{Beaufils1997}.}\label{fig:transitive_fingerprints_beautil_s_to_p}
 \end{figure}
 
