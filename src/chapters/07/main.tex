@@ -671,7 +671,8 @@ actions is a binary classification problem as there can only be two classes.
 As discussed in section~\ref{section:artificial_neural_networks}, the loss
 function is used to optimise the learning algorithm. The networks that will
 be used as IPD strategies in the next section are the networks that achieved
-the lowest loss value over the epochs.
+the lowest loss value over the epochs. The weights of the best performing
+networks, based on the loss function, have been archive and are available at. %TODO archive weights
 
 Another measure which is being reported at each epoch is the accuracy. The accuracy
 is calculated after the learning parameters have been determined and it is in
@@ -746,23 +747,31 @@ are evaluated as IPD strategies.
 
 \section{Validation of LSTM base strategies using a meta tournament analysis}\label{section:rnn_strategy_validation}
 
-In section~\ref{section:training_a_rnn} the trained networks were evaluated
-based on the training data. In this section the networks are evaluated as IPD
-strategies in a number of standard tournaments.
+This section evaluates the trained LSTM networks as IPD strategies.
 
-A strategy class was implemented called the \mintinline{python}{LSTMPlayer} so
-that the predictions of the networks can be translated into actions in an IPD
-match simulated with APL, Figure~\ref{fig:lstm_player_source_code}. The
-\mintinline{python}{LSTMPlayer} takes as arguments a Keras model, a reshape
-history function and the probability that it's opening move it's a cooperation.
-The opening move is not given by the LSTM networks as they were designed to only
-give reactions to history of play. Thus, the probability of opening with a
-cooperation is an argument of the player and is denoted as \(p_o\).
+A strategy class called the \mintinline{python}{LSTMPlayer} was implemented
+in order for the networks, which are Keras models, to interact in an IPD match
+simulated with APL. The source code for the \mintinline{python}{LSTMPlayer} is
+given by Figure~\ref{fig:lstm_player_source_code}. The class has three input
+arguments:
 
-The reshape history function is used to transform the history of the match to an
-input used my the model to make a prediction. The player makes a deterministic
-decision based on the prediction. It cooperates if the prediction is greater
-than 0.5 and defects either wise.
+\begin{itemize}
+    \item A Keras model. The input models are the \lstmnetworks trained LSTM networks
+    presented in section~\ref{section:training_a_rnn}.
+    \item A reshape history function. A function that reshapes the opponent's
+    history to an LSTM input.
+    \item The probability that the strategy cooperates on the first turn denoted
+    as \(p_o\). The LSTM networks can be used to predict the strategy's next
+    action following the opponent's opening turn. Thus, the strategy's opening
+    action must be manually defined.
+\end{itemize}
+
+Following the opening turn the LSTM strategy makes a prediction based on the
+opponent's history. The strategy has an infinite memory because it needs to
+remember all the actions made by the opponent. The prediction of the networks
+correspond to the probability of cooperating. The LSTM strategy makes a deterministic
+decision based on the predicted probability. It cooperates if the prediction
+on the last time step is greater than 0.5, otherwise it defects.
 
 \begin{figure}[!htbp]
 \begin{sourcepy}
@@ -811,29 +820,26 @@ class LSTMPlayer(axl.Player):
 \caption{Implementation of the \mintinline{python}{LSTMPlayer} class.}\label{fig:lstm_player_source_code}
 \end{figure}
 
-Though there are only 8 different trained networks as it was described the opening
-move is an input of the player. Three different values are used for \(p_o\).
-These are 0, 1 and 0.78. Opening deterministically is a common feature of IPD
-strategies and the probability 0.78 has been calculated as the probability
-the best response sequences of Chapter~\ref{chapter:best_response_sequence}
-open with a cooperation. Thus, the 2 different LSTM architectures have been
-trained separately on 4 different training set generating 8 different networks
-that each corresponds to 3 distic IPD strategies were the opening probability
-is different. Thus, a total of \(2 \times 4 \times 3 =24\) IPD strategies
-have been trained and are evaluated in this section.
+The \lstmnetworks trained LSTM networks are used to introduce \lstmstrategies
+new IPD strategies. Each network corresponds to three distinct player with a
+different opening move. More specifically, three different values of \(p_o\) are
+used here. These are \(p_o = 0\), \(p_o = 1\) and \(p_o = 0.78\). The
+probability 0.78 is the probability that the best response sequences of Chapter
+\ref{chapter:best_response_sequence} open with a cooperation. Thus, a total of
+\(8 \times 3 =  \lstmstrategies\) IPD strategies are evaluated in this section.
 
-The performance of the 24 LSTM strategies are evaluated and compared in
+The performance of the LSTM strategies are evaluated and compared in
 \metatournamentslstm standard tournaments. The process of collecting the
 tournament results for each strategy is given by
-Algorithm~\ref{meta_tournament_lstm_validation}.
+Algorithm~\ref{algorithm:meta_tournament_lstm_validation}.
 
 \begin{algorithm}[!htbp]
     \setstretch{1.35}
     \ForEach{\text{seed} $\in [0, 300]$}{
-        $N \gets \text{randomly select integer}\in [N_{min}, N_{max}]$\;
-        $\text{players} \gets  \text{randomly select $N$ players}$\;
+        $N \gets \text{randomly select integer}\in [s_{min}, s_{max}]$\;
+        $\text{players} \gets  \text{randomly select $s$ players}$\;
         $\text{players} \gets  \text{players} + \text{LSTM strategy}$\;
-        $N \gets N + 1$\;
+        $N \gets s + 1$\;
         $k \gets  50$\;
         $n \gets  200$\;
         \vspace{0.4cm}
@@ -843,29 +849,26 @@ Algorithm~\ref{meta_tournament_lstm_validation}.
     \label{algorithm:meta_tournament_lstm_validation}
 \end{algorithm}
 
-For each trial a random size \(N\) is selected and from the
-\numberofstrategiesbestsequences strategies a random list of \(N\) strategies
-is chosen. The LSTM player is then added to the list of player increasing the
-size to \(N + 1\). For the given list a standard tournament of 200 turns
-is performed and repeated 50 times. The only parameter that varies in the
-result collection is \(N\) which can have values between 5 and 10.
-
-The number of turns is fixed at 200. In
+For each trial a random size \(s \in [5, 10]\) is selected, and from the
+\numberofstrategiesbestsequences strategies of Appendix, a random list of \(s\) %TODO fix Appendix of Chapter 6. strategies is chosen. The LSTM player is added
+to the list of players, increasing the size to \(s + 1\). For the given list of
+strategies a standard tournament of 200 turns is performed and repeated 50
+times. The number of turns is fixed at 200. In
 Chapter~\ref{chapter:best_response_sequence} the sequences were fixed to 205
-turns. That had an effect that most best response sequences defected on the last
-turns, as the match was coming to an end. The LSTM networks have been trained on
-those sequences and are biased towards defecting on the last turns. To avoid
+turns which resulted in many best response sequences to defect on the last turn
+as the match was coming to an end. To avoid a series of 
 unconditional defections by the LSTM strategies their performance is evaluated
-200 turns which are a common number of turns used in the IPD literature.
+in  200 turns, which are a common number of turns used in the IPD literature.
 
-For each turn a result summary in the same format of that presented in
-Chapter~\ref{chapter:meta_tournament} is exported.  The performance of the
-strategies are evaluated on the normalised rank \(r\), and more specifically on
-the median normalised rank \(\bar{r}\). As a reminder \(r\) is calculated
-as a strategy's rank divided by \(N-1\). The \(\bar{r}\) of each of the 24
-strategies over the \metatournamentslstm standard tournaments are given by
-Table~\ref{table:normalised_rank_lstm_tournaments}.
+A total of \metatournamentslstm trials of
+Algorithm~\ref{algorithm:meta_tournament_lstm_validation} have been run. For
+each trial a result summary (in the format of Table~\ref{table:output_result})
+is exported. The performance of the strategies are evaluated on the normalised
+rank \(r\), and more specifically on the median normalised rank \(\bar{r}\). As
+a reminder \(r\) is calculated as a strategy's rank divided by \(N-1\).
 
+The \(\bar{r}\) of each of the \lstmstrategies strategies over the \metatournamentslstm
+standard tournaments is given by Table~\ref{table:normalised_rank_lstm_tournaments}.
 
 \begin{table}[!htbp]
     \begin{center}
@@ -873,37 +876,45 @@ Table~\ref{table:normalised_rank_lstm_tournaments}.
         \input{src/chapters/07/tex/normalised_ranks_table.tex}
     }
 \end{center}
-\caption{The median normalised ranks of the 24 LSTM strategies over the standard tournaments.
-A \(\bar{r}\) closer to 0 indicates a more successful performance.}
+\caption{The median normalised ranks of the 24 LSTM strategies over the standard
+tournaments. A \(\bar{r}\) closer to 0 indicates a more successful performance.}
 \label{table:normalised_rank_lstm_tournaments}
 \end{table}
 
-Based on \(\bar{r}\) the LSTM strategy with the more successful performance
-is the strategy based on a sequence to sequence network trained over the entire
-data set and opens with a cooperation. Followed by the strategy trained
-over the across ranks data set that opens with a cooperation based on the sequence
-to probability network. There are a few strategies that have achieved a \(\bar{r}\)
-close to 0.3.
+The strategy with the lowest \(\bar{r}\) over the \metatournamentslstm
+tournaments is the LSTM strategy based on the StoS network trained over entire
+training set with \(p_o=1\). The strategy achieved a \(\bar{r}\) of 0.222. The
+second most successful performance is by the StoP based strategy trained against
+across the rank strategies with \(p_o=1\). In
+section~\ref{section:training_a_rnn} it was indicated that the specific network
+was overfitting, however, the strategy based on the network out performs any
+other StoP strategy. There are a few strategies that have achieved a \(\bar{r}\)
+close to 0.3. These include the StoS strategy trained on the entire data set
+with \(p_o=0.78\), and the StoP strategies trained against all strategies,
+across the ranks strategies, and against the basic strategies with \(p_o=1\),
+\(p_o=0.78\) and \(p_o=1\) equivalently.
 
-Overall the strategies that open with cooperation outperform the strategies
-based on the same networks and training data set that open with a probability
-of 0.78 and they in order outperform the strategies that open with defection.
-The strategies that have been trained on the sub sets and specifically
-on the basic strategies and across the ranks strategies perform better
-when they are based on the sequence to probability network.
+The LSTM strategies that open with cooperation outperform any other strategy
+based on the same network and training data set that does not. From
+Table~\ref{table:normalised_rank_lstm_tournaments} it is indicated the
+strategies trained on the subsets perform better when they are based on the StoP
+model.
 
-The distributions of the normalised ranks for each of the players are given
-by Figures~\ref{fig:normalised_rank_distributions_sequence_to_sequence}
-and~\ref{fig:normalised_rank_distributions_sequence_to_probability}.
+The \(r\) distributions for each strategy are given by
+Figures~\ref{fig:normalised_rank_distributions_sequence_to_sequence}-
+\ref{fig:normalised_rank_distributions_sequence_to_probability}.
 
 Figure~\ref{fig:normalised_rank_distributions_sequence_to_sequence} gives the
-normalised rank distributions for the strategies based on the sequence to
-sequence network. The best performing LSTM strategy is the one trained on the
-entire data set with \(p_o=1\). It's normalised rank distribution is skewed
-towards 0. It can be seen that strategy performed well overall with a few
-exceptions. The rest of distributions appear to be either skewed in the middle
-or towards 1. These can be confirmed by the skewness and kurtosis measures which
-are reported in Table~\ref{table:statistic_summary_s_to_s}.
+\(r\) distributions for the strategies based on the StoS network. All the
+distributions for \(p_o=0\) have a median higher than 0.66, indicating that
+those strategies on average perform in the bottom half of a tournament. The most
+successful strategy is the strategy trained against all strategies with
+\(p_o=1\). The strategies distribution shows that the strategy ranked highly in
+most of the tournament it participated with only a few exceptions. Even if when
+the \(p_o\) is lowered to 0.78 the strategy still performs adequately. The rest
+of the distributions appear to have peaks either in the middle or closer to 1. A
+statistical summary of the distributions are given by
+Table~\ref{table:statistic_summary_s_to_s}.
 
 \begin{figure}[!htbp]
     \begin{subfigure}{\textwidth}
@@ -921,10 +932,9 @@ are reported in Table~\ref{table:statistic_summary_s_to_s}.
     \begin{subfigure}{\textwidth}
     \includegraphics[width=\textwidth]{src/chapters/07/img/normalised_rank_basic_strategies.pdf}
     \end{subfigure}
-    \caption{Normalised rank distributions for the strategies which are based on the sequence to sequence
+    \caption{Normalised rank distributions for the strategies which are based on the StoS
     LSTM.}\label{fig:normalised_rank_distributions_sequence_to_sequence}
 \end{figure}
-
 
 \begin{table}[!htbp]
     \begin{center}
@@ -933,15 +943,16 @@ are reported in Table~\ref{table:statistic_summary_s_to_s}.
     }
 \end{center}
 \caption{Statistics summary of the \(r\) distributions for the strategies
-based on the sequence to sequence network.}\label{table:statistic_summary_s_to_s}
+based on the StoS network.}\label{table:statistic_summary_s_to_s}
 \end{table}
 
-Figure~\ref{fig:normalised_rank_distributions_sequence_to_probability} gives
-the normalised rank distributions for the strategies based on the sequence
-to probability networks. Overall the distributions are more skewed towards 0
-compared to the distributions of Figure~\ref{fig:normalised_rank_distributions_sequence_to_sequence}.
-The strategies that have been trained on the subsets are performing better.
-The statistics summary of the distributions is given by Table~\ref{table:statistic_summary_s_to_p}
+Figure~\ref{fig:normalised_rank_distributions_sequence_to_probability} gives the
+\(r\) distributions for the strategies based on the StoP network. For \(p_o=0\)
+the performance of the strategies remains poorly. The strategies that have been
+trained against all the strategies, across the ranks and basic strategies with
+\(p_o=1\) appears to have managed to win several of the tournaments they
+participated in. The statistics summary of the distributions is given by
+Table~\ref{table:statistic_summary_s_to_p}.
 
 \begin{figure}[!htbp]
     \begin{subfigure}{\textwidth}
@@ -959,7 +970,7 @@ The statistics summary of the distributions is given by Table~\ref{table:statist
     \begin{subfigure}{\textwidth}
     \includegraphics[width=\textwidth]{src/chapters/07/img/normalised_rank_classification_basic_strategies.pdf}
     \end{subfigure}
-    \caption{Normalised rank distributions for the strategies which are based on the sequence to probability
+    \caption{Normalised rank distributions for the strategies which are based on the StoP
     LSTM.}\label{fig:normalised_rank_distributions_sequence_to_probability}
 \end{figure}
 
@@ -970,20 +981,23 @@ The statistics summary of the distributions is given by Table~\ref{table:statist
     }
 \end{center}
 \caption{Statistics summary of the \(r\) distributions for the strategies
-based on the sequence to probability network.}\label{table:statistic_summary_s_to_p}
+based on the StoP network.}\label{table:statistic_summary_s_to_p}
 \end{table}
 
-An interesting question that arises is what is the probability the players
-rank in the top half of a tournament? The cumulative distribution function (CFD)
-for the \(r\) distributions are given by Figures~\ref{fig:cfd_s_to_s} and
-\ref{fig:cfd_s_to_p}.
+An interesting question that arises is: what is the probability that a strategy
+rank in the top half of a tournament? This is answered by calculating the
+cumulative distribution function (CFD) of the \(r\) distributions.
+They are given by Figures~\ref{fig:cfd_s_to_s}-\ref{fig:cfd_s_to_p}.
 
-Figure~\ref{fig:cfd_s_to_s} gives the CDF for the strategies trained with the
-sequence to sequence model. Opening with a cooperation or with a probability 0.78
-of a cooperation increases a strategy's probability of scoring in the top half
-of a tournament. The highest probability is that of best performing strategy
-which a probability of 0.8 of placing in the top ranks for \(p_o=1\) and a
-0.7 for \(p_o=0.78\).
+For the StoS strategies trained against all the strategies there is a 0.78
+and 0.71 probability that the strategies rank is smaller than 0.5 for \(p_o=1\)
+and \(p_o=0.78\) equivalently. For the StoP strategies the highest probabilities
+of ranking in the top half of a tournament are 0.78, 0.76, 0.73 and 0.77 for
+the strategies trained against all strategies with \(p_o=1\), against
+across the rank strategies with \(p_o=1\) and \(p_o=0.78\), and against the
+basic strategies with \(p_o=1\). Overall, the successful strategies covered
+in this section have a 0.70-0.80 probability of being on the top ranks on a
+standard IPD tournament.
 
 \begin{figure}[!htbp]
     \begin{subfigure}{.45\textwidth}
@@ -1011,16 +1025,10 @@ which a probability of 0.8 of placing in the top ranks for \(p_o=1\) and a
     network.}\label{fig:cfd_s_to_s}
 \end{figure}
 
-Figure~\ref{fig:cfd_s_to_s} gives the CDF for the strategies trained with the
-sequence to probability model. The probabilities of placing in the top ranks
-are higher for the strategies based on the subsets with this network with
-many strategies placing in the top half with a probability higher than 0.7.
-
-
 \begin{figure}[!htbp]
     \begin{subfigure}{.45\textwidth}
     \includegraphics[width=\textwidth]{src/chapters/07/img/cfd_to_probability_all_strategies.pdf}
-    \caption{For \(p_o=0, P(r<0.5)=0.207\) For \(p_o=0, P(r<0.5)=0.783\).
+    \caption{For \(p_o=0, P(r<0.5)=0.207\) For \(p_o=1, P(r<0.5)=0.783\).
     For \(p_o=0,  P(r<0.5)=0.567\).}
     \end{subfigure}\hfill
     \begin{subfigure}{.45\textwidth}
@@ -1043,26 +1051,33 @@ many strategies placing in the top half with a probability higher than 0.7.
     network.}\label{fig:cfd_s_to_p}
 \end{figure}
 
-This section has evaluated the performance of 24 distinct IPD strategies based
-on LSTM networks in \metatournamentslstm. The differences between these players
-included the architecture of their networks, the training data and the their
-opening move. On the whole, the analysis of this section has shown that:
+This section has evaluated the performance of \lstmstrategies newly introduced
+IPD strategies based on LSTM networks. The performance of the strategies was
+evaluated based on their normalised ranks over \metatournamentslstm standard
+computer tournaments. On the whole, the analysis of this section has shown that:
 
 \begin{itemize}
-    \item The strategies trained on the entire training data set have a more
-    successfully performance compared to the strategies trained on the subsets.
-    \item The strategies trained on the subsets are performing better when
-    they are based on the sequence to probability networks. The sequence
-    to probability networks for the subsets have been trained for a larger number
-    of epochs compared to the network on the entire data set. An interesting
-    question is whether the strategy based on this network would perform
-    even better than the sequence to probability if it was trained for longer.
-    \item The strategies that have been trained only on the top ranked strategies
-    are overall performing poorly.
-    \item Opening with a probability makes a difference of the LSTM strategies.
-    Overall the most successful strategies are the ones that open with a cooperation.
-    This enforces the discussion that opening with cooperation is a property
-    of a successful strategy started by Axerod.
+    \item The strategies which were trained to play against all 192 strategies
+    of Appendix have been successful regardless of the network. Both the StoS
+    and StoP networks have produced strategies that managed to win and on
+    average score on the top 30\% of any given standard tournament.
+    \item The strategies trained on the subsets of the training data set perform
+    better when trained with the StoP network than the StoS network. The StoP
+    networks for the subsets have been trained for a longer number of epochs
+    compared to the StoP network over the entire data set. An interesting
+    question is whether the strategy based on this network would perform even
+    better than it's equivalent StoS strategy if it was trained for longer.
+    \item The successful strategies of this analysis, strategies with \(\bar{r}
+    <0.33\), have a 0.70-0.80 probability of ranking in top half of a standard
+    tournament.
+    \item The strategies that have been trained against the top ranked
+    strategies, overall performed poorly. This could indicate that training only
+    on the top strategies did not provide enough diverse input to the network
+    which made it less adaptable to more hostile environments.
+    \item Overall the most successful strategies of the analysis have been
+    strategies that open with a cooperation. This enforces the discussion that
+    opening with cooperation is a property of a successful strategy started by
+    Axerod.
 \end{itemize}
 
 \subsection{Fingerprinting the LSTM based strategies}
@@ -1350,10 +1365,10 @@ can have a important effect.
     network against the list of opponents from~\cite{Beaufils1997}.}\label{fig:transitive_fingerprints_beautil_s_to_p}
 \end{figure}
 
-\subsection{Stochastic LSTM strategies}
+% \subsection{Stochastic LSTM strategies}
 
-Another question is how is the performance affected if the player did not make
-deterministic actions but probabilistic.
+% Another question is how is the performance affected if the player did not make
+% deterministic actions but probabilistic.
 
 \section{Chapter Summary}
 
