@@ -65,6 +65,7 @@
 \usepackage{multicol,multirow,array}
 \usepackage{booktabs}
 \usepackage{tabularx}
+\usepackage{makecell}
 \usepackage[table]{xcolor}
 \setlength{\heavyrulewidth}{1.5pt}
 \setlength{\abovetopsep}{4pt}
@@ -232,6 +233,10 @@
 \newcommand{\topsequences}{\input{src/chapters/07/tex/top_strategies_sequences.tex}}
 \newcommand{\basicsequences}{\input{src/chapters/07/tex/basic_strategies_sequences.tex}}
 \newcommand{\acrosssequences}{\input{src/chapters/07/tex/across_strategies_sequences.tex}}
+\newcommand{\lstmstrategies}{\input{src/chapters/07/tex/number_of_lstm_strategies.tex}}
+\newcommand{\lstmnetworks}{\input{src/chapters/07/tex/number_of_lstm_networks.tex}}
+\newcommand{\trainingpoint}{\input{src/chapters/07/tex/total_training_points.tex}}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % ----------------------------------------------------------------------------
 % The actual report
@@ -257,34 +262,34 @@
 \pagestyle{normal} %set header-footer style rest of report
 
 
-% \input{src/chapters/01/main.tex}
-% \input{src/chapters/02/main.tex}
-% \input{src/chapters/03/main.tex}
-% \input{src/chapters/04/main.tex}
-% \input{src/chapters/05/main.tex}
-% \input{src/chapters/06/main.tex}
+\input{src/chapters/01/main.tex}
+\input{src/chapters/02/main.tex}
+\input{src/chapters/03/main.tex}
+\input{src/chapters/04/main.tex}
+\input{src/chapters/05/main.tex}
+\input{src/chapters/06/main.tex}
 \input{src/chapters/07/main.tex}
-% \input{src/chapters/08/main.tex}
+\input{src/chapters/08/main.tex}
 
 
 
 \bibliographystyle{plain}
 \bibliography{bibliography.bib}
 
-% \begin{appendices}
-% \input{src/chapters/03/appendix.tex}
+\begin{appendices}
+\input{src/chapters/03/appendix.tex}
 
-% \chapter{List of Strategies}
-% \input{src/chapters/04/tex/strategies_appendix_04.tex}
+\chapter{List of Strategies}
+\input{src/chapters/04/tex/strategies_appendix_04.tex}
 
-% \input{src/chapters/04/tex/correlations_graphical_representations_appendix.tex}
+\input{src/chapters/04/tex/correlations_graphical_representations_appendix.tex}
 
-% \chapter{Further Analysis on Features Importance}
-% \input{src/chapters/04/tex/regression_appendix.tex}
-% \input{src/chapters/04/tex/random_forest_appendix.tex}
+\chapter{Further Analysis on Features Importance}
+\input{src/chapters/04/tex/regression_appendix.tex}
+\input{src/chapters/04/tex/random_forest_appendix.tex}
 
-% \input{src/chapters/05/appendix.tex}
+\input{src/chapters/05/appendix.tex}
 
-% \end{appendices}
+\end{appendices}
 
 \end{document}
