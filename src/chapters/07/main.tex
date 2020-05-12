@@ -574,7 +574,7 @@ can be trained on a graphics processing unit (GPU).
 
 \subsection{Training on GPU}
 
-Conventionally executing computer code happens on the central processing unit
+Conventionally the execution of computer code happens on the central processing unit
 (CPU). The CPU, also called main processor, is essentially the brain of any
 computing device. Architecturally the CPU is composed of just a few cores
 designed to support an extremely broad variety of tasks.
@@ -582,33 +582,36 @@ designed to support an extremely broad variety of tasks.
 A graphical processing unit (GPU), on the other hand, is composed of hundred of
 cores designed to process a set of simpler and more identical computations in
 parallel. GPUs were initially designed as dedicated graphical rendering
-workhorses of computer games but ere later enhanced to accelerate other
+workhorses of computer games but were later enhanced to accelerate other
 geometric calculations. NVIDIA created a parallel computing architecture and
 platform for its GPUs called CUDA, which gave developers access and the ability
 to express simple processing operations in parallel through code.
 
-While a CPU core is more powerful than a GPU core, the vast majority of this
+A CPU core is more powerful than a GPU core, however, the vast majority of this
 power goes unused by machine learning applications. A GPU core is optimised
-exclusively for data computations and because of this singular focus, a GPU core
+exclusively for data computations and because of this singular focus a GPU core
 is simpler and has a smaller die area than a CPU, allowing many more GPU cores
-to be crammed onto a single chip. Consequently, machine learning applications,
-which perform large numbers of computations on a vast amount of data, can see
+to be crammed onto a single chip. Consequently, machine learning applications
+which perform large numbers of computations on a vast amount of data can see
 huge performance improvements when running on a GPU versus a CPU.
 
-The training process of the LSTM networks here is carried out on a GPU. More
-specifically, the training process was carried out on the High-Performance
-Computing (HPC) cluster of Cardiff University.
+Due to the time advantage the training process of the networks was carried out
+on a GPU. The training was performed on the High-Performance Computing (HPC)
+cluster of Cardiff University.
 
 \subsection{Training data sets}
 
 Section~\ref{section:training_a_rnn} covered the training data used to train
 the LSTM networks. There are a total \trainingpoint training inputs and expected
 outputs to the training data set. In order to understand the effect of
-the training data on the LSTM strategy the networks are not trained only of the
-entire training set but also on three subsets.
+the training data on the the LSTM strategies' performance the networks are trained
+on the entire data set and on three unique subsets.
 
-The subset as well as their details and explanation of the best response sequences
-included are given by Table~\ref{table:training_data_sets}.
+The subsets are based on three collection of opponents. These are a collection
+of best performing strategies, of strategies with ranks across a standard
+tournament and a collection of basic strategies. The details of the subsets are
+given by Table~\ref{table:training_data_sets}.
+A list of the strategies' names using in each subset is given in the Appendix. %TODO fix Appendix.
 
 \newcolumntype{g}{>{\columncolor{Gray}}c}
 \begin{table}[htb]
@@ -618,13 +621,13 @@ included are given by Table~\ref{table:training_data_sets}.
     \toprule
     Data set & \# of opponents & Explanation & \thead{\# of best response \\ sequences} \\
     \midrule
-    all strategies & \numberofstrategiesbestsequences & The data set as presented in Chapter~\ref{chapter:best_response_sequence} & \totalsequences \\
+    all strategies & \numberofstrategiesbestsequences & The data set as presented in section~\ref{section:training_a_rnn}. & \totalsequences \\
     top performing strategies & \topstrategies & A data set constructed in the same way as the training data set but only with the best response sequences
-    to \topstrategies strategies. These are the top performing strategies in a standard tournaments performed with APL with 218 opponents. & \topsequences \\
-    strategies across ranks & \acrossstrategies & A data set generated only with the nest response sequences to
+    to \topstrategies strategies. These are the top performing strategies in a standard tournaments of 218 opponents. & \topsequences \\
+    strategies across ranks & \acrossstrategies & A data set generated only with the best response sequences to
     \acrossstrategies  strategies whose ranks are across the 218 ranks of the standard tournament. & \acrosssequences\\
-    basic strategies & \basicstrategies & A data set generated with the best response sequences to \basicstrategies
-    which are classified as a set of basic strategies in the APL & \basicsequences \\ 
+    basic strategies & \basicstrategies & A data set generated with the best response sequences to \basicstrategies strategies
+    which are classified as a set of basic strategies in the APL. & \basicsequences \\
     \bottomrule
     \end{tabularx}}
     \caption{Training data sets used to training the LSTM networks. The IPD
@@ -632,8 +635,6 @@ included are given by Table~\ref{table:training_data_sets}.
     4.5.0. The results are available online:
     \url{https://github.com/Axelrod-Python/tournament}.}\label{table:training_data_sets}
 \end{table}
-
-A list of the strategies' names using in each subset is given in the Appendix. %TODO fix Appendix.
 
 \subsection{Training and validation}
 
