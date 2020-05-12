@@ -17,7 +17,7 @@
 
         \node[chain] (layer_2) at ($(layer)+(5, 0)$) {$\mathbf{h=\phi(Wx)}$};
         \node[below=1cm of layer_2, input] (i) {$\mathbf{x}$};
-        \node[above=1cm of layer_2, output] (o) {$\mathbf{y}$};
+        \node[above=1cm of layer_2, output] (o) {$\mathbf{\hat{y}}$};
 
         \draw (layer_2) edge[->, out=90, in=-90, thick, black] (o);
         \draw (i) edge[->, out=90, in=-90, thick, black] (layer_2);

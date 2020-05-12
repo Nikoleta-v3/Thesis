@@ -28,13 +28,15 @@ Chapter~\ref{chapter:meta_tournaments} included strategies based on archetypes
 such as finite state automata, hidden Markov models and \textit{artificial
 neural networks} (ANNs).
 
-ANNs have successfully been trained to play games exterior to the IPD, such as
-checkers~\cite{Chellapilla1999} and chess~\cite{Fogel2004}. The usage of feed
-forward ANNs in the IPD was firstly introduced in~\cite{Harrald1996}, and have
-been used ever since~\cite{Ashlock2008, Ashlock2006a, Darwen2001, Franken2005}.
-Possibly, the most successful ANNs strategies are the one introduced
-in~\cite{Harper2017}, as they were ranked \(7^{th}\), \(9^{th}\), and
-\(11^{th}\) in a tournament of 223 strategies.
+ANNs have successfully been trained to play games other than the IPD such as
+checkers~\cite{Chellapilla1999}, chess~\cite{Fogel2004} and
+Go~\cite{Silver2016}. \textit{Feed forward networks} were firstly used to represent IPD
+strategies in 1996 \cite{Harrald1996}. Feed forward networks have been used in
+the literature ever since~\cite{Ashlock2008, Ashlock2006a, Darwen2001,
+Franken2005}, and possibly the most successful ANN strategies in the game are
+the ones introduced in~\cite{Harper2017}. The three ANN based strategies
+in~\cite{Harper2017} ranked \(7^{th}\), \(9^{th}\), and \(11^{th}\) in a
+tournament of 223 strategies.
 
 A type of ANNs that have not received much attention in the literature are the
 \textit{recurrent neural networks} (RNNs). RNNs are a type of neural networks
@@ -42,36 +44,46 @@ that include a feedback connection and are designed to work with inputs in
 the form of sequences. RNNs were firstly considered as an archetype in 1996.
 In~\cite{Sandholm1996} a RNN which considered a single previous step
 as an input was trained via a \(Q\) learning algorithm to play against a single
-strategy. The results of~\cite{Sandholm1996} were limited only in the network
-learning to play against a single strategy.
+opponent. The opponent was either the strategy Tit For Tat or another \(Q\)
+learning strategy. The results of~\cite{Sandholm1996} although were somewhat
+promising, the RNN player learned to optimally play against Tit For Tat,
+were limited.
 
 The limitations of~\cite{Sandholm1996} could potentially have been due to the
-limitations of the RNNs themselves. As it will be discussed later the RNNs
+limitations of the RNNs themselves. As it will be discussed later in
+section~\ref{section:artificial_neural_networks}, RNNs
 quickly became unable to learn due to the vanishing gradient problem.
-To improve on the standard recurrent networks a new network called the
-long short-term memory networks (LSTMs) were introduced in~\cite{Hochreiter1997}.
-LSTMs do not suffer from the vanishing gradient, can be successfully trained and
-are being used in a number of innovative applications such as time series analysis
-\cite{Malhotra2015}, speech recognition~\cite{Sak2014} and prediction in
-medical care pathways~\cite{Wang2018_lstm}.
+To improve on the standard recurrent networks a new model called the
+\textit{long short-term memory network} (LSTM) was introduced in~\cite{Hochreiter1997}.
+Remembering information for long periods of time is practically
+their default behavior, not something they struggle to learn.
 
-LSTMs have not received attention in the IPD literature. This Chapter trains and
-introduced a number of strategies  based on LSTMs. The training has been
-possible due to the collection of best response sequences generated in
-Chapter~\ref{chapter:best_response_sequence}. The performance of the new
-strategies is evaluated and compared in a meta tournament analysis of standard
-tournaments. The results demonstrate % TODO add results
+LSTMs are a set of networks that have been proven to be successfully trained and
+today are being used in a number of innovative applications such as time series
+analysis \cite{Malhotra2015}, speech recognition~\cite{Sak2014} and prediction
+in medical care pathways~\cite{Wang2018_lstm}. However, they have not received
+attention in the IPD literature. The aim of this Chapter is to trained and
+introduce a number of strategies based on LSTMs. The training has been possible
+due to the collection of best response sequences generated in
+Chapter~\ref{chapter:best_response_sequence}.
 
-This Chapter is structured as follows:
+A total of \lstmstrategies LSTMs based strategies are introduced in this
+Chapter, and their performance is evaluated and compared in a meta tournament
+analysis of \metatournamentslstm standard tournaments. The results demonstrate
+that LSTM networks can be trained to successfully compete in an IPD tournaments.
+Training over a large variety of behaviours corresponded to more successful
+strategies than training on a subset of behaviours. Finally, it was shown that
+the opening move of the LSTM strategies had an important impact on their
+success. The rest of the Chapter is structured as follows:
 
 \begin{itemize}
     \item section~\ref{section:artificial_neural_networks}, presents an
     introduction to artificial, recurrent and long short-term memory networks.
-    \item section~\ref{section:training_a_rnn}, cover the specifics of the LSTMs
-    trained in ths Chapter. Their architectural details are presented as well as
-    the different training sets they have been trained on.
+    \item section~\ref{section:training_a_rnn}, covers the specifics of the LSTMs
+    trained in this Chapter. It presents their architectural details as well
+    as the different training used to train them.
     \item section~\ref{section:rnn_strategy_validation}, evaluates and compares
-    the performance of \lstmstrategies LSTMs based strategies in
+    the performance of the \lstmstrategies LSTMs based strategies in
     \metatournamentslstm standard IPD computer tournaments.
 \end{itemize}
 
@@ -87,18 +99,17 @@ linear binary classifier and in the 1960s in was shown that it could be used to
 learn to classify simple shapes with \(20\times20\) pixels input. However, it
 was impossible for the perceptron to be extended to classification tasks with
 many categories. The limitations of the model were presented
-in~\cite{Minsky1969} which alted the enthusiasm of most researchers in ANNs,
+in~\cite{Minsky1969} which halted the enthusiasm of most researchers in ANNs,
 resulting in no activity in field for almost 20 years. The third peak occurred
 in the early 1980s with the introduction of the back propagation algorithm for
 multilayered networks~\cite{Werbos1974}. Though the algorithm was initially
 proposed by~\cite{Werbos1974} it has been reinvented several times and it was
 popularizes by~\cite{McClelland1986}. Following the introduction of the
-algorithm and the ability to now train more complex models, ANNs have received
-considerable interest, and have been used in a number of innovative applications
-such as \cite{Covington2016, Kalogirou2000}.
+algorithm and the ability to now train more complex models ANNs have received
+considerable interest and are being used in a number of innovative applications
+\cite{Covington2016, Kalogirou2000}.
 
-ANNs based on the connection pattern/architecture can be grouped into two
-categories:
+ANNs based on the connection pattern can be grouped into two categories:
 
 \begin{itemize}
     \item Feed forward networks.
@@ -122,68 +133,72 @@ A feed forward network is composed by an input layer, hidden layers, and an
 output layer. The networks' input is a vector \(x\). The dimensionality, or
 number of nodes of the input layer is depended on the dimensionality of \(x\).
 Each element of the input vector is connected to the hidden layer via a set of
-learned weights. The hidden layer also consists of nodes and the number of
-node/dimensionality of it is an architectural decision. The \(j^{\text{th}}\)
-hidden neuron outputs,
+learned weights. The hidden layer also consists of nodes. The number of
+nodes of the hidden layer is an architectural decision. The \(j^{\text{th}}\)
+hidden node outputs,
 
 \[h_j = \phi (\sum_{i} w_{ij} x_{i}), \text{where } \phi  \text{ is an activation function}.\]
 
-Common activation functions for \(\phi\) include:
+Activation functions \(\phi\) include the:
 
 \begin{itemize}
-    \item the sigmoid function \(\sigma(x)\) which squashes numbers into the range \([0, 1]\)
-    \item the hyperbolic tangent, \(tanh(x)\) which squashes numbers into the range \([-1, 1]\)
-    \item the rectified linear unit, \(ReLU(x)=max(0,x)\)
+    \item Sigmoid function \(\sigma(x)\) which squashes numbers into the range \([0, 1]\).
+    \item Hyperbolic tangent, \(tanh(x)\) which squashes numbers into the range \([-1, 1]\).
+    \item Rectified linear unit, \(ReLU(x)=max(0,x)\).
 \end{itemize}
 
 In turn, the hidden layer is fully connected to an output layer. The
-\(j^{\text{th}}\) output neuron outputs,
+\(j^{\text{th}}\) output node outputs,
 
 \[y_{j} = \sum_{i} v_{ij} h_{i}.\]
 
-The output layer transforms the raw scores to probabilities via a softmax function.
-
-Feed forward networks make predictions using forward propagation,
+Feed forward networks make predictions using forward propagation which in matrix
+notation can be described by,
 
 \begin{align}\label{eq:neural_network_equations}
 h & = \phi(Wx) \\ \label{eq:neural_network_equations_two}
-y & = \text{softmax}(Vh)
+\hat{y} & = \text{softmax}(Vh)
 \end{align}
 
 where \(W\) is a weight matrix connecting the input and hidden layers, \(V\) is
-a weight matrix connecting the hidden and output layers. \(W\) and \(V\) are the
-learning parameters of the network. Their dimensionality depends on the
-dimensionality of networks layers. If \(x\) and \(x\) are  2 dimensional and the
-hidden layer had 500 nodes then \(W \in \R^{2 \times 200}\) and \(V \in \R^{2
-\times 200}\). Increasing the dimensionality of the hidden layer corresponds to
-more parameters.
+a weight matrix connecting the hidden and output layers. The output layer
+can transform the raw scores to a probability via a softmax function.
 
-Training a ANN corresponds to finding the learning parameters that minimise
-the error on the training data. The function that measures error is called
-the \textit{loss function}. A common loss function with the choice of
-a softmax output is the \textit{cross entropy} loss. Consider \(N\) training
-examples and \(K\) classes, the function for a prediction \(\hat{y}\) with
-respect to the true output \(y\) us give by,
+\(W\) and \(V\) are the learning parameters of the network. Their dimensionality
+depends on the dimensionality of network's layers. For example if \(x\) and \(\hat{y}\)
+were 2 dimensional and the hidden layer had 500 nodes then \(W \in \R^{2 \times 500}\)
+and \(V \in \R^{2 \times 500}\), thus increasing the dimensionality of the hidden
+layer corresponds to more parameters.
 
-\[L(y, \hat{y}) = - \frac{1}{N} \sum_{n\in N} \sum_{k \in K} y_{n, k} \text{log}(\hat{y_{n, k}})\]
+To train a ANN a set of values for the learning parameters need to be found so
+that the error on the training data is minimised. The function that measures
+error is called the \textit{loss function}. A loss function commonly used is the
+\textit{cross entropy} denoted as \(L(y, \hat{y})\) where \(\hat{y}\) is the
+prediction and \(y\) the true output. For \(M\) training examples and \(K\)
+classes the cross entropy error is given by Equation~(\ref{eq:cross_entropy}).
+
+\begin{equation}\label{eq:cross_entropy}
+    L(y, \hat{y}) = - \frac{1}{M} \sum_{m\in M} \sum_{k \in K} y_{m, k} \text{log}(\hat{y_{m, k}})
+\end{equation}
 
 The minimum of the loss function is calculated using the gradients decent
 algorithm. The gradient decent algorithm relies on the gradients. The gradients
 are the vector of derivatives of the loss function with respect to the learning
-parameters. Thus, \(\frac{\partial{L}}{\partial{W}}\) and
+parameters, thus \(\frac{\partial{L}}{\partial{W}}\) and
 \(\frac{\partial{L}}{\partial{V}}\). These gradients are calculated with the
-back propagation algorithm~\cite{Wythoff1993}, which is a way to efficiently
+back propagation algorithm~\cite{Wythoff1993} which is a way to efficiently
 calculate the gradients starting from the output.
 
 An extension of feed forward networks are the recurrent networks. RNNs are
-capable of processing variable length sequences of inputs. More importantly,
-RNNs use their internal state/knowledge to a make a prediction on the input at
-time \(t\) based on the decisions made at the previous time steps. A graphical
-representation of a RNN is given by Figure~\ref{fig:rnn}. RNN are networks with
-loops. The loop represents that information can be passed down from one step of
-the network to the next. In fact they can be thought of as multiple copies of
-the same network, each passing a message to a successor, as demonstrated by
-Figure~\ref{fig:rnn}.
+capable of processing variable length sequences of inputs. Sequences are data
+samples over a number of time steps. RNNs can receive sequence inputs and output
+sequences of the same length, using their internal state/knowledge to a make a
+prediction on the input at time \(t\) based on the decisions made at the
+previous time steps. A graphical representation of a RNN is given by
+Figure~\ref{fig:rnn} where the loop represents that information can be passed
+down from one step of the network to the next. In fact they can be thought of as
+multiple copies of the same network each passing a message to a successor, as
+demonstrated by Figure~\ref{fig:rnn}.
 
 \begin{figure}[!htbp]
     \centering
@@ -191,7 +206,7 @@ Figure~\ref{fig:rnn}.
     \caption{Graphical representation of a RNN.}\label{fig:rnn}
 \end{figure}
 
-The hidden layers pass down information by considering,
+Information is passed down by considering that,
 
 \begin{equation*}
     h_t = \phi(Wx_t + Uh_{t-1})
@@ -202,19 +217,15 @@ some weight vector \(U\). In matrix notation RNNs are described by,
 
 \begin{align}\label{eq:recurrent_neural_network_equations}
     h_t & = \phi(Wx_t + Uh_{t-1}) \\
-    y_t & = Vh
+    \hat{y}_t & = \text{softmax}(Vh).
 \end{align}
 
 Unfortunately, in practice RNNs quickly become unable to learn to connect the
 information. The more time steps the higher the chance that the back propagation
 gradient either accumulate and explode or vanish down to zero. The fundamental
 difficulties of RNNs were explored in depth by~\cite{Bengio1994}.
-
 A network specifically designed to avoid the long-term dependency problem. was
-introduced by~\cite{Hochreiter1997} called the long short-term memory network
-(LSTM). LSTMs work tremendously well on a large variety of problems, and are now
-widely used. Remembering information for long periods of time is practically
-their default behavior, not something they struggle to learn.
+introduced by~\cite{Hochreiter1997} called the long short-term memory network.
 
 The core idea to LSTMs is the \textit{cell state} also refereed to as the
 long term memory, denote as \(C_t\). The cell state is designed to pass down
@@ -222,7 +233,7 @@ information with only a few carefully regulated changes being applied to it
 by structures called \textit{gates}. Gates are composed out of a sigmoid neural
 net layer and a point wise multiplication operator. In order to explain
 the cell gate and subsequently how LSTMs make predictions consider
-a LSTM's hidden layer at time step \(t\) give by Figure~\ref{fig:lstm_cell}.
+a LSTM's hidden layer at time step \(t\) given by Figure~\ref{fig:lstm_cell}.
 
 \begin{figure}[!htbp]
     \centering
@@ -237,7 +248,7 @@ previous cell state is to be discarded. This decision is made by the
 \(t-1\) and the input at time \(t\),
 
 \begin{equation}\label{eq:forget_gate}
-    f_{t} = \sigma(W_{f}x_{t} + U_{f}h_{t-1})
+    f_{t} = \sigma(W_{f}x_{t} + U_{f}h_{t-1}).
 \end{equation}
 
 Secondly, the network decides what information is going to be stored at the
@@ -250,9 +261,9 @@ are going to be updated,
 
 and secondly, a tanh layer creates a vector of candidate values denoted as
 \(\tilde{C}_{t}\) that could be added to the cell state. \(\tilde{C}_{t}\) 
-is given by Equation~(\ref{eq:input_gate}).
+is given by Equation~(\ref{eq:candidate_set_for_cell_state}).
 
-\begin{equation}\label{eq:input_gate}
+\begin{equation}\label{eq:candidate_set_for_cell_state}
     \tilde{C}_{t} = tanh(W_{c}x_{t} + U_{c}h_{t-1} + b_{c}).
 \end{equation}
 
@@ -260,25 +271,24 @@ The cell state \(C_{t-1}\) is multiplied by \(f_{t}\), forgetting the values
 which have been decided to discard. The new candidate values are scaled by how
 much information has been decided to keep from the input. Thus,
 
-\begin{equation}\label{eq:input_gate}
+\begin{equation}\label{eq:cell_gate}
     C_{t} = f_{t} * C_{t-1} + i_{t} * \tilde{C}_{t}.
 \end{equation}
 
-The LSTM outputs a hidden state at each time step. This is either used to
-through an activation function to output \(y_{t}\), and it is passed to the next
-time step cell. The output is based on the current cell state. The cell state
-goes through a tanh function and it is multiplied by a sigmoid gate that decides
-which parts to output from the cell state.
+The LSTM outputs a hidden state at each time step which is based on the current
+cell state. Initially, the cell state goes through a tanh function and then it
+is multiplied by a sigmoid gate that decides which parts to output from the cell
+state,
 
-\begin{align}\label{eq:input_gate}
+\begin{align}\label{eq:outpu_gate}
     o_{t} & = \sigma(W_{o}x_{t} + U_{o}h_{t-1} + b_{o}), \\
-    h_{t} & = o_{t} * tanh(C_{t})
+    h_{t} & = o_{t} * tanh(C_{t}).
 \end{align}
 
-This process is being carried out though each time step of the input sequence.
-At each the cell state and hidden state are feed back into the network and the
-hidden state can also be used to make a prediction for each time step as
-demonstrated by Figure~\ref{fig:lstm}.
+This process is being carried out for each time step of the input sequence. At
+each time step both the cell state and hidden state are feed back into the
+network. The hidden state can also be used to make a prediction at each time
+step as demonstrated by Figure~\ref{fig:lstm}.
 
 \begin{figure}[!htbp]
     \centering
@@ -286,10 +296,10 @@ demonstrated by Figure~\ref{fig:lstm}.
     \caption{Graphical representation of an LSTM network.}\label{fig:lstm}
 \end{figure}
 
-The LSTM is a complex architecture and contains a large number of parameters
-that need to be trained. The LSTM networks have managed to achieve remarkable
-results. The training of an LSTM model in this Chapter is carried with the open
-source project Keras. The details for the training are presented in
+LSTM unique architecture allow them to be trained with the back propagation
+algorithm and they have managed to achieve remarkable results. The training of
+an LSTM model in this Chapter is carried with the open source project Keras.
+Details of the training process are presented in
 section~\ref{section:training_a_rnn}.
 
 \section{Training LSTM networks to play the Iterated Prisoner's Dilemma}\label{section:training_a_rnn}
@@ -704,13 +714,23 @@ analysis. % TODO
 
 \section{Validation of LSTM base strategies using a meta tournament analysis}\label{section:rnn_strategy_validation}
 
-To evaluate the LSTM players as strategies, a strategy class was implemented
-that takes as an argument the a Keras model. The player then uses the history
-of the match translate it to an input in the form that the networks can then
-translate into an action. Note that the network was not trained to consider
-it's opening move. The opening move is also an input to the strategy class.
-In the meta tournament analysis different strategies that have a different
-opening play are considered.
+In section~\ref{section:training_a_rnn} the trained networks were evaluated
+based on the training data. In this section the networks are evaluated as IPD
+strategies in a number of standard tournaments.
+
+A strategy class was implemented called the \mintinline{python}{LSTMPlayer} so
+that the predictions of the networks can be translated into actions in an IPD
+match simulated with APL, Figure~\ref{fig:lstm_player_source_code}. The
+\mintinline{python}{LSTMPlayer} takes as arguments a Keras model, a reshape
+history function and the probability that it's opening move it's a cooperation.
+The opening move is not given by the LSTM networks as they were designed to only
+give reactions to history of play. Thus, the probability of opening with a
+cooperation is an argument of the player and is denoted as \(p_o\).
+
+The reshape history function is used to transform the history of the match to an
+input used my the model to make a prediction. The player makes a deterministic
+decision based on the prediction. It cooperates if the prediction is greater
+than 0.5 and defects either wise.
 
 \begin{figure}[!htbp]
 \begin{sourcepy}
@@ -756,24 +776,24 @@ class LSTMPlayer(axl.Player):
     def __repr__(self):
         return self.name
 \end{sourcepy}
+\caption{Implementation of the \mintinline{python}{LSTMPlayer} class.}\label{fig:lstm_player_source_code}
 \end{figure}
 
-The implemented class can interact with any opponent from APL.
-An example of usage of the LSTMPlayer is given by Figure.
+Though there are only 8 different trained networks as it was described the opening
+move is an input of the player. Three different values are used for \(p_o\).
+These are 0, 1 and 0.78. Opening deterministically is a common feature of IPD
+strategies and the probability 0.78 has been calculated as the probability
+the best response sequences of Chapter~\ref{chapter:best_response_sequence}
+open with a cooperation. Thus, the 2 different LSTM architectures have been
+trained separately on 4 different training set generating 8 different networks
+that each corresponds to 3 distic IPD strategies were the opening probability
+is different. Thus, a total of \(2 \times 4 \times 3 =24\) IPD strategies
+have been trained and are evaluated in this section.
 
-To evaluate the performance of the LSTM strategy a meta tournament analysis,
-similar to Chapter~\ref{chapter:meta_tournaments}, is carried out. The
-tournament type considered here are standard tournaments. The data collections
-is given by Algorithm~\ref{meta_tournament_lstm_validation}. At each trial
-a number of opponents, a list of opponent From 5 to 10. The number of turns and repetitions
-are fixed to 200 and 50.
-
-The number 205 was hard coded. The evaluation does not want to take into account
-the last turns. 205 was selected so the last turns could have beed discarded
-and the match length would be 200 which is the number of turns commonly used
-in the literature.
-
-%TODO talk about opening probability
+The performance of the 24 LSTM strategies are evaluated and compared in
+\metatournamentslstm standard tournaments. The process of collecting the
+tournament results for each strategy is given by
+Algorithm~\ref{meta_tournament_lstm_validation}.
 
 \begin{algorithm}[!htbp]
     \setstretch{1.35}
@@ -791,18 +811,29 @@ in the literature.
     \label{algorithm:meta_tournament_lstm_validation}
 \end{algorithm}
 
-A total of \metatournamentslstm trials of
-Algorithm~\ref{algorithm:meta_tournament_lstm_validation} have been performed.
-Similarly to Chapter~\ref{chapter:meta_tournament} each trial outputs a result
-summary of the tournament. The performance of the strategies are evaluated on
-the normalised rank \(r\), and more specifically on the median normalised rank
-\(\bar{r}\). A total of different strategies competed in the tournaments, and
-the strategy with the maximum participation, excluding the LSTM strategy, was.
+For each trial a random size \(N\) is selected and from the
+\numberofstrategiesbestsequences strategies a random list of \(N\) strategies
+is chosen. The LSTM player is then added to the list of player increasing the
+size to \(N + 1\). For the given list a standard tournament of 200 turns
+is performed and repeated 50 times. The only parameter that varies in the
+result collection is \(N\) which can have values between 5 and 10.
 
-There are two distinct networks that have been trained on four different data
-sets. Moreover, each networks translates into a player that the opening
-probability can have three different values. Thus a total of $2 \times 4 \times
-3$ LSTM players performance is evaluated in this section.
+The number of turns is fixed at 200. In
+Chapter~\ref{chapter:best_response_sequence} the sequences were fixed to 205
+turns. That had an effect that most best response sequences defected on the last
+turns, as the match was coming to an end. The LSTM networks have been trained on
+those sequences and are biased towards defecting on the last turns. To avoid
+unconditional defections by the LSTM strategies their performance is evaluated
+200 turns which are a common number of turns used in the IPD literature.
+
+For each turn a result summary in the same format of that presented in
+Chapter~\ref{chapter:meta_tournament} is exported.  The performance of the
+strategies are evaluated on the normalised rank \(r\), and more specifically on
+the median normalised rank \(\bar{r}\). As a reminder \(r\) is calculated
+as a strategy's rank divided by \(N-1\). The \(\bar{r}\) of each of the 24
+strategies over the \metatournamentslstm standard tournaments are given by
+Table~\ref{table:normalised_rank_lstm_tournaments}.
+
 
 \begin{table}[!htbp]
     \begin{center}
@@ -810,9 +841,37 @@ probability can have three different values. Thus a total of $2 \times 4 \times
         \input{src/chapters/07/tex/normalised_ranks_table.tex}
     }
 \end{center}
-\caption{Median normalised ranks of th 24 LSTM strategies over standard tournaments.}
-% \label{table:normalised_rank_lstm_tournaments}
+\caption{The median normalised ranks of the 24 LSTM strategies over the standard tournaments.
+A \(\bar{r}\) closer to 0 indicates a more successful performance.}
+\label{table:normalised_rank_lstm_tournaments}
 \end{table}
+
+Based on \(\bar{r}\) the LSTM strategy with the more successful performance
+is the strategy based on a sequence to sequence network trained over the entire
+data set and opens with a cooperation. Followed by the strategy trained
+over the across ranks data set that opens with a cooperation based on the sequence
+to probability network. There are a few strategies that have achieved a \(\bar{r}\)
+close to 0.3.
+
+Overall the strategies that open with cooperation outperform the strategies
+based on the same networks and training data set that open with a probability
+of 0.78 and they in order outperform the strategies that open with defection.
+The strategies that have been trained on the sub sets and specifically
+on the basic strategies and across the ranks strategies perform better
+when they are based on the sequence to probability network.
+
+The distributions of the normalised ranks for each of the players are given
+by Figures~\ref{fig:normalised_rank_distributions_sequence_to_sequence}
+and~\ref{fig:normalised_rank_distributions_sequence_to_probability}.
+
+Figure~\ref{fig:normalised_rank_distributions_sequence_to_sequence} gives the
+normalised rank distributions for the strategies based on the sequence to
+sequence network. The best performing LSTM strategy is the one trained on the
+entire data set with \(p_o=1\). It's normalised rank distribution is skewed
+towards 0. It can be seen that strategy performed well overall with a few
+exceptions. The rest of distributions appear to be either skewed in the middle
+or towards 1. These can be confirmed by the skewness and kurtosis measures which
+are reported in Table~\ref{table:statistic_summary_s_to_s}.
 
 \begin{figure}[!htbp]
     \begin{subfigure}{\textwidth}
@@ -830,20 +889,27 @@ probability can have three different values. Thus a total of $2 \times 4 \times
     \begin{subfigure}{\textwidth}
     \includegraphics[width=\textwidth]{src/chapters/07/img/normalised_rank_basic_strategies.pdf}
     \end{subfigure}
-    % \caption{Validation of sequence to sequence}\label{fig:validation_sequence_to_sequence}
+    \caption{Normalised rank distributions for the strategies which are based on the sequence to sequence
+    LSTM.}\label{fig:normalised_rank_distributions_sequence_to_sequence}
 \end{figure}
 
 
 \begin{table}[!htbp]
     \begin{center}
-    \resizebox{.9\textwidth}{!}{
+    \resizebox{\textwidth}{!}{
         \input{src/chapters/07/tex/sequence_to_sequence_rank_descriptive.tex}
     }
 \end{center}
-% \caption{Number of epochs each both networks, sequence to sequence and 
-% sequence to probability, were trained for each subset.}\label{table:epochs}
+\caption{Statistics summary of the \(r\) distributions for the strategies
+based on the sequence to sequence network.}\label{table:statistic_summary_s_to_s}
 \end{table}
 
+Figure~\ref{fig:normalised_rank_distributions_sequence_to_probability} gives
+the normalised rank distributions for the strategies based on the sequence
+to probability networks. Overall the distributions are more skewed towards 0
+compared to the distributions of Figure~\ref{fig:normalised_rank_distributions_sequence_to_sequence}.
+The strategies that have been trained on the subsets are performing better.
+The statistics summary of the distributions is given by Table~\ref{table:statistic_summary_s_to_p}
 
 \begin{figure}[!htbp]
     \begin{subfigure}{\textwidth}
@@ -861,7 +927,8 @@ probability can have three different values. Thus a total of $2 \times 4 \times
     \begin{subfigure}{\textwidth}
     \includegraphics[width=\textwidth]{src/chapters/07/img/normalised_rank_classification_basic_strategies.pdf}
     \end{subfigure}
-    % \caption{Validation of sequence to probability}\label{fig:validation_sequence_to_probability}
+    \caption{Normalised rank distributions for the strategies which are based on the sequence to probability
+    LSTM.}\label{fig:normalised_rank_distributions_sequence_to_probability}
 \end{figure}
 
 \begin{table}[!htbp]
@@ -870,76 +937,159 @@ probability can have three different values. Thus a total of $2 \times 4 \times
         \input{src/chapters/07/tex/sequence_to_probability_rank_descriptive.tex}
     }
 \end{center}
-% \caption{Number of epochs each both networks, sequence to sequence and 
-% sequence to probability, were trained for each subset.}\label{table:epochs}
+\caption{Statistics summary of the \(r\) distributions for the strategies
+based on the sequence to probability network.}\label{table:statistic_summary_s_to_p}
 \end{table}
+
+An interesting question that arises is what is the probability the players
+rank in the top half of a tournament? The cumulative distribution function (CFD)
+for the \(r\) distributions are given by Figures~\ref{fig:cfd_s_to_s} and
+\ref{fig:cfd_s_to_p}.
+
+Figure~\ref{fig:cfd_s_to_s} gives the CDF for the strategies trained with the
+sequence to sequence model. Opening with a cooperation or with a probability 0.78
+of a cooperation increases a strategy's probability of scoring in the top half
+of a tournament. The highest probability is that of best performing strategy
+which a probability of 0.8 of placing in the top ranks for \(p_o=1\) and a
+0.7 for \(p_o=0.78\).
 
 \begin{figure}[!htbp]
     \begin{subfigure}{.45\textwidth}
     \includegraphics[width=\textwidth]{src/chapters/07/img/cfd_to_sequence_all_strategies.pdf}
-    \caption{\(P(r<0.5): 0.350 P(r<0.5): 0.797 P(r<0.5): 0.717\)}
+    \caption{For \(p_o=0, P(r<0.5) = 0.350\). For \(p_o=1, P(r<0.5) =  0.797\).
+    For \(p_o=0.78, P(r<0.5) = 0.717\).}
     \end{subfigure}\hfill
     \begin{subfigure}{.45\textwidth}
     \includegraphics[width=\textwidth]{src/chapters/07/img/cfd_to_sequence_top_strategies.pdf}
-    \caption{\(P(r<0.5): 0.310 P(r<0.5): 0.573 P(r<0.5): 0.523\)}
+    \caption{For \(p_o=0, P(r<0.5) =  0.310\). For \(p_o=1, P(r<0.5) =  0.573\).
+    For\(p_o=0.78, P(r<0.5) =  0.523\).}
     \end{subfigure}
     \begin{subfigure}{.45\textwidth}
     \includegraphics[width=\textwidth]{src/chapters/07/img/cfd_to_sequence_across_ranks_strategies.pdf}
-    \caption(\(P(r<0.5): 0.313 P(r<0.5): 0.303 P(r<0.5): 0.280\))
+    \caption(For \(p_o=0, P(r<0.5) =  0.313\). For \(p_o=1, P(r<0.5) =  0.303\).
+    For \(p_o=0.78, P(r<0.5) =  0.280\).)
     \end{subfigure}\hfill
     \begin{subfigure}{.45\textwidth}
     \includegraphics[width=\textwidth]{src/chapters/07/img/cfd_to_sequence_basic_strategies.pdf}
-    \caption{\(P(r<0.5): 0.207 P(r<0.5): 0.420 P(r<0.5): 0.387\)}
+    \caption{For \(p_o=0, P(r<0.5) = 0.207\). For \(p_o=0, P(r<0.5) = 0.420\).
+    For \(p_o=0.78, P(r<0.5) =  0.387\).}
     \end{subfigure}
-    % \caption{Validation of sequence to probability}\label{fig:validation_sequence_to_probability}
+    \caption{The cumulative distribution function (CFD)
+    for the \(r\) distributions for the LSTM strategies based on the sequence to sequence
+    network.}\label{fig:cfd_s_to_s}
 \end{figure}
+
+Figure~\ref{fig:cfd_s_to_s} gives the CDF for the strategies trained with the
+sequence to probability model. The probabilities of placing in the top ranks
+are higher for the strategies based on the subsets with this network with
+many strategies placing in the top half with a probability higher than 0.7.
 
 
 \begin{figure}[!htbp]
     \begin{subfigure}{.45\textwidth}
     \includegraphics[width=\textwidth]{src/chapters/07/img/cfd_to_probability_all_strategies.pdf}
-    \caption{\(P(r<0.5): 0.207 P(r<0.5): 0.783 P(r<0.5): 0.567\)}
+    \caption{For \(p_o=0, P(r<0.5)=0.207\) For \(p_o=0, P(r<0.5)=0.783\).
+    For \(p_o=0,  P(r<0.5)=0.567\).}
     \end{subfigure}\hfill
     \begin{subfigure}{.45\textwidth}
     \includegraphics[width=\textwidth]{src/chapters/07/img/cfd_to_probability_top_strategies.pdf}
-    \caption{\(P(r<0.5): 0.503 P(r<0.5): 0.633 P(r<0.5): 0.610\)}
+    \caption{For \(p_o=0, P(r<0.5)=0.503\). For \(p_o=0, P(r<0.5)=0.633\).
+    For \(p_o=0, P(r<0.5)=0.610\).}
     \end{subfigure}
     \begin{subfigure}{.45\textwidth}
     \includegraphics[width=\textwidth]{src/chapters/07/img/cfd_to_probability_across_ranks_strategies.pdf}
-    \caption(\(P(r<0.5): 0.550 P(r<0.5): 0.763 P(r<0.5): 0.733\))
+    \caption(For \(p_o=0, P(r<0.5)=0.550\). For \(p_o=0, P(r<0.5)=0.763\).
+    For \(p_o=0, P(r<0.5)=0.733\).)
     \end{subfigure}\hfill
     \begin{subfigure}{.45\textwidth}
     \includegraphics[width=\textwidth]{src/chapters/07/img/cfd_to_probability_basic_strategies.pdf}
-    \caption{\(P(r<0.5): 0.207, P(r<0.5): 0.779, P(r<0.5): 0.607\)}
+    \caption{For \(p_o=0, P(r<0.5)=0.207\). For \(p_o=0, P(r<0.5)=0.779\).
+    For \(p_o=0, P(r<0.5)= 0.607\).}
     \end{subfigure}
-    % \caption{Validation of sequence to probability}\label{fig:validation_sequence_to_probability}
+    \caption{The cumulative distribution function (CFD)
+    for the \(r\) distributions for the LSTM strategies based on the sequence to probability
+    network.}\label{fig:cfd_s_to_p}
 \end{figure}
+
+This section has evaluated the performance of 24 distinct IPD strategies based
+on LSTM networks in \metatournamentslstm. The differences between these players
+included the architecture of their networks, the training data and the their
+opening move. On the whole, the analysis of this section has shown that:
+
+\begin{itemize}
+    \item The strategies trained on the entire training data set have a more
+    successfully performance compared to the strategies trained on the subsets.
+    \item The strategies trained on the subsets are performing better when
+    they are based on the sequence to probability networks. The sequence
+    to probability networks for the subsets have been trained for a larger number
+    of epochs compared to the network on the entire data set. An interesting
+    question is whether the strategy based on this network would perform
+    even better than the sequence to probability if it was trained for longer.
+    \item The strategies that have been trained only on the top ranked strategies
+    are overall performing poorly.
+    \item Opening with a probability makes a difference of the LSTM strategies.
+    Overall the most successful strategies are the ones that open with a cooperation.
+    This enforces the discussion that opening with cooperation is a property
+    of a successful strategy started by Axerod.
+\end{itemize}
 
 \subsection{Fingerprinting the LSTM based strategies}
 
-\newpage
+The 24 strategies that have been introduced in this Chapter are based on an
+LSTM archetype. The strategies are based on a complex structure and interpreting
+them is not trivial. The difference between the strategies is not straightforward
+and even thought there differences between them it's not sure whether they
+behave in a completely different manner. In Chapter~\ref{chapter:literature}
+the method of fingerprinting was introduced. Fingerprinting is a method
+that produces a function signature of a strategy. Two types of fingerprinting
+were discussed in Chapter~\ref{chapter:literature}. The Ashlock's fingerprints
+and transitive fingerprints.
+
+Ashlock's fingerprints compute the score of a strategy against a spectrum of
+opponents. The basic method is to play the strategy against a probe strategy
+with varying noise parameters. The fingerprints for the 24 strategies based on
+Ashlock's approach have been generated for probe strategy Tit For Tat and Pavlov
+(Win-Shift Lose-Stay). These are given by
+Figures~\ref{fig:ashlock_fingerprints_tft_s_to_s},
+\ref{fig:ashlock_fingerprints_tft_s_to_p},
+\ref{fig:ashlock_fingerprints_pavlov_s_to_s} and
+\ref{fig:ashlock_fingerprints_pavlov_s_to_p}.
+
+For Figures~\ref{fig:ashlock_fingerprints_tft_s_to_s} and
+\ref{fig:ashlock_fingerprints_tft_s_to_p} Tit For Tat is used as a probe.
+It can been seen that between the strategies there are some similarities between
+the players based on same network, trained on the same training data set
+when they open with 1 or 0.78 change of cooperation. However, across the
+models there appears to be no similarity between the strategies.
+
 
 \begin{figure}[!htbp]
     \begin{subfigure}{\textwidth}
         \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Tit For Tat_lstm_sequence_0".pdf}
         \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Tit For Tat_lstm_sequence_1".pdf}
         \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Tit For Tat_lstm_sequence_0_78".pdf}
+        \caption{Strategies trained on the entire training data set.}
     \end{subfigure}
     \begin{subfigure}{\textwidth}
         \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Tit For Tat_top_twenty_sequence_0".pdf}
         \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Tit For Tat_top_twenty_sequence_1".pdf}
         \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Tit For Tat_top_twenty_sequence_0_78".pdf}
+        \caption{Strategies trained against the top performing strategies.}
     \end{subfigure}
     \begin{subfigure}{\textwidth}
         \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Tit For Tat_twenty_sequence_0".pdf}
         \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Tit For Tat_twenty_sequence_1".pdf}
         \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Tit For Tat_twenty_sequence_0_78".pdf}
+        \caption{Strategies trained against the across the ranks strategies.}
     \end{subfigure}
     \begin{subfigure}{\textwidth}
         \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Tit For Tat_basic_sequence_0".pdf}
         \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Tit For Tat_basic_sequence_1".pdf}
         \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Tit For Tat_basic_sequence_0_78".pdf}
+        \caption{Strategies trained against basic strategies.}
     \end{subfigure}
+    \caption{Ashlock's fingerprints for the LSTM strategies based on the sequence to sequence
+    network when Tit For Tat is the probe strategy.}\label{fig:ashlock_fingerprints_tft_s_to_s}
 \end{figure}
 
 \begin{figure}[!htbp]
@@ -947,48 +1097,64 @@ probability can have three different values. Thus a total of $2 \times 4 \times
         \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Tit For Tat_lstm_classification_0".pdf}
         \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Tit For Tat_lstm_classification_1".pdf}
         \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Tit For Tat_lstm_classification_0_78".pdf}
+        \caption{Strategies trained on the entire training data set.}
     \end{subfigure}
     \begin{subfigure}{\textwidth}
         \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Tit For Tat_top_twenty_classification_0".pdf}
         \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Tit For Tat_top_twenty_classification_1".pdf}
         \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Tit For Tat_top_twenty_classification_0_78".pdf}
+        \caption{Strategies trained against the top performing strategies.}
     \end{subfigure}
     \begin{subfigure}{\textwidth}
         \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Tit For Tat_twenty_classification_0".pdf}
         \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Tit For Tat_twenty_classification_1".pdf}
         \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Tit For Tat_twenty_classification_0_78".pdf}
+        \caption{Strategies trained against the across the ranks strategies.}
     \end{subfigure}
     \begin{subfigure}{\textwidth}
         \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Tit For Tat_basic_classification_0".pdf}
         \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Tit For Tat_basic_classification_1".pdf}
         \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Tit For Tat_basic_classification_0_78".pdf}
+        \caption{Strategies trained against basic strategies.}
     \end{subfigure}
+    \caption{Ashlock's fingerprints for the LSTM strategies based on the sequence to probability
+    network when Tit For Tat is the probe strategy.}\label{fig:ashlock_fingerprints_tft_s_to_p}
 \end{figure}
 
-\newpage
-
+Figures \ref{fig:ashlock_fingerprints_pavlov_s_to_s} and
+\ref{fig:ashlock_fingerprints_pavlov_s_to_p} give the Ashlock fingerprints
+whilst Pavlov is used as a probe. The previous results still stand however
+now there is more similarities across the strategies. This includes the
+players when the only difference is the opening move but all the strategies
+that have been trained on the subsets.
 
 \begin{figure}[!htbp]
     \begin{subfigure}{\textwidth}
         \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Win-Shift Lose-Stay_lstm_sequence_0".pdf}
         \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Win-Shift Lose-Stay_lstm_sequence_1".pdf}
         \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Win-Shift Lose-Stay_lstm_sequence_0_78".pdf}
+        \caption{Strategies trained on the entire training data set.}
     \end{subfigure}
     \begin{subfigure}{\textwidth}
         \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Win-Shift Lose-Stay_top_twenty_sequence_0".pdf}
         \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Win-Shift Lose-Stay_top_twenty_sequence_1".pdf}
         \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Win-Shift Lose-Stay_top_twenty_sequence_0_78".pdf}
+        \caption{Strategies trained against the top performing strategies.}
     \end{subfigure}
     \begin{subfigure}{\textwidth}
         \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Win-Shift Lose-Stay_twenty_sequence_0".pdf}
         \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Win-Shift Lose-Stay_twenty_sequence_1".pdf}
         \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Win-Shift Lose-Stay_twenty_sequence_0_78".pdf}
+        \caption{Strategies trained against the across the ranks strategies.}
     \end{subfigure}
     \begin{subfigure}{\textwidth}
         \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Win-Shift Lose-Stay_basic_sequence_0".pdf}
         \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Win-Shift Lose-Stay_basic_sequence_1".pdf}
         \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Win-Shift Lose-Stay_basic_sequence_0_78".pdf}
+        \caption{Strategies trained against basic strategies.}
     \end{subfigure}
+    \caption{Ashlock's fingerprints for the LSTM strategies based on the sequence to sequence
+    network when Pavlov is the probe strategy.}\label{fig:ashlock_fingerprints_pavlov_s_to_s}
 \end{figure}
 
 \begin{figure}[!htbp]
@@ -996,45 +1162,73 @@ probability can have three different values. Thus a total of $2 \times 4 \times
         \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Win-Shift Lose-Stay_lstm_classification_0".pdf}
         \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Win-Shift Lose-Stay_lstm_classification_1".pdf}
         \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Win-Shift Lose-Stay_lstm_classification_0_78".pdf}
+        \caption{Strategies trained on the entire training data set.}
     \end{subfigure}
     \begin{subfigure}{\textwidth}
         \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Win-Shift Lose-Stay_top_twenty_classification_0".pdf}
         \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Win-Shift Lose-Stay_top_twenty_classification_1".pdf}
         \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Win-Shift Lose-Stay_top_twenty_classification_0_78".pdf}
+        \caption{Strategies trained against the top performing strategies.}
     \end{subfigure}
     \begin{subfigure}{\textwidth}
         \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Win-Shift Lose-Stay_twenty_classification_0".pdf}
         \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Win-Shift Lose-Stay_twenty_classification_1".pdf}
         \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Win-Shift Lose-Stay_twenty_classification_0_78".pdf}
+        \caption{Strategies trained against the across the ranks strategies.}
     \end{subfigure}
     \begin{subfigure}{\textwidth}
         \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Win-Shift Lose-Stay_basic_classification_0".pdf}
         \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Win-Shift Lose-Stay_basic_classification_1".pdf}
         \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Win-Shift Lose-Stay_basic_classification_0_78".pdf}
+        \caption{Strategies trained against basic strategies.}
     \end{subfigure}
+    \caption{Ashlock's fingerprints for the LSTM strategies based on the sequence to probability
+    network when Pavlov is the probe strategy.}\label{fig:ashlock_fingerprints_pavlov_s_to_p}
 \end{figure}
+
+To further explore the similarities of the strategies a a set of more
+interpretable fingerprints the transitive fingerprints implemented in APL have
+also been estimated. The transitive fingerprints represent the cooperation rate
+of a strategy against a set of opponents over a number of turns. There are two
+set of opponents used here to generate the transitive fingerprints, these are
+the collection of strategies from~\cite{Stewart2012} and
+from~\cite{Beaufils1997}.
+
+The differences now are clearer. The opening move can lead to slightly different
+behaviour but also to completely different one. Between the set of strategies
+that only their networks are different there can sometimes be some similarities
+but others there are completely different. This lead to the conclusion that the
+training process has managed to train a set of strategies that ar different.
+Though there are playing the IPD the training set or even the opening move
+can have a important effect.
 
 \begin{figure}[!htbp]
     \begin{subfigure}{\textwidth}
         \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Stewart_lstm_sequence_0".pdf}
         \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Stewart_lstm_sequence_1".pdf}
         \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Stewart_lstm_sequence_0_78".pdf}
+        \caption{Strategies trained on the entire training data set.}
     \end{subfigure}
     \begin{subfigure}{\textwidth}
         \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Stewart_top_twenty_sequence_0".pdf}
         \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Stewart_top_twenty_sequence_1".pdf}
         \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Stewart_top_twenty_sequence_0_78".pdf}
+        \caption{Strategies trained against the top performing strategies.}
     \end{subfigure}
     \begin{subfigure}{\textwidth}
         \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Stewart_twenty_sequence_0".pdf}
         \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Stewart_twenty_sequence_1".pdf}
         \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Stewart_twenty_sequence_0_78".pdf}
+        \caption{Strategies trained against the across the ranks strategies.}
     \end{subfigure}
     \begin{subfigure}{\textwidth}
         \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Stewart_basic_sequence_0".pdf}
         \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Stewart_basic_sequence_1".pdf}
         \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Stewart_basic_sequence_0_78".pdf}
+        \caption{Strategies trained against basic strategies.}
     \end{subfigure}
+    \caption{Transitive fingerprints for the LSTM strategies based on the sequence to sequence
+    network against the list of opponents from~\cite{Stephens2012}.}\label{fig:transitive_fingerprints_stewart_s_to_s}
 \end{figure}
 
 \begin{figure}[!htbp]
@@ -1042,22 +1236,28 @@ probability can have three different values. Thus a total of $2 \times 4 \times
         \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Stewart_lstm_classification_0".pdf}
         \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Stewart_lstm_classification_1".pdf}
         \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Stewart_lstm_classification_0_78".pdf}
+        \caption{Strategies trained on the entire training data set.}
     \end{subfigure}
     \begin{subfigure}{\textwidth}
         \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Stewart_top_twenty_classification_0".pdf}
         \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Stewart_top_twenty_classification_1".pdf}
         \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Stewart_top_twenty_classification_0_78".pdf}
+        \caption{Strategies trained against the top performing strategies.}
     \end{subfigure}
     \begin{subfigure}{\textwidth}
         \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Stewart_twenty_classification_0".pdf}
         \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Stewart_twenty_classification_1".pdf}
         \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Stewart_twenty_classification_0_78".pdf}
+        \caption{Strategies trained against the across the ranks strategies.}
     \end{subfigure}
     \begin{subfigure}{\textwidth}
         \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Stewart_basic_classification_0".pdf}
         \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Stewart_basic_classification_1".pdf}
         \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Stewart_basic_classification_0_78".pdf}
+        \caption{Strategies trained against basic strategies.}
     \end{subfigure}
+    \caption{Transitive fingerprints for the LSTM strategies based on the sequence to probability
+    network against the list of opponents from~\cite{Stephens2012}.}\label{fig:transitive_fingerprints_stewart_s_to_p}
 \end{figure}
 
 \begin{figure}[!htbp]
@@ -1065,22 +1265,28 @@ probability can have three different values. Thus a total of $2 \times 4 \times
         \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Beautil_lstm_sequence_0".pdf}
         \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Beautil_lstm_sequence_1".pdf}
         \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Beautil_lstm_sequence_0_78".pdf}
+        \caption{Strategies trained on the entire training data set.}
     \end{subfigure}
     \begin{subfigure}{\textwidth}
         \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Beautil_top_twenty_sequence_0".pdf}
         \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Beautil_top_twenty_sequence_1".pdf}
         \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Beautil_top_twenty_sequence_0_78".pdf}
+        \caption{Strategies trained against the top performing strategies.}
     \end{subfigure}
     \begin{subfigure}{\textwidth}
         \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Beautil_twenty_sequence_0".pdf}
         \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Beautil_twenty_sequence_1".pdf}
         \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Beautil_twenty_sequence_0_78".pdf}
+        \caption{Strategies trained against the across the ranks strategies.}
     \end{subfigure}
     \begin{subfigure}{\textwidth}
         \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Beautil_basic_sequence_0".pdf}
         \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Beautil_basic_sequence_1".pdf}
         \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Beautil_basic_sequence_0_78".pdf}
+        \caption{Strategies trained against basic strategies.}
     \end{subfigure}
+    \caption{Transitive fingerprints for the LSTM strategies based on the sequence to sequence
+    network against the list of opponents from~\cite{Beaufils1997}.}\label{fig:transitive_fingerprints_beautil_s_to_s}
 \end{figure}
 
 \begin{figure}[!htbp]
@@ -1088,24 +1294,57 @@ probability can have three different values. Thus a total of $2 \times 4 \times
         \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Beautil_lstm_classification_0".pdf}
         \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Beautil_lstm_classification_1".pdf}
         \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Beautil_lstm_classification_0_78".pdf}
+        \caption{Strategies trained on the entire training data set.}
     \end{subfigure}
     \begin{subfigure}{\textwidth}
         \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Beautil_top_twenty_classification_0".pdf}
         \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Beautil_top_twenty_classification_1".pdf}
         \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Beautil_top_twenty_classification_0_78".pdf}
+        \caption{Strategies trained against the top performing strategies.}
     \end{subfigure}
     \begin{subfigure}{\textwidth}
         \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Beautil_twenty_classification_0".pdf}
         \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Beautil_twenty_classification_1".pdf}
         \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Beautil_twenty_classification_0_78".pdf}
+        \caption{Strategies trained against the across the ranks strategies.}
     \end{subfigure}
     \begin{subfigure}{\textwidth}
         \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Beautil_basic_classification_0".pdf}
         \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Beautil_basic_classification_1".pdf}
         \includegraphics[width=.3\textwidth]{"src/chapters/07/img/Beautil_basic_classification_0_78".pdf}
+        \caption{Strategies trained against basic strategies.}
     \end{subfigure}
+    \caption{Transitive fingerprints for the LSTM strategies based on the sequence to probability
+    network against the list of opponents from~\cite{Beaufils1997}.}\label{fig:transitive_fingerprints_beautil_s_to_p}
 \end{figure}
 
+\subsection{Stochastic LSTM strategies}
 
-% THE BIG TABLE V.K. SUGGESTED HERE
+Another question is how is the performance affected if the player did not make
+deterministic actions but probabilistic.
+
 \section{Chapter Summary}
+
+This Chapter introduced a total of 24 new IPD strategies based on LSTM networks.
+The LSTMs have received a lot of attention in machine learning due to their
+incredible results on. Though ANNs have been considered in the IPD literature
+LSTM have not been given attention.
+
+The advantage of using LSTM instead of feed forward networks is that the LSTM
+incorporate a mechanism of memory. The decision the make at time \(t\) is
+affected by their knowledge of time \(t-1\). The networks were introduced in
+section. The networks were developed and trained using the open source package
+Keras. Two different LSTM networks were trained these are the sequence to
+sequence network and the sequence to probability network. The differences
+between the networks were discussed in section. The networks were trained not
+only on a single a training data set. The training data set has been made
+possible due to the best responses sequences generated in Chapter 6. That
+allowed the network to learn how to react to actions of well established IPD
+strategies. Sub sets of that training data set were consider to understand the
+effect of the training data on the network's performance in IPD match. The
+subsets included.
+
+These were trained on the GPU.
+
+A total of 8 networks were trained but these were 24 players. Their performance
+was explored in 300 tournaments. The results demonstrated that.
