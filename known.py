@@ -308,5 +308,6 @@ words = {
     "CUDA",
     "ReLU",
     "Param",
-    "interpretable"
+    "interpretable",
+    "NVIDIA"
 }
