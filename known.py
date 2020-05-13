@@ -309,5 +309,6 @@ words = {
     "ReLU",
     "Param",
     "interpretable",
-    "NVIDIA"
+    "NVIDIA",
+    "StochasticLSTMPlayer"
 }
