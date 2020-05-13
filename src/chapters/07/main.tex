@@ -62,7 +62,7 @@ LSTMs are a set of networks that have been proven to be successfully trained and
 today are being used in a number of innovative applications such as time series
 analysis \cite{Malhotra2015}, speech recognition~\cite{Sak2014} and prediction
 in medical care pathways~\cite{Wang2018_lstm}. However, they have not received
-attention in the IPD literature. The aim of this Chapter is to trained and
+attention in the IPD literature. The aim of this Chapter is to train and
 introduce a number of strategies based on LSTMs. The training has been possible
 due to the collection of best response sequences generated in
 Chapter~\ref{chapter:best_response_sequence}.
@@ -76,9 +76,9 @@ The rest of the Chapter is structured as follows:
 \begin{itemize}
     \item section~\ref{section:artificial_neural_networks}, presents an
     introduction to artificial, recurrent and long short-term memory networks.
-    \item section~\ref{section:training_a_rnn}, covers the specifics of the LSTMs
-    trained in this Chapter. It presents their architectural details as well
-    as the different training used to train them.
+    \item section~\ref{section:training_a_rnn}, covers the architectural details
+    of the LSTMs considered in this Chapter, and presents the different training
+    data sets used to train them.
     \item section~\ref{section:rnn_strategy_validation}, evaluates and compares
     the performance of the \lstmstrategies LSTMs based strategies in
     \metatournamentslstm standard IPD computer tournaments.
@@ -136,7 +136,7 @@ hidden node outputs,
 
 \[h_j = \phi (\sum_{i} w_{ij} x_{i}), \text{where } \phi  \text{ is an activation function}.\]
 
-Activation functions \(\phi\) include the:
+Frequently used activation functions include the:
 
 \begin{itemize}
     \item sigmoid function \(\sigma(x)\) which squashes numbers into the range \([0, 1]\),
@@ -175,7 +175,7 @@ prediction and \(y\) the true output. For \(M\) training examples and \(K\)
 classes the cross entropy error is given by Equation~(\ref{eq:cross_entropy}).
 
 \begin{equation}\label{eq:cross_entropy}
-    L(y, \hat{y}) = - \frac{1}{M} \sum_{m\in M} \sum_{k \in K} y_{m, k} \text{log}(\hat{y_{m, k}})
+    L(y, \hat{y}) = - \frac{1}{M} \sum_{m\in M} \sum_{k \in K} y_{m, k} \text{log}(\hat{y}_{m, k})
 \end{equation}
 
 The minimum of the loss function is calculated using the gradients decent
@@ -219,12 +219,13 @@ some weight vector \(U\). In matrix notation RNNs are described by,
 
 Unfortunately, in practice RNNs quickly become unable to learn to connect the
 information. The more time steps the higher the chance that the back propagation
-gradient either accumulate and explode or vanish down to zero. The fundamental
+gradients either accumulate and explode or vanish down to zero. The fundamental
 difficulties of RNNs were explored in depth by~\cite{Bengio1994}.
-A network specifically designed to avoid the long-term dependency problem. was
-introduced by~\cite{Hochreiter1997} called the long short-term memory network.
+A network specifically designed to avoid the long-term dependency problem was
+introduced by~\cite{Hochreiter1997}, called the long short-term memory
+network.
 
-The core idea to LSTMs is the \textit{cell state} also refereed to as the
+The core idea to LSTMs is the \textit{cell state} also referred to as the
 long term memory, denote as \(C_t\). The cell state is designed to pass down
 information with only a few carefully regulated changes being applied to it
 by structures called \textit{gates}. Gates are composed out of a sigmoid neural
@@ -294,7 +295,9 @@ step as demonstrated by Figure~\ref{fig:lstm}.
 \end{figure}
 
 LSTM unique architecture allow them to be trained with the back propagation
-algorithm and they have managed to achieve remarkable results. The training of
+algorithm. The networks were chosen to train a variety of IPD strategies because
+of their ability to use a history of actions to make a prediction.
+The training of
 an LSTM model in this Chapter is carried with the open source project Keras.
 Details of the training process are presented in
 section~\ref{section:training_a_rnn}.
@@ -305,12 +308,12 @@ LSTM are trained in a supervised fashion on a set of training sequences. The
 purpose of training a network in this Chapter is so it can learn to play
 optimally against IPD strategies. For that reason the networks are going to be
 trained on the collection of best response sequences generated in
-Chapter~\ref{chapter:best_response_sequences}.
+Chapter~\ref{chapter:best_response_sequence}.
 
 The training inputs are the actions of a given strategy for \(N\) turns. The
 expected outputs are the responses to those \(N\) action by the opponent's best
 response sequence. Each pair of opponent's - best response sequence's actions,
-from the the collection of best response sequences, are transformed into 204
+from the the collection of best response sequences, is transformed into 204
 unique training samples. The highest dimensionality of those samples is 204.
 
 Consider the actions of the strategy Adaptive and its best response, as
@@ -348,9 +351,9 @@ Figure~\ref{fig:input_output_example}.
 Secondly, in order to train the networks on different input lengths the training
 sample of Figure~\ref{fig:input_output_example} is transformed to 204 samples.
 This is done by considering all the possible IPD matches between
-the pairs where the number of turns \(N \in [1, 204]\). For example the training
-samples for Table~\ref{table:adaptive_vs_best_response_binary_lstm} are given
-by,
+the pairs where the number of turns \(N \in [1, 204]\). For example
+Table~\ref{table:adaptive_vs_best_response_binary_lstm} corresponds to the
+following training samples,
 
 \begin{equation}\label{eq:sequence_to_sequence_inputs_outputs_example}
     \text{inputs} =
@@ -374,14 +377,14 @@ by,
         1 & 1 & 0 & 0 & 0 & 0\\
         1 & 1 & 0 & 0 & 0 & 0 & 0 \\
         \vdots & \vdots & \vdots & \vdots & \vdots & \vdots & \vdots \\
-    \end{bmatrix}
+    \end{bmatrix}.
 \end{equation}
 
 Subsequently, the training data set retrieved from the collection of best
 responses has a total of \(\totalsequences \times 204 = \trainingpoint\)
 training samples.
 
-Two types of LSTMs have been trained in this Chapter. These are refereed to:
+Two types of LSTMs have been trained in this Chapter. These are referred to:
 
 \begin{itemize}
     \item Sequence to sequence (StoS).
@@ -409,7 +412,7 @@ Figures~\ref{fig:sequence_to_sequence} and \ref{fig:sequence_to_probability}.
 
 The training samples for the StoS network are in the form of
 Equation~(\ref{eq:sequence_to_sequence_inputs_outputs_example}) whereas the
-training training samples for the StoP network are in the form of
+training samples for the StoP network are in the form of
 Equation~(\ref{eq:sequence_to_probability_inputs_outputs_example}).
 
 \begin{equation}\label{eq:sequence_to_probability_inputs_outputs_example}
@@ -448,8 +451,8 @@ can be combined to create new network models.
 The Python code for implementing the StoS model is given by
 Figure~\ref{fig:keras_sequence_to_sequence}. In line 12 the model is defined to
 be of the \mintinline{python}{Sequential} class. This mean that the model will
-constructed layer by layer. The StoS network has a single LSTM layer with 100
-nodes. The input to the LSTM network is not a fixed length and there a single
+be constructed layer by layer. The StoS network has a single LSTM layer with 100
+nodes. The input to the LSTM network is not of a fixed length and there a single
 time step between the elements of each input sequence. This is defined by the
 argument \mintinline{python}{input_shape=(None, 1)}. The LSTM layer outputs a
 hidden state at each time step. Initially, the hidden states go through a
@@ -505,7 +508,7 @@ _________________________________________________________________
 Regarding the dimensionality of the hidden layer there is no direct answer as to
 what is the optimal number of nodes. Several methods for determining the
 dimensionality include experimentation, intuition and building on the work of
-other. A common practice is that the dimensionality of the hidden layer is
+others. A common practice is that the dimensionality of the hidden layer is
 smaller than the dimensionality of the input layer. The dimensionality of the
 input layer changes from 1 to 204, and thus a number of 100 nodes was chosen
 so that the dimensionality of the hidden layer is smaller 50\% of the times.
@@ -514,7 +517,7 @@ The Python code for implementing the StoP network with Keras is given by
 Figure~\ref{fig:keras_sequence_to_probability}. The implementations of the
 networks are similar, however, the StoP model contains 2 LSTM layers. The first
 LSTM layer outputs the hidden states at each time step. In turn these are connected to
-the second layer which only output the hidden state at final time step. The StoP
+the second layer which only outputs the hidden state at final time step. The StoP
 network has a higher number of learning parameters due to the two LSTM layers.
 More specifically, there are 122101 learning parameters to the network.
 
@@ -592,7 +595,7 @@ to be crammed onto a single chip. Consequently, machine learning applications
 which perform large numbers of computations on a vast amount of data can see
 huge performance improvements when running on a GPU versus a CPU.
 
-Due to the time advantage the training process of the networks was carried out
+Due to the time advantage, the training process of the networks was carried out
 on a GPU. The training was performed on the High-Performance Computing
 cluster of Cardiff University.
 
@@ -605,10 +608,10 @@ the training data on the the LSTM strategies' performance the networks are train
 on the entire data set and on three unique subsets.
 
 The subsets are based on three collection of opponents. These are a collection
-of best performing strategies, of strategies with ranks across a standard
+of best performing strategies, strategies with ranks across a standard
 tournament and a collection of basic strategies. The details of the subsets are
 given by Table~\ref{table:training_data_sets}.
-A list of the strategies' names using in each subset is given in the Appendix. %TODO fix Appendix.
+A list of the strategies' names used in each subset is given in the Appendix. %TODO fix Appendix.
 
 \newcolumntype{g}{>{\columncolor{Gray}}c}
 \begin{table}[htb]
@@ -683,7 +686,7 @@ given for the StoS networks. Overall the StoS networks, regarding the training
 data set, have maintained a high value of accuracy over the epochs. Whilst
 training on the basic strategies there was a minor decrease, however, the
 accuracy still remained over 0.85 (85\%). The loss function values have also
-remained low over the epochs for all the networks with only a few spikes
+remained low over the epochs, for all the networks, with only a few spikes
 occurring.
 
 \begin{figure}[!htbp]
@@ -709,11 +712,11 @@ occurring.
 
 For the StoP networks there appears to be more variation in the test loss and
 accuracy, Figure~\ref{fig:validation_sequence_to_probability}. This is more evident
-in for the networks that were trained on the top strategies and the strategies
+for the networks that were trained on the top strategies and the strategies
 across ranks. This could indicate that the networks are overfitting. The StoP
-networks that was trained on the entire training data set has managed to maintained
+network trained on the entire training data set has managed to maintained
 a low loss value (at 0.5) and a training accuracy of 0.75. The most successfully
-trained StoP networks appears to be the network trained on the basic strategies.
+trained StoP network appears to be the network trained on the basic strategies.
 
 \begin{figure}[!htbp]
     \begin{subfigure}{\textwidth}
@@ -745,7 +748,6 @@ are evaluated as IPD strategies.
 \section{Validation of LSTM base strategies using a meta tournament analysis}\label{section:rnn_strategy_validation}
 
 This section evaluates the trained LSTM networks as IPD strategies.
-
 A strategy class called the \mintinline{python}{LSTMPlayer} was implemented
 in order for the networks, which are Keras models, to interact in an IPD match
 simulated with APL. The source code for the \mintinline{python}{LSTMPlayer} is
@@ -818,7 +820,7 @@ class LSTMPlayer(axl.Player):
 \end{figure}
 
 The \lstmnetworks trained LSTM networks are used to introduce \lstmstrategies
-new IPD strategies. Each network corresponds to three distinct player with a
+new IPD strategies. Each network corresponds to three distinct players with a
 different opening move. More specifically, three different values of \(p_o\) are
 used here. These are \(p_o = 0\), \(p_o = 1\) and \(p_o = 0.78\). The
 probability 0.78 is the probability that the best response sequences of Chapter
@@ -842,12 +844,13 @@ Algorithm~\ref{algorithm:meta_tournament_lstm_validation}.
         \vspace{0.4cm}
         $\text{result standard}$ $\gets$ Axelrod.tournament$(\text{players}, n, k)$\;}
     \KwRet{result standard}\;
-    \caption{Data collection Algorithm}
+    \caption{Standard tournament result summary collection algorithm}
     \label{algorithm:meta_tournament_lstm_validation}
 \end{algorithm}
 
 For each trial a random size \(s \in [5, 10]\) is selected, and from the
-\numberofstrategiesbestsequences strategies of Appendix, a random list of \(s\) %TODO fix Appendix of Chapter 6. strategies is chosen. The LSTM player is added
+\numberofstrategiesbestsequences strategies of Appendix, a random list of \(s\) strategies is chosen.%TODO fix Appendix of Chapter 6. 
+The LSTM player is then added
 to the list of players, increasing the size to \(s + 1\). For the given list of
 strategies a standard tournament of 200 turns is performed and repeated 50
 times. The number of turns is fixed at 200. In
@@ -860,7 +863,7 @@ in  200 turns, which are a common number of turns used in the IPD literature.
 A total of \metatournamentslstm trials of
 Algorithm~\ref{algorithm:meta_tournament_lstm_validation} have been run. For
 each trial a result summary (in the format of Table~\ref{table:output_result})
-is exported. The performance of the strategies are evaluated on the normalised
+is exported. The performance of the strategies is evaluated on the normalised
 rank \(r\), and more specifically on the median normalised rank \(\bar{r}\). As
 a reminder \(r\) is calculated as a strategy's rank divided by \(N-1\).
 
@@ -882,9 +885,9 @@ The strategy with the lowest \(\bar{r}\) over the \metatournamentslstm
 tournaments is the LSTM strategy based on the StoS network trained over entire
 training set with \(p_o=1\). The strategy achieved a \(\bar{r}\) of 0.222. The
 second most successful performance is by the StoP based strategy trained against
-across the rank strategies with \(p_o=1\). In
+the across the ranks strategies with \(p_o=1\). In
 section~\ref{section:training_a_rnn} it was indicated that the specific network
-was overfitting, however, the strategy based on the network out performs any
+was overfitting, however, as an IPD strategy the outperforms any
 other StoP strategy. There are a few strategies that have achieved a \(\bar{r}\)
 close to 0.3. These include the StoS strategy trained on the entire data set
 with \(p_o=0.78\), and the StoP strategies trained against all strategies,
@@ -893,7 +896,7 @@ across the ranks strategies, and against the basic strategies with \(p_o=1\),
 
 The LSTM strategies that open with cooperation outperform any other strategy
 based on the same network and training data set that does not. From
-Table~\ref{table:normalised_rank_lstm_tournaments} it is indicated the
+Table~\ref{table:normalised_rank_lstm_tournaments} it is indicated that the
 strategies trained on the subsets perform better when they are based on the StoP
 model.
 
@@ -906,10 +909,10 @@ Figure~\ref{fig:normalised_rank_distributions_sequence_to_sequence} gives the
 distributions for \(p_o=0\) have a median higher than 0.66, indicating that
 those strategies on average perform in the bottom half of a tournament. The most
 successful strategy is the strategy trained against all strategies with
-\(p_o=1\). The strategies distribution shows that the strategy ranked highly in
+\(p_o=1\). The strategy's distribution shows that the strategy ranked highly in
 most of the tournament it participated with only a few exceptions. Even if when
 the \(p_o\) is lowered to 0.78 the strategy still performs adequately. The rest
-of the distributions appear to have peaks either in the middle or closer to 1. A
+of the distributions appear to have peaks either at 0.5 or closer to 1. A
 statistical summary of the distributions are given by
 Table~\ref{table:statistic_summary_s_to_s}.
 
@@ -947,7 +950,7 @@ Figure~\ref{fig:normalised_rank_distributions_sequence_to_probability} gives the
 \(r\) distributions for the strategies based on the StoP network. For \(p_o=0\)
 the performance of the strategies remains poorly. The strategies that have been
 trained against all the strategies, across the ranks and basic strategies with
-\(p_o=1\) appears to have managed to win several of the tournaments they
+\(p_o=1\) appear to have won several of the tournaments they
 participated in. The statistics summary of the distributions is given by
 Table~\ref{table:statistic_summary_s_to_p}.
 
@@ -983,16 +986,14 @@ based on the StoP network.}\label{table:statistic_summary_s_to_p}
 
 An interesting question that arises is: what is the probability that a strategy
 rank in the top half of a tournament? This is answered by calculating the
-cumulative distribution function (CFD) of the \(r\) distributions.
-They are given by Figures~\ref{fig:cfd_s_to_s}-\ref{fig:cfd_s_to_p}.
+cumulative distribution function (CFD) of the \(r\) distributions,
+shown by Figures~\ref{fig:cfd_s_to_s}-\ref{fig:cfd_s_to_p}.
 
-For the StoS strategies trained against all the strategies there is a 0.78
-and 0.71 probability that the strategies rank is smaller than 0.5 for \(p_o=1\)
+For the StoS strategies trained on the entire training set there is a 0.78
+and 0.71 probability that the strategies rank is smaller than 0.5, for \(p_o=1\)
 and \(p_o=0.78\) equivalently. For the StoP strategies the highest probabilities
-of ranking in the top half of a tournament are 0.78, 0.76, 0.73 and 0.77 for
-the strategies trained against all strategies with \(p_o=1\), against
-across the rank strategies with \(p_o=1\) and \(p_o=0.78\), and against the
-basic strategies with \(p_o=1\). Overall, the successful strategies covered
+of ranking in the top half of a tournament are 0.78, 0.76, 0.73 and 0.77.
+Overall, the successful strategies covered
 in this section have a 0.70-0.80 probability of being on the top ranks on a
 standard IPD tournament.
 
@@ -1090,10 +1091,10 @@ computer tournaments. On the whole, the analysis of this section has shown that:
 The 24 strategies that have been introduced in this Chapter are based on an
 LSTM archetype. These strategies are based on a complex structure and interpreting
 their behaviour is not trivial. The difference between the strategies is not
-straightforward either. In Chapter~\ref{chapter:literature} a method that
+straightforward either. In Chapter~\ref{chapter:literature_review} a method that
 produces a functional signature of a strategy called fingerprinting was presented.
 More specifically, two types of fingerprints were discussed which were the
-Ashlock's fingerprints and the transitive fingerprints.
+Ashlock fingerprints and the transitive fingerprints.
 
 Ashlock's fingerprints compute the score of a strategy against a spectrum of
 opponents. The basic method is to play the strategy against a probe strategy
@@ -1107,7 +1108,7 @@ data set.
 
 For Figures~\ref{fig:ashlock_fingerprints_tft_s_to_s} and
 \ref{fig:ashlock_fingerprints_tft_s_to_p} Tit For Tat was used as the probe
-strategy. These demonstrate that the strategies that had the same training
+strategy. It is demonstrated that the strategies that had the same training
 process but have a different opening move are quite similar. However, the
 strategies based on different networks and training data sets appear to behave
 in a different way. The only strategy that has some similarities regardless the
@@ -1428,7 +1429,7 @@ def __repr__(self):
 \caption{Implementation of the \mintinline{python}{StochasticLSTMPlayer} class.}\label{fig:stochastic_lstm_player_source_code}
 \end{figure}
 
-The \lstmstrategies strategies that make probabilistic decision at each turn
+The \lstmstrategies strategies that make a probabilistic decision at each turn
 are evaluated on the same \metatournamentslstm tournaments as the strategies
 in section~\ref{section:rnn_strategy_validation}. The \(\bar{r}\) for the
 strategies are given by Table~\ref{table:normalised_rank_lstm_tournaments_stochastic}.
@@ -1446,47 +1447,42 @@ decisions. A \(\bar{r}\) closer to 0 indicates a more successful performance.}
 
 The results of Table~\ref{table:normalised_rank_lstm_tournaments_stochastic}
 demonstrate that the strategies that make a probabilistic decision instead of a
-deterministic, following the opening turn, are all performed very poorly. The
-smallest \(\bar{r}\) is for the StoP strategy trained against across the ranks
-strategies that opens with a cooperation. The strategy has a \(\bar{r}\) of 0.600,
-thus the most successful strategy on average performs on the bottom half of
-the tournaments it participated in.
+deterministic one (following the opening turn) are performed very poorly. The
+smallest \(\bar{r}\) has a value of 0.600. Thus the most successful strategy on
+average performs on the bottom half of the tournaments it participated in.
+
+%TODO include distributions?
 
 
 \section{Chapter Summary}
 
-This Chapter has introduced a total of \lstmnetworks new IPD strategies based on
-LSTM networks. LSTMs have received a lot of attention in the machine learning
-literature due to their remarkable results on applications such as speech
-recognition. However, LSTMs have not received much attention in the IPD
-literature.
-
-The advantage of using LSTMs contrary to feed forward networks is that the LSTM
-incorporate a mechanism of memory, as presented in
-section~\ref{section:artificial_neural_networks}. LSTM work with inputs in the
+This Chapter has introduced a total of \lstmstrategies new IPD strategies based
+on LSTM networks. The advantage of using LSTMs contrary to feed forward networks
+is that the LSTM incorporate a mechanism of memory. This allows the networks
+to use a history of actions to make a prediction. LSTMs work with inputs in the
 form of sequences. The collection of best response sequences of
 Chapter~\ref{chapter:best_response_sequence} was purposely generated so that
 LSTMs could be trained to play optimal against a list of known IPD strategies.
 
 Two types of LSTM networks have been trained in this Chapter. These were
-refereed to as the sequence to sequence network and the sequence to probability
+referred to as the sequence to sequence network and the sequence to probability
 network. The differences between the networks were discussed in
 section~\ref{section:training_a_rnn}. The networks were trained not only on a
-single a training data set, but on four different training data sets generated
+single training data set, but on four different training data sets generated
 by the collection of best response strategies. Three sub sets of the training
 data set were consider to understand the effect of the training data on the
 network's performance in a IPD match. The subsets included the best response
 strategies to top performing strategies, to strategies with ranks across a
-standard tournament and the a set of basic strategies. The networks were
+standard tournament and a set of basic strategies. The networks were
 developed and trained using the open source package Keras, and the training
 process was carried out on a GPU.
 
 A total of \lstmnetworks LSTM networks were trained, and those corresponded to
 \lstmstrategies strategies when the opening move was taken into account. The
 opening move of an LSTM strategy had to be manually defined and three different
-values were chosen to carried of the evaluation analysis. These were opening
+values were chosen to carried out the evaluation analysis. These were opening
 with a defection, with a cooperating, and with a 0.78 probability of
-cooperation. The performance of the \lstmstrategies LSTM strategies were
+cooperating. The performance of the \lstmstrategies LSTM strategies were
 evaluated in \metatournamentslstm standard tournaments. The results of the
 meta tournament analysis demonstrated that the strategies trained on the entire
 data set performed well in the \metatournamentslstm standard tournaments
@@ -1495,7 +1491,8 @@ subsets performed well only for the StoP network. The strategies that performed
 well in the analysis of this Chapter have a high probability of ranking
 in the top half of any standard tournament. This demonstrates that LSTM
 strategies trained on a collection of sequences can lead to successful behaviours
-in the IPD.
+in the IPD. This was the case however when strategies made deterministic
+decisions based on the LSTMs predictions.
 
 An interesting result demonstrated by the analysis was the effect of the opening
 with a cooperation. The most successful strategies of this Chapter have been
