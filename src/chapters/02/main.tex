@@ -74,10 +74,6 @@ individual and the collective rationality reflected in the choices of a
 population whose members are unknown and its size unspecified, thereby opening a
 new avenue of research''.
 
-% In a collaboration with a colleague, Douglas Dion,
-% Axelrod in~\cite{Axelrod1988} summarized a number of works that were immediately
-% inspired from the ``Evolution of Cooperation''
-
 The first reported computer tournament took place in 1980~\cite{Axelrod1980a}. 
 Axelrod asked researchers to design a strategy with the purpose of winning an IPD
 tournament. A
@@ -126,14 +122,23 @@ had many variants trying to build upon it's success, for example
 
 Despite the larger size of the second tournament none of the new entries managed
 to outperform the simpler designed strategy. The winner was once again Tit for
-Tat. Axelrod deduced the following guidelines for a strategy to perform well:
+Tat. Axelrod concluded that the strategy's
+robustness was due to four properties, which he adapted into four suggestions on
+doing well in an IPD:
 
 \begin{itemize}
-    \item The strategy would start of by cooperating.
-    \item It would forgive it's opponent after a defection.
-    \item It would always be provoked by a defection no matter the history.
-    \item It was simple.
+    \item Do not be envious by striving for a payoff larger than the opponent's payoff.
+    \item Be ``nice''; Do not be the first to defect.
+    \item Reciprocate both cooperation and defection; Be provocable to retaliation and forgiveness.
+    \item Do not be too clever by scheming to exploit the opponent.
 \end{itemize}
+
+Forgiveness is a strategy's ability to go from a \(DC\) to \(C\) aiming to achieve
+mutual cooperation again, the only way Tit For Tat would end up in \(DC\), in
+environments without noise, is if it had received a defection and then
+retaliated. Subsequently, Tit For Tat would forgive an opponent that apologises
+(in a \(DC\) round) by returning to cooperation, since mutual cooperation is
+better than mutual defection.
 
 The success of Tit for Tat, however, was not unquestionable. Several papers
 showed that stochastic uncertainties severely undercut the effectiveness of
