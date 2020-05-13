@@ -12,7 +12,7 @@
 
 \section{Introduction}
 
-In Chapter~\ref{chapter:meta_tournaments} it was mentioned that consepsualating
+In Chapter~\ref{chapter:meta_tournaments} it was mentioned that conceptualising
 and introducing new strategies has been an important aspect of research to the
 field. The aim of this Chapter is to introduce new IPD strategies based on an
 archetype that has not received much attention in the literature.
@@ -56,7 +56,7 @@ quickly became unable to learn due to the vanishing gradient problem.
 To improve on the standard recurrent networks a new model called the
 \textit{long short-term memory network} (LSTM) was introduced in~\cite{Hochreiter1997}.
 Remembering information for long periods of time is practically
-their default behavior, not something they struggle to learn.
+their default behaviour, not something they struggle to learn.
 
 LSTMs are a set of networks that have been proven to be successfully trained and
 today are being used in a number of innovative applications such as time series
@@ -101,7 +101,7 @@ resulting in no activity in field for almost 20 years. The third peak occurred
 in the early 1980s with the introduction of the back propagation algorithm for
 multilayered networks~\cite{Werbos1974}. Though the algorithm was initially
 proposed by~\cite{Werbos1974} it has been reinvented several times and it was
-popularizes by~\cite{McClelland1986}. Following the introduction of the
+popularises by~\cite{McClelland1986}. Following the introduction of the
 algorithm and the ability to now train more complex models ANNs have received
 considerable interest and are being used in a number of innovative applications
 \cite{Covington2016, Kalogirou2000}.
@@ -139,9 +139,9 @@ hidden node outputs,
 Activation functions \(\phi\) include the:
 
 \begin{itemize}
-    \item Sigmoid function \(\sigma(x)\) which squashes numbers into the range \([0, 1]\).
-    \item Hyperbolic tangent, \(tanh(x)\) which squashes numbers into the range \([-1, 1]\).
-    \item Rectified linear unit, \(ReLU(x)=max(0,x)\).
+    \item sigmoid function \(\sigma(x)\) which squashes numbers into the range \([0, 1]\),
+    \item hyperbolic tangent, \(tanh(x)\) which squashes numbers into the range \([-1, 1]\),
+    \item rectified linear unit, \(ReLU(x)=max(0,x)\).
 \end{itemize}
 
 In turn, the hidden layer is fully connected to an output layer. The
@@ -442,7 +442,7 @@ Equation~(\ref{eq:sequence_to_probability_inputs_outputs_example}).
 The open source neural-network package Keras~\cite{Chollet2015} is used to
 construct and train the networks. Keras is a library written in Python designed
 to enable fast experimentation with neural networks. Neural layers, cost
-functions, optimizers and activation functions are all standalone modules that
+functions, optimisers and activation functions are all standalone modules that
 can be combined to create new network models.
 
 The Python code for implementing the StoS model is given by
@@ -563,10 +563,10 @@ _________________________________________________________________
 \end{figure}
 
 Keras includes two implementations for an LSTM layer. The class
-\mintinline{python}{LSTM} and the class \mintinline{python}{CCNLSTM} which is
-the class used here. \mintinline{python}{CCNLSTM} provides a faster
+\mintinline{python}{LSTM} and the class \mintinline{python}{CuDNNLSTM} which is
+the class used here. \mintinline{python}{CuDNNLSTM} provides a faster
 implementation of \mintinline{python}{LSTM} with the NVIDIA CUDA Deep Neural Network
-library. The use of the \mintinline{python}{CCNLSTM} class means that the networks
+library. The use of the \mintinline{python}{CuDNNLSTM} class means that the networks
 can be trained on a graphics processing unit (GPU).
 
 \subsection{Training on GPU}
@@ -593,7 +593,7 @@ which perform large numbers of computations on a vast amount of data can see
 huge performance improvements when running on a GPU versus a CPU.
 
 Due to the time advantage the training process of the networks was carried out
-on a GPU. The training was performed on the High-Performance Computing (HPC)
+on a GPU. The training was performed on the High-Performance Computing
 cluster of Cardiff University.
 
 \subsection{Training data sets}
@@ -1424,6 +1424,6 @@ with a cooperation. The most successful strategies of this Chapter have been
 the strategies that cooperated on the first turn. Moreover, the transitive
 fingerprints demonstrated that is because these strategies achieve a higher
 cooperating rate compared to strategies based on the same training process
-that do not. This result reinforces the discussion started ny
+that do not. This result reinforces the discussion started by
 Axelrod: opening with a cooperation is a property that
 successful strategies in a IPD competition need to have.
