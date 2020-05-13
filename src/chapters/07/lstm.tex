@@ -18,13 +18,13 @@
 
         \node[right=1cm of layer] (eq) {$=$};
 
-        \node[right=2cm of layer, chain, orange!20] (layer1) {\includegraphics[width=\textwidth]{src/chapters/07/cell}};
+        \node[right=2cm of layer, chain, orange!20] (layer1) {\includegraphics[width=\textwidth]{src/chapters/07/img/cell}};
         \node[input, font=\boldmath]  (i1) at ($(layer1)+(-.88, -2.15)$) {$x_1$};
         \node[output, font=\boldmath] (o1) at ($(layer1)+(1.005, 2.25)$) {$\hat{y}_1$};
         \draw [<-, thick, black] (o1) -- ++ (0, -1.46);
         \draw [->, thick, black] (i1) -- ++ (0, 1.4);
 
-        \node[right=1cm of layer1, chain, orange!20] (layer2) {\includegraphics[width=\textwidth]{src/chapters/07/cell}};
+        \node[right=1cm of layer1, chain, orange!20] (layer2) {\includegraphics[width=\textwidth]{src/chapters/07/img/cell}};
         \node[input, font=\boldmath]  (i2) at ($(layer2)+(-.88, -2.15)$) {$\mathbf{x_2}$};
         \node[output, font=\boldmath] (o2) at ($(layer2)+(1.005, 2.25)$) {$\hat{y}_2$};
         \draw [<-, thick, black] (o2) -- ++ (0, -1.46);
@@ -32,7 +32,7 @@
 
         \node[right=1cm of layer2] (dots) {\Huge{$\dots$}};
 
-        \node[right=.5cm of dots, chain, minimum width=7em, orange!20] (layer4) {\includegraphics[width=\textwidth]{src/chapters/07/cell}};
+        \node[right=.5cm of dots, chain, minimum width=7em, orange!20] (layer4) {\includegraphics[width=\textwidth]{src/chapters/07/img/cell}};
         \node[input, font=\boldmath]  (i4) at ($(layer4)+(-.88, -2.15)$) {$\mathbf{x_t}$};
         \node[output, font=\boldmath] (o4) at ($(layer4)+(1.005, 2.25)$) {$\hat{y}_t$};
         \draw [<-, thick, black] (o4) -- ++ (0, -1.46);
