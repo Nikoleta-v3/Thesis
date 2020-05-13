@@ -483,7 +483,7 @@ parameters to the StoS model.
 
 >>> model.add(Dense(1, activation="sigmoid"))
 >>> model.summary()
-Model: "sequential_1
+Model: "sequential_1"
 _________________________________________________________________
 Layer (type)                 Output Shape              Param #   
 =================================================================
@@ -1370,10 +1370,88 @@ cooperating rate compared to strategies that do not.
     network against the list of opponents from~\cite{Beaufils1997}.}\label{fig:transitive_fingerprints_beautil_s_to_p}
 \end{figure}
 
-% \subsection{Stochastic LSTM strategies}
+\subsection{Stochastic LSTM strategies}
 
-% Another question is how is the performance affected if the player did not make
-% deterministic actions but probabilistic.
+The LSTM strategies that have been considered so far make a deterministic
+decision based on the networks predictions. This was discussed in
+section~\ref{section:rnn_strategy_validation}. Another variation of the LSTM
+strategies that has been considered are strategies that make a probabilistic
+choice based on the prediction. A strategy called the
+\mintinline{python}{StochasticLSTMPlayer} has been implemented to simulate the
+behaviour of these strategies. The source code for the
+\mintinline{python}{StochasticLSTMPlayer} is given by
+Figure~\ref{fig:stochastic_lstm_player_source_code}.
+
+\begin{figure}[!htbp]
+\begin{sourcepy}
+import numpy as np
+
+import axelrod as axl
+from axelrod.random_ import random_choice
+from keras.layers import LSTM, Dense, Dropout
+from keras.models import Sequential
+
+C, D = axl.Action.C, axl.Action.D
+
+
+class StochasticLSTMPlayer(axl.Player):
+name = "Stochastic LSTM Player"
+classifier = {
+    "memory_depth": float("inf"),
+    "stochastic": True,
+    "inspects_source": False,
+    "manipulates_source": False,
+    "manipulates_state": False,
+}
+
+def __init__(self, model, reshape_history_funct, opening_probability=0.78):
+    self.model = model
+    self.opening_probability = opening_probability
+    self.reshape_history_function = reshape_history_funct
+    super().__init__()
+
+def strategy(self, opponent):
+    if len(self.history) == 0:
+        return random_choice(self.opening_probability)
+
+    history = [action.value for action in opponent.history]
+    prediction = float(
+        self.model.predict(self.reshape_history_function(history))[0][-1]
+    )
+
+    return random_choice(prediction)
+
+def __repr__(self):
+    return self.name
+
+\end{sourcepy}
+\caption{Implementation of the \mintinline{python}{StochasticLSTMPlayer} class.}\label{fig:stochastic_lstm_player_source_code}
+\end{figure}
+
+The \lstmstrategies strategies that make probabilistic decision at each turn
+are evaluated on the same \metatournamentslstm tournaments as the strategies
+in section~\ref{section:rnn_strategy_validation}. The \(\bar{r}\) for the
+strategies are given by Table~\ref{table:normalised_rank_lstm_tournaments_stochastic}.
+
+\begin{table}[!htbp]
+    \begin{center}
+    \resizebox{.9\textwidth}{!}{
+        \input{src/chapters/07/tex/normalised_ranks_table_stochastic_strategies.tex}
+    }
+\end{center}
+\caption{The median normalised ranks of the 24 LSTM strategies that make stochastic
+decisions. A \(\bar{r}\) closer to 0 indicates a more successful performance.}
+\label{table:normalised_rank_lstm_tournaments_stochastic}
+\end{table}
+
+The results of Table~\ref{table:normalised_rank_lstm_tournaments_stochastic}
+demonstrate that the strategies that make a probabilistic decision instead of a
+deterministic, following the opening turn, are all performed very poorly. The
+smallest \(\bar{r}\) is for the StoP strategy trained against across the ranks
+strategies that opens with a cooperation. The strategy has a \(\bar{r}\) of 0.600,
+thus the most successful strategy on average performs on the bottom half of
+the tournaments it participated in.
+
 
 \section{Chapter Summary}
 
