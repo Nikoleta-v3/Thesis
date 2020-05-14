@@ -127,7 +127,7 @@ hidden layer is given by Figure~\ref{fig:ann}.
 \end{figure}
 
 A feed forward network is composed by an input layer, hidden layers, and an
-output layer. The networks' input is a vector \(x\). The dimensionality, or
+output layer~\ref{Krose1993, Jain1996}. The networks' input is a vector \(x\). The dimensionality, or
 number of nodes of the input layer is depended on the dimensionality of \(x\).
 Each element of the input vector is connected to the hidden layer via a set of
 learned weights. The hidden layer also consists of nodes. The number of
@@ -136,7 +136,7 @@ hidden node outputs,
 
 \[h_j = \phi (\sum_{i} w_{ij} x_{i}), \text{where } \phi  \text{ is an activation function}.\]
 
-Frequently used activation functions include the:
+Frequently used activation functions~\cite{Krose1993, Karlik2011} include the:
 
 \begin{itemize}
     \item sigmoid function \(\sigma(x)\) which squashes numbers into the range \([0, 1]\),
@@ -168,8 +168,8 @@ and \(V \in \R^{2 \times 500}\), thus increasing the dimensionality of the hidde
 layer corresponds to more parameters.
 
 To train a ANN a set of values for the learning parameters need to be found so
-that the error on the training data is minimised. The function that measures
-error is called the \textit{loss function}. A loss function commonly used is the
+that the error on the training data is minimised~\cite{Gurney2007}. The function that measures
+error is called the \textit{loss function}. Loss functions include the
 \textit{cross entropy} denoted as \(L(y, \hat{y})\) where \(\hat{y}\) is the
 prediction and \(y\) the true output. For \(M\) training examples and \(K\)
 classes the cross entropy error is given by Equation~(\ref{eq:cross_entropy}).
@@ -178,8 +178,8 @@ classes the cross entropy error is given by Equation~(\ref{eq:cross_entropy}).
     L(y, \hat{y}) = - \frac{1}{M} \sum_{m\in M} \sum_{k \in K} y_{m, k} \text{log}(\hat{y}_{m, k})
 \end{equation}
 
-The minimum of the loss function is calculated using the gradients decent
-algorithm. The gradient decent algorithm relies on the gradients. The gradients
+The minimum of the loss function is calculated using the gradient descent algorithm
+\cite{Ruder2016}. The gradient decent algorithm relies on the gradients. The gradients
 are the vector of derivatives of the loss function with respect to the learning
 parameters, thus \(\frac{\partial{L}}{\partial{W}}\) and
 \(\frac{\partial{L}}{\partial{V}}\). These gradients are calculated with the
