@@ -987,10 +987,14 @@ Table~\ref{table:statistic_summary_s_to_p}.
 based on the StoP network.}\label{table:statistic_summary_s_to_p}
 \end{table}
 
-An interesting question that arises is: what is the probability that a strategy
-rank in the top half of a tournament? This is answered by calculating the
-cumulative distribution function (CFD) of the \(r\) distributions,
-shown by Figures~\ref{fig:cfd_s_to_s}-\ref{fig:cfd_s_to_p}.
+An interesting question that arises is: what is the probability that a LSTM
+strategy ranks in the top half of a standard tournament? This is answered by
+calculating the cumulative distribution function (CFD) of \(r\). CFD is the
+cumulative probability for a given value. Thus, it can be used to to determine
+the probability that a random observation that is taken from the population will
+be less than or equal to a certain value. In the case here, that is the
+probability that \(r < 0.5\). The CFDs are shown by
+Figures~\ref{fig:cfd_s_to_s}-\ref{fig:cfd_s_to_p}.
 
 For the StoS strategies trained on the entire training set there is a 0.78
 and 0.71 probability that the strategies rank is smaller than 0.5, for \(p_o=1\)
@@ -1003,27 +1007,15 @@ standard IPD tournament.
 \begin{figure}[!htbp]
     \begin{subfigure}{.45\textwidth}
     \includegraphics[width=\textwidth]{src/chapters/07/img/cfd_to_sequence_all_strategies.pdf}
-    \caption{For \(p_o=0\) the probability that \(r<0.5\) is 0.350.
-    For \(p_o=1\) the probability that \(r<0.5\) is 0.797.
-    For \(p_o=0.78\) the probability that \(r<0.5\) is 0.717.}
     \end{subfigure}\hfill
     \begin{subfigure}{.45\textwidth}
     \includegraphics[width=\textwidth]{src/chapters/07/img/cfd_to_sequence_top_strategies.pdf}
-    \caption{For \(p_o=0\) the probability that \(r<0.5\) is 0.310.
-    For \(p_o=1\) the probability that \(r<0.5\) is 0.573.
-    For \(p_o=0.78\) the probability that \(r<0.5\) is 0.523.}
     \end{subfigure}
     \begin{subfigure}{.45\textwidth}
     \includegraphics[width=\textwidth]{src/chapters/07/img/cfd_to_sequence_across_ranks_strategies.pdf}
-    \caption{For \(p_o=0\) the probability that \(r<0.5\) is 0.313.
-    For \(p_o=1\) the probability that \(r<0.5\) is 0.303.
-    For \(p_o=0.78\) the probability that \(r<0.5\) is 0.280.}
     \end{subfigure}\hfill
     \begin{subfigure}{.45\textwidth}
     \includegraphics[width=\textwidth]{src/chapters/07/img/cfd_to_sequence_basic_strategies.pdf}
-    \caption{For \(p_o=0\) the probability that \(r<0.5\) is 0.207.
-    For \(p_o=1\) the probability that \(r<0.5\) is 0.420.
-    For \(p_o=0.78\) the probability that \(r<0.5\) is 0.387.}
     \end{subfigure}
     \caption{The cumulative distribution function (CFD)
     for the \(r\) distributions for the LSTM strategies based on the StoS
@@ -1033,27 +1025,15 @@ standard IPD tournament.
 \begin{figure}[!htbp]
     \begin{subfigure}{.45\textwidth}
     \includegraphics[width=\textwidth]{src/chapters/07/img/cfd_to_probability_all_strategies.pdf}
-    \caption{For \(p_o=0\) the probability that \(r<0.5\) 0.207.
-    For \(p_o=1\) the probability that \(r<0.5\) 0.783.
-    For \(p_o=0.78\) the probability that \(r<0.5\) 0.567.}
     \end{subfigure}\hfill
     \begin{subfigure}{.45\textwidth}
     \includegraphics[width=\textwidth]{src/chapters/07/img/cfd_to_probability_top_strategies.pdf}
-    \caption{For \(p_o=0\) the probability that \(r<0.5\) 0.503.
-    For \(p_o=1\) the probability that \(r<0.5\) 0.633.
-    For \(p_o=0.78\) the probability that \(r<0.5\) 0.610.}
     \end{subfigure}
     \begin{subfigure}{.45\textwidth}
     \includegraphics[width=\textwidth]{src/chapters/07/img/cfd_to_probability_across_ranks_strategies.pdf}
-    \caption{For \(p_o=0\) the probability that \(r<0.5\) 0.550.
-    For \(p_o=1\) the probability that \(r<0.5\) 0.763.
-    For \(p_o=0.78\) the probability that \(r<0.5\) 0.733.}
     \end{subfigure}\hfill
     \begin{subfigure}{.45\textwidth}
     \includegraphics[width=\textwidth]{src/chapters/07/img/cfd_to_probability_basic_strategies.pdf}
-    \caption{For \(p_o=0\) the probability that \(r<0.5\) 0.207.
-    For \(p_o=1\) the probability that \(r<0.5\) 0.779.
-    For \(p_o=0.78\) the probability that \(r<0.5\) 0.607.}
     \end{subfigure}
     \caption{The cumulative distribution function (CFD)
     for the \(r\) distributions for the LSTM strategies based on the StoP
@@ -1373,6 +1353,7 @@ cooperating rate compared to strategies that do not.
     \caption{Transitive fingerprints for the LSTM strategies based on the StoP
     network against the list of opponents from~\cite{Beaufils1997}.}\label{fig:transitive_fingerprints_beautil_s_to_p}
 \end{figure}
+
 
 \subsection{Stochastic LSTM strategies}
 
