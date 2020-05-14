@@ -561,26 +561,30 @@ can be trained on a graphics processing unit (GPU).
 
 \subsection{Training on GPU}
 
-Conventionally the execution of computer code happens on the central processing unit
-(CPU). The CPU, also called main processor, is essentially the brain of any
-computing device. Architecturally the CPU is composed of just a few cores
-designed to support an extremely broad variety of tasks.
+Conventionally the execution of computer code happens on the central processing
+unit (CPU). The CPU, also called main processor, is essentially the brain of any
+computing device~\cite{Berger2005}. Architecturally the CPU is composed of just
+a few cores designed to support an extremely broad variety of tasks.
 
 A graphical processing unit (GPU), on the other hand, is composed of hundred of
 cores designed to process a set of simpler and more identical computations in
-parallel. GPUs were initially designed as dedicated graphical rendering
-workhorses of computer games but were later enhanced to accelerate other
-geometric calculations. NVIDIA created a parallel computing architecture and
-platform for its GPUs called CUDA, which gave developers access and the ability
-to express simple processing operations in parallel through code.
+parallel. GPUS were initially designed as dedicated graphical rendering
+workhorses of computer games, however, as stated by~\cite{Catanzaro2008}
+graphics processors transitioned from their initial role to general purpose
+engines for high throughput floating-point computation.
 
 A CPU core is more powerful than a GPU core, however, the vast majority of this
-power goes unused by machine learning applications. A GPU core is optimised
-exclusively for data computations and because of this singular focus a GPU core
-is simpler and has a smaller die area than a CPU, allowing many more GPU cores
-to be crammed onto a single chip. Consequently, machine learning applications
-which perform large numbers of computations on a vast amount of data can see
-huge performance improvements when running on a GPU versus a CPU.
+power goes unused by machine learning applications. Machine learning
+applications which perform large numbers of computations on a vast amount of
+data can see huge performance improvements when running on a GPU versus a CPU.
+
+NVIDIA's CUDA programming model~\cite{Harris2008} gave developers access and the
+ability to express simple processing operations in parallel through code. In
+2015, \cite{Steinkraus2005} presented a generic 2 layer fully connected neural
+network GPU implementation which yielded to faster training over a CPU. In 2008,
+\cite{Raina2009} was the first really important work to introduce GPUs to large neural
+networks. The usage of GPUs in machine learning however was popularised in
+2012 by~\cite{Krizhevsky2012}.
 
 Due to the time advantage, the training process of the networks was carried out
 on a GPU. The training was performed on the High-Performance Computing
