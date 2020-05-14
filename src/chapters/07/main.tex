@@ -294,11 +294,23 @@ step as demonstrated by Figure~\ref{fig:lstm}.
     \caption{Graphical representation of an LSTM network.}\label{fig:lstm}
 \end{figure}
 
-LSTM unique architecture allows them to be trained with the back propagation
-algorithm. The networks were chosen to train a variety of IPD strategies because
-of their ability to use a history of actions to make a prediction.
-The training of
-an LSTM model in this Chapter is carried with the open source project Keras.
+Feed forward networks are a powerful technique when used for image recognitions
+and many other applications. One of the networks' limitation is that there is no
+memory associated with them, which is a problem for sequential data. RNN address that
+issue by including a feedback look that lets them maintain information in
+``memory'' over time. However, it can be difficult to train standard RNNs to
+solve problems that require learning long-term temporal dependencies. This is
+because the gradient of the loss function decays exponentially with time. LSTMs
+are a type of RNN that use both a short-term and a long-term memory component.
+The long-term memory component is the cell gate which as it was presented a set
+of gates is used to control when information enters the memory, when it's
+output, and when it's forgotten. This architecture lets them learn longer-term
+dependencies and to be trained using the back propagation algorithm. This makes
+LSTM are great tool for anything that has a sequence.
+
+The networks were chosen to train a variety of IPD strategies because of their
+ability to use a history of actions to make a prediction. The training of an
+LSTM model in this Chapter is carried with the open source project Keras.
 Details of the training process are presented in
 section~\ref{section:training_a_rnn}.
 
