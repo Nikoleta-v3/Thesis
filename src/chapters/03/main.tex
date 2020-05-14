@@ -168,7 +168,7 @@ show the metadata of the article received by each source.
 
 >> article
 [{'id': '10.1371/journal.pone.0028576',
-'journal': 'PLoS ONE',
+'journal': 'PLOS ONE',
 'eissn': '1932-6203',
 'publication_date': '2011-12-14T00:00:00Z',
 'article_type': 'Research Article',
@@ -360,7 +360,7 @@ class Arxiv(Api):
         if start is not None:
             parameters.append('start={}'.format(start))
         if year is not None:
-            print('ArXiv does not support argument year.')
+            print('arXiv does not support argument year.')
 
         return parameters
 

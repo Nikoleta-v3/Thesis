@@ -8,7 +8,7 @@
     The limitations of extortion and restricted memory''} \\
     Available at: \url{arxiv.org/abs/1911.12112} \\
     Associated data set: \cite{glynatsi2019} \\
-    Axerod-Python library version: 4.4.0 \\ \vspace{.5cm}
+    Axelrod-Python library version: 4.4.0 \\ \vspace{.5cm}
     The manuscript's abstract is the following:
 \end{center}
 
@@ -530,10 +530,10 @@ Figure~\ref{fig:reactive_example_get_candidate_set}.
 >>> opponents
 [array([0.51394334, 0.77316505, 0.87042769, 0.00804695])]
 
->>> candinate_set = opt_mo.reactive_best_response.get_candinate_reactive_best_responses(
+>>> candidate_set = opt_mo.reactive_best_response.get_candidate_reactive_best_responses(
 ...     opponents
 ... )
->>> candinate_set
+>>> candidate_set
 {(0.913428410721382+0j), 0.6964731896521483, 0.2775453690890986, 0, 1}
 
 \end{usagepy}
@@ -557,12 +557,12 @@ Figure~\ref{fig:reactive_example_utility}.
 >>> import opt_mo
 
 >>> opponents = [np.array([0.51394334, 0.77316505, 0.87042769, 0.00804695])]
->>> candinate_set = opt_mo.reactive_best_response.get_candinate_reactive_best_responses(
+>>> candidate_set = opt_mo.reactive_best_response.get_candidate_reactive_best_responses(
 ...     opponents
 ... )
 
 >>> opt_p1, opt_p2, score = opt_mo.reactive_best_response.get_argmax(
-...     opponents, candinate_set
+...     opponents, candidate_set
 ... )
 >>> opt_p1, opt_p2
 (0, 0.6964731842832972)
