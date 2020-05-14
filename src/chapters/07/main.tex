@@ -355,30 +355,23 @@ the pairs where the number of turns \(N \in [1, 204]\). For example
 Table~\ref{table:adaptive_vs_best_response_binary_lstm} corresponds to the
 following training samples,
 
-\begin{equation}\label{eq:sequence_to_sequence_inputs_outputs_example}
-    \text{inputs} =
-    \begin{bmatrix}
-        1 &  &  \\
-        1 & 1 &  \\
-        1 & 1 & 1 \\
-        1 & 1 & 1 & 1 \\
-        1 & 1 & 1 & 1 & 1 \\
-        1 & 1 & 1 & 1 & 1 & 1\\
-        1 & 1 & 1 & 1 & 1 & 1 & 0 \\
-        \vdots & \vdots & \vdots & \vdots & \vdots & \vdots & \vdots \\
-    \end{bmatrix}
-    \text{expected outputs} =
-    \begin{bmatrix}
-        1 &  &  \\
-        1 & 1 &  \\
-        1 & 1 & 0 \\
-        1 & 1 & 0 & 0 \\
-        1 & 1 & 0 & 0 & 0 \\
-        1 & 1 & 0 & 0 & 0 & 0\\
-        1 & 1 & 0 & 0 & 0 & 0 & 0 \\
-        \vdots & \vdots & \vdots & \vdots & \vdots & \vdots & \vdots \\
-    \end{bmatrix}.
-\end{equation}
+\begin{align}\label{eq:sequence_to_sequence_inputs_outputs_example}
+x = & \begin{bmatrix} 1 \end{bmatrix} &
+\hat{y} = & \begin{bmatrix} 1 \end{bmatrix} \nonumber \\
+x = & \begin{bmatrix} 1 & 1 \end{bmatrix} &
+\hat{y} = & \begin{bmatrix} 1 & 1 \end{bmatrix} \nonumber \\
+x = & \begin{bmatrix} 1 & 1 & 1 \end{bmatrix} &
+\hat{y} = & \begin{bmatrix} 1 & 1 & 0 \end{bmatrix} \nonumber \\
+x = & \begin{bmatrix} 1 & 1 & 1 & 1 \end{bmatrix} &
+\hat{y} = & \begin{bmatrix} 1 & 1 & 0 & 0 \end{bmatrix} \\
+x = & \begin{bmatrix} 1 & 1 & 1 & 1 & 1 \end{bmatrix} &
+\hat{y} = & \begin{bmatrix} 1 & 1 & 0 & 0 & 0 \end{bmatrix} \nonumber \\
+x = & \begin{bmatrix} 1 & 1 & 1 & 1 & 1 & 1\end{bmatrix} &
+\hat{y} = & \begin{bmatrix} 1 & 1 & 0 & 0 & 0 & 0\end{bmatrix} \nonumber \\
+x = & \begin{bmatrix} 1 & 1 & 1 & 1 & 1 & 1 & 0 \end{bmatrix} &
+\hat{y} = & \begin{bmatrix} 1 & 1 & 0 & 0 & 0 & 0 & 0 \end{bmatrix} \nonumber \\
+\vdots & & \vdots \nonumber
+\end{align}
 
 Subsequently, the training data set retrieved from the collection of best
 responses has a total of \(\totalsequences \times 204 = \trainingpoint\)
@@ -415,30 +408,24 @@ Equation~(\ref{eq:sequence_to_sequence_inputs_outputs_example}) whereas the
 training samples for the StoP network are in the form of
 Equation~(\ref{eq:sequence_to_probability_inputs_outputs_example}).
 
-\begin{equation}\label{eq:sequence_to_probability_inputs_outputs_example}
-    \text{inputs} =
-    \begin{bmatrix}
-        1 &  &  \\
-        1 & 1 &  \\
-        1 & 1 & 1 \\
-        1 & 1 & 1 & 1 \\
-        1 & 1 & 1 & 1 & 1 \\
-        1 & 1 & 1 & 1 & 1 & 1\\
-        1 & 1 & 1 & 1 & 1 & 1 & 0 \\
-        \vdots & \vdots & \vdots & \vdots & \vdots & \vdots & \vdots \\
-    \end{bmatrix}
-    \text{expected output} =
-    \begin{bmatrix}
-        1 \\
-        1 \\
-        0 \\
-        0 \\
-        0 \\
-        0 \\
-        0 \\
-        \vdots \\
-    \end{bmatrix}
-\end{equation}
+\begin{align}\label{eq:sequence_to_probability_inputs_outputs_example}
+x = & \begin{bmatrix} 1 \end{bmatrix} &
+\hat{y} = & \begin{bmatrix} 1 \end{bmatrix} \nonumber \\
+x = & \begin{bmatrix} 1 & 1 \end{bmatrix} &
+\hat{y} = & \begin{bmatrix} 1 \end{bmatrix} \nonumber \\
+x = & \begin{bmatrix} 1 & 1 & 1 \end{bmatrix} &
+\hat{y} = & \begin{bmatrix} 0 \end{bmatrix} \nonumber \\
+x = & \begin{bmatrix} 1 & 1 & 1 & 1 \end{bmatrix} &
+\hat{y} = & \begin{bmatrix} 0 \end{bmatrix} \\
+x = & \begin{bmatrix} 1 & 1 & 1 & 1 & 1 \end{bmatrix} &
+\hat{y} = & \begin{bmatrix} 0 \end{bmatrix} \nonumber \\
+x = & \begin{bmatrix} 1 & 1 & 1 & 1 & 1 & 1\end{bmatrix} &
+\hat{y} = & \begin{bmatrix} 0 \end{bmatrix} \nonumber \\
+x = & \begin{bmatrix} 1 & 1 & 1 & 1 & 1 & 1 & 0 \end{bmatrix} &
+\hat{y} = & \begin{bmatrix} 0 \end{bmatrix} \nonumber \\
+\vdots & & \vdots \nonumber
+\end{align}
+
 
 \subsection{Building the networks with Keras}
 
