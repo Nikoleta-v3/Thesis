@@ -65,9 +65,6 @@ def bibliography(c):
     bib_database.entries.reverse()
     entries = bib_database.entries
 
-    # for entry in entries:
-    #     entry["ID"] = entry["ID"].capitalize()
-
     unique_titles = set(titles)
 
     # Drop duplicates on title and keep track of their keys
@@ -151,3 +148,18 @@ def doctest(c):
         chapter = chapter = str(path).split('chapters/')[-1][:2]
         print(f'Testing chapter {chapter}')
         c.run(f"python -m doctest -v {path}")
+
+@task
+def todos(c):
+    """
+    Check for TODOs
+    """
+    book = list(pathlib.Path("./src/").glob("chapters/0*/main.tex"))
+    exit_codes = [0]
+    for path in book:
+        latex = path.read_text()
+        if 'TODO' in latex:
+            print(f"TODO in {path}.")
+            exit_codes.append(1)
+
+    sys.exit(max(exit_codes))
