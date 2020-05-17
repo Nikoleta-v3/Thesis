@@ -1,5 +1,4 @@
-\chapter{Training long short-term memory networks to play the Iterated Prisoner's Dilemma}\label{chapter:lstm}
-% TODO another possible title: Machine learning produces successful Iterated Prisoner's Dilemma strategies based on long short-term memory networks
+\chapter{Training long short-term memory networks produces successful Prisoner's Dilemma strategies}\label{chapter:lstm}
 
 \begin{center}
     The research reported in this Chapter has been carried out with:
@@ -20,7 +19,7 @@ archetype that has not received much attention in the literature.
 In Chapter~\ref{chapter:meta_tournaments} it was concluded that one of the
 properties successful strategies in a IPD competition need to have is
 cleverness/complexity. Complexity can confer to adaptability, and adaptability
-is important in performing well in diverse set of environments. This was
+is important in performing well in diverse sets of environments. This was
 established not only in Chapter~\ref{chapter:meta_tournaments} but also from the
 results of Chapter~\ref{chapter:memory_one}. The set of complex strategies that
 ranked highly across distinct tournaments in
@@ -45,9 +44,9 @@ the form of sequences. RNNs were firstly considered as an archetype in 1996.
 In~\cite{Sandholm1996} a RNN which considered a single previous step
 as an input was trained via a \(Q\) learning algorithm to play against a single
 opponent. The opponent was either the strategy Tit For Tat or another \(Q\)
-learning strategy. The results of~\cite{Sandholm1996} although were somewhat
+learning strategy. The results of~\cite{Sandholm1996} although somewhat
 promising, the RNN player learned to optimally play against Tit For Tat,
-were limited.
+they were limited.
 
 The limitations of~\cite{Sandholm1996} could potentially have been due to the
 limitations of the RNNs themselves. As it will be discussed later in
@@ -55,7 +54,7 @@ section~\ref{section:artificial_neural_networks}, RNNs
 quickly became unable to learn due to the vanishing gradient problem.
 To improve on the standard recurrent networks a new model called the
 \textit{long short-term memory network} (LSTM) was introduced in~\cite{Hochreiter1997}.
-Remembering information for long periods of time is practically
+Remembering information for long periods of time is 
 their default behaviour, not something they struggle to learn.
 
 LSTMs are a set of networks that have been proven to be successfully trained and
@@ -89,7 +88,7 @@ The rest of the Chapter is structured as follows:
 \section{Artificial, recurrent and long short-term memory neural networks}\label{section:artificial_neural_networks}
 
 ANNs are computing systems vaguely inspired by the biological neural networks
-that constitute animal brains. As stated in~\cite{Jain1996} the research on ANNs
+that constitute brains. As stated in~\cite{Jain1996} the research on ANNs
 has experienced three periods of extensive activity. The first peak was in the
 1940s. The work of~\cite{McCulloch1943} opened the subject by creating a
 computational model for neural networks. The second peak occurred in 1960s with
@@ -99,11 +98,11 @@ learn to classify simple shapes with \(20\times20\) pixels input. However, it
 was impossible for the perceptron to be extended to classification tasks with
 many categories. The limitations of the model were presented
 in~\cite{Minsky1969} which halted the enthusiasm of most researchers in ANNs,
-resulting in no activity in field for almost 20 years. The third peak occurred
+resulting in no activity in the field for almost 20 years. The third peak occurred
 in the early 1980s with the introduction of the back propagation algorithm for
 multilayered networks~\cite{Werbos1974}. Though the algorithm was initially
 proposed by~\cite{Werbos1974} it has been reinvented several times and it was
-popularises by~\cite{McClelland1986}. Following the introduction of the
+popularised by~\cite{McClelland1986}. Following the introduction of the
 algorithm and the ability to now train more complex models, ANNs have received
 considerable interest and are being used today in a number of applications
 \cite{Covington2016, Kalogirou2000}.
@@ -131,8 +130,8 @@ is given by Figure~\ref{fig:ann}.
 \end{figure}
 
 A feed forward network is composed by an input layer, hidden layers, and an
-output layer~\cite{Jain1996, Krose1993}. The networks' input is a vector \(x\). The dimensionality, or
-number of nodes of the input layer is depended on the dimensionality of \(x\).
+output layer~\cite{Jain1996, Krose1993}. The input is a vector \(x\). The dimensionality, or
+number of nodes of the input layer is dependent on the dimensionality of \(x\).
 Each element of the input vector is connected to the hidden layer via a set of
 learned weights. The hidden layer also consists of nodes. The number of
 nodes of the hidden layer is an architectural decision. The \(j^{\text{th}}\)
@@ -171,7 +170,7 @@ were 2 dimensional and the hidden layer had 500 nodes then \(W \in \R^{2 \times 
 and \(V \in \R^{500 \times 2}\). Increasing the dimensionality of the hidden
 layer corresponds to larger number of learning parameters.
 
-To train a ANN a set of values for the learning parameters need to be found so
+To train an ANN a set of values for the learning parameters need to be found so
 that the error on the training data is minimised~\cite{Gurney2007}. The function that measures
 error is called the \textit{loss function}.
 An example of a loss functions is the
@@ -184,14 +183,14 @@ classes the cross entropy error is given by Equation~(\ref{eq:cross_entropy}).
 \end{equation}
 
 The minimum of the loss function is calculated using the gradient descent algorithm
-\cite{Ruder2016}. The gradient decent algorithm relies on the gradients which
+\cite{Ruder2016}. The gradient decent algorithm relies on the gradients which. % TODO Check spelling of descent throughout
 are the vector of derivatives of the loss function with respect to the learning
 parameters. Thus \(\frac{\partial{L}}{\partial{W}}\) and
 \(\frac{\partial{L}}{\partial{V}}\). These gradients are calculated with the
 back propagation algorithm~\cite{Wythoff1993} which is a way of efficiently
 calculating the gradients starting from the output.
 
-An extension of feed forward networks are the recurrent networks. RNNs are
+An extension of feed forward networks are recurrent networks. RNNs are
 capable of processing variable length sequences of inputs. Sequences are data
 samples over a number of time steps. RNNs can receive sequence inputs and output
 sequences of the same length, using their internal state/knowledge to a make a
@@ -210,7 +209,7 @@ is also demonstrated by Figure~\ref{fig:rnn}.
     \caption{Graphical representation of a RNN.}\label{fig:rnn}
 \end{figure}
 
-In RNNs information is passed down by considering that,
+In RNNs information is passed down by using,
 
 \begin{equation*}
     h_t = \phi(Wx_t + Uh_{t-1})
@@ -225,7 +224,7 @@ some weight vector \(U\). In matrix notation RNNs are described by,
 \end{align}
 
 Unfortunately in practice RNNs quickly become unable to learn to connect the
-information. The more time steps to the sequences, the higher the chance that
+information. The longer the sequences, the higher the chance that
 the back propagation gradients either accumulate and explode or vanish down to
 zero. The fundamental difficulties of RNNs were explored in depth
 by~\cite{Bengio1994}. As stated in~\cite{Hochreiter1997}, although RNNs are
