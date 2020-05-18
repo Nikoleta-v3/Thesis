@@ -183,7 +183,7 @@ classes the cross entropy error is given by Equation~(\ref{eq:cross_entropy}).
 \end{equation}
 
 The minimum of the loss function is calculated using the gradient descent algorithm
-\cite{Ruder2016}. The gradient decent algorithm relies on the gradients which. % TODO Check spelling of descent throughout
+\cite{Ruder2016}. The gradient descent algorithm relies on the gradients which.
 are the vector of derivatives of the loss function with respect to the learning
 parameters. Thus \(\frac{\partial{L}}{\partial{W}}\) and
 \(\frac{\partial{L}}{\partial{V}}\). These gradients are calculated with the
@@ -581,7 +581,7 @@ a few cores designed to support an extremely broad variety of tasks.
 A graphical processing unit (GPU), on the other hand, is composed of hundred of
 cores designed to process a set of simpler and more identical computations in
 parallel. GPUs were initially designed as dedicated graphical rendering
-workhorses for computer games. However as stated in~\cite{Catanzaro2008}, %TODO do not change this sentence. the word "computer games" is staying in this thesis
+workhorses for computer games. However as stated in~\cite{Catanzaro2008},
 graphics processors transitioned from their initial role to general purpose
 engines for high throughput floating-point computation.
 
@@ -834,7 +834,7 @@ probability 0.78 is the probability that the best response sequences of Chapter
 \(8 \times 3 =  \lstmstrategies\) IPD strategies are evaluated in this section.
 
 The performance of the LSTM strategies are evaluated and compared in
-\metatournamentslstm standard tournaments similarly to Chapter~\ref{}. The process of collecting the % TODO Add chapter reference.
+\metatournamentslstm standard tournaments similarly to Chapter~\ref{chapter:meta_tournaments}. The process of collecting the
 tournaments results for each strategy is given by
 Algorithm~\ref{algorithm:meta_tournament_lstm_validation}.
 
@@ -869,7 +869,7 @@ in  200 turns, which is a common number of turns used in the IPD literature~\cit
 A total of \metatournamentslstm trials of
 Algorithm~\ref{algorithm:meta_tournament_lstm_validation} have been run. For
 each trial a result summary (in the format of Table~\ref{table:output_result})
-is exported. Similarly to Chapter~\ref{}, the performance of the strategies is evaluated on the normalised. % Add chapter reference
+is exported. Similarly to Chapter~\ref{chapter:meta_tournaments}, the performance of the strategies is evaluated on the normalised.
 rank \(r\), and more specifically on the median normalised rank \(\bar{r}\). As
 a reminder \(r\) is calculated as a strategy's rank divided by \(s-1\).
 
@@ -1087,7 +1087,8 @@ produces a functional signature of a strategy called fingerprinting was
 presented. More specifically, two types of fingerprints were discussed which
 were the Ashlock fingerprints and the transitive fingerprints.
 
-Ashlock's fingerprints~\cite{} compute the score of a strategy against a spectrum of. % TODO Reference Ashlock papers
+Ashlock's fingerprints~\cite{Ashlock2005, Ashlock2008, Ashlock2009,
+Ashlock2010, Ashlock2006a} compute the score of a strategy against a spectrum of.
 opponents. The basic method is to play the strategy against a probe strategy
 with varying noise parameters. The fingerprints for the \lstmstrategies
 strategies based on Ashlock's approach have been generated for the probe
