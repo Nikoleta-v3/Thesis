@@ -235,7 +235,7 @@ A network specifically designed to avoid the long-term dependency problem was
 introduced by~\cite{Hochreiter1997}, called the long short-term memory
 network.
 The core idea to LSTMs is the \textit{cell state} also referred to as the
-long term memory, denote as \(C_t\). The cell state is a vector designed to pass down
+long term memory, denoted as \(C_t\). The cell state is a vector designed to pass down
 information with only a few carefully regulated changes being applied to it
 by structures called \textit{gates}. Gates are composed of a sigmoid neural
 net layer and a point wise multiplication operator. In order to explain
@@ -324,7 +324,7 @@ trained on the collection of best response sequences generated in
 Chapter~\ref{chapter:best_response_sequence}.
 
 The training inputs are the actions of a given strategy for \(N\) turns. The
-expected outputs are the responses to those \(N\) action by the opponent's best
+expected outputs are the responses to those \(N\) actions by the opponent's best
 response sequence. Each pair of opponent's - best response sequence's actions
 is transformed into 204
 training samples. The highest dimensionality of those samples is 204.
@@ -398,8 +398,8 @@ Two types of LSTMs have been trained in this Chapter. These are referred to as:
 \end{itemize}
 
 Both networks take as input a sequence of actions. The StoS network outputs a
-response to each time step of the input sequence. The StoP network only outputs
-a response to the sequence at the last time step. Both networks output a
+response to each time step of the input sequence, thus attempting to recover the entire best response sequence. The StoP network only outputs
+a response to the sequence at the last time step, thus only attempting to figure out what comes next. Both networks output a
 probability which is the probability of cooperating given an opponent's history.
 A graphical representation of the two networks are given by
 Figures~\ref{fig:sequence_to_sequence} and \ref{fig:sequence_to_probability}.
@@ -571,7 +571,7 @@ implementation of \mintinline{python}{LSTM} with the NVIDIA CUDA Deep Neural Net
 library. The use of the \mintinline{python}{CuDNNLSTM} class means that the networks
 can be trained on a graphics processing unit (GPU).
 
-\subsection{Training on GPU}
+\subsection{High performance training}
 
 Conventionally the execution of computer code happens on the central processing
 unit (CPU). The CPU, also called main processor, is essentially the brain of any
@@ -605,9 +605,9 @@ cluster of Cardiff University.
 \subsection{Training data sets}
 
 Section~\ref{section:training_a_rnn} covered the training data set used to train
-the LSTM networks. There are a total \trainingpoint training inputs and expected
-outputs to that data set. In order to understand the effect of the training
-sampled on the LSTM strategies' performance the networks are trained on the
+the LSTM networks. There are a total of \trainingpoint training inputs and expected
+outputs in the data set. In order to understand the effect of the training
+samples on the LSTM strategies' performance the networks are trained on the
 entire data set and on three unique subsets.
 
 The subsets are based on three collection of opponents. These are a collection
@@ -644,7 +644,7 @@ The two different LSTM networks, StoS and StoP, are trained on four
 different training sets. Thus, a total of \(4 \times 2 = \lstmnetworks\)
 LSTM networks have been trained in this Chapter.
 
-The networks were trained using the back propagation algorithm and
+The networks were trained using the back propagation algorithm 
 Adam~\cite{Kingma2014}, instead of the gradient descent method presented in
 section~\ref{section:artificial_neural_networks}.
 Due to the different size of the training data the networks have been trained
