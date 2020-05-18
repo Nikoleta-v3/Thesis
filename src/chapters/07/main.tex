@@ -172,7 +172,7 @@ a weight matrix connecting the hidden and output layers and the output layer
 transforms the raw scores to a probability via a \textit{softmax function}.
 
 The softmax function, referred to also as softargmax~\cite{Goodfellow2016} or
-normalized exponential function~\cite{Bishop2006}, is a function that normalises
+normalised exponential function~\cite{Bishop2006}, is a function that normalises
 a vector of \(M\) real numbers to a probability distribution consisting of \(M\)
 probabilities proportional to the exponentials of the input numbers. The
 normalisation ensures that the sum of the components of the output vector is 1.
@@ -795,7 +795,9 @@ opponent's history. The strategy has an infinite memory because it needs to
 remember all the actions made by the opponent. The prediction of the networks
 correspond to the probability of cooperating. The LSTM strategy makes a deterministic
 decision based on the predicted probability. It cooperates if the prediction
-on the last time step is greater than 0.5, otherwise it defects. In Section~\ref{sec:stochastic-lstm-strategies} the performance of strategy that plays stochastically will be briefly discussed.
+on the last time step is greater than 0.5, otherwise it defects.
+In Section~\ref{sec:stochastic-lstm-strategies} the performance of strategy that
+plays stochastically will be briefly discussed.
 
 \begin{figure}[!htbp]
 \begin{sourcepy}

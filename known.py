@@ -311,5 +311,9 @@ words = {
     "interpretable",
     "NVIDIA",
     "StochasticLSTMPlayer",
-    "ZDExtort"
+    "ZDExtort",
+    "exponentials",
+    "qualifiable",
+    "softargmax",
+    "stochastically",
 }
