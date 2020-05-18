@@ -399,8 +399,8 @@ Two types of LSTMs have been trained in this Chapter. These are referred to as:
 
 Both networks take as input a sequence of actions. The StoS network outputs a
 response to each time step of the input sequence, thus attempting to recover the entire best response sequence. The StoP network only outputs
-a response to the sequence at the last time step, thus only attempting to figure out what comes next. Both networks output a
-probability which is the probability of cooperating given an opponent's history.
+a response to the sequence at the last time step, thus only attempting to figure out what comes next.
+Both networks indicate the predicted action with a probability of cooperating.
 A graphical representation of the two networks are given by
 Figures~\ref{fig:sequence_to_sequence} and \ref{fig:sequence_to_probability}.
 
@@ -1047,19 +1047,6 @@ IPD strategies based on LSTM networks. The performance of the strategies was
 evaluated based on their normalised ranks in \metatournamentslstm standard
 computer tournaments.
 
-On the whole, the analysis of this section has shown that
-the LSTM strategies
-which were trained on the entire data set of best responses were successful
-strategies regardless of the LSTM architecture. Both the StoS and StoP networks
-have produced strategies that can win IPD tournaments, and on average rank on
-the top 30\% of any given standard tournament. Moreover, the LSTM strategies
-trained on subsets of the training data set, perform better when trained with
-the StoP network than the StoS network. The StoP networks for the subsets have
-been trained for a longer number of epochs compared to the StoP network over the
-entire data set. An interesting question is whether the StoP strategy, trained
-on the entire data set, would perform even better than it's equivalent StoS
-strategy if it was trained for longer.
-
 A total of 6 strategies have achieved a \(\bar{r}\) lower than 0.35. Thus, these
 strategies have on average ranked on the top 30\% of a standard tournament.
 These strategies have a 0.70-0.80 probability of ranking in top half of a
@@ -1074,6 +1061,19 @@ with strong opponents. The best response sequences of these strategies could
 have potentially only captured a single behaviour of these strategies, thus not
 providing enough diverse training samples. This could have in turn made the LSTM
 strategies less adaptable to diverse environments.
+
+On the whole, the analysis of this section has shown that
+the LSTM strategies
+which were trained on the entire data set of best responses were successful
+strategies regardless of the LSTM architecture. Both the StoS and StoP networks
+have produced strategies that can win IPD tournaments, and on average rank on
+the top 30\% of any given standard tournament. Moreover, the LSTM strategies
+trained on subsets of the training data set, perform better when trained with
+the StoP network than the StoS network. The StoP networks for the subsets have
+been trained for a longer number of epochs compared to the StoP network over the
+entire data set. An interesting question is whether the StoP strategy, trained
+on the entire data set, would perform even better than it's equivalent StoS
+strategy if it was trained for longer.
 
 Having successfully trained high performing strategies using LSTM networks, 
 the next section will attempt to qualify their behaviour.
