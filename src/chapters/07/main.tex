@@ -237,7 +237,7 @@ network.
 The core idea to LSTMs is the \textit{cell state} also referred to as the
 long term memory, denote as \(C_t\). The cell state is a vector designed to pass down
 information with only a few carefully regulated changes being applied to it
-by structures called \textit{gates}. Gates are composed out of a sigmoid neural
+by structures called \textit{gates}. Gates are composed of a sigmoid neural
 net layer and a point wise multiplication operator. In order to explain
 the cell gate and subsequently how LSTMs make predictions consider
 a LSTM's hidden layer at time step \(t\) given by Figure~\ref{fig:lstm_cell}.
@@ -248,7 +248,7 @@ a LSTM's hidden layer at time step \(t\) given by Figure~\ref{fig:lstm_cell}.
     \caption{An LSTM hidden layer at time step \(t\).}\label{fig:lstm_cell}
 \end{figure}
 
-The cell state and hidden state from the previous time step are feed back
+The cell state and hidden state from the previous time step are fed back
 into the network. Initially, the network decides what information from the
 previous cell state is to be discarded. This decision is made by the
 \textit{forget state}. The forget state considers the hidden state at time
@@ -283,7 +283,7 @@ which have been decided to be discarded. The new candidate values are scaled by 
 much information has been decided to keep from the input. Thus,
 
 \begin{equation}\label{eq:cell_gate}
-    C_{t} = f_{t} * C_{t-1} + i_{t} * \tilde{C}_{t}.
+    C_{t} = f_{t} C_{t-1} + i_{t} \tilde{C}_{t}.
 \end{equation}
 
 The LSTM outputs a hidden state at each time step which is based on the current
@@ -309,10 +309,9 @@ step as demonstrated by Figure~\ref{fig:lstm}.
 
 LSTMs unique architecture allows them to learn longer-term dependencies and to
 be trained using the back propagation algorithm. Hence, they are an exceptional
-model for sequential data. LSTMs were chosen as an archetype because of their
-handling of sequential data. As it was described in
+model for sequential data and this is why they were chosen here. As it was described in
 Chapter~\ref{chapter:best_response_sequence}, the actions of IPD strategies can
-be defined as sequences, and there a collection of best response sequences was
+be defined as sequences, and therefore a collection of best response sequences was
 generated using a heuristic method. In section~\ref{section:training_a_rnn} a
 variety of LSTM networks are trained to predict these best response sequences.
 
