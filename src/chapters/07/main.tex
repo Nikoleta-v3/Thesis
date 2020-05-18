@@ -169,7 +169,19 @@ h & = \phi(Wx) \\ \label{eq:neural_network_equations_two}
 
 where \(W\) is a weight matrix connecting the input and hidden layers, \(V\) is
 a weight matrix connecting the hidden and output layers and the output layer
-transforms the raw scores to a probability via a softmax function.
+transforms the raw scores to a probability via a \textit{softmax function}.
+
+The softmax function, referred to also as softargmax~\cite{Goodfellow2016} or
+normalized exponential function~\cite{Bishop2006}, is a function that normalises
+a vector of \(M\) real numbers to a probability distribution consisting of \(M\)
+probabilities proportional to the exponentials of the input numbers. The
+normalisation ensures that the sum of the components of the output vector is 1.
+The softmax function, denoted as \(s(x_i)\),
+is defined by Equation~(\ref{eq:softmax}).
+
+\begin{equation}\label{eq:softmax}
+    s(x_i) = \frac{e^{x_i}}{\sum\limits_{m=1}^{M} e^{x_m}} \text{ for } i \in 1, \dots, M.
+\end{equation}
 
 \(W\) and \(V\) are the learning parameters of the network. Their dimensionality
 depends on the dimensionality of network's layers. For example if \(x\) and \(\hat{y}\)
