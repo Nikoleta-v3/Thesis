@@ -116,17 +116,24 @@ ANNs based on the connection pattern can be grouped into two categories:
 
 ANNs can be viewed as weighted directed graphs in which artificial neurons are
 nodes and directed edges, with weights, are connections between the neuron
-outputs and the neuron inputs~\cite{Jain1996}. In feed forward networks the
+outputs and the neuron inputs~\cite{Jain1996}. This is demonstrated by Figure~\ref{fig:ann}.
+In feed forward networks the
 graphs have no loops, whereas in recurrent networks loops occur because of feedback
-connections. % TODO maybe here I can add the famous neural networks plot?
+connections.
+
+\begin{figure}[!htbp]
+    \centering
+    \includestandalone[width=.6\textwidth]{src/chapters/07/tex/standard_neural_network_diagram}
+    \caption{A generic representation of an ANN.}\label{fig:ann}
+\end{figure}
 
 A graphical representation of a feed forward network with a single hidden layer
-is given by Figure~\ref{fig:ann}.
+is given by Figure~\ref{fig:feedforward_network}.
 
 \begin{figure}[!htbp]
     \centering
     \includestandalone[width=.5\textwidth]{src/chapters/07/tex/neural_network}
-    \caption{Graphical representation of an ANN.}\label{fig:ann}
+    \caption{Graphical representation of an feed forward network.}\label{fig:feedforward_network}
 \end{figure}
 
 A feed forward network is composed by an input layer, hidden layers, and an
