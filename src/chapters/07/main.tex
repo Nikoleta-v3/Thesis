@@ -764,8 +764,8 @@ arguments:
     \item A Keras model. The input models are the \lstmnetworks trained LSTM networks
     presented in section~\ref{section:training_a_rnn}.
     \item A reshape history function. A function that reshapes the opponent's
-    history to an LSTM input.
-    \item The probability that the strategy cooperates on the first turn denoted
+    history to the appropriate LSTM input.
+    \item The probability that the strategy opens with cooperation on the first turn denoted
     as \(p_o\). The LSTM networks can be used to predict the strategy's next
     action following the opponent's opening turn. Thus, the strategy's opening
     action must be manually defined.
@@ -776,7 +776,7 @@ opponent's history. The strategy has an infinite memory because it needs to
 remember all the actions made by the opponent. The prediction of the networks
 correspond to the probability of cooperating. The LSTM strategy makes a deterministic
 decision based on the predicted probability. It cooperates if the prediction
-on the last time step is greater than 0.5, otherwise it defects.
+on the last time step is greater than 0.5, otherwise it defects. In Section~\ref{sec:stochastic-lstm-strategies} the performance of strategy that plays stochastically will be briefly discussed.
 
 \begin{figure}[!htbp]
 \begin{sourcepy}
@@ -830,11 +830,11 @@ new IPD strategies. Each network corresponds to three distinct players with a
 different opening move. More specifically, three different values of \(p_o\) are
 used here. These are \(p_o = 0\), \(p_o = 1\) and \(p_o = 0.78\). The
 probability 0.78 is the probability that the best response sequences of Chapter
-\ref{chapter:best_response_sequence} open with a cooperation. Thus, a total of
+\ref{chapter:best_response_sequence} opens with a cooperation. Thus, a total of
 \(8 \times 3 =  \lstmstrategies\) IPD strategies are evaluated in this section.
 
 The performance of the LSTM strategies are evaluated and compared in
-\metatournamentslstm standard tournaments. The process of collecting the
+\metatournamentslstm standard tournaments similarly to Chapter~\ref{}. The process of collecting the % TODO Add chapter reference.
 tournaments results for each strategy is given by
 Algorithm~\ref{algorithm:meta_tournament_lstm_validation}.
 
@@ -869,7 +869,7 @@ in  200 turns, which is a common number of turns used in the IPD literature~\cit
 A total of \metatournamentslstm trials of
 Algorithm~\ref{algorithm:meta_tournament_lstm_validation} have been run. For
 each trial a result summary (in the format of Table~\ref{table:output_result})
-is exported. The performance of the strategies is evaluated on the normalised
+is exported. Similarly to Chapter~\ref{}, the performance of the strategies is evaluated on the normalised. % Add chapter reference
 rank \(r\), and more specifically on the median normalised rank \(\bar{r}\). As
 a reminder \(r\) is calculated as a strategy's rank divided by \(s-1\).
 
@@ -888,7 +888,7 @@ tournaments. A \(\bar{r}\) closer to 0 indicates a more successful performance.}
 \end{table}
 
 The strategy with the lowest \(\bar{r}\) over the \metatournamentslstm
-tournaments is the LSTM strategy based on the StoS network trained over entire
+tournaments is the LSTM strategy based on the StoS network trained over the entire
 training set with \(p_o=1\). The strategy achieved a \(\bar{r}\) of 0.222. The
 second most successful performance is by the StoP based strategy trained against
 the across the ranks strategies with \(p_o=1\). In
@@ -903,17 +903,17 @@ across the ranks strategies, and against the basic strategies with \(p_o=1\),
 \(p_o=0.78\) and \(p_o=1\) equivalently.
 
 The LSTM strategies that open with cooperation outperform any other strategy,
-based on the same LSTM networks, that do not. Overall, the best performing
+based on the same LSTM networks. Overall, the best performing
 strategies open with cooperation. The strategies that open with a probabilistic
 cooperation perform better than the strategies that open with defection.
 Interestedly, from Table~\ref{table:normalised_rank_lstm_tournaments} it is
 indicated that the strategies trained on the subsets perform better when they
 are based on the StoP model. There is no intuition as to why that is. The
-StoP networks has more learning parameters and yet it performs better when
+StoP networks have more learning parameters and yet they perform better when
 trained on the smaller training sets than the StoS network. The StoP
 network, trained against the entire data set, has trained for the smallest
 number of epochs. A topic of future work would be to train the specific network
-for longer epochs.
+for more epochs.
 
 Figure~\ref{fig:normalised_rank_distributions_sequence_to_sequence} gives the
 \(r\) distributions for the strategies based on the StoS network. All the
@@ -1001,8 +1001,7 @@ strategy ranks in the top half of a standard tournament?
 This is answered by calculating the cumulative distribution function (CFD) of
 \(r\). CFD is the cumulative probability for a given value. It can be used to
 determine the probability that a random observation taken from the population
-will be less than or equal to a certain value. Thus, what is the probability
-that for a given LSTM strategy \(r < 0.5\). The CFD distributions are shown by
+will be less than or equal to a certain value. The CFD distributions are shown by
 Figures~\ref{fig:cfd_s_to_s}-\ref{fig:cfd_s_to_p}. The demonstrate that the the
 strategies with a \(\bar{r}\) less than 0.333 have a 0.70-0.80 probability of
 being on the top ranks on a standard IPD tournament.
@@ -1072,10 +1071,12 @@ strategies performed poorly. The top ranked strategies consisted of many trained
 strategies from~\cite{Harper2017}. In~\cite{Harper2017} it was shown that these
 strategies managed to exploit weak opponents whilst achieving mutual cooperation
 with strong opponents. The best response sequences of these strategies could
-have potentially only capture a single behaviour of these strategies, thus not
+have potentially only captured a single behaviour of these strategies, thus not
 providing enough diverse training samples. This could have in turn made the LSTM
 strategies less adaptable to diverse environments.
 
+Having successfully trained high performing strategies using LSTM networks, 
+the next section will attempt to qualify their behaviour.
 \subsection{Fingerprinting the LSTM based strategies}
 
 The 24 strategies that have been introduced in this Chapter are based on an LSTM
@@ -1086,7 +1087,7 @@ produces a functional signature of a strategy called fingerprinting was
 presented. More specifically, two types of fingerprints were discussed which
 were the Ashlock fingerprints and the transitive fingerprints.
 
-Ashlock's fingerprints compute the score of a strategy against a spectrum of
+Ashlock's fingerprints~\cite{} compute the score of a strategy against a spectrum of. % TODO Reference Ashlock papers
 opponents. The basic method is to play the strategy against a probe strategy
 with varying noise parameters. The fingerprints for the \lstmstrategies
 strategies based on Ashlock's approach have been generated for the probe
@@ -1098,7 +1099,7 @@ the same training data set.
 
 For Figures~\ref{fig:ashlock_fingerprints_tft_s_to_s} and
 \ref{fig:ashlock_fingerprints_tft_s_to_p} Tit For Tat was used as the probe
-strategy. It is demonstrated that the strategies on same row are quite similar,
+strategy. It is demonstrated that the strategies on same row have similar fingerprints,
 even though their opening move is different. The strategies however based on
 different networks, or even different training data sets, exhibit different
 behaviours. The only set of strategies that have similarities, regardless their
@@ -1166,9 +1167,7 @@ strategies.
 Figures \ref{fig:ashlock_fingerprints_pavlov_s_to_s} and
 \ref{fig:ashlock_fingerprints_pavlov_s_to_p} give the Ashlock fingerprints
 whilst Pavlov is used as a probe. These fingerprints, across the network types,
-training data set and opening moves appear to be more similar. This could
-indicate that when faced against Pavlov these strategies exhibit a similar
-behaviour.
+training data set and opening moves appear to be more similar. 
 
 \begin{figure}[!htbp]
     \begin{subfigure}{\textwidth}
@@ -1228,7 +1227,8 @@ behaviour.
     network when Pavlov is the probe strategy.}\label{fig:ashlock_fingerprints_pavlov_s_to_p}
 \end{figure}
 
-To further explore the similarities of the strategies a set of more
+Ashlock fingerprints do not give an immediate qualifiable understanding of behaviour and so
+to further explore the similarities of the strategies a set of more
 interpretable fingerprints, the transitive fingerprints implemented in APL, have
 also been generated. The transitive fingerprints represent the cooperation rate
 of a strategy against a set of opponents over a number of turns. There are two
@@ -1366,9 +1366,8 @@ more stable.
     network against the list of opponents from~\cite{Beaufils1997}.}\label{fig:transitive_fingerprints_beautil_s_to_p}
 \end{figure}
 
-\subsection{Top LSTM strategies behaviour}
 
-In order to gain a better understanding on the behaviour of the LSTM strategies
+In order to gain a further understanding of the behaviour of the LSTM strategies
 produced by the training, the top performing LSTM strategies are put against a
 list of opponents and their behaviour is explored more in depth.
 
@@ -1417,8 +1416,7 @@ Three LSTM players are matched against these strategies in a tournament of
     Table~\ref{table:scores_s_to_p_basic_against_seven}.
 \end{itemize}
 
-The cooperation rate these strategies achieved against the 7 opponents, the
-transitive fingerprints, are also given by
+The transitive fingerprints of these strategies against the 7 opponents are given by
 Figure~\ref{fig:transitive_fingerprints_against_seven}. It is demonstrated that
 all three LSTM strategies just cooperate against Tit For Tat, Gradual and
 Cooperator. The strategies do not try to exploit their opponents not even once
@@ -1437,8 +1435,10 @@ defections. Thus, the LSTM strategy exhibits more adaptable behaviour than
 Grudger.
 
 The biggest difference between the three LSTM strategies behaviours are when
-matched with ZDExtort2, TF1 and Adaptive. Initially, against TF1 none of the
-three strategies carry out a handshake. The StoP strategies have a Grudger
+matched with ZDExtort2, TF1 and Adaptive. 
+
+Initially, against TF1 none of the
+three strategies carry out TF1's specific handshake. The StoP strategies have a Grudger
 behaviour against the strategy, and go into mutual defections following the
 opening moves. The StoS strategy demonstrates a more varying behaviour against
 the strategy, which includes a series of cooperations and defections. Amongst
@@ -1447,11 +1447,11 @@ against TF1.
 
 The two StoP strategies also demonstrate a more aggressive behaviour against
 ZDExtort2. In comparison, the StoS sequence manages to achieve a higher cooperation
-rate against ZDExtort2 which subsequently results to a better score.
+rate against ZDExtort2 which subsequently results in a better score.
 Amongst the three strategy the most aggressive appears to be the StoP based
 strategy trained against the across ranks strategies. Even against Adaptive
-the strategy go into mutual defection. The strategy does exhibit a more Grudger
-behaviour than the rest of the LSTM strategies. Though, as it can be seen
+the strategy goes into mutual defection. The strategy does exhibit a more Grudger
+behaviour than the rest of the LSTM strategies. However, as it can be seen
 against ZDExtort2 the strategy is not as provocable as Grudger. The StoP based
 strategy trained against the basic strategies also exhibited a more adaptable
 behaviour, however it is still a quite aggressive strategy.
@@ -1522,7 +1522,7 @@ repeated 50 times.}\label{table:scores_s_to_p_basic_against_seven}
 \end{table}
 
 
-\subsection{Stochastic LSTM strategies}
+\subsection{Stochastic LSTM strategies}\label{sec:stochastic-lstm-strategies}
 
 The LSTM strategies that have been considered so far make a deterministic
 decision based on the networks predictions. This was discussed in
@@ -1607,7 +1607,7 @@ average performs on the bottom half of the tournaments it participated in.
 This Chapter has introduced a total of \lstmstrategies new IPD strategies based
 on LSTM networks. The advantage of using LSTMs, contrary to feed forward networks,
 is that LSTMs incorporate a mechanism of memory. This allows the networks
-to learn to use the history of an opponent in order to decide their next move.
+to learn to using the history of an opponent in order to decide their next move.
 The collection of best response sequences of
 Chapter~\ref{chapter:best_response_sequence} was purposely generated so that
 LSTMs could be trained to play optimally against a list of known IPD strategies.
@@ -1639,9 +1639,9 @@ performed well only when they were trained using the StoP network. Finally, it
 was shown that the strategies that performed well in the analysis of this
 Chapter have a high probability of ranking in the top half of any standard
 tournament. This demonstrates that LSTM strategies trained on a collection of
-sequences can lead to successful behaviours in the IPD. This was shown to be the
-case however, only for when the strategies made deterministic decisions based on the
-LSTMs predictions.
+sequences can lead to successful behaviours in the IPD. This unsupervised approach is the 
+first contribution of this 
+type at the intersection of deep learning and game theory.
 
 An interesting result demonstrated by the analysis was the effect of opening
 with a cooperation. The most successful strategies of this Chapter have been the
