@@ -633,7 +633,7 @@ The subsets are based on three collection of opponents. These are a collection
 of best performing strategies, strategies with ranks across a standard
 tournament and a collection of basic strategies. The details of the subsets are
 given by Table~\ref{table:training_data_sets}.
-A list of the strategies' names used in each subset is given in the Appendix. %TODO fix Appendix.
+A list of the strategies' names used in each subset is given in the Appendix~\ref{appendix:training_sets_strategies}.
 
 \newcolumntype{g}{>{\columncolor{Gray}}c}
 \begin{table}[htb]
@@ -645,9 +645,9 @@ A list of the strategies' names used in each subset is given in the Appendix. %T
     \midrule
     all strategies & \numberofstrategiesbestsequences & The data set as presented in section~\ref{section:training_a_rnn}. & \totalsequences \\
     top performing strategies & \topstrategies & A data set constructed in the same way as the training data set but only with the best response sequences
-    to \topstrategies strategies. These are the top performing strategies in a standard tournaments of 218 opponents. & \topsequences \\
+    to \topstrategies strategies. These are the top performing strategies in a standard tournament of 218 opponents. & \topsequences \\
     strategies across ranks & \acrossstrategies & A data set generated only with the best response sequences to
-    \acrossstrategies  strategies whose ranks are across the 218 ranks of the standard tournament. & \acrosssequences\\
+    \acrossstrategies strategies whose ranks are across the 218 ranks of the standard tournament. & \acrosssequences\\
     basic strategies & \basicstrategies & A data set generated with the best response sequences to \basicstrategies strategies
     which are classified as a set of basic strategies in the APL. & \basicsequences \\
     \bottomrule
@@ -1109,7 +1109,7 @@ presented. More specifically, two types of fingerprints were discussed which
 were the Ashlock fingerprints and the transitive fingerprints.
 
 Ashlock's fingerprints~\cite{Ashlock2005, Ashlock2008, Ashlock2009,
-Ashlock2010, Ashlock2006a} compute the score of a strategy against a spectrum of.
+Ashlock2010, Ashlock2006a} compute the score of a strategy against a spectrum of
 opponents. The basic method is to play the strategy against a probe strategy
 with varying noise parameters. The fingerprints for the \lstmstrategies
 strategies based on Ashlock's approach have been generated for the probe
@@ -1391,13 +1391,11 @@ more stable.
 
 In order to gain a further understanding of the behaviour of the LSTM strategies
 produced by the training, the top performing LSTM strategies are put against a
-list of opponents and their behaviour is explored more in depth.
-
-A total of 7 strategies are used as opponents. These are:
+list of 7 selected opponents. These are:
 
 \begin{enumerate}
     \item \textbf{Tit For Tat}. Tit For Tat is a strategy that will retaliate
-    a defecting but will also forgive is the opponent apologises. The strategy was
+    a defecting but will also forgive if the opponent apologises. The strategy was
     selected to explore whether the LSTM strategies try to exploit the strategy,
     and whether they apologise after being in \(DD\).
     \item \textbf{Gradual}. Gradual plays in a similar fashion as Tit For Tat but
@@ -1410,11 +1408,11 @@ A total of 7 strategies are used as opponents. These are:
     and can be taken advantage of.
     \item \textbf{Defector}. A strategy that just defects. It was selected to inspect
     whether the LSTM strategies defend themselves from unconditional defections.
-    \item \textbf{ZDExtort2}. A strategy that exploits is opponents. The
+    \item \textbf{ZDExtort2}. A strategy that exploits its opponents. The
     strategy was chosen to see if the LSTM players protect themselves from being
     exploited.
     \item \textbf{TF1}. TF1 was presented in
-    section~\ref{section:generating_sequences}. It is strategy that includes a
+    section~\ref{section:generating_sequences}. The strategy includes a
     handshake. The strategies are matched against TF1 to investigate whether they
     have developed the handshake.
     \item \textbf{Adaptive}. A strategy discussed in
@@ -1428,21 +1426,23 @@ Three LSTM players are matched against these strategies in a tournament of
 
 \begin{itemize}
     \item The StoS based strategy, trained against all strategies with $p_o=1$.
-    The normalised scores the strategy achieved against the 7 opponents are
+    The median scores the strategy achieved against the opponents are
     given in Table~\ref{table:scores_s_to_s_against_seven}.
     \item The StoP based strategy, trained against across the ranks with
-    $p_o=1$. The normalised scores of the strategy are given in
+    $p_o=1$. The median scores of the strategy are given in
     Table~\ref{table:scores_s_to_p_twenty_against_seven}.
     \item The StoP based strategy, trained against the basic strategies with
-    $p_o=1$. The normalised scores of the strategy are given in
+    $p_o=1$. The median scores of the strategy are given in
     Table~\ref{table:scores_s_to_p_basic_against_seven}.
 \end{itemize}
 
-The transitive fingerprints of these strategies against the 7 opponents are given by
-Figure~\ref{fig:transitive_fingerprints_against_seven}. It is demonstrated that
-all three LSTM strategies just cooperate against Tit For Tat, Gradual and
-Cooperator. The strategies do not try to exploit their opponents not even once
-since they have managed to achieve mutual cooperation.
+The transitive fingerprints of these strategies against the 7 opponents are
+given by Figure~\ref{fig:transitive_fingerprints_against_seven}.
+
+It is
+demonstrated that all three LSTM strategies just cooperate against Tit For Tat,
+Gradual and Cooperator. The strategies do not try to exploit their opponents not
+even once since they have managed to achieve mutual cooperation.
 
 The LSTM strategies quickly defend themselves against defections make by
 Defector, and quickly learn to exploit Alternator. The LSTM strategies
@@ -1457,7 +1457,7 @@ defections. Thus, the LSTM strategy exhibits more adaptable behaviour than
 Grudger.
 
 The biggest difference between the three LSTM strategies behaviours are when
-matched with ZDExtort2, TF1 and Adaptive. 
+matched with ZDExtort2, TF1 and Adaptive.
 
 Initially, against TF1 none of the
 three strategies carry out TF1's specific handshake. The StoP strategies have a Grudger
