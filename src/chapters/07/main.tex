@@ -619,18 +619,23 @@ workhorses for computer games. However as stated in~\cite{Catanzaro2008},
 graphics processors transitioned from their initial role to general purpose
 engines for high throughput floating-point computation.
 
-A CPU core is more powerful than a GPU core, however, the vast majority of this
-power goes unused by machine learning applications. Machine learning
-applications which perform large numbers of computations on a vast amount of
-data can see huge performance improvements when running on a GPU versus a CPU.
+A CPU core is more powerful than a GPU core. A CPU core is designed to carry out
+a variety of tasks one of which include computations, whereas GPUs are designed
+exclusively for data computations. The vast majority of a CPUs power goes unused
+by machine learning applications. Machine learning applications which perform
+large numbers of computations on a vast amount of data can see huge performance
+improvements when running on a GPU versus a CPU.
 
-NVIDIA created a parallel computing architecture and platform for its GPUs
-called CUDA~\cite{Harris2008}. CUDA programming model gave developers access and
-the ability to express simple processing operations in parallel through code. In
-2005, \cite{Steinkraus2005} presented the usage of GPUs in training a generic 2
-layer fully connected neural network. The first important work was later in
-2008~\cite{Raina2009}. However, the usage of GPUs in machine learning
-was popularised in 2012 by~\cite{Krizhevsky2012}.
+There are several manufacturers of GPUs. These include NVIDIA, AMD, Asus and
+Intel. NVIDIA created a parallel computing architecture and platform for its
+GPUs called CUDA~\cite{Harris2008}. CUDA programming model gave developers
+access and the ability to express simple processing operations in parallel
+through code. The vast majority of deep learning projects work exclusively with
+NVIDIA GPUs because of the better software support NVIDIA provides. In 2005,
+\cite{Steinkraus2005} presented the usage of GPUs in training a generic 2 layer
+fully connected neural network. The first important work was later in
+2008~\cite{Raina2009}. However, the usage of GPUs in machine learning was
+popularised in 2012 by~\cite{Krizhevsky2012}.
 
 Due to the time advantage, the training process of the networks was carried out
 on a GPU. The training was performed using the computational facilities of the
