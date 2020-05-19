@@ -316,4 +316,9 @@ words = {
     "qualifiable",
     "softargmax",
     "stochastically",
+    "ARCCA",
+    "Asus",
+    "CPUs",
+    "PyTorch",
+    "TensorFlow"
 }
