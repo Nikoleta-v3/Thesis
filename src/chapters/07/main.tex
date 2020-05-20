@@ -45,9 +45,9 @@ that include a feedback connection and are designed to work with inputs in
 the form of sequences. RNNs were firstly considered as an archetype in 1996.
 In~\cite{Sandholm1996} a RNN which considered a single previous step
 as an input was trained via a \(Q\) learning algorithm to play against a single
-opponent. The opponent was either the strategy Tit For Tat or another \(Q\)
+opponent. The opponent was either the strategy \textsl{Tit For Tat} or another \(Q\)
 learning strategy. The results of~\cite{Sandholm1996} although somewhat
-promising, the RNN player learned to optimally play against Tit For Tat,
+promising, the RNN player learned to optimally play against \textsl{Tit For Tat},
 they were limited.
 
 The limitations of~\cite{Sandholm1996} could potentially have been due to the
@@ -1118,6 +1118,7 @@ strategy if it was trained for longer.
 
 Having successfully trained high performing strategies using LSTM networks, 
 the next section will attempt to qualify their behaviour.
+
 \subsection{Fingerprinting the LSTM based strategies}
 
 The 24 strategies that have been introduced in this Chapter are based on an LSTM
@@ -1139,14 +1140,14 @@ Figures~\ref{fig:ashlock_fingerprints_tft_s_to_s} -
 appear on the same row are of the same network type and have been trained on
 the same training data set.
 
-For Figures~\ref{fig:ashlock_fingerprints_tft_s_to_s} and
-\ref{fig:ashlock_fingerprints_tft_s_to_p} Tit For Tat was used as the probe
-strategy. It is demonstrated that the strategies on same row have similar fingerprints,
-even though their opening move is different. The strategies however based on
-different networks, or even different training data sets, exhibit different
-behaviours. The only set of strategies that have similarities, regardless their
-network architecture, is the strategies trained against the top performing
-strategies.
+Tit For Tat was used as the probe strategy for
+Figures~\ref{fig:ashlock_fingerprints_tft_s_to_s} and
+\ref{fig:ashlock_fingerprints_tft_s_to_p}. From the fingerprints it is
+demonstrated that the strategies of the same row behave in a similar manner even
+though their opening moves differ. The strategies based on different networks
+and the strategies trained on different training data sets behave differently.
+The only set of strategies based on different networks that exhibit
+similarities, is the strategies trained against the top performing strategies.
 
 \begin{figure}[!htbp]
     \begin{subfigure}{\textwidth}
@@ -1282,16 +1283,28 @@ Figures~\ref{fig:transitive_fingerprints_stewart_s_to_s}
 -\ref{fig:transitive_fingerprints_default_s_to_p}.
 
 The differences between the strategies are more distinct using the transitive
-fingerprinting method. It can be seen that the LSTM strategies do indeed behave
-differently against the same list of opponents.
+fingerprinting method. The transitive fingerprints demonstrate that the LSTM
+strategies do behave differently against the same list of opponents and that
+that the strategies that open with cooperation achieve a higher cooperation rate
+compared to the strategies (on the same row) that do not.
 
-Furthermore, two more observations can be made by the transitive fingerprints.
-Initially, that the strategies that open with cooperation achieve a higher
-cooperation rate compared to the strategies (on the same row) that do not.
-Secondly, the LSTM strategies appear to use the opening turns to decide on a play.
-This is demonstrated but the fact that there is some variation in the opening
-moves of each fingerprint, but following the opening turns the patterns became
-more stable.
+Furthermore, the LSTM strategies appear to be using the opening moves to make up
+their minds regarding their opponents. Following the opening moves the
+strategies decide on a play. This is demonstrated but the fact that there is
+some variation in the opening moves of each fingerprint, but following the
+opening turns the patterns became more stable. From the transitive fingerprints
+against the spectrum of Random opponents
+(Figures~\ref{fig:transitive_fingerprints_default_s_to_s}
+and~\ref{fig:transitive_fingerprints_default_s_to_p}) it can be seen that this
+is not true for the strategies trained against the top performing strategies.
+This set of LSTM strategies do not make their mind regarding their opponent. In
+fact, following the opening moves the strategies just play a series of
+cooperations and defections iteratively.
+
+This could potentially reinforce the discussion that the training set against
+the top performing strategies it is not diverse. Against strong opponents the
+top performing strategies simply cooperate. The trained LSTM strategies, on that
+training data set, have not been trained to react against random defections.
 
 \begin{figure}[!htbp]
     \begin{subfigure}{\textwidth}
@@ -1470,98 +1483,101 @@ more stable.
 
 In order to gain a further understanding of the behaviour of the LSTM strategies
 produced by the training, the top performing LSTM strategies are put against a
-list of 7 selected opponents. These are:
+list of manually selected opponents. These are:
 
 \begin{enumerate}
-    \item \textbf{Tit For Tat}. Tit For Tat is a strategy that will retaliate
-    a defecting but will also forgive if the opponent apologises. The strategy was
+    \item Tit For Tat. A strategy that retaliates
+    a defection but also forgives if the opponent apologises. The strategy was
     selected to explore whether the LSTM strategies try to exploit the strategy,
     and whether they apologise after being in \(DD\).
-    \item \textbf{Gradual}. Gradual plays in a similar fashion as Tit For Tat but
+    \item Gradual. Plays in a similar fashion as Tit For Tat but
     retaliates with a growing number of defection. Gradual was selected for the
     same reason as Tit For Tat.
-    \item \textbf{Cooperator}. A strategy that an opponent can take advantage
+    \item Cooperator. A strategy that can been taken advantage
     of. The strategy was selected to explore whether the LSTM strategies do
     exploit the strategy.
-    \item \textbf{Alternator}. Another strategy that does not react to the history
+    \item Alternator. Another strategy that does not react to the history
     and can be taken advantage of.
-    \item \textbf{Defector}. A strategy that just defects. It was selected to inspect
+    \item Defector. A strategy that just defects. It was selected to inspect
     whether the LSTM strategies defend themselves from unconditional defections.
-    \item \textbf{ZDExtort2}. A strategy that exploits its opponents. The
+    \item ZDExtort2. A strategy that exploits its opponents. The
     strategy was chosen to see if the LSTM players protect themselves from being
     exploited.
-    \item \textbf{TF1}. TF1 was presented in
+    \item TF1. The strategy was presented in
     section~\ref{section:generating_sequences}. The strategy includes a
     handshake. The strategies are matched against TF1 to investigate whether they
     have developed the handshake.
-    \item \textbf{Adaptive}. A strategy discussed in
+    \item Adaptive. A strategy discussed in
     Chapter~\ref{chapter:best_response_sequence}. The strategy has a unique set
     of best responses. It can be exploited to unconditionally cooperate while
     the opponent defects.
-\end{enumerate}
+\end{enumerate} 
 
 Three LSTM players are matched against these strategies in a tournament of
-200 turns that was repeated 50 times:
+200 turns and 50 repetitions:
 
 \begin{itemize}
     \item The StoS based strategy, trained against all strategies with $p_o=1$.
-    The median scores the strategy achieved against the opponents are
-    given in Table~\ref{table:scores_s_to_s_against_seven}.
-    \item The StoP based strategy, trained against across the ranks with
-    $p_o=1$. The median scores of the strategy are given in
-    Table~\ref{table:scores_s_to_p_twenty_against_seven}.
-    \item The StoP based strategy, trained against the basic strategies with
-    $p_o=1$. The median scores of the strategy are given in
-    Table~\ref{table:scores_s_to_p_basic_against_seven}.
+    \item The StoP based strategy, trained against across the ranks with $p_o=1$.
+    \item The StoP based strategy, trained against the basic strategies with $p_o=1$.
 \end{itemize}
 
-The transitive fingerprints of these strategies against the 7 opponents are
-given by Figure~\ref{fig:transitive_fingerprints_against_seven}.
+The median scores of each tournament are given by
+Tables~\ref{table:scores_s_to_s_against_seven}-
+\ref{table:scores_s_to_p_basic_against_seven}.
+Table~\ref{table:scores_s_to_p_basic_against_seven}. The transitive fingerprints
+of the three LSTM strategies against the selected opponents are given by
+Figure~\ref{fig:transitive_fingerprints_against_seven}.
 
-It is
-demonstrated that all three LSTM strategies just cooperate against Tit For Tat,
-Gradual and Cooperator. The strategies do not try to exploit their opponents not
-even once since they have managed to achieve mutual cooperation.
+It is demonstrated that all three LSTM strategies achieve mutual cooperation for
+all 200 turns when matched against Tit For Tat, Gradual and Cooperator. The LSTM
+strategies open with cooperation and are never the first ones to defect.
+However, they quickly defend themselves against unconditional defections make by
+Defector, and quickly learn to exploit Alternator. Following the opening 2 to 4
+moves the LSTM strategies decide on unconditional defections against Alternator.
 
-The LSTM strategies quickly defend themselves against defections make by
-Defector, and quickly learn to exploit Alternator. The LSTM strategies
-unconditionally defect against Alternator following the 3, 4 and 2 opening moves
-respectively. The StoP based strategy, trained against the basic strategies with
-$p_o=1$ quickly turns to unconditional defections following the opening 2 moves.
-Thus, against Alternator it demonstrates a Grudger behaviour. However, this is
-not true for every opponent the strategy is matched against.
+The StoP based strategy trained against the basic strategies with $p_o=1$, is
+the strategy that reacts to quickest to Alternator's alternate defections. In
+fact, against Alternator the strategy demonstrates a Grudger like behaviour.
+However, this is not true for every opponent the strategy is matched against.
 Figure~\ref{fig:transitive_fingerprints_against_seven} shows that strategy
-manages mutual cooperation with Adaptive, following a series of mutual
+manages mutual cooperation with Adaptive following a series of mutual
 defections. Thus, the LSTM strategy exhibits more adaptable behaviour than
 Grudger.
 
 The biggest difference between the three LSTM strategies behaviours are when
 matched with ZDExtort2, TF1 and Adaptive.
 
-Initially, against TF1 none of the
-three strategies carry out TF1's specific handshake. The StoP strategies have a Grudger
-behaviour against the strategy, and go into mutual defections following the
-opening moves. The StoS strategy demonstrates a more varying behaviour against
-the strategy, which includes a series of cooperations and defections. Amongst
-the three strategies, the StoS strategy achieves the highest score per turn
-against TF1.
+Initially, against TF1 none of the three strategies carry out TF1's specific
+handshake. The StoP strategies have a Grudger behaviour against the strategy,
+and go into mutual defections following the opening moves. The StoS strategy
+demonstrates a more varying behaviour against the strategy, which includes a
+series of cooperations and defections. Amongst the three strategies, the StoS
+strategy achieves the highest score per turn against TF1. The two StoP
+strategies also demonstrate a more aggressive behaviour against ZDExtort2. In
+comparison, the StoS sequence manages to achieve a higher cooperation rate
+against ZDExtort2 which subsequently results in a better score.
 
-The two StoP strategies also demonstrate a more aggressive behaviour against
-ZDExtort2. In comparison, the StoS sequence manages to achieve a higher cooperation
-rate against ZDExtort2 which subsequently results in a better score.
 Amongst the three strategy the most aggressive appears to be the StoP based
-strategy trained against the across ranks strategies. Even against Adaptive
-the strategy goes into mutual defection. The strategy does exhibit a more Grudger
+strategy trained against the across ranks strategies. Even against Adaptive the
+strategy goes into mutual defection. The strategy does exhibit a more Grudger
 behaviour than the rest of the LSTM strategies. However, as it can be seen
 against ZDExtort2 the strategy is not as provocable as Grudger. The StoP based
 strategy trained against the basic strategies also exhibited a more adaptable
-behaviour, however it is still a quite aggressive strategy.
+behaviour, however, it is still a quite aggressive strategy. The
+LSTM strategy based on the StoS network trained against the entire data set is
+less aggressive, appears to achieve series of both mutual cooperation and
+defection and it is the best performing strategy amongst the LSTMs.
 
-Lastly, the best performing LSTM strategy based on the StoS network trained
-against the entire data set is less aggressive and appears to achieve series of
-both mutual cooperation and defection. It is shown that the strategy can be
-exploited by ZDExtort2.
+On the whole, the well performed LSTM strategies appear to have the following
+properties:
 
+\begin{enumerate}
+    \item Start of by cooperating, and are never the first ones to defect.
+    \item Are complex by design.
+    \item Use the opening moves to make up their mind about their opponents and decide on a play.
+    \item Can achieve mutual cooperation following mutual defections.
+\end{enumerate}
 
 \begin{figure}[!htbp]
     \begin{subfigure}{.32\textwidth}
