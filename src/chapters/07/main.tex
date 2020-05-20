@@ -1529,6 +1529,65 @@ Table~\ref{table:scores_s_to_p_basic_against_seven}. The transitive fingerprints
 of the three LSTM strategies against the selected opponents are given by
 Figure~\ref{fig:transitive_fingerprints_against_seven}.
 
+\begin{figure}[!htbp]
+    \begin{subfigure}{.32\textwidth}
+        \includegraphics[width=\textwidth]{src/chapters/07/img/s_t_s_against_seven_opponents.pdf}
+        \caption{StoS network trained
+        against all strategies with $p_o=1$.}
+    \end{subfigure}\hfill
+\begin{subfigure}{.32\textwidth}
+        \includegraphics[width=\textwidth]{src/chapters/07/img/s_t_p_twenty_against_seven_opponents.pdf}
+        \caption{StoP network trained
+        against across the ranks with $p_o=1$.}
+    \end{subfigure}\hfill
+    \begin{subfigure}{.32\textwidth}
+        \includegraphics[width=\textwidth]{src/chapters/07/img/s_t_p_basic_against_seven_opponents.pdf}
+        \caption{StoP network trained
+        against the basic strategies with $p_o=1$.}
+    \end{subfigure}
+    \caption{Transitive fingerprints for the top performing LSTM strategies against
+    a list of manually selected strategies.}\label{fig:transitive_fingerprints_against_seven}
+\end{figure}
+
+\newcolumntype{g}{>{\columncolor{Gray}}c}
+\begin{table}[!htbp]
+    \begin{center}
+    \resizebox{\textwidth}{!}{
+        \input{src/chapters/07/tex/s_to_s_all_scores.tex}
+    }
+\end{center}
+\caption{Median scores for a standard tournament of 200 turns that was repeated
+50 times. The LSTM strategy corresponds to the strategy based on the StoS
+network trained against all strategies with
+$p_o=1$.}\label{table:scores_s_to_s_against_seven}
+\end{table}
+
+\newcolumntype{g}{>{\columncolor{Gray}}c}
+\begin{table}[!htbp]
+    \begin{center}
+    \resizebox{\textwidth}{!}{
+        \input{src/chapters/07/tex/s_to_p_twenty_scores.tex}
+    }
+\end{center}
+\caption{Median scores for a standard tournament of 200 turns that was repeated
+50 times. The LSTM strategy corresponds to the strategy based on the StoP
+network trained against across the ranks strategies with
+$p_o=1$.}\label{table:scores_s_to_p_twenty_against_seven}
+\end{table}
+
+\newcolumntype{g}{>{\columncolor{Gray}}c}
+\begin{table}[!htbp]
+    \begin{center}
+    \resizebox{\textwidth}{!}{
+        \input{src/chapters/07/tex/s_to_p_basic_scores.tex}
+    }
+\end{center}
+\caption{Median scores for a standard tournament of 200 turns that was repeated
+50 times. The LSTM strategy corresponds to the strategy based on the StoP
+network trained against the basic strategies with
+$p_o=1$.}\label{table:scores_s_to_p_basic_against_seven}
+\end{table}
+
 It is demonstrated that all three LSTM strategies achieve mutual cooperation for
 all 200 turns when matched against Tit For Tat, Gradual and Cooperator. The LSTM
 strategies open with cooperation and are never the first ones to defect.
@@ -1578,66 +1637,6 @@ properties:
     \item Use the opening moves to make up their mind about their opponents and decide on a play.
     \item Can achieve mutual cooperation following mutual defections.
 \end{enumerate}
-
-\begin{figure}[!htbp]
-    \begin{subfigure}{.32\textwidth}
-        \includegraphics[width=\textwidth]{src/chapters/07/img/s_t_s_against_seven_opponents.pdf}
-        \caption{StoS network trained
-        against all strategies with $p_o=1$.}
-    \end{subfigure}\hfill
-\begin{subfigure}{.32\textwidth}
-        \includegraphics[width=\textwidth]{src/chapters/07/img/s_t_p_twenty_against_seven_opponents.pdf}
-        \caption{StoP network trained
-        against across the ranks with $p_o=1$.}
-    \end{subfigure}\hfill
-    \begin{subfigure}{.32\textwidth}
-        \includegraphics[width=\textwidth]{src/chapters/07/img/s_t_p_basic_against_seven_opponents.pdf}
-        \caption{StoP network trained
-        against the basic strategies with $p_o=1$.}
-    \end{subfigure}
-    \caption{Transitive fingerprints for the top performing LSTM strategies against
-    a list of manually selected strategies.}\label{fig:transitive_fingerprints_against_seven}
-\end{figure}
-
-\newcolumntype{g}{>{\columncolor{Gray}}c}
-\begin{table}[!htbp]
-    \begin{center}
-    \resizebox{\textwidth}{!}{
-        \input{src/chapters/07/tex/s_to_s_all_scores.tex}
-    }
-\end{center}
-\caption{Scores per trained for an eight strategies tournament. The LSTM strategy
-corresponds to the strategy based on the StoS network trained
-against all strategies with $p_o=1$. The tournament was of 200 turns and was
-repeated 50 times.}\label{table:scores_s_to_s_against_seven}
-\end{table}
-
-\newcolumntype{g}{>{\columncolor{Gray}}c}
-\begin{table}[!htbp]
-    \begin{center}
-    \resizebox{\textwidth}{!}{
-        \input{src/chapters/07/tex/s_to_p_twenty_scores.tex}
-    }
-\end{center}
-\caption{Scores per trained for an eight strategies tournament. The LSTM
-strategy corresponds to the strategy based on the StoP network trained against
-across the ranks strategies with $p_o=1$. The tournament was of 200 turns and
-was repeated 50 times.}\label{table:scores_s_to_p_twenty_against_seven}
-\end{table}
-
-\newcolumntype{g}{>{\columncolor{Gray}}c}
-\begin{table}[!htbp]
-    \begin{center}
-    \resizebox{\textwidth}{!}{
-        \input{src/chapters/07/tex/s_to_p_basic_scores.tex}
-    }
-\end{center}
-\caption{Scores per trained for an eight strategies tournament. The LSTM strategy
-corresponds to the strategy based on the StoP network trained
-against the basic strategies with $p_o=1$. The tournament was of 200 turns and was
-repeated 50 times.}\label{table:scores_s_to_p_basic_against_seven}
-\end{table}
-
 
 \subsection{Stochastic LSTM strategies}\label{sec:stochastic-lstm-strategies}
 
