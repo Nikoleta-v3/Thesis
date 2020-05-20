@@ -1556,7 +1556,7 @@ Figure~\ref{fig:transitive_fingerprints_against_seven}.
         \input{src/chapters/07/tex/s_to_s_all_scores.tex}
     }
 \end{center}
-\caption{Median scores for a standard tournament of 200 turns that was repeated
+\caption{Median scores of a standard tournament of 200 turns that was repeated
 50 times. The LSTM strategy corresponds to the strategy based on the StoS
 network trained against all strategies with
 $p_o=1$.}\label{table:scores_s_to_s_against_seven}
@@ -1569,7 +1569,7 @@ $p_o=1$.}\label{table:scores_s_to_s_against_seven}
         \input{src/chapters/07/tex/s_to_p_twenty_scores.tex}
     }
 \end{center}
-\caption{Median scores for a standard tournament of 200 turns that was repeated
+\caption{Median scores of a standard tournament of 200 turns that was repeated
 50 times. The LSTM strategy corresponds to the strategy based on the StoP
 network trained against across the ranks strategies with
 $p_o=1$.}\label{table:scores_s_to_p_twenty_against_seven}
@@ -1582,7 +1582,7 @@ $p_o=1$.}\label{table:scores_s_to_p_twenty_against_seven}
         \input{src/chapters/07/tex/s_to_p_basic_scores.tex}
     }
 \end{center}
-\caption{Median scores for a standard tournament of 200 turns that was repeated
+\caption{Median scores of a standard tournament of 200 turns that was repeated
 50 times. The LSTM strategy corresponds to the strategy based on the StoP
 network trained against the basic strategies with
 $p_o=1$.}\label{table:scores_s_to_p_basic_against_seven}
@@ -1627,6 +1627,25 @@ behaviour, however, it is still a quite aggressive strategy. The
 LSTM strategy based on the StoS network trained against the entire data set is
 less aggressive, appears to achieve series of both mutual cooperation and
 defection and it is the best performing strategy amongst the LSTMs.
+
+The three LSTM strategies when matched against each other achieve mutual
+cooperation. The median scores of a standard tournament of 200 turns and 50
+repetitions with the three best performing LSTM strategies are given by
+Table~\ref{table:scores_lstm_tournament}. Being able to achieve mutual
+cooperation when competing against each other is strong property of the LSTM
+strategies. As it was discussed in Chapter~\ref{chapter:memory_one}, self
+interactions are important in evolutionary dynamic settings.
+
+\begin{table}[!htbp]
+    \begin{center}
+    \resizebox{\textwidth}{!}{
+        \input{src/chapters/07/tex/lstm_strategies_tournament_scores.tex}
+    }
+\end{center}
+\caption{Median scores of a standard tournament with the three best performing
+LSTM strategies. The tournament is of 200 turns and of 50
+repetitions.}\label{table:scores_lstm_tournament}
+\end{table}
 
 On the whole, the well performed LSTM strategies appear to have the following
 properties:
