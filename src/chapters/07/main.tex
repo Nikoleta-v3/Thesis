@@ -354,9 +354,11 @@ Chapter~\ref{chapter:best_response_sequence}.
 
 The training inputs are the actions of a given strategy for \(N\) turns. The
 expected outputs are the responses to those \(N\) actions by the opponent's best
-response sequence. Each pair of opponent's - best response sequence's actions
-is transformed into 204
-training samples. The highest dimensionality of those samples is 204.
+response sequence. Each best response sequence, from
+Chapter's~\ref{chapter:best_response_sequence} collection, corresponds to 204
+expected outputs. This is done so that each sample captures a match between a
+strategy and its best response for the all possible match lengths. Specifically
+for \(N \in {1, 204}\).
 
 Consider the actions of the strategy Adaptive and its best response, as
 presented in section~\ref{section:the_collection_of_best_response_sequences},
