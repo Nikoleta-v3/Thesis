@@ -308,4 +308,5 @@ words = {
     "xml",
     "yml",
     "zz",
+    "FSMSix"
 }
