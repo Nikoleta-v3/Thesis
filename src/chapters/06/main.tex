@@ -84,20 +84,20 @@ for example against Tit Tor Tat as demonstrated by Table~\ref{table:s_vs_tft},
     & \textbf{1} & \textbf{2} & \textbf{3} & \textbf{4}  & \textbf{5} & \textbf{6} & \textbf{7} & \textbf{8}  & \textbf{9} & \textbf{10} &
     \(U(S, \text{Tit For Tat})\) \\ \midrule
     \(S\) & \(D\) & \(D\) & \(D\) & \(C\) & \(C\) & \(C\) & \(D\) & \(D\) & \(C\) & \(C\) & 2.2 \\
-    Tit For Tat & \(C\) & \(D\) & \(D\) & \(D\) & \(C\) & \(C\) & \(C\) & \(D\) & \(D\) & \(C\) & 2.2 \\ \bottomrule
+    \TitForTat & \(C\) & \(D\) & \(D\) & \(D\) & \(C\) & \(C\) & \(C\) & \(D\) & \(D\) & \(C\) & 2.2 \\ \bottomrule
 \end{tabular}
 \caption{The interactions and average score per turn of a 10 turns match between
-\(S = \{D, D, D, C, C, C, D, D, C, C\}\) and Tit For Tat.}\label{table:s_vs_tft}
+\(S = \{D, D, D, C, C, C, D, D, C, C\}\) and \TitForTat.}\label{table:s_vs_tft}
 \end{table}
 
-and against stochastic strategies such as Random. Random cooperates with a
+and against stochastic strategies such as \Random. \Random cooperates with a
 probability of \(0.5\) at each turn, and thus the actions of the strategy are
-not deterministic. Random is a strategy that does react to the history, however,
+not deterministic. \Random is a strategy that does react to the history, however,
 the actions of stochastic strategies that react to the
 history also differ between repetitions even when the history of the match is
 the same. Tables~\ref{table:s_vs_random} and~\ref{table:s_vs_random_2} both
-capture a match between \(S\) and a Random player. For a match of 10 turns
-Random has a total of \(2^{10}\) possible plays.
+capture a match between \(S\) and a \Random player. For a match of 10 turns
+\Random has a total of \(2^{10}\) possible plays.
 In order to capture several different plays of stochastic strategies computer
 seeding, further details of this are given in section~\ref{section:generating_sequences}.
 
@@ -107,10 +107,10 @@ seeding, further details of this are given in section~\ref{section:generating_se
     & \textbf{1} & \textbf{2} & \textbf{3} & \textbf{4}  & \textbf{5} & \textbf{6} & \textbf{7} & \textbf{8}  & \textbf{9} & \textbf{10} &
     \(U(S, \text{Random})\) \\ \midrule
     \(S\) & \(D\) & \(D\) & \(D\) & \(C\) & \(C\) & \(C\) & \(D\) & \(D\) & \(C\) & \(C\) & 2.2 \\
-    Random & \(D\) & \(D\) & \(C\) & \(C\) & \(D\) & \(C\) & \(D\) & \(C\) & \(C\) & \(D\) & 2.2 \\ \bottomrule
+    \Random & \(D\) & \(D\) & \(C\) & \(C\) & \(D\) & \(C\) & \(D\) & \(C\) & \(C\) & \(D\) & 2.2 \\ \bottomrule
 \end{tabular}
 \caption{The interactions and average score per turn of a 10 turns match between
-\(S = \{D, D, D, C, C, C, D, D, C, C\}\) and Random.}\label{table:s_vs_random}
+\(S = \{D, D, D, C, C, C, D, D, C, C\}\) and \Random.}\label{table:s_vs_random}
 \end{table}
 
 \begin{table}[htb]
@@ -119,10 +119,10 @@ seeding, further details of this are given in section~\ref{section:generating_se
     & \textbf{1} & \textbf{2} & \textbf{3} & \textbf{4}  & \textbf{5} & \textbf{6} & \textbf{7} & \textbf{8}  & \textbf{9} & \textbf{10} & \(U(S, \text{Random})\) \\ 
     \midrule 
     \(S\) & \(D\) & \(D\) & \(D\) & \(C\) & \(C\) & \(C\) & \(D\) & \(D\) & \(C\) & \(C\) & 2.4 \\
-    Random & \(C\) & \(D\) & \(D\) & \(C\) & \(C\) & \(C\) & \(D\) & \(D\) & \(C\) & \(C\) & 1.9 \\ \bottomrule
+    \Random & \(C\) & \(D\) & \(D\) & \(C\) & \(C\) & \(C\) & \(D\) & \(D\) & \(C\) & \(C\) & 1.9 \\ \bottomrule
 \end{tabular}
 \caption{The interactions and average score per turn of a 10 turns match between
-\(S = \{D, D, D, C, C, C, D, D, C, C\}\) and Random. The actions make by Random
+\(S = \{D, D, D, C, C, C, D, D, C, C\}\) and \Random. The actions make by \Random
 are different to that of Table~\ref{table:s_vs_random}.}\label{table:s_vs_random_2}
 \end{table}
 
@@ -146,20 +146,20 @@ However,
 for some strategies identifying best responses is a complex problem.
 
 Additionally, there are strategies that have multiple best response sequences. For
-instance the strategy Adaptive introduced in~\cite{Li2011}. Adaptive opens by
+instance the strategy \Adaptive introduced in~\cite{Li2011}. \Adaptive opens by
 playing a sequence of \(\{\underbrace{C, \dots, C}_{6}\}\) followed by a
 sequence of \(\{\underbrace{D, \dots, D}_{5}\}\). The strategy then proceeds to
 play either \(C\) or \(D\) depending on which action had a higher total score
 for the strategy (the total score is recalculated at each turn). A sequence
-maximises its average score against Adaptive by locking the strategy into
+maximises its average score against \Adaptive by locking the strategy into
 unconditional cooperations following its opening 11 turns sequence while the sequence
 defects. In order
-for cooperation to be the most favourable action for Adaptive the strategy needs to achieve
+for cooperation to be the most favourable action for \Adaptive the strategy needs to achieve
 two mutual cooperations at its opening sequence. That is because the score achieved
 by cooperating \(2 \times 3 + 4 \times 0 = 6\) is greater than the
 score achieved by defecting \(1 \times 5 = 5\).
 Any sequence which incorporates two cooperations in the first 6 turns
-and defects thereafter is a best response sequence to Adaptive. Thus, there
+and defects thereafter is a best response sequence to \Adaptive. Thus, there
 can be \(2^{6}\) best response sequences to the strategy, for example \(S_{1}^*\) and \(S_{2}^*\),
 
 \[S_{1}^* = \{C, D, D, D, D, C, D, D, D, D, D, D, D, D, D\}\]
@@ -500,7 +500,7 @@ using an in built method of APL once a match has been simulated.
 (2.2, 2.2)
 
 \end{usagepy}
-\caption{Simulating a match between Cycler and Cooperator and Cycler and Tit For Tat.
+\caption{Simulating a match between Cycler and Cooperator and Cycler and \TitForTat.
 The class Cycler takes a given sequence as an input argument in a string format
 ('DDDCCCDDCC'). Once a match has been simulate with the \mintinline{python}{play} method
 the average score per turn is obtained using the \mintinline{python}{final_score_per_turn}
@@ -520,8 +520,8 @@ the random output remains the same. Thus, as long as a match is seeded the
 behaviour of a stochastic strategy can be reproduced, and different seeds lead
 to different plays of stochastic strategies.
 
-Consider the match between Random and \(S = \{D, D, D, C, C, C, D, D, C, C\}\)
-presented in section~\ref{section:ipd_as_sequences}. Random has a total of
+Consider the match between \Random and \(S = \{D, D, D, C, C, C, D, D, C, C\}\)
+presented in section~\ref{section:ipd_as_sequences}. \Random has a total of
 \(2^{10}\) possible plays for the given match. By using different computer seeds a number of these
 plays can be simulated as shown in Figure~\ref{fig:random_apl_example}.
 
@@ -546,10 +546,10 @@ plays can be simulated as shown in Figure~\ref{fig:random_apl_example}.
 ================================================================================
 
 \end{usagepy}
-\caption{Example code of using seeding to generate different plays of Random.
+\caption{Example code of using seeding to generate different plays of \Random.
 The value of seed changes to \{0, 1, 2, 3, 4, 5\} and the seed is set with
 the command axl.seed(seed) before simulating the game. This initialises the
-pseudo random generator that define what moves Random will take.
+pseudo random generator that define what moves \Random will take.
 The above code snipped will always have the same output each time it is
 repeated.}\label{fig:random_apl_example}
 \end{figure}
@@ -605,14 +605,14 @@ strategies, but to a total of (\(\deterministicstrategies + \stochasticstrategie
 750 opponents. Thus, a total of 750 trials of
 Figure~\ref{fig:data_generating_process_diagram} have been performed.
 
-An example of an exported summary for the deterministic opponent Alternator
+An example of an exported summary for the deterministic opponent \Alternator
 is given by Table~\ref{table:alternator_summary}.
 
 \begin{table}[!htbp]
     \resizebox{\textwidth}{!}{
     \input{src/chapters/06/tex/alternator_table.tex}}
     \caption{An exampled of an exported summary. The specific output is for
-    the opponent Alternator. Alternator is a deterministic strategy,
+    the opponent \Alternator. \Alternator is a deterministic strategy,
     consequently, the value of seed in NaN. The values of the different GA
     parameters are recorded in the summary, as well as the details of each
     member of each generation. The sequences' genes
@@ -622,7 +622,7 @@ is given by Table~\ref{table:alternator_summary}.
 \end{table}
 
 For a stochastic strategy there are a total of 9 exported summaries. An example
-of an exported summary for Champion with seed=9 is given by
+of an exported summary for \Champion with seed=9 is given by
 Table~\ref{table:champion_summary}.
 
 \begin{table}[!htbp]
@@ -640,7 +640,7 @@ exported summaries.
 
 In section~\ref{section:ipd_as_sequences} it was stated that the best response
 to a strategy that does not react to the history is to always defect. Such
-strategies include Cooperator, Defector, Alternator and the family of the Cycler
+strategies include \Cooperator, \Defector, \Alternator and the family of the Cycler
 strategies. Algorithm~\ref{algorithm:genetic_algorithm} successfully identified their best responses, as
 shown in Table~\ref{table:always_defect_best_responses}.
 
@@ -653,29 +653,29 @@ shown in Table~\ref{table:always_defect_best_responses}.
     of this Chapter.}\label{table:always_defect_best_responses}
 \end{table}
 
-The best response sequence to Tit For Tat and Grudger is the sequence that
+The best response sequence to \TitForTat and \Grudger is the sequence that
 cooperates until before the last turn. That way the sequence receives the payoff
 for mutual cooperation for \(N - 1\) turns, and then betrays its opponent in the
 last turn to maximise its score, receiving a payoff of \(T\). It only defects
 on the last turn because then it can not be punished. The sequence is also the
-best response to the strategy Hard Tit For Tat. The strategy is a variant of Tit
-For Tat that uses that uses a longer history for retaliation. The best response
+best response to the strategy \HardTitForTat. The strategy is a variant of
+\TitForTat that uses that uses a longer history for retaliation. The best response
 sequences were captured for all three strategies,
 Table~\ref{table:known_strategies_best_responses}.
 
 \begin{table}[!htbp]
     \resizebox{\textwidth}{!}{
     \input{src/chapters/06/tex/known_strategies_best_responses.tex}}
-    \caption{Best response sequences to strategies Tit For Tat, Grudger
-    and Hard Tit For Tat.}
+    \caption{Best response sequences to strategies \TitForTat, \Grudger
+    and \HardTitForTat.}
     \label{table:known_strategies_best_responses}
 \end{table}
 
 There are more sophisticated yet still established best response sequences.
-These include the best response to TF1~\cite{Knight2018}. In~\cite{Knight2018}
-the strategy TF1 was trained using a 16 state finite state machine in a Moran
-process setting. The TF1 strategy developed a hand shake mechanism that allowed
-it to identify strategies that play like itself. Once two copies of TF1
+These include the best response to \TFOne~\cite{Knight2018}. In~\cite{Knight2018}
+the strategy \TFOne was trained using a 16 state finite state machine in a Moran
+process setting. The \TFOne strategy developed a hand shake mechanism that allowed
+it to identify strategies that play like itself. Once two copies of \TFOne
 identify each other they go into mutually cooperations until the end of their
 interactions. The best response to the strategy is the a sequence that performs
 the handshake, and goes into mutual cooperations until before the final turn.
@@ -686,7 +686,7 @@ The handshake is performed in the opening three turns, and it is the sequence
 \begin{table}[!htbp]
     \resizebox{\textwidth}{!}{
     \input{src/chapters/06/tex/hand_shake_best_response.tex}}
-    \caption{Best response sequence to TF1 introduced in~\cite{Knight2018}. The strategy
+    \caption{Best response sequence to \TFOne introduced in~\cite{Knight2018}. The strategy
     performs a handshake in the first three moves. The hand shake is the sequence
     \(CDC\). If the opponent plays that same then the strategies go into mutual
     cooperation.}\label{table:hand_shake_best_response}
@@ -757,8 +757,8 @@ sequences. There are two reason that as to why this happened:
 \begin{figure}[!htbp]
     \centering
     \includegraphics[width=.9\textwidth]{src/chapters/06/img/gas_results_per_trial.pdf}
-    \caption{The highest score in a population over the generations for Tit For Tat,
-    Grudger, FSM 16 and Aggravater. The selected trials capture the results
+    \caption{The highest score in a population over the generations for \TitForTat,
+    \Grudger, \FSMSixTeen and \Aggravater. The selected trials capture the results
     of all the 18 trials for the given set of opponents.}\label{fig:ga_trials}
 \end{figure}
 
@@ -780,22 +780,22 @@ with the parameter values of \(K/2=15, b=10\) and \(p_m=0.1\).
 \begin{figure}[!htbp]
     \centering
     \includegraphics[width=.9\textwidth]{src/chapters/06/img/gas_results_per_trial_to_generation_500.pdf}
-    \caption{The highest score in a population over the generations for Tit For Tat,
-    Grudger, FSM 16 and Aggravater up to \(g_i = 500\).}\label{fig:ga_trials_to_500}
+    \caption{The highest score in a population over the generations for \TitForTat,
+    \Grudger, \FSMSixTeen and \Aggravater up to \(g_i = 500\).}\label{fig:ga_trials_to_500}
 \end{figure}
 
 There are a total of \deterministicstrategies deterministic strategies in the
 collection of opponents and best response sequences were estimated for each.
 Several of the known best response sequences have been manually checked and they
 have been successfully estimated by the algorithm. These include best response
-sequences to Tit For Tat, Grudger, Alternator, Pavlov and the Cycler strategies.
+sequences to \TitForTat, \Grudger, \Alternator, \Pavlov and the Cycler strategies.
 
 In section~\ref{section:ipd_as_sequences} is was explained that strategies can
 have more than a single best response sequence. In the case of the strategy
-Adaptive any strategy that cooperated twice in the opening 6 moves and defected
+\Adaptive any strategy that cooperated twice in the opening 6 moves and defected
 thereafter is a best response. The data collection has managed to successfully identify
-multiple best responses to Adaptive, these are given by
-Table~\ref{table:adaptive_best_responses}. Adaptive is not the only
+multiple best responses to \Adaptive, these are given by
+Table~\ref{table:adaptive_best_responses}. \Adaptive is not the only
 deterministic strategy with multiple best response sequences. More specifically,
 for the \deterministicstrategies deterministic opponents a total of \deterministicsequences best
 response sequences were collected.
@@ -822,34 +822,34 @@ A total of \stochasticsequences sequences have been estimated for the stochastic
 these sequences, \reproducible did indeed play against the correct seeded opponent and
 achieved their respective scores at the final generation.
 
-For instance for the strategy - seed combination of Champion - seed\(=9\) the highest score
+For instance for the strategy - seed combination of \Champion - seed\(=9\) the highest score
 achieved by a member of the population over the generations is given by
 Figure~\ref{fig:champion_ga_score}. There is variation in the highest score
 occurring over the generations with several increasing and decreasing peeks. However,
 for most of the generations the highest score appears to be between \(3.80 - 3.82\).
 The best response sequence retrieved by the data collection scored 3.82 against
-Champion, and it reflected the score of the sequence against Champion - seed\(=9\).
+\Champion, and it reflected the score of the sequence against \Champion - seed\(=9\).
 
 \begin{figure}[!htbp]
     \centering
     \includegraphics[width=.7\textwidth]{src/chapters/06/img/maximum_score_per_generation_champion.pdf}
-    \caption{The maximum score a sequence achieved against Champion with seed 9
+    \caption{The maximum score a sequence achieved against \Champion with seed 9
     over the generations. Each line represents a different GA trial. Only the
     GAs with \(p_m=0.01\) have been included.}\label{fig:champion_ga_score}
 \end{figure}
 
 There are stochastic opponents for which more variation occurred over the
-generations. An example of that is Random. The highest score
-of the population in a single GA trial, for opponent - seed combination Random -
+generations. An example of that is \Random. The highest score
+of the population in a single GA trial, for opponent - seed combination \Random -
 seed\(=1\), is given by Figure~\ref{fig:random_ga_score}.
-In the case of Random - seed\(=1\) the score of the best response sequence that
-was collected was not the actual score the sequence scores against Random -
+In the case of \Random - seed\(=1\) the score of the best response sequence that
+was collected was not the actual score the sequence scores against \Random -
 seed\(=1\).
 
 \begin{figure}[!htbp]
     \centering
     \includegraphics[width=.7\textwidth]{src/chapters/06/img/maximum_score_per_generation_random.pdf}
-    \caption{The maximum score a sequence achieved against Random - seed\(=1\)
+    \caption{The maximum score a sequence achieved against \Random - seed\(=1\)
     over the generations.}\label{fig:random_ga_score}
 \end{figure}
 
