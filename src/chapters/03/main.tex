@@ -482,7 +482,7 @@ def test_to_dataframe():
     assert article['score'].unique()[0] == 'Not available'
     assert article['open_access'].unique()[0] == True
 \end{sourcepy}
-\caption{Unit tests for class Arxiv. Tests the functionality of the method \mintinline{python}{to_dataframe}.}\label{fig:test_arxiv}
+\caption[Unit tests for class \mintinline{python}{Arxiv}.]{Unit tests for class \mintinline{python}{Arxiv}. Tests the functionality of the method \mintinline{python}{to_dataframe}.}\label{fig:test_arxiv}
 \end{figure}
 
 \begin{figure}[!hbtp]
@@ -499,17 +499,23 @@ def test_parameters_and_url_author():
     assert parameters == ['author=Glynatsi']
 
     url = api.create_url_search(parameters)
-    assert url == 'https://ieeexploreapi.ieee.org/api/v1/search/articles?author=Glynatsi&apikey=Your key here'
+    assert (
+    url ==
+    "https://ieeexploreapi.ieee.org/api/v1/search/articles?author=Glynatsi&apikey=Your key here"
+    )
 
 def test_parameters_and_url_title():
     api = arcas.Ieee()
-    parameters = api.parameters_fix(title='Game')
-    assert parameters == ['article_title=Game']
+    parameters = api.parameters_fix(title="Game")
+    assert parameters == ["article_title=Game"]
 
     url = api.create_url_search(parameters)
-    assert url == 'https://ieeexploreapi.ieee.org/api/v1/search/articles?article_title=Game&apikey=Your key here'
+    assert (
+    url
+    == "https://ieeexploreapi.ieee.org/api/v1/search/articles?article_title=Game&apikey=Your key here"
+    )
 \end{sourcepy}
-\caption{Unit tests for class Ieee.}\label{fig:test_ieee}
+\caption{Unit tests for class \mintinline{python}{Ieee}.}\label{fig:test_ieee}
 \end{figure}
 
 
