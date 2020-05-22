@@ -357,7 +357,7 @@ expected outputs are the responses to those \(N\) actions by the opponent's best
 response sequence. Each best response sequence, from
 Chapter's~\ref{chapter:best_response_sequence} collection, corresponds to 204
 expected outputs. This is done so that each sample captures a match between a
-strategy and its best response for the all possible match lengths. Specifically
+strategy and its best response for turns in a match. Specifically
 for \(N \in {1, 204}\).
 
 Consider the actions of the strategy Adaptive and its best response, as
@@ -1649,11 +1649,11 @@ LSTM strategies. The tournament is of 200 turns and of 50
 repetitions.}\label{table:scores_lstm_tournament}
 \end{table}
 
-On the whole, the well performed LSTM strategies appear to have the following
+On the whole, the high performing LSTM strategies appear to have the following
 properties:
 
 \begin{enumerate}
-    \item Start of by cooperating, and are never the first ones to defect.
+    \item Never defect first.
     \item Are complex by design.
     \item Use the opening moves to make up their mind about their opponents and decide on a play.
     \item Can achieve mutual cooperation following mutual defections.
