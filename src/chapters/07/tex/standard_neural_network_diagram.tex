@@ -1,0 +1,30 @@
+\documentclass{standalone}
+\begin{document}
+
+\def\layersep{2.5cm}
+\begin{tikzpicture}[node distance=\layersep]
+    \node[input, inner sep=0pt] (I-1) at (0,-1) {};
+    \node[input, inner sep=0pt] (I-2) at (0,-2) {};
+    \node[input, inner sep=0pt] (I-3) at (0,-3) {};
+    \node[input, inner sep=0pt] (I-4) at (0,-4) {};
+
+    \foreach \name / \y in {1,...,5}
+        \path[yshift=0.5cm]
+            node[hneuron] (H-\name) at (\layersep, -\y cm) {};
+
+    \node[output, inner sep=0pt, right of=H-3] (O) {};
+
+    \foreach \source in {1,...,4}
+        \foreach \dest in {1,...,5}
+            \path (I-\source) edge (H-\dest);
+
+    \foreach \source in {1,...,5}
+        \path (H-\source) edge (O);
+
+    % Annotate the layers
+    \node[above of=H-1, node distance=1cm] (hl) {hidden layer};
+    \node[left of=hl] {input layer};
+    \node[right of=hl] {output layer};
+\end{tikzpicture}
+
+\end{document}

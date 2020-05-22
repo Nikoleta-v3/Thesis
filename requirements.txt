@@ -9,3 +9,7 @@ fsspec>=0.3.3 # req. for dask.dataframe currently not being installed with dask=
 blackbook==0.0.6
 sympy==1.2.0
 scikit-optimize==0.5.2
+keras==2.3.1
+tensorflow==1.14.0
+scikit-learn==0.22.2.post1
+joblib==0.14.1

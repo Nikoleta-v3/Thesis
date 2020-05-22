@@ -65,6 +65,8 @@
 \usepackage{multicol,multirow,array}
 \usepackage{booktabs}
 \usepackage{tabularx}
+\usepackage{makecell}
+\usepackage[table]{xcolor}
 \setlength{\heavyrulewidth}{1.5pt}
 \setlength{\abovetopsep}{4pt}
 
@@ -90,8 +92,10 @@
 
 \usepackage{standalone}
 \usepackage{tikz}
-\usetikzlibrary{er,positioning, calc, patterns, arrows}
+\usetikzlibrary{er,positioning, calc, patterns, arrows, backgrounds}
 \usetikzlibrary{decorations.pathreplacing}
+\definecolor{bostonuniversityred}{rgb}{0.8, 0.0, 0.0}
+\definecolor{carrotorange}{rgb}{0.93, 0.57, 0.13}
 \tikzset{
     ultra thick/.style={line width=1.6pt},
     % Define standard arrow tip
@@ -115,9 +119,48 @@
      latex'-latex',
      ultra thick,
      shorten <=2pt,
-     shorten >=2pt,}
+     shorten >=2pt,},
+    chain/.style={
+        rectangle,
+        rounded corners,
+        fill=orange!80,
+        very thick,
+        text width=6em,
+        minimum height=3.5em,
+        text centered},
+    input/.style={
+        circle,
+        fill=gray!70,
+        text width=2em,
+        minimum height=1.5em,
+        text centered},
+    output/.style={
+        circle,
+        fill=gray!30,
+        text width=2em,
+        minimum height=1.5em,
+        text centered},
+    sigmoid/.style={
+        rectangle,
+        draw=black,
+        fill=carrotorange!70,
+        text width=3em,
+        minimum height=4em,
+        text centered},
+    operator/.style={
+        circle,
+        fill=bostonuniversityred!90,
+        draw=black,
+        text width=2em,
+        minimum height=1.5em,
+        text centered},
+    hneuron/.style={
+        circle,
+        text width=2em,
+        minimum height=1.5em,
+        inner sep=0pt,
+        fill=orange!80},
 }
-
 \usepackage{minted}
 
 \definecolor{source_bg}{RGB}{253,246,227}
@@ -188,6 +231,18 @@
 \newcommand{\totalsequences}{\input{src/chapters/06/tex/total_sequences.tex}}
 \newcommand{\reproducible}{\input{src/chapters/06/tex/reproducible_percentage.tex}}
 \newcommand{\nonreproducible}{\input{src/chapters/06/tex/non_reproducible_percentage.tex}}
+
+\newcommand{\metatournamentslstm}{\input{src/chapters/07/tex/number_of_meta_tournaments.tex}}
+\newcommand{\topstrategies}{\input{src/chapters/07/tex/top_strategies_total.tex}}
+\newcommand{\basicstrategies}{\input{src/chapters/07/tex/basic_strategies_total.tex}}
+\newcommand{\acrossstrategies}{\input{src/chapters/07/tex/strategies_across_total.tex}}
+\newcommand{\topsequences}{\input{src/chapters/07/tex/top_strategies_sequences.tex}}
+\newcommand{\basicsequences}{\input{src/chapters/07/tex/basic_strategies_sequences.tex}}
+\newcommand{\acrosssequences}{\input{src/chapters/07/tex/across_strategies_sequences.tex}}
+\newcommand{\lstmstrategies}{\input{src/chapters/07/tex/number_of_lstm_strategies.tex}}
+\newcommand{\lstmnetworks}{\input{src/chapters/07/tex/number_of_lstm_networks.tex}}
+\newcommand{\trainingpoint}{\input{src/chapters/07/tex/total_training_points.tex}}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % ----------------------------------------------------------------------------
 % The actual report
@@ -233,6 +288,8 @@
 \chapter{List of Strategies}
 \input{src/chapters/04/tex/strategies_appendix_04.tex}
 
+\input{src/chapters/07/appendix.tex}
+
 \input{src/chapters/04/tex/correlations_graphical_representations_appendix.tex}
 
 \chapter{Further Analysis on Features Importance}
@@ -240,6 +297,8 @@
 \input{src/chapters/04/tex/random_forest_appendix.tex}
 
 \input{src/chapters/05/appendix.tex}
+
+
 
 \end{appendices}
 

@@ -1,0 +1,53 @@
+\documentclass{standalone}
+\usepackage{tikz}
+\usepackage{standalone}
+\usetikzlibrary{calc}
+
+\begin{document}
+    \begin{tikzpicture}
+        \node[chain, text width=7.5em] (layer) {\footnotesize{\textbf{Recurrent Neural Network}}};
+        \node[below=1cm of layer, input, font=\boldmath] (i) {$x_t$};
+        \node[above=1cm of layer,output, font=\boldmath] (o) {$\hat{y}_t$};
+
+        \draw (layer) edge[->, out=90, in=-90, thick, orange] (o);
+        \draw (i) edge[->, out=90, in=-90, thick, orange] (layer);
+
+        \path (layer.west) ++ (-1em,2em) coordinate (aux);
+        \draw[thick,-latex,rounded corners, orange] (layer.east) -| ++ (1em,2em) -- (aux)
+        |- (layer.west);
+
+        \node[right=1cm of layer] (eq) {$=$};
+
+        \node[right=2cm of layer, chain, text width=7.5em] (layer1) {\scriptsize$\mathbf{h_1 = \phi(Wx_1)}$};
+        \node[below=1cm of layer1, input, font=\boldmath] (i1) {$x_1$};
+        \node[above=1cm of layer1,output, font=\boldmath] (o1) {$\hat{y}_1$};
+        \draw (layer1) edge[->, out=90, in=-90, thick, orange] (o1);
+        \draw (i1) edge[->, out=90, in=-90, thick, orange] (layer1);
+
+        \node[right=1cm of layer1, chain, font=\boldmath, text width=7.5em] (layer2) {\scriptsize$\begin{aligned}
+            h_2 & = \\
+                & = Wx_2 + Uh_{1}
+         \end{aligned}$};
+        \node[below=1cm of layer2,  input, font=\boldmath] (i2) {$x_2$};
+        \node[above=1cm of layer2, output, font=\boldmath] (o2) {$\hat{y}_2$};
+        \draw (layer2) edge[->, out=90, in=-90, thick, orange] (o2);
+        \draw (i2) edge[->, out=90, in=-90, thick, orange] (layer2);
+
+        \node[right=1cm of layer2] (dots) {\Huge{$\dots$}};
+
+        \node[right=.5cm of dots, chain, font=\boldmath, text width=7.5em] (layer4) {\scriptsize$\begin{aligned}
+            h_t & = \\
+                & = Wx_t + Uh_{t-1}
+         \end{aligned}$};
+        \node[below=1cm of layer4,  input, font=\boldmath] (i4) {$x_t$};
+        \node[above=1cm of layer4, output, font=\boldmath] (o4) {$\hat{y}_t$};
+        \draw (layer4) edge[->, out=90, in=-90, thick, orange] (o4);
+        \draw (i4) edge[->, out=90, in=-90, thick, orange] (layer4);
+
+        \draw (layer1) edge[->, out=0, in=180, thick, orange, text=black] node[above] {$h_1$} (layer2);
+        \draw (layer2) edge[->, out=0, in=180, thick, orange, text=black] node[above] {$h_2$} (dots);
+        \draw (dots) edge[->, out=0, in=180, thick, orange, text=black] node[above] {$h_t$} (layer4);
+
+
+    \end{tikzpicture}
+\end{document}

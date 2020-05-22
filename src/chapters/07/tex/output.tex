@@ -1,0 +1,44 @@
+\documentclass{standalone}
+\usepackage{tikz}
+\usepackage{standalone}
+\usetikzlibrary{calc}
+
+\begin{document}
+    \begin{tikzpicture}
+        \node (label) at (0, 0) {\textbf{input:}};
+        \node (l1) at ($(label)+(2, 0)$) {$x_1$};
+        \node (l2) at ($(l1)+(2, 0)$) {$x_2$};
+        \node (l3) at ($(l2)+(2, 0)$) {$x_3$};
+        \node (l4) at ($(l3)+(2, 0)$) {$x_4$};
+        \node (l5) at ($(l4)+(4, 0)$) {$x_{204}$};
+
+        \node[input, font=\boldmath]  (i1) at ($(l1)+(0, -1)$) {$1$};
+        \node[input, font=\boldmath]  (i2) at ($(l2)+(0, -1)$) {$1$};
+        \node[input, font=\boldmath]  (i3) at ($(l3)+(0, -1)$) {$1$};
+        \node[input, font=\boldmath]  (i4) at ($(l4)+(0, -1)$) {$1$};
+        \node[font=\boldmath]  (i5) at ($(i4)+(2, 0)$) {$\dots$};
+        \node[input, font=\boldmath]  (i6) at ($(i5)+(2, 0)$) {$1$};
+        \node[input, font=\boldmath, pattern=north east lines]  (i7) at ($(i6)+(2, 0)$) {$1$};
+
+        \node (label2) at ($(label)+(0, -4)$) {\textbf{output:}};
+        \node (l21) at ($(label2)+(4, 0)$) {$y_1$};
+        \node (l22) at ($(l21)+(2, 0)$) {$y_2$};
+        \node (l23) at ($(l22)+(2, 0)$) {$y_3$};
+        \node (l24) at ($(l23)+(2, 0)$) {$y_4$};
+        \node (l25) at ($(l24)+(4, 0)$) {$y_{204}$};
+
+        \node[output, font=\boldmath, pattern=north east lines]  (01) at ($(l21)+(-2, 1)$) {$1$};
+        \node[output, font=\boldmath]  (o2) at ($(l21)+(0, 1)$) {$1$};
+        \node[output, font=\boldmath]  (o3) at ($(l22)+(0, 1)$) {$0$};
+        \node[output, font=\boldmath]  (o4) at ($(l23)+(0, 1)$) {$0$};
+        \node[output, font=\boldmath]  (o6) at ($(o4)+(2, 0)$) {$0$};
+        \node[font=\boldmath]  (o5) at ($(o6)+(2, 0)$) {$\dots$};
+        \node[output, font=\boldmath]  (o7) at ($(o5)+(2, 0)$) {$0$};
+
+        \draw (i1) edge[->, out=-45, in=135, thick] (o2);
+        \draw (i2) edge[->, out=-45, in=135, thick] (o3);
+        \draw (i3) edge[->, out=-45, in=135, thick] (o4);
+        \draw (i4) edge[->, out=-45, in=135, thick] (o6);
+        \draw (i6) edge[->, out=-45, in=135, thick] (o7);
+    \end{tikzpicture}
+\end{document}

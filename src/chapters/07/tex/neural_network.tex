@@ -1,0 +1,26 @@
+\documentclass{standalone}
+\usepackage{tikz}
+\usepackage{standalone}
+\usetikzlibrary{calc}
+
+
+\begin{document}
+    \begin{tikzpicture}
+        \node[chain] (layer) {\footnotesize{\textbf{Neural Network}}};
+        \node[below=1cm of layer, input] (i) {\tiny{\textbf{input}}};
+        \node[above=1cm of layer, output] (o) {\tiny{\textbf{output}}};
+
+        \draw (layer) edge[->, out=90, in=-90, thick, black] (o);
+        \draw (i) edge[->, out=90, in=-90, thick, black] (layer);
+
+        \draw [thick, dashed] (2.5, 3) -- (2.5, -3);
+
+        \node[chain] (layer_2) at ($(layer)+(5, 0)$) {$\mathbf{h=\phi(Wx)}$};
+        \node[below=1cm of layer_2, input] (i) {$\mathbf{x}$};
+        \node[above=1cm of layer_2, output] (o) {$\mathbf{\hat{y}}$};
+
+        \draw (layer_2) edge[->, out=90, in=-90, thick, black] (o);
+        \draw (i) edge[->, out=90, in=-90, thick, black] (layer_2);
+
+    \end{tikzpicture}
+\end{document}
