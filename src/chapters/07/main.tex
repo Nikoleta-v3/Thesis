@@ -1292,19 +1292,19 @@ compared to the strategies (on the same row) that do not.
 
 Furthermore, the LSTM strategies appear to be using the opening moves to make up
 their minds regarding their opponents. Following the opening moves the
-strategies decide on a play. This is demonstrated but the fact that there is
+strategies decide on a play. This is demonstrated by the fact that there is
 some variation in the opening moves of each fingerprint, but following the
-opening turns the patterns became more stable. From the transitive fingerprints
+opening turns the patterns became more stable. An exception to this can be seen from the transitive fingerprints
 against the spectrum of Random opponents
 (Figures~\ref{fig:transitive_fingerprints_default_s_to_s}
-and~\ref{fig:transitive_fingerprints_default_s_to_p}) it can be seen that this
+and~\ref{fig:transitive_fingerprints_default_s_to_p}). It can be seen that this
 is not true for the strategies trained against the top performing strategies.
 This set of LSTM strategies do not make their mind regarding their opponent. In
 fact, following the opening moves the strategies just play a series of
 cooperations and defections iteratively.
 
 This could potentially reinforce the discussion that the training set against
-the top performing strategies it is not diverse. Against strong opponents the
+the top performing strategies is not diverse. Against strong opponents the
 top performing strategies simply cooperate. The trained LSTM strategies, on that
 training data set, have not been trained to react against random defections.
 
@@ -1593,12 +1593,12 @@ $p_o=1$.}\label{table:scores_s_to_p_basic_against_seven}
 It is demonstrated that all three LSTM strategies achieve mutual cooperation for
 all 200 turns when matched against Tit For Tat, Gradual and Cooperator. The LSTM
 strategies open with cooperation and are never the first ones to defect.
-However, they quickly defend themselves against unconditional defections make by
+However, they quickly defend themselves against unconditional defections made by
 Defector, and quickly learn to exploit Alternator. Following the opening 2 to 4
-moves the LSTM strategies decide on unconditional defections against Alternator.
+moves the LSTM strategies decides on unconditional defections against Alternator.
 
 The StoP based strategy trained against the basic strategies with $p_o=1$, is
-the strategy that reacts to quickest to Alternator's alternate defections. In
+the strategy that reacts quickest to Alternator's alternate defections. In
 fact, against Alternator the strategy demonstrates a Grudger like behaviour.
 However, this is not true for every opponent the strategy is matched against.
 Figure~\ref{fig:transitive_fingerprints_against_seven} shows that strategy
