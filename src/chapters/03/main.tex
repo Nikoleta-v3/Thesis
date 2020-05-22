@@ -26,7 +26,7 @@ connected to a ``main'' group of authors.
 
 \hrulefill
 
-The differences between the Chapter and the manuscript include \dots.   % TODO
+The differences between the Chapter and the manuscript include\dots.   % TODO
 \newpage
 
 \section{Introduction}\label{section:introduction}
@@ -201,41 +201,35 @@ the title.}\label{fig:arcas_query_plos}
 >>> parameters = api.parameters_fix(title="Prisoner's Dilemma", records=1)
 >>> url = api.create_url_search(parameters)
 >>> url
-"http://www.nature.com/opensearch/request?&query=dc.title adj Prisoner's Dilemma&maximumRecords=1"
+"http://www.nature.com/opensearch/request?&query=dc.title adj Game Theory&maximumRecords=1"
 
 >>> request = api.make_request(url)
 >>> root = api.get_root(request)
 >>> article = api.parse(root)
 
 >> article
-[{'records': None,
-'record': None,
-'recordSchema': 'info:srw/schema/11/pam-v2.1',
-'recordPacking': 'packed',
-'recordData': None,
-'message': None,
+[{'aggregationType': 'online',
 'article': None,
+'copyright': '© 2008 Nature Publishing Group',
+'creator': 'Felix Cheung',
+'description': "Players with insider information can help increase ... in the minority game",
+'doi': '10.1038/nchina.2008.18',
+'eIssn': '1751-5793',
+'genre': 'Research Highlights',
 'head': None,
-'identifier': 'doi:10.1057/ces.1994.6',
-'title': """Survey Article: Cooperate or Defect? Russian and American Students
-in a Prisoner's Dilemma""",
-'creator': 'Michael Hemesath',
-'productCode': 'ces',
-'publicationName': 'Comparative Economic Studies',
-'issn': '0888-7233',
-'eIssn': '1478-3320',
-'doi': '10.1057/ces.1994.6',
-'publisher': 'Palgrave Macmillan',
-'publicationDate': '1994-04',
-'volume': '36',
-'number': '1',
-'startingPage': '83',
-'endingPage': '93',
-'url': 'http://dx.doi.org/10.1057/ces.1994.6',
-'genre': 'Research',
-'description': "<p>Do assumptions underlying the models of ...",
-'copyright': '© 1994 Palgrave Macmillan Ltd',
-'aggregationType': 'issue'}]
+'identifier': 'doi:10.1038/nchina.2008.18',
+'message': None,
+'productCode': 'nchina',
+'publicationDate': '2008-01-23',
+'publicationName': 'Nature China',
+'publisher': 'Nature Publishing Group',
+'record': None,
+'recordData': None,
+'recordPacking': 'packed',
+'recordSchema': 'info:srw/schema/11/pam-v2.1',
+'records': None,
+'title': 'Game theory: Avoid the crowd',
+'url': 'http://dx.doi.org/10.1038/nchina.2008.18'}]
 
 \end{usagepy}
 \caption{Example of using the library Arcas to communicate the API of the publisher
@@ -299,7 +293,14 @@ an example of an API which requires a user to have an access key
 publishers website and for the APIs of this work they can be acquired for free.
 
 \begin{figure}[!hbtp]
-    \begin{sourcepy}
+\begin{minted}[
+    bgcolor=bg,
+    framesep=2mm,
+    frame=lines,
+    baselinestretch=1.2,
+    fontsize=\tiny,
+    linenos
+    ]{python}
 class Arxiv(Api):
     def __init__(self):
         self.standard = 'http://export.arxiv.org/api/query?search_query='
@@ -369,13 +370,20 @@ class Arxiv(Api):
     def get_root(response):
         root = ElementTree.fromstring(response.text)
         return root
-\end{sourcepy}
+\end{minted}
 \caption{Class Arxiv is implemented in Arcas. It includes the code necessary for Arcas
 to query the API of arXiv.}\label{fig:arcas_arxiv}
 \end{figure}
 
 \begin{figure}[!hbtp]
-    \begin{sourcepy}
+    \begin{minted}[
+        bgcolor=bg,
+        framesep=2mm,
+        frame=lines,
+        baselinestretch=1.2,
+        fontsize=\tiny,
+        linenos
+        ]{python}
 class Ieee(Api):
     """
         API argument is 'ieee'.
@@ -440,7 +448,7 @@ class Ieee(Api):
         root = response.json()
         return root
     
-\end{sourcepy}
+\end{minted}
 \caption{Class Ieee is implemented in Arcas. It includes the code necessary for Arcas
 to query the API of IEEE.}\label{fig:arcas_ieee}
 \end{figure}
@@ -509,11 +517,6 @@ def test_parameters_and_url_title():
     parameters = api.parameters_fix(title="Game")
     assert parameters == ["article_title=Game"]
 
-    url = api.create_url_search(parameters)
-    assert (
-    url
-    == "https://ieeexploreapi.ieee.org/api/v1/search/articles?article_title=Game&apikey=Your key here"
-    )
 \end{sourcepy}
 \caption{Unit tests for class \mintinline{python}{Ieee}.}\label{fig:test_ieee}
 \end{figure}
@@ -884,7 +887,7 @@ given by Table \ref{table:topics_per_year}.
 
 \begin{table}[!hbtp]
     \begin{center}
-    \resizebox{\textwidth}{!}{
+    \resizebox{.93\textwidth}{!}{
     \input{src/chapters/03/paper/bibliometric-study-of-the-prisoners-dilemma/assets/topics_per_year_table}}
     \end{center}
     \caption{Topic modelling result for the cumulative data set over the periods

@@ -57,6 +57,7 @@
 
 % A package to include graphics files (jpg, png, eps, pdf etc...)
 \usepackage{graphicx}
+\usepackage{adjustbox}
 
 % A package for strike through
 \usepackage{soul}
@@ -174,7 +175,8 @@
     frame=lines,
     baselinestretch=1.2,
     fontsize=\scriptsize,
-    linenos
+    linenos,
+    framerule=1pt
     ]{python}}
 {\end{minted}}
 
@@ -188,7 +190,8 @@
     frame=lines,
     baselinestretch=1.2,
     fontsize=\scriptsize,
-    linenos
+    linenos,
+    framerule=1pt
     ]{python}}
 {\end{minted}}
 
@@ -201,6 +204,7 @@
     frame=lines,
     baselinestretch=1.2,
     fontsize=\scriptsize,
+    framerule=1pt
     ]{shell}}
 {\end{minted}}
 
