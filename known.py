@@ -308,5 +308,8 @@ words = {
     "xml",
     "yml",
     "zz",
-    "FSMSix"
+    "FSMSix",
+    "Cheung",
+    "nchina",
+    "xml",
 }
