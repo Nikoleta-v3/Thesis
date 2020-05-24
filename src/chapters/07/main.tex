@@ -4,7 +4,8 @@
     The research reported in this Chapter has been carried out with:
 
     Axelrod-Python library version: 4.2.0 \\
-    Associated data set: \\ % TODO archive model weights
+    Associated data set:~\cite{Glynatsi_2020_lstm_weights} \\
+    Associated codebase:~\cite{Glynatsi_2020_sensei} \\
     This work was performed using the computational facilities of the Advanced Research
     Computing @ Cardiff (ARCCA) Division, Cardiff University.\\ \vspace{.5cm} 
 \end{center}
@@ -657,7 +658,7 @@ tournament and a collection of basic strategies. The details of the subsets are
 given by Table~\ref{table:training_data_sets}.
 A list of the strategies' names used in each subset is given in the Appendix~\ref{appendix:training_sets_strategies}.
 
-\newcolumntype{g}{>{\columncolor{Gray}}c}
+\newcolumntype{g}{>{\columncolor{Gray}}c} %TODO archive data
 \begin{table}[htb]
     \centering
     \resizebox{\textwidth}{!}{
@@ -719,7 +720,7 @@ As discussed in section~\ref{section:artificial_neural_networks}, the loss
 function is used to optimise the learning algorithm. The networks that will
 be used as IPD strategies in the next section are the networks that achieved
 the lowest loss value over the epochs. The weights of the best performing
-networks have been archive and are available at. %TODO archive weights
+networks have been archive and are available at~\cite{Glynatsi_2020_lstm_weights}.
 
 Another measure which is being reported at each epoch is the accuracy. The accuracy
 is calculated after the learning parameters have been determined and it is in
@@ -898,7 +899,7 @@ Algorithm~\ref{algorithm:meta_tournament_lstm_validation}.
 \end{algorithm}
 
 For each trial a random size \(s \in [5, 10]\) is selected, and from the
-\numberofstrategiesbestsequences strategies of Appendix, a random list of \(s\) strategies is chosen. %TODO fix Appendix of Chapter 6.
+\numberofstrategiesbestsequences strategies of Appendix~\ref{app:list_of_players_06}, a random list of \(s\) strategies is chosen.
 The LSTM player is then added
 to the list of players, increasing the size to \(s + 1\). For the given list of
 strategies a standard tournament of 200 turns is performed and repeated 50
