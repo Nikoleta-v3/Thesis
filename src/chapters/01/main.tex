@@ -43,17 +43,17 @@ This introductory Chapter is set as follows:
 
 Game theory was formalised in 1944~\cite{VonNeumann1944} and is the study of
 interactions as \textit{games}. A game is a model of interacting
-decision makers refereed to as \textit{players}. Each player has a set of
-possible \textit{actions}, and the game captures the interactions of the player's
+decision makers referred to as \textit{players}. Each player has a set of
+possible \textit{actions}, and the game captures the interactions of the players'
 actions by allowing each player's \textit{payoffs} to be dependant on the actions
 of all players. More precisely, as given in~\cite{Osborne2004}, the formal
-definition of a game is as follows,
+definition of a game is as follows:
 
 \begin{definition}
 A \textbf{game} consists of
 \begin{itemize}
-    \item a set of player
-    \item for each player, a set of actions
+    \item a set of players,
+    \item for each player, a set of actions and
     \item for each player, payoff functions mapping the set of all actions to a numerical value.
 \end{itemize}
 \end{definition}
@@ -65,9 +65,9 @@ lead to an `inefficiency' of the outcome even though selflessness can be
 evolutionarily advantageous.
 
 More specifically, in the PD each player has two actions, to either be selfless
-and cooperate, denoted as (C), or to be selfish and defect, denoted as (D). Each
-decision is made simultaneously and independently. Players' payoffs are
-generally represented by (\ref{eq:pd_definition}). Both players receive a reward
+and cooperate, denoted as ($C$), or to be selfish and defect, denoted as ($D$). Each
+decision is made simultaneously and independently. The players' payoffs are
+generally represented by Equation (\ref{eq:pd_definition}). Both players receive a reward
 for mutual cooperation, \(R\), and a payoff \(P\) for mutual defection. A player
 that defects while the other cooperates receives a payoff of \(T\), whereas the
 cooperator receives \(S\).
@@ -87,8 +87,8 @@ cooperator receives \(S\).
 \end{equation}
 
 It is assumed that two cooperating players do better than two defecting ones,
-and thus, the payoff of two cooperating players \(R\) is
-larger than the payoff of two defecting players \(P\). A player, however, has the
+and thus, the payoff of two cooperating players is
+larger than the payoff of two defecting players; \(R > P\). A player, however, has the
 temptation to deviate, as that player will receive a higher payoff \(T\) than
 that of mutual cooperation \(R\) whilst the cooperator's payoff \(S\) is smaller than
 \(P\). In consequence, the payoffs are constrained by
@@ -98,7 +98,7 @@ Equation~(\ref{eq:constrain_one}).
     T > R > P > S
 \end{equation}
 
-A second constraint which ensures that a social dilemma arises: the sum
+A second constraint which ensures that a social dilemma arises, is that the sum
 of the utilities to both players is best when they both cooperate,
 Equation~(\ref{eq:constrain_two}).
 
@@ -106,11 +106,10 @@ Equation~(\ref{eq:constrain_two}).
     2R > T + S
 \end{equation}
 
-Another equivalent representation of the PD is the \textit{donation game}.
-In the donation game each player can cooperate by providing a benefit \(b\) to
-the other player at a cost \(c\) with \(0 < c < d\). Thus, \(T=b, R=b-c,S=c,
-\text{and } P=0\). The representation of the donation game payoff matrix is
-given by~(\ref{eq:the_pd_payoffs_with_cost}).
+An equivalent representation of the PD is the \textit{donation game}. In the
+donation game each player can cooperate by providing a benefit \(b\) to the
+other player at a cost \(c\) with \(0 < c < d\). Thus, the players' payoffs for
+the donation game are as given by Equation~(\ref{eq:the_pd_payoffs_with_cost}).
 
 \begin{equation}\label{eq:the_pd_payoffs_with_cost}
     S_p =
@@ -128,7 +127,7 @@ given by~(\ref{eq:the_pd_payoffs_with_cost}).
 
 This thesis studies the PD as given by Equation~(\ref{eq:pd_definition}). There
 are numerical experiments presented in the following Chapters. These have been
-carried out using the following payoff values: \(R = 3, P = 1, T = 5\) and \(S =
+carried out using the payoff values of \(R = 3, P = 1, T = 5\) and \(S =
 0\), which are the values most commonly used in the
 literature~\cite{Adami2013, Axelrod1984,  Beaufils1988, Bendor1991, Donninger1986,
 Franken2005, Knight2017, Harper2017, kendall2007iterated, Knight2018, Li2007,
@@ -174,7 +173,7 @@ Table~\ref{table:tournament_refs}.
 
 \begin{table}[htbp]
     \centering
-    \resizebox{.9\textwidth}{!}{
+    \resizebox{\textwidth}{!}{
     \begin{tabular}{ccll}
         \toprule
         Year & Reference & Environment & Dominating Strategies\\
@@ -185,7 +184,7 @@ Table~\ref{table:tournament_refs}.
         1987 & \cite{Beaufils1997} & Round robin \& ecological tournament with 12 participants & \Gradual \\
         1991 & \cite{Bendor1991}   & Round robin tournament with noise and 13 participants & \NiceandForgiving \\
         2005 & \cite{kendall2007iterated}  & Varied with 223 participants & Varying \\
-        2012 & \cite{Stewart2012}  & Round robin tournament with 13 & Generous Zero-determinants \\
+        2012 & \cite{Stewart2012}  & Round robin tournament with 13 & Generous zero-determinants \\
         2016 & \cite{Knight2016}   & Round robin tournament with 130 participants & Heuristically trained strategies\\
         2017 & \cite{Harper2017}   & Round robin tournament with 200 participants & Heuristically trained strategies\\
         \bottomrule
@@ -232,7 +231,7 @@ analysed using network theoretic approaches to answer research question~\ref{res
 The second part of the thesis aims to answer research
 question~\ref{research_question_one}. There are four Chapters to this part which
 explore optimal behaviour using original approaches. Namely,
-Chapter~\ref{chapter:meta_tournaments} analyses a set of \numberofalltournaments computer.
+Chapter~\ref{chapter:meta_tournaments} analyses a set of \numberofalltournaments computer
 tournaments of distinct types and evaluates \numberofstrategies strategies'
 performance. Chapter~\ref{chapter:memory_one} explores best response strategies
 to environments of memory-one opponents and
@@ -242,7 +241,7 @@ Chapter~\ref{chapter:lstm}, uses the data set of best response sequences
 generated in Chapter~\ref{chapter:best_response_sequence} to train an IPD
 strategy using a recurrent neural network.
 
-The seven Chapters of the thesis and their role is illustrated in
+The six Chapters of the thesis and their role is illustrated in
 Figure~\ref{fig:structure_of_thesis}. An arrow between one Chapter and another
 implies that the work described in one serves as motivation for the other.
 
@@ -257,30 +256,30 @@ A summary of each Chapter is given below:
 \begin{itemize}
     \item Chapter~\ref{chapter:introduction} has contextualised the three main
     research questions of this thesis. Background of game theory and the
-    Prisoner's Dilemma has been given, and the structure
-    of the remainder of the thesis outlined.
+    PD has been given, and the structure
+    of the remainder of the thesis has been outlined.
     \item Chapter~\ref{chapter:literature_review} provides a systematic
-    literature review for the Prisoner's Dilemma and a manual classification of
+    literature review for the PD and a manual classification of
     the reviewed papers under research topics. The manually identified research
     topics include evolutionary dynamics, intelligently designed strategies
-    and structured strategies and training.
+    and structured strategies which have undergone training.
     \item Chapter~\ref{chapter:bibliometric_study} presents a bibliometric
-    analysis of \totalarticles Iterated Prisoner's Dilemma articles. It uses natural language processing to.
+    analysis of \totalarticles IPD articles. It uses natural language processing to
     identify five research topics, and a graph theoretic approach to quantify the
     collaborativeness of the field. The five identified topics are human subject
     research, biological studies, strategies, evolutionary dynamics on networks
-    and modelling problems as a Prisoner's Dilemma.
+    and modelling problems as a PD.
     \item Chapter~\ref{chapter:meta_tournaments} generates and analyses a set of
     \numberofalltournaments computer tournaments. It evaluates
     \numberofstrategies strategies, many of which are well known strategies from
     the literature. It presents the top performing strategies and analyses their
     salient features. The results show that there is not yet a single strategy
-    that performs well in diverse Iterated Prisoner's Dilemma scenarios,
+    that performs well in diverse IPD scenarios,
     nevertheless there are several properties that heavily influence the best
     performing strategies. These are: be nice, be provocable and generous, be a
     little envious, be clever, and adapt to the environment.
     \item Chapter~\ref{chapter:memory_one} explores best responses to a
-    collection of memory-one strategies as a multidimensional non linear
+    collection of memory-one strategies as a multidimensional non-linear
     optimisation problem. It presents a closed form algebraic expression for the
     utility of a memory-one strategy against a given set of opponents, a
     compact method of identifying it's best response to that given set of
@@ -290,29 +289,36 @@ A summary of each Chapter is given below:
     literature that has shown that extortionate play is not always optimal by
     showing that optimal play is often not extortionate.
     \item Chapter~\ref{chapter:best_response_sequence} explores the problem of
-    Iterated Prisoner's Dilemma best responses in the form of sequences.
+    IPD best responses in the form of sequences.
     It heuristically identifies the best response sequence against \numberofstrategiesbestsequences strategies,
     and generates a data set of 750 best response sequences of 205 turns.
-    This chapter mainly serves as a foundation for Chapter~\ref{chapter:lstm}
+    The Chapter mainly serves as a foundation for Chapter~\ref{chapter:lstm}
     but does present a novel heuristic and a study of its performance.
-    \item Chapter~\ref{chapter:lstm} uses the data set of best response strategies
-    obtained from Chapter~\ref{chapter:best_response_sequence} to train a recurrent
-    neural network to play the Iterated Prisoner's Dilemma.
+    \item Chapter~\ref{chapter:lstm} uses the data set of best response
+    strategies obtained from Chapter~\ref{chapter:best_response_sequence} to
+    train a type of recurrent neural network to predict best response sequences.
+    The recurrent neural network used is the long short-term memory network
+    (LSTM) which has gained a lot of attention in the machine learning
+    literature but not in the IPD literature. A total of \lstmnetworks were
+    trained which were then used to introduce \lstmstrategies distinct IPD
+    strategies. It is demonstrated that a set of these strategies can win
+    standard tournaments and the best LSTM performers on average rank at the top
+    25\% of any standard tournament.
     \item Chapter~\ref{chapter:conclusion} summarises the work of the previous
-    six chapters, and indicates possible directions of future work, identifying
+    chapters, and indicates possible directions of future work, identifying
     further research questions that have arisen.
 \end{itemize}
 
-Chapters~\ref{chapter:meta_tournaments}-\ref{chapter:lstm} explore optimal the
-behaviour in the Iterated Prisoner's Dilemma. The disparity between the
+Chapters~\ref{chapter:meta_tournaments}-\ref{chapter:lstm} explore optimal
+behaviour in the IPD. The disparity between the
 approaches is their depth, as illustrated in Figure~\ref{fig:depth_structure}.
 Chapter~\ref{chapter:meta_tournaments} explores optimal behaviour
 by analysing a data set of tournaments and evaluating the performance of
 pre-designed strategies. The exact opposite is done in
-Chapter~\ref{chapter:best_response_sequence} whereas for a given set of two
+Chapter~\ref{chapter:memory_one} whereas for a given set of two
 memory-one opponents a best response strategy is calculated explicitly.
 Similarly, a best responses sequence against a given opponent is calculated in
-Chapter~\ref{chapter:best_response_sequence} but this is done using a heuristic
+Chapter~\ref{chapter:best_response_sequence}, but this is done using a heuristic
 method. Finally, Chapter~\ref{chapter:lstm} uses a machine learning algorithm
 to generate a optimal behaviour based on recurrent networks without any manual
 input.
@@ -336,14 +342,14 @@ requirements.
 
 For the research of each Chapter (excluding Chapters~\ref{chapter:literature_review}
 and~\ref{chapter:conclusion}) source code and analysis code have been developed.
-They have been made public via GitHub and they have one of the most flexible and
-permissive licences, the MIT licence. All code of this work is written in Python, an open source
-language. Essentially the code developed for the thesis is available for inspection,
+All code is written in the an open source language Python, has been made public
+via GitHub and has one of the most flexible and permissive licences, the MIT
+licence. Essentially, the code developed for the thesis is available for inspection,
 testing, and modification which enables and encourages
 greater understanding of the underlying methodology, increases model confidence,
-and provides an extendable framework which can currently be used by others.
+and provides an extendable framework which can be used by others.
 
-Two themes that arise as vital in research software development:
+Two themes arise as vital in research software development:
 reproducibility and sustainability. To reassure the reproducibility and
 sustainability of the software, and subsequently the research described in the
 thesis, several methods of
@@ -378,7 +384,7 @@ A good version control system has the following features as stated in~\cite{Rupa
     to a version that was committed in the past.
     \item Track changes: Messages are attacked to file changes in order to track the
     how and why the code evolved over time.
-    \item Track ownership: File changes are tagged with the user's names who made
+    \item Track ownership: File changes are tagged with the user's name who made
     the changes.
     \item Sandboxing: The ability to make temporary changes in an isolated area,
     called a sandbox, to test and try out code before it is checked in.
@@ -392,7 +398,7 @@ There are a number of popular tools for version control, these include Git~\cite
 Subversion~\cite{subversion}, and Mercurial~\cite{mercurial}. The version
 control system chosen to carry out the software development here is Git.
 
-There are several services that host git servers online and allow users to work
+There are several services that host Git servers online and allow users to work
 with Git publicly. These services are essential for reproducibility as they make
 not only the source code for the computer programmes available online but also
 the history of its development. Such services are GitHub~\cite{github},
@@ -405,15 +411,14 @@ other's repositories. Moreover, it encourages collaboration and code contributio
 by other users through pull request features. An example of a pull request on
 a GitHub repository is given by Figure~\ref{fig:pull_request_github}. In Figure~\ref{fig:pull_request_github}
 it is shown how changes are tagged with a user and a short message describing
-the alternations made to the codebase. It is also shown how GitHub issues can be
-addressed, and subsequently close from a specific pull request.
+the alternations made to the codebase.
 
 \begin{figure}[!htbp]
-\begin{subfigure}{0.495\textwidth}
+\begin{subfigure}{0.5\textwidth}
     \centering
     \includegraphics[width=\textwidth]{src/chapters/01/img/GitHub_discussion}
 \end{subfigure}
-\begin{subfigure}{0.495\textwidth}
+\begin{subfigure}{0.5\textwidth}
     \centering
     \includegraphics[width=\textwidth]{src/chapters/01/img/GitHub_discussion_two}
 \end{subfigure}
@@ -450,7 +455,7 @@ or moving between environments is called activating the environment. An environm
 can be shared and kept under version control as a file. An example of
 such as file is given by Figure~\ref{fig:environment_file}.
 
-\begin{figure}
+\begin{figure}[!htbp]
 \begin{shell}
 name: opt-mo
 channels:
@@ -478,7 +483,7 @@ dependencies:
 Chapter~\ref{chapter:memory_one}.}\label{fig:environment_file}
 \end{figure}
 
-Each chapter of the thesis includes an environment file detailing the dependencies
+Each Chapter's repository includes an environment file detailing the dependencies
 of the source code and their versions.
 
 \subsection{Automated testing}
@@ -502,22 +507,22 @@ There are two types of unit tests: \textit{pure} and \textit{integrated} tests.
 Pure unit tests are written to test only one function or method. Thus, if a pure
 unit test was to fail then it should be due to problems with the specific part
 of the code it is testing only, and not any other bit of code. Pure unit tests
-are fast and readable, however they do not test how well functions and methods
-integrate with one another. In order to test these, unit tests must be written
+are fast and readable, however, they do not test how well functions and methods
+integrate with one another. This is tested by writing unit tests
 that rely on other parts of the code that are not explicitly being tested. This
-type of test is called integrated tests.
+type of unit test is called integrated tests.
 
-The automated tests, which include functional and unit tests, of the
-repositories associated with the thesis have been implemented using the Python
-library \mintinline{python}{pytest}. The \mintinline{python}{pytest} framework
-makes it easy to write automated tests in a few lines. A plugin to
-\mintinline{python}{pytest} is that of \mintinline{python}{pytest-cov}. The plugin
-allows for coverage checks. Coverage is a measure used to describe how much of
-the code is executed (covered) by the testing suite.
+Automated tests, which include functional and unit tests, have been implemented
+for the repositories associated with the thesis. This was done using the Python
+library \mintinline{python}{pytest} which makes it easy to write automated tests
+in a few lines and to check for code coverage. Coverage is a measure used to
+describe how much of the code is executed (covered) by the testing suite.
+Coverage is tested using a plugin to \mintinline{python}{pytest}, the
+\mintinline{python}{pytest-cov}.
 
 To regularly test code which aims to be merged back into the original codebase
 continuous integration (CI) systems are used. CIs perform the tests suite and
-the coverage check every time a new version of the codebase is made available
+the coverage checks every time a new version of the codebase is made available
 (``pushed'') on GitHub. The benefits of using a CI are identifying bugs quickly,
 reducing problems when merging in contributions from collaborators, and adding
 transparency to the development process. There are two CIs that have been used
@@ -531,7 +536,7 @@ computer software or is embedded in the source code. The documentation either
 explains how the software operates or how to use it.
 
 Each repository associated with the thesis includes a detailed README file.
-These contain installation instructions for corresponding packaged source code
+These contain installation instructions for the corresponding packaged source code
 and demonstrate how to run the associated test suite. The source code for each
 repository has been written in a modular way and meaningful names have been
 given to all variables, functions, methods and classes. Each function, method
@@ -544,7 +549,7 @@ of the source code's usage.
 
 \subsection{Summary of software written}
 
-As previously stated the source code for
+As previously stated the codebases for
 Chapters~\ref{chapter:bibliometric_study}-\ref{chapter:lstm} have been written
 following best practices, have been packaged, are available on GitHub and have
 been archived on Zenodo. These practices have been followed to reassure the the
@@ -577,7 +582,7 @@ Table~\ref{table:source_code_data_citations}.
     \label{table:source_code_data_citations}
 \end{table}
 
-Throughout the thesis, parts of the source code and examples of its usage are
+Throughout the thesis, parts of the source code and examples of the code's usage are
 going to be presented in the corresponding Chapters. Two types of code snippets
 are used in this thesis to present code. Code snippets that demonstrate the
 source code of a specific piece of software, Figure~\ref{figure:source_code_example}, and
@@ -645,14 +650,14 @@ same as the one following the command in the code snippets.
 
 \section{Chapter summary}
 
-This Chapter has introduced the Iterated Prisoner's Dilemma which is the
+This Chapter has introduced the IPD which is the
 strategic game used in this thesis. It has presented a review of the Axelrod's
 tournaments in the 1980s, and presented a list of tournaments that have been
 performed ever since.
 
 The research questions of this thesis and how each Chapter contributes to these
 questions have been outlined. The research of this thesis heavily reliefs on
-software. The software include already established packages and packages that
+software. The software includes already established packages and packages that
 have been developed specifically for this thesis. These have been developed
 following best practices. A number of best practices were introduced in
 section~\ref{section:introduction_software_development}.
