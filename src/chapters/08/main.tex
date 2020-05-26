@@ -7,31 +7,30 @@ brief.
 \section{Research summary}
 
 The fundamental research question of this thesis has been the same question that
-has troubled the scientific community since the formulation of the Iterated
-Prisoner's Dilemma in 1950. Namely, what is the optimal behaviour an Iterated
-Prisoner's Dilemma strategy should adapt as a response to different
-environments.
+has troubled the scientific community since the formulation of the IPD in 1950.
+Namely, what is the optimal behaviour an Iterated Prisoner's Dilemma (IPD)
+strategy should adapt as a response to different environments.
 
-Chapter~\ref{chapter:introduction} introduced the Iterated Prisoner's Dilemma,
+Chapter~\ref{chapter:introduction} introduced the IPD,
 carried out an initial literature review and outlined the research tasks of this
 thesis. A more detailed literature review was presented in
 Chapter~\ref{chapter:literature_review}. The literature reviewed in
 Chapter~\ref{chapter:literature_review} was divided into different research
 topics. These included evolutionary dynamics, intelligently designed strategies,
-structured strategies and training and software that has been developed
+structured strategies and training, and software that has been developed
 specifically for the game.
 
 In Chapter~\ref{chapter:bibliometric_study} a bespoke research software tool
-called \mintinline{python}{arcas} was developed and used to collect a data set
-of articles' metadata on the Iterate Prisoner's Dilemma. A topic modelling
+called Arcas was developed and used to collect a data set
+of articles' metadata on the IPD. A topic modelling
 technique, called Latent Dirichlet Allocation, was applied to the abstracts of these
 articles and allocated them into five different research topics. These were human
 subject research, biological studies, strategies, evolutionary dynamics on
-networks and modelling problems as a Prisoner's Dilemma.
+networks and modelling problems as a Prisoner's Dilemma (PD).
 
 The bespoke data set was further analysed to explore whether the academic field
-of the Prisoner's Dilemma is cooperative and whether there is influence between
-the authors. It was shown that the field of the Iterated Prisoner's Dilemma is a
+of the PD is cooperative and whether there is influence between
+the authors. It was shown that the field of the IPD is a
 collaborative field, yet it is not necessarily more collaborative than other
 fields. Many authors tend to collaborate with authors from one community
 and are not involved in multiple communities. The collaborativeness was also
@@ -46,7 +45,7 @@ Chapter~\ref{chapter:meta_tournaments} examined the performance of a collection
 of \numberofstrategies strategies in the largest collection of computer
 tournaments in the field. The results across the \numberofalltournaments
 tournaments of various tournaments types deduced that there was not a single strategy that
-performs well in diverse Iterated Prisoner's Dilemma scenarios.
+performs well in diverse IPD scenarios.
 The later parts of the Chapter analysed and extracted the salient features of the best
 performing strategies across the various tournament types and established that there
 are several properties that heavily influence the best performing
@@ -76,7 +75,24 @@ not extortionate, and that memory-one strategies suffer from their limited
 memory in multi agent interactions and can be out performed by optimised
 strategies with longer memory.
 
-Chapter~\ref{chapter:lstm} %TODO include results.
+Chapter~\ref{chapter:best_response_sequence} also investigated best responses
+but in the form of sequences. It defined an IPD strategy in a finite match as
+a sequence, and it defined the best response sequence against a given opponent.
+The results of Chapter~\ref{chapter:best_response_sequence} relied on a bespoke
+heuristic method that has successfully managed to estimate best response
+sequences. A total of \numberofstrategiesbestsequences strategy were used
+as opponents and a total of \totalsequences best responses sequences
+were obtained. The purpose of this collection of best response sequences
+was to be used in Chapter~\ref{chapter:lstm} to train long short-term
+memory (LSTM) networks. These networks were trained on the collection, and on
+three subsets of the collection, to predict best response sequences. A total
+of \lstmnetworks were trained, and these introduced a total of \lstmstrategies
+distinct IPD strategies. The results of \metatournamentslstm standard
+tournaments demonstrated that a set of these LSTM strategies can successfully be
+on the top ranks of any given standard tournament. The top performing LSTM
+strategies exhibited distinct behaviours against the same opponents,
+demonstrated that are adaptable and that opening with a cooperation is crucial
+to a successful performance.
 
 \section{Contributions}
 
@@ -84,7 +100,7 @@ This thesis has made novel contributions across various themes. Numerous
 research software packages have been implemented as part of this thesis. These
 packages have been written following the highest standards of software
 development, and have been made available so that other researchers can
-contribute to and use them. The packages include \mintinline{python}{arcas} a tool designed for
+contribute to and use them. The packages include Arcas a tool designed for
 scraping academic articles from various APIs and
 \mintinline{python}{sequences-sensei} a project for performing genetic
 algorithms. Additionally, software contributions were made to well established
@@ -92,7 +108,7 @@ Python libraries such as SymPy~\cite{sympy} and Axelrod-Python
 Library~\cite{axelrodproject}.
 
 A total of six accompanying data sets have been generated as a result of this thesis,
-which include one of the largest collection of Iterated Prisoner's Dilemma
+which include one of the largest collection of IPD
 tournaments known to the field:
 
 \begin{enumerate}
@@ -110,8 +126,8 @@ available to other researchers. They can be used to conduct further analysis and
 provide new insights to the field.
 
 A total of four scientific manuscripts presenting the methodology, analysis and
-results of this thesis have been prepared and are currently under submission to
-respective academic journals. The title of these manuscripts are:
+results of this thesis have been prepared and three of them are currently under
+submission to respective academic journals. The title of these manuscripts are:
 
 \begin{enumerate}
     \item A bibliometric study of research topics, collaboration and influence
@@ -134,16 +150,22 @@ strategies which can be of interest to researchers designing a new strategy
 for new environments, or just to understand the reasons behind some strategies
 being better than others. Complementing this, a new mathematical framework has
 been developed for the better understanding of memory-one strategies and an
-an initial understanding of using recurrent neural networks to train Iterate Prisoner's
-Dilemma strategies has been presented.
+an initial understanding of using recurrent neural networks to train IPD
+strategies has been presented.
 
-Finally, this thesis has contributed to the continuous understanding of the emergence of
+This thesis has contributed to the continuous understanding of the emergence of
 cooperation by providing a condition for which cooperation can not occur in
 memory-one environments. It has also has proven that constrained quadratic
 ratio optimisation problems that are non concave can be solved explicitly by
 using resultant theory.
 
-% Finally, this thesis has shown the potential for an unsupervised learning approach to training a neural network ... drop previous "Finally"
+Finally, compared to conventional works where a strategy is trained against a
+specific set of opponents and its performance is then validated against that
+same set, this thesis has trained LSTM networks on data sets of best response
+sequences and then validated their performance as IPD strategies is
+\metatournamentslstm different tournaments. This has shown the potential for an
+unsupervised learning approach to training a recurrent neural network to compete
+in IPD competitions.
 
 \section{Complementary research}
 
@@ -151,8 +173,7 @@ The results of this thesis are not the only scientific results to which I
 contributed during this doctoral research. The publications that will be
 discussed in this section are publications to which I am an author.
 
-Two other projects which focused on the Iterated
-Prisoner's Dilemma have been
+Two other projects which focused on the IPD have been
 \cite{Knight2017, Harper2017}. The works of~\cite{Knight2017, Harper2017}
 focused on the usage of reinforcement learning algorithms (genetic algorithms
 and particle swarm optimisation algorithms) in training a series of strategies
@@ -169,7 +190,7 @@ models and neural networks. These strategies were trained in two settings:
 The results of~\cite{Knight2017} were confirmed in
 Chapter~\ref{chapter:meta_tournaments}. The trained strategies performed at
 the top of the standard tournament surpassing well established
-strategies such as Tit For Tat, Pavlov, Gradual and zero-determinant strategies.
+strategies such as \TitForTat, \Pavlov, \Gradual and zero-determinant strategies.
 In~\cite{Harper2017} it was observed that the trained strategies (with no manual
 input) evolved the ability to have a handshake, to recognise themselves. This
 was particularly important in a Moran process of resisting invasion where a
@@ -189,7 +210,7 @@ when implemented along with a strong disincentive framework. The paper aimed to
 contribute to the necessary research required for an informed discussion about
 the lively debate on legalising rhino horn trade.
 
-Finally, providing science outreach workshops is a great way to gain a deeper
+Finally, delivering science outreach workshops is a great way to gain a deeper
 understanding of science and its applications, and enhancing students interest
 in science. With that in mind I created an open source educational tutorial, called Game
 Theory and Python~\cite{Glynatsi2017_game}, aimed at introducing participants to % TODO Add JOSE paper when it's done
@@ -229,8 +250,8 @@ However, it was established that large values of noise (\(>
 strategy that performed well in that spectrum of noise.
 
 Strategies that have been trained specifically for noisy environments such
-as DBS, Evolved FSM 16 Noise 05, Evolved ANN 5 Noise 05, PSO Gambler 2 2 2 Noise 05
-and Omega Tit For Tat, performed adequately only in tournaments with restricted
+as \DBS, \EvolvedFSMSixTeenNoiseZeroFive, \EvolvedANNFiveNoiseZeroFive, \PSOGamblerTwoTwoTwoNoiseZeroFive
+and \OmegaTFT, performed adequately only in tournaments with restricted
 noise. This indicates that possibly there is not a strategy in the literature
 trained to be effective for a broad spectrum of noise values. Training such
 a strategy would be an interesting avenue of further research. The analysis of the
@@ -253,4 +274,11 @@ include memory-two strategies, and whether the results still hold.
 
 \textbf{Future research - Training an LSTM strategy}
 
-%TODO based on the conclusions of the Chapter.
+An interesting question that was raised in Chapter~\ref{chapter:lstm} was
+whether the sequence to probability based strategy trained on the entire data
+set would perform even better if it was trained for longer. An interesting
+avenue of further research would be to train the specific strategy for more
+epochs, and to evaluate its performance again in the meta tournament analysis
+presented in Chapter~\ref{chapter:lstm}. Finally, another avenue of further
+research would be to explore the effect of the dimensionality of the hidden
+layers in the performance of the LSTM networks as IPD strategies.
