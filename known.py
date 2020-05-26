@@ -304,7 +304,7 @@ words = {
     "Asus",
     "CPUs",
     "PyTorch",
-    "TensorFlow"
+    "TensorFlow",
     "xml",
     "yml",
     "zz",
@@ -312,4 +312,6 @@ words = {
     "Cheung",
     "nchina",
     "xml",
+    "DOI",
+    "citable",
 }
