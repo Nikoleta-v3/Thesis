@@ -58,3 +58,6 @@ jobs:
     - name: Run doc tests
       run: |
         inv doctest
+    - name: Checks for ToDos
+      run: |
+        inv todo
