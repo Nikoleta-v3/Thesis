@@ -78,15 +78,17 @@ strategies with longer memory.
 Chapter~\ref{chapter:best_response_sequence} also investigated best responses
 but in the form of sequences. It defined an IPD strategy in a finite match as
 a sequence, and it defined the best response sequence against a given opponent.
-The results of Chapter~\ref{chapter:best_response_sequence} relied on a bespoke
-heuristic method that has successfully managed to estimate best response
-sequences. A total of \numberofstrategiesbestsequences strategy were used
-as opponents and a total of \totalsequences best responses sequences
-were obtained. The purpose of this collection of best response sequences
-was to be used in Chapter~\ref{chapter:lstm} to train long short-term
+It introduced an evolutionary algorithm which demonstrated that it can
+successfully identify best response sequences, and which was used to estimate best
+response sequences to \numberofstrategiesbestsequences strategies. A total
+of \totalsequences best responses sequences were obtained as result of
+Chapter~\ref{chapter:best_response_sequence}.
+
+The purpose of this collection of best response sequences
+was to be used in Chapter~\ref{chapter:lstm} to train a series of long short-term
 memory (LSTM) networks. These networks were trained on the collection, and on
 three subsets of the collection, to predict best response sequences. A total
-of \lstmnetworks were trained, and these introduced a total of \lstmstrategies
+of \lstmnetworks LSTMs were trained, and these were used to introduce a total of \lstmstrategies
 distinct IPD strategies. The results of \metatournamentslstm standard
 tournaments demonstrated that a set of these LSTM strategies can successfully be
 on the top ranks of any given standard tournament. The top performing LSTM
