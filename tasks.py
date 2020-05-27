@@ -17,6 +17,7 @@ def compile(c):
     Compile the LaTeX document.
     """
     c.run("latexmk  -interaction=nonstopmode  --xelatex -shell-escape main.tex")
+    c.run("pdflatex -shell-escape main.tex")
 
 
 @task
@@ -64,9 +65,6 @@ def bibliography(c):
 
     bib_database.entries.reverse()
     entries = bib_database.entries
-
-    # for entry in entries:
-    #     entry["ID"] = entry["ID"].capitalize()
 
     unique_titles = set(titles)
 
@@ -140,6 +138,7 @@ def bibliography(c):
         for key in dropped_keys:
             outfile.write(f"{key}\n")
 
+
 @task
 def doctest(c):
     """
@@ -148,6 +147,44 @@ def doctest(c):
 
     book = list(pathlib.Path("./src/").glob("chapters/0*/main.tex"))
     for path in book:
-        chapter = chapter = str(path).split('chapters/')[-1][:2]
-        print(f'Testing chapter {chapter}')
+        chapter = chapter = str(path).split("chapters/")[-1][:2]
+        print(f"Testing chapter {chapter}")
         c.run(f"python -m doctest -v {path}")
+
+
+@task
+def todos(c):
+    """
+    Check for TODOs
+    """
+    book = list(pathlib.Path("./src/").glob("chapters/0*/main.tex"))
+    exit_codes = [0]
+    for path in book:
+        latex = path.read_text()
+        if "TODO" in latex:
+            print(f"TODO in {path}.")
+            exit_codes.append(1)
+
+    sys.exit(max(exit_codes))
+
+
+@task
+def textcount(c):
+    """
+    Word count
+    """
+    book = list(pathlib.Path("./src/").glob("chapters/0*/main.tex"))
+    word_count = 0
+    for path in book:
+        textcount_output = str(
+            subprocess.check_output(f"texcount {path}", shell=True)
+        )
+        textcount_output = textcount_output.replace("\\n", " ")
+
+        upper_limit = textcount_output.find("Words in text:") + len(
+            "Words in text:"
+        )
+        bottow_limit = textcount_output.find("Words in headers:")
+        count = textcount_output[upper_limit:bottow_limit]
+        word_count += int(count)
+    print(word_count)

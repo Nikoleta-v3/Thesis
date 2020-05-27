@@ -1,10 +1,11 @@
-\chapter{Best Response Sequences in the Iterated Prisoner's Dilemma}\label{chapter:best_response_sequence}
+\chapter{Best response sequences in the Iterated Prisoner's Dilemma}\label{chapter:best_response_sequence}
 
 \begin{center}
     The research reported in this Chapter has been carried out with:
 
-    Axerod-Python library version: 4.2.0 \\
-    Associated data set: \cite{Glynatsi2020_sequences} \\ \vspace{.5cm}
+    Axelrod-Python library (APL) version: 4.2.0 \\
+    Associated data set: \cite{Glynatsi2020_sequences} \\
+    Associated codebase: \cite{Glynatsi_2020_sensei} \\ \vspace{.5cm}
 \end{center}
 
 \hrulefill
@@ -39,7 +40,7 @@ Chapter is structured as follow:
     \numberofstrategiesbestsequences strategies.
 \end{itemize}
 
-\section{Iterated Prisoner Dilemma Strategies as Sequences}\label{section:ipd_as_sequences}
+\section{Iterated Prisoner Dilemma Strategies as sequences}\label{section:ipd_as_sequences}
 
 In a finite \(N\) round IPD match a player that does not react to their opponent
 can be defined by a sequence,
@@ -49,15 +50,15 @@ can be defined by a sequence,
 \end{equation}
 
 Strategies that base their actions on sequences are already established in the
-literature~\cite{Beaufils1997}, such as Periodic Player \(CD\), Periodic Player \(DC\),
-Periodic Player \(CCD\) and Periodic Player \(DDC\)~\cite{Li2011, Mittal2009},
-or as referred to in~\cite{Knight2016} Cycler \(CD\), Cycler \(DC\),
-Cycler \(CCD\) and Cycler \(DDC\). These are strategies that play a given sequences
-periodically, however, the strategies concerned with here play a given
-sequence only once, thus \(n = N\).
+literature~\cite{Beaufils1997}, such as \PeriodicPlayerCD, \PeriodicPlayerDC,
+\PeriodicPlayerCCD and \PeriodicPlayerDDC~\cite{Li2011, Mittal2009}, or as
+referred to in~\cite{Knight2016} \CyclerCD, \CyclerDC, \CyclerCCD
+and \CyclerDDC. These are strategies that play a given sequences
+periodically, however, the strategies concerned with here play a given sequence
+only once, thus \(n = N\).
 
-As an example consider a match of 10 turns between the strategy \(S = \{D, D, D,
-C, C, C, D, D, C, C\}\) and Cooperator. The match between the two strategies
+As an example consider a match of 10 turns between the strategy $S = \{D, D, D,
+C, C, C,$ $D, D, C, C\}$ and \Cooperator. The match between the two strategies
 is captured by Table~\ref{table:s_vs_cooperator} where \(U(s_1, s_2)\in
 \mathbb{R}^2\) is the average score per turn scored by strategies \(s_1\) and
 \(s_2\).
@@ -68,14 +69,14 @@ is captured by Table~\ref{table:s_vs_cooperator} where \(U(s_1, s_2)\in
     & \textbf{1} & \textbf{2} & \textbf{3} & \textbf{4}  & \textbf{5} & \textbf{6} & \textbf{7} & \textbf{8}  & \textbf{9} & \textbf{10} & 
     \(U(S, \text{Cooperator})\) \\ \midrule
     \(S\) & \(D\) & \(D\) & \(D\) & \(C\) & \(C\) & \(C\) & \(D\) & \(D\) & \(C\) & \(C\) & 4.0 \\
-    Cooperator & \(C\) & \(C\) & \(C\) & \(C\) & \(C\) & \(C\) & \(C\) & \(C\) & \(C\) & \(C\) & 1.5 \\ \bottomrule
+    \Cooperator & \(C\) & \(C\) & \(C\) & \(C\) & \(C\) & \(C\) & \(C\) & \(C\) & \(C\) & \(C\) & 1.5 \\ \bottomrule
 \end{tabular}
 \caption{The interactions of a 10 turns match between \(S = \{D, D, D, C, C, C, D, D, C, C\}\) and
-Cooperator as well as the average score per turn achieved by each strategy.}\label{table:s_vs_cooperator}
+\Cooperator as well as the average score per turn achieved by each strategy.}\label{table:s_vs_cooperator}
 \end{table}
 
 A sequence strategy \(S\) can play against strategies that react to the history,
-for example against Tit Tor Tat as demonstrated by Table~\ref{table:s_vs_tft},
+for example against \TitForTat as demonstrated by Table~\ref{table:s_vs_tft},
 
 \begin{table}[htb]
 \centering
@@ -83,20 +84,20 @@ for example against Tit Tor Tat as demonstrated by Table~\ref{table:s_vs_tft},
     & \textbf{1} & \textbf{2} & \textbf{3} & \textbf{4}  & \textbf{5} & \textbf{6} & \textbf{7} & \textbf{8}  & \textbf{9} & \textbf{10} &
     \(U(S, \text{Tit For Tat})\) \\ \midrule
     \(S\) & \(D\) & \(D\) & \(D\) & \(C\) & \(C\) & \(C\) & \(D\) & \(D\) & \(C\) & \(C\) & 2.2 \\
-    Tit For Tat & \(C\) & \(D\) & \(D\) & \(D\) & \(C\) & \(C\) & \(C\) & \(D\) & \(D\) & \(C\) & 2.2 \\ \bottomrule
+    \TitForTat & \(C\) & \(D\) & \(D\) & \(D\) & \(C\) & \(C\) & \(C\) & \(D\) & \(D\) & \(C\) & 2.2 \\ \bottomrule
 \end{tabular}
 \caption{The interactions and average score per turn of a 10 turns match between
-\(S = \{D, D, D, C, C, C, D, D, C, C\}\) and Tit For Tat.}\label{table:s_vs_tft}
+\(S = \{D, D, D, C, C, C, D, D, C, C\}\) and \TitForTat.}\label{table:s_vs_tft}
 \end{table}
 
-and against stochastic strategies such as Random. Random cooperates with a
+and against stochastic strategies such as \Random. \Random cooperates with a
 probability of \(0.5\) at each turn, and thus the actions of the strategy are
-not deterministic. Random is a strategy that does react to the history, however,
+not deterministic. \Random is a strategy that does react to the history, however,
 the actions of stochastic strategies that react to the
 history also differ between repetitions even when the history of the match is
 the same. Tables~\ref{table:s_vs_random} and~\ref{table:s_vs_random_2} both
-capture a match between \(S\) and a Random player. For a match of 10 turns
-Random has a total of \(2^{10}\) possible plays.
+capture a match between \(S\) and a \Random player. For a match of 10 turns
+\Random has a total of \(2^{10}\) possible plays.
 In order to capture several different plays of stochastic strategies computer
 seeding, further details of this are given in section~\ref{section:generating_sequences}.
 
@@ -106,10 +107,10 @@ seeding, further details of this are given in section~\ref{section:generating_se
     & \textbf{1} & \textbf{2} & \textbf{3} & \textbf{4}  & \textbf{5} & \textbf{6} & \textbf{7} & \textbf{8}  & \textbf{9} & \textbf{10} &
     \(U(S, \text{Random})\) \\ \midrule
     \(S\) & \(D\) & \(D\) & \(D\) & \(C\) & \(C\) & \(C\) & \(D\) & \(D\) & \(C\) & \(C\) & 2.2 \\
-    Random & \(D\) & \(D\) & \(C\) & \(C\) & \(D\) & \(C\) & \(D\) & \(C\) & \(C\) & \(D\) & 2.2 \\ \bottomrule
+    \Random & \(D\) & \(D\) & \(C\) & \(C\) & \(D\) & \(C\) & \(D\) & \(C\) & \(C\) & \(D\) & 2.2 \\ \bottomrule
 \end{tabular}
 \caption{The interactions and average score per turn of a 10 turns match between
-\(S = \{D, D, D, C, C, C, D, D, C, C\}\) and Random.}\label{table:s_vs_random}
+\(S = \{D, D, D, C, C, C, D, D, C, C\}\) and \Random.}\label{table:s_vs_random}
 \end{table}
 
 \begin{table}[htb]
@@ -118,10 +119,10 @@ seeding, further details of this are given in section~\ref{section:generating_se
     & \textbf{1} & \textbf{2} & \textbf{3} & \textbf{4}  & \textbf{5} & \textbf{6} & \textbf{7} & \textbf{8}  & \textbf{9} & \textbf{10} & \(U(S, \text{Random})\) \\ 
     \midrule 
     \(S\) & \(D\) & \(D\) & \(D\) & \(C\) & \(C\) & \(C\) & \(D\) & \(D\) & \(C\) & \(C\) & 2.4 \\
-    Random & \(C\) & \(D\) & \(D\) & \(C\) & \(C\) & \(C\) & \(D\) & \(D\) & \(C\) & \(C\) & 1.9 \\ \bottomrule
+    \Random & \(C\) & \(D\) & \(D\) & \(C\) & \(C\) & \(C\) & \(D\) & \(D\) & \(C\) & \(C\) & 1.9 \\ \bottomrule
 \end{tabular}
 \caption{The interactions and average score per turn of a 10 turns match between
-\(S = \{D, D, D, C, C, C, D, D, C, C\}\) and Random. The actions make by Random
+\(S = \{D, D, D, C, C, C, D, D, C, C\}\) and \Random. The actions make by \Random
 are different to that of Table~\ref{table:s_vs_random}.}\label{table:s_vs_random_2}
 \end{table}
 
@@ -138,27 +139,27 @@ as given in~(\ref{eq:best_response_sequence}).
 \end{equation}
 
 Identifying best responses to some opponents can be a trivial problem. The
-optimal sequence against a Cooperator is in an all \(D\) sequence. In fact the
+optimal sequence against a \Cooperator is in an all \(D\) sequence. In fact the
 sequence \(\{\underbrace{D, \dots, D}_{N}\}\) is a best response
 against any sequence player whose plays are independent of the history.
 However,
 for some strategies identifying best responses is a complex problem.
 
 Additionally, there are strategies that have multiple best response sequences. For
-instance the strategy Adaptive introduced in~\cite{Li2011}. Adaptive opens by
+instance the strategy \Adaptive introduced in~\cite{Li2011}. \Adaptive opens by
 playing a sequence of \(\{\underbrace{C, \dots, C}_{6}\}\) followed by a
 sequence of \(\{\underbrace{D, \dots, D}_{5}\}\). The strategy then proceeds to
 play either \(C\) or \(D\) depending on which action had a higher total score
 for the strategy (the total score is recalculated at each turn). A sequence
-maximises its average score against Adaptive by locking the strategy into
+maximises its average score against \Adaptive by locking the strategy into
 unconditional cooperations following its opening 11 turns sequence while the sequence
 defects. In order
-for cooperation to be the most favourable action for Adaptive the strategy needs to achieve
+for cooperation to be the most favourable action for \Adaptive the strategy needs to achieve
 two mutual cooperations at its opening sequence. That is because the score achieved
 by cooperating \(2 \times 3 + 4 \times 0 = 6\) is greater than the
 score achieved by defecting \(1 \times 5 = 5\).
 Any sequence which incorporates two cooperations in the first 6 turns
-and defects thereafter is a best response sequence to Adaptive. Thus, there
+and defects thereafter is a best response sequence to \Adaptive. Thus, there
 can be \(2^{6}\) best response sequences to the strategy, for example \(S_{1}^*\) and \(S_{2}^*\),
 
 \[S_{1}^* = \{C, D, D, D, D, C, D, D, D, D, D, D, D, D, D\}\]
@@ -174,7 +175,7 @@ genetic algorithm is used to estimate them. A background on genetic algorithms
 as well as the details of the specific genetic algorithm devised for this Chapter
 are presented in the following section.
 
-\section{Genetic Algorithm}\label{section:genetic_algorithm}
+\section{Genetic algorithm}\label{section:genetic_algorithm}
 
 A genetic algorithm (GA) is a heuristic inspired by the process of natural
 selection that belongs to the larger class of evolutionary algorithms. As stated
@@ -207,11 +208,11 @@ preserved and the population rebuilds on it by using a series of
     or to each gene of the individual.
 \end{itemize}
 
-A diagrammatical representation of a generic GA is given in Figure~\ref{fig:ga_flow_diagram}.
+A diagrammatic representation of a generic GA is given in Figure~\ref{fig:ga_flow_diagram}.
 
 \begin{figure}[!htbp]
     \centering
-    \includestandalone[width=.77\textwidth]{src/chapters/06/tex/ga_flow_diagram}
+    \includestandalone[width=.85\textwidth]{src/chapters/06/tex/ga_flow_diagram}
     \caption{Generic flow diagram of a GA.}\label{fig:ga_flow_diagram}
 \end{figure}
 
@@ -272,7 +273,7 @@ Using a starting population of random guesses is a generally common approach in
 the GA literature~\cite{Hou1994}. However, there is efficiency in using non
 random starting populations~\cite{Drezner2005, Osaba2014}.
 As discussed in section~\ref{section:ipd_as_sequences} the best response sequence
-to any strategy that does not react to the history is a Defector. Moreover,
+to any strategy that does not react to the history is a \Defector. Moreover,
 the best response sequence to several strategies include sequences mainly dominated
 by cooperation expect in the last turns. These are
 sequences that have been incorporated in the initial population. More specifically,
@@ -284,7 +285,7 @@ of:
 
 The GA of Algorithm~\ref{algorithm:genetic_algorithm} has been implemented in the programming language Python
 and it has been organised into a open source package called
-\mintinline{python}{sequence_sensei} available at. %TODO archive
+\mintinline{python}{sequence_sensei} available at~\cite{Glynatsi_2020_sensei}.
 The properties of creating an initial population, crossover and mutation have been
 implemented as individual functions.
 The implementation of Algorithm~\ref{algorithm:initial_population} in the package
@@ -317,7 +318,7 @@ initial population of a given size.}\label{fig:get_initial_population}
 
 Figure~\ref{fig:get_initial_population_example} gives an example of creating an
 initial population using the package. Note that the sequences are of 0s and 1s
-and not IPD actions. The APL project can map binary number to actions such that
+and not of IPD actions. The APL project can map binary number to actions such that
 \(0 \to D\) and \(1 \to C\). This is also demonstrated in
 Figure~\ref{fig:get_initial_population_example}.
 
@@ -356,7 +357,7 @@ matrix([[C, D, D, D, D, D, D, D],
 
 \end{usagepy}
 \caption{Example of using \mintinline{python}{get_initial_population} to
-generate a population of \(s=10\) and \(N=8\).}\label{fig:get_initial_population_example}
+generate a population of \(K=10\) and \(N=8\).}\label{fig:get_initial_population_example}
 \end{figure}
 
 In the GA, as given by Algorithm~\ref{algorithm:genetic_algorithm}, the
@@ -417,11 +418,13 @@ probability at time \(i\) in less than \(p_m\) then the \(i^{th}\) gene of the
 individual is flipped, as demonstrated by
 Figure~\ref{fig:mutation_diagrammatic_example}.
 
-\begin{figure}[!htbp]
+\vspace{1cm}
+\begin{figure}[h]
     \centering
     \includestandalone[width=.6\textwidth]{src/chapters/06/tex/mutation_example}
     \caption{Mutation example of \(S_3\).}\label{fig:mutation_diagrammatic_example}
 \end{figure}
+\vspace{1cm}
 
 The implementation of mutation in \mintinline{python}{sequence_sensei} is given
 by Figure~\ref{fig:mutation_implementation}, and an example of mutating \(S_3\)
@@ -455,24 +458,24 @@ performing a GA is the \mintinline{python}{evolved} function. The function has
 several input arguments which correspond to the inputs of
 Algorithm~\ref{algorithm:genetic_algorithm}. In the following section the
 \mintinline{python}{evolved} function is used to run several trials and estimate
-best response sequence. The parameters' values for each run will be presented there.
+best response sequences. The parameters' values for each run will be presented there.
 Moreover, the details of the best response sequence collection against the
 \numberofstrategiesbestsequences strategies are presented in the following section.
 
-\section{Data Collection}\label{section:generating_sequences}
+\section{Data collection}\label{section:generating_sequences}
 
 The data set generated in this Chapter was created using the GA of Algorithm
 \ref{algorithm:genetic_algorithm} and the APL project. The GA of Algorithm
 \ref{algorithm:genetic_algorithm} estimates the best response sequence for a given
 opponent, and in order to generate a collection of best responses a list of
 opponents is obtained from APL. More specifically \numberofstrategiesbestsequences strategies are used
-in this Chapter. These can be found in the Appendix.
+in this Chapter. These can be found in the Appendix~\ref{app:list_of_players_06}.
 
 The APL project is also used to calculate the average score per turn, \(U(S, Q)\),
 player \(S\) can achieve against an opponent \(Q\). The project contains a specific
 player
-class that can simulate the play of any given sequence of Cs and Ds. The player class
-is called Cycler and it takes as an input argument a series of actions as a
+class that can simulate the play of any given sequence of $C$s and $D$s. The player class
+is called \mintinline{python}{Cycler} and it takes as an input argument a series of actions as a
 string.
 An example of creating and using such a player in a match is given by
 Figure~\ref{fig:apl_simulations_cycler}. The average score per turn is obtained
@@ -499,9 +502,9 @@ using an in built method of APL once a match has been simulated.
 (2.2, 2.2)
 
 \end{usagepy}
-\caption{Simulating a match between Cycler and Cooperator and Cycler and Tit For Tat.
-The class Cycler takes a given sequence as an input argument in a string format
-('DDDCCCDDCC'). Once a match has been simulate with the \mintinline{python}{play} method
+\caption{Simulating a match between \Cycler and \Cooperator and \Cycler and \TitForTat.
+The class \mintinline{python}{Cycler} takes a given sequence as an input argument in a string format
+\mintinline{python}{('DDDCCCDDCC')}. Once a match has been simulate with the \mintinline{python}{play} method
 the average score per turn is obtained using the \mintinline{python}{final_score_per_turn}
 method.}\label{fig:apl_simulations_cycler}
 \end{figure}
@@ -519,8 +522,8 @@ the random output remains the same. Thus, as long as a match is seeded the
 behaviour of a stochastic strategy can be reproduced, and different seeds lead
 to different plays of stochastic strategies.
 
-Consider the match between Random and \(S = \{D, D, D, C, C, C, D, D, C, C\}\)
-presented in section~\ref{section:ipd_as_sequences}. Random has a total of
+Consider the match between \Random and \(S = \{D, D, D, C, C, C, D, D, C, C\}\)
+presented in section~\ref{section:ipd_as_sequences}. \Random has a total of
 \(2^{10}\) possible plays for the given match. By using different computer seeds a number of these
 plays can be simulated as shown in Figure~\ref{fig:random_apl_example}.
 
@@ -545,30 +548,31 @@ plays can be simulated as shown in Figure~\ref{fig:random_apl_example}.
 ================================================================================
 
 \end{usagepy}
-\caption{Example code of using seeding to generate different plays of Random.
+\caption{Example code of using seeding to generate different plays of \Random.
 The value of seed changes to \{0, 1, 2, 3, 4, 5\} and the seed is set with
-the command axl.seed(seed) before simulating the game. This initialises the
-pseudo random generator that define what moves Random will take.
+the command \mintinline{python}{axl.seed(seed)} before simulating the game. This initialises the
+pseudo random generator that define what moves \Random will take.
 The above code snipped will always have the same output each time it is
 repeated.}\label{fig:random_apl_example}
 \end{figure}
 
+\newpage
+
 A total of 10 different plays are captured for each of the stochastic strategies
-of this Chapter. Thus, a total of 10 different seeds are used for each stochastic
-strategy.
-The data collection process of best response sequences in more details is given
-by Figure~\ref{fig:data_generating_process_diagram}.
+of this Chapter. Thus, a total of 10 different seeds are used for each
+stochastic strategy. The data collection process of best response sequences in
+more details is given by Figure~\ref{fig:data_generating_process_diagram}.
 
 \begin{figure}[!htbp]
     \centering
     \includestandalone[width=\textwidth]{src/chapters/06/tex/data_generating_diagram}
-    \caption{Diagrammatical representation of the best response
+    \caption{Diagrammatic representation of the best response
     sequences collection process.}\label{fig:data_generating_process_diagram}
 \end{figure}
 
 From the collection of opponents a strategy is selected at each trial. If the
 strategy is deterministic a set of GAs with different parameters values are
-performed for 2000 generations. The summary of the GA trials which contain information
+performed for 2,000 generations. The summary of the GA trials which contain information
 for each generation is exported to a single csv file, then the next opponent is
 selected. If the
 opponent is stochastic the above process is repeated 10 times. Each time the
@@ -586,7 +590,7 @@ Table~\ref{table:parameters_summary}.
     \begin{tabular}{cccccc} \toprule
 Parameter         & Explanation                   &  Values  \\ \midrule
 \(N\)             & number of turns               &  205 \\
-\(G\)             & number of generations         &  2000 \\
+\(G\)             & number of generations         &  2,000 \\
 \(b\)             & bottleneck                    &  10, 20 \\
 \(K\)             & size of a population          &  20, 30, 40 \\
 \(p_m\)           & probability of gene mutating  &  0.01, 0.05, 0.1 \\ \bottomrule
@@ -604,25 +608,26 @@ strategies, but to a total of (\(\deterministicstrategies + \stochasticstrategie
 750 opponents. Thus, a total of 750 trials of
 Figure~\ref{fig:data_generating_process_diagram} have been performed.
 
-An example of an exported summary for the deterministic opponent Alternator
+An example of an exported summary for the deterministic opponent \Alternator
 is given by Table~\ref{table:alternator_summary}.
 
 \begin{table}[!htbp]
     \resizebox{\textwidth}{!}{
     \input{src/chapters/06/tex/alternator_table.tex}}
     \caption{An exampled of an exported summary. The specific output is for
-    the opponent Alternator. Alternator is a deterministic strategy,
+    the opponent \Alternator. \Alternator is a deterministic strategy,
     consequently, the value of seed in NaN. The values of the different GA
     parameters are recorded in the summary, as well as the details of each
     member of each generation. The sequences' genes
     were recorded in 0 and 1, where \(0 \to D\) and \(1 \to C\).
     The best responses sequences are the individuals
-    that have the maximum score at \(g_i\) = 2000.}\label{table:alternator_summary}
+    that have the maximum score at \(g_i\) = 2,000.}\label{table:alternator_summary}
 \end{table}
 
 For a stochastic strategy there are a total of 9 exported summaries. An example
-of an exported summary for Champion with seed=9 is given by
-Table~\ref{table:champion_summary}.
+of an exported summary for \Champion with seed=9 is given by
+Table~\ref{table:champion_summary}. The best response sequences are collected
+from the last generation of the exported summaries. 
 
 \begin{table}[!htbp]
     \resizebox{\textwidth}{!}{
@@ -634,12 +639,9 @@ Table~\ref{table:champion_summary}.
     \(1 \to C\).}\label{table:champion_summary}
 \end{table}
 
-The best response sequences are collected from the last generation of the
-exported summaries. 
-
 In section~\ref{section:ipd_as_sequences} it was stated that the best response
 to a strategy that does not react to the history is to always defect. Such
-strategies include Cooperator, Defector, Alternator and the family of the Cycler
+strategies include \Cooperator, \Defector, \Alternator and the family of the \Cycler
 strategies. Algorithm~\ref{algorithm:genetic_algorithm} successfully identified their best responses, as
 shown in Table~\ref{table:always_defect_best_responses}.
 
@@ -652,31 +654,31 @@ shown in Table~\ref{table:always_defect_best_responses}.
     of this Chapter.}\label{table:always_defect_best_responses}
 \end{table}
 
-The best response sequence to Tit For Tat and Grudger is the sequence that
+The best response sequence to \TitForTat and \Grudger is the sequence that
 cooperates until before the last turn. That way the sequence receives the payoff
 for mutual cooperation for \(N - 1\) turns, and then betrays its opponent in the
 last turn to maximise its score, receiving a payoff of \(T\). It only defects
 on the last turn because then it can not be punished. The sequence is also the
-best response to the strategy Hard Tit For Tat. The strategy is a variant of Tit
-For Tat that uses that uses a longer history for retaliation. The best response
+best response to the strategy \HardTitForTat. The strategy is a variant of
+\TitForTat that uses that uses a longer history for retaliation. The best response
 sequences were captured for all three strategies,
 Table~\ref{table:known_strategies_best_responses}.
 
 \begin{table}[!htbp]
     \resizebox{\textwidth}{!}{
     \input{src/chapters/06/tex/known_strategies_best_responses.tex}}
-    \caption{Best response sequences to strategies Tit For Tat, Grudger
-    and Hard Tit For Tat.}
+    \caption{Best response sequences to strategies \TitForTat, \Grudger
+    and \HardTitForTat.}
     \label{table:known_strategies_best_responses}
 \end{table}
 
 There are more sophisticated yet still established best response sequences.
-These include the best response to TF1~\cite{Knight2018}. In~\cite{Knight2018}
-the strategy TF1 was trained using a 16 state finite state machine in a Moran
-process setting. The TF1 strategy developed a hand shake mechanism that allowed
-it to identify strategies that play like itself. Once two copies of TF1
+These include the best response to \TFOne~\cite{Knight2018}. In~\cite{Knight2018}
+the strategy \TFOne was trained using a 16 state finite state machine in a Moran
+process setting. The \TFOne strategy developed a hand shake mechanism that allowed
+it to identify strategies that play like itself. Once two copies of \TFOne
 identify each other they go into mutually cooperations until the end of their
-interactions. The best response to the strategy is the a sequence that performs
+interactions. The best response to the strategy is the sequence that performs
 the handshake, and goes into mutual cooperations until before the final turn.
 This best response sequence was also captured by the data collection process.
 The handshake is performed in the opening three turns, and it is the sequence
@@ -685,7 +687,7 @@ The handshake is performed in the opening three turns, and it is the sequence
 \begin{table}[!htbp]
     \resizebox{\textwidth}{!}{
     \input{src/chapters/06/tex/hand_shake_best_response.tex}}
-    \caption{Best response sequence to TF1 introduced in~\cite{Knight2018}. The strategy
+    \caption{Best response sequence to \TFOne introduced in~\cite{Knight2018}. The strategy
     performs a handshake in the first three moves. The hand shake is the sequence
     \(CDC\). If the opponent plays that same then the strategies go into mutual
     cooperation.}\label{table:hand_shake_best_response}
@@ -735,7 +737,7 @@ performed for each trial. The best response sequences are the sequences with the
 highest average score per turn in the final generation regardless the GA.
 
 In order to understand whether the algorithms reached convergence over the
-2000 generations, the highest score in a population over the generations for four
+2,000 generations, the highest score in a population over the generations for four
 different strategies is given in Figure~\ref{fig:ga_trials}.
 
 There are trials for which the algorithms never converged to the best response
@@ -756,8 +758,8 @@ sequences. There are two reason that as to why this happened:
 \begin{figure}[!htbp]
     \centering
     \includegraphics[width=.9\textwidth]{src/chapters/06/img/gas_results_per_trial.pdf}
-    \caption{The highest score in a population over the generations for Tit For Tat,
-    Grudger, FSM 16 and Aggravater. The selected trials capture the results
+    \caption{The highest score in a population over the generations for \TitForTat,
+    \Grudger, \FSMSixTeen and \Aggravater. The selected trials capture the results
     of all the 18 trials for the given set of opponents.}\label{fig:ga_trials}
 \end{figure}
 
@@ -779,22 +781,22 @@ with the parameter values of \(K/2=15, b=10\) and \(p_m=0.1\).
 \begin{figure}[!htbp]
     \centering
     \includegraphics[width=.9\textwidth]{src/chapters/06/img/gas_results_per_trial_to_generation_500.pdf}
-    \caption{The highest score in a population over the generations for Tit For Tat,
-    Grudger, FSM 16 and Aggravater up to \(g_i = 500\).}\label{fig:ga_trials_to_500}
+    \caption{The highest score in a population over the generations for \TitForTat,
+    \Grudger, \FSMSixTeen and \Aggravater up to \(g_i = 500\).}\label{fig:ga_trials_to_500}
 \end{figure}
 
 There are a total of \deterministicstrategies deterministic strategies in the
 collection of opponents and best response sequences were estimated for each.
 Several of the known best response sequences have been manually checked and they
 have been successfully estimated by the algorithm. These include best response
-sequences to Tit For Tat, Grudger, Alternator, Pavlov and the Cycler strategies.
+sequences to \TitForTat, \Grudger, \Alternator, \Pavlov and the \Cycler strategies.
 
 In section~\ref{section:ipd_as_sequences} is was explained that strategies can
 have more than a single best response sequence. In the case of the strategy
-Adaptive any strategy that cooperated twice in the opening 6 moves and defected
+\Adaptive any strategy that cooperated twice in the opening 6 moves and defected
 thereafter is a best response. The data collection has managed to successfully identify
-multiple best responses to Adaptive, these are given by
-Table~\ref{table:adaptive_best_responses}. Adaptive is not the only
+multiple best responses to \Adaptive, these are given by
+Table~\ref{table:adaptive_best_responses}. \Adaptive is not the only
 deterministic strategy with multiple best response sequences. More specifically,
 for the \deterministicstrategies deterministic opponents a total of \deterministicsequences best
 response sequences were collected.
@@ -807,66 +809,69 @@ response sequences were collected.
     \label{table:adaptive_best_responses}
 \end{table}
 
-An interesting questions that arises is: how diverse are the set of best response
-sequences? Out of the \deterministicsequences sequences \stochasticuniquesequences are unique. A graphical
-representation of these sequences is given by Figure~\ref{fig:brs_visualisation}.
-The two distinct colours represent genes of \(C\) and \(D\). Overall, it can be
-seen that there is diversity in the best response sequences, and they are not just
-long sequences of either \(C\) or \(D\). A common trend appears to be a series
-of defections at the last turns. In a finite IPD this is to expected. As it was
+An interesting questions that arises is: how diverse are the set of best
+response sequences? Out of the \deterministicsequences sequences
+\deterministicuniquesequences are unique. A graphical representation of these
+sequences is given by Figure~\ref{fig:brs_visualisation}. The two distinct
+colours represent genes of \(C\) and \(D\). Overall, it can be seen that there
+is diversity in the best response sequences, and they are not just long
+sequences of either \(C\) or \(D\). A common trend appears to be a series of
+defections at the last turns. In a finite IPD this is to expected. As it was
 mentioned in Chapter~\ref{chapter:meta_tournaments}, as the likelihood of a
 match ending in the following turn increases the effectiveness of defecting.
 
-A total of \stochasticsequences sequences have been estimated for the stochastic opponents. From
-these sequences, \reproducible did indeed play against the correct seeded opponent and
-achieved their respective scores at the final generation.
+A total of \stochasticsequences sequences have been estimated for the stochastic
+opponents. From these sequences, \reproducible did indeed play against the
+correct seeded opponent and achieved their respective scores at the final
+generation.
 
-For instance for the strategy - seed combination of Champion - seed\(=9\) the highest score
+For instance for the strategy - seed combination of \Champion~- seed\(=9\) the highest score
 achieved by a member of the population over the generations is given by
 Figure~\ref{fig:champion_ga_score}. There is variation in the highest score
 occurring over the generations with several increasing and decreasing peeks. However,
 for most of the generations the highest score appears to be between \(3.80 - 3.82\).
 The best response sequence retrieved by the data collection scored 3.82 against
-Champion, and it reflected the score of the sequence against Champion - seed\(=9\).
+\Champion, and it reflected the score of the sequence against \Champion~- seed\(=9\).
 
 \begin{figure}[!htbp]
     \centering
     \includegraphics[width=.7\textwidth]{src/chapters/06/img/maximum_score_per_generation_champion.pdf}
-    \caption{The maximum score a sequence achieved against Champion with seed 9
+    \caption{The maximum score a sequence achieved against \Champion with seed 9
     over the generations. Each line represents a different GA trial. Only the
     GAs with \(p_m=0.01\) have been included.}\label{fig:champion_ga_score}
 \end{figure}
 
 There are stochastic opponents for which more variation occurred over the
-generations. An example of that is Random. The highest score
-of the population in a single GA trial, for opponent - seed combination Random -
+generations. An example of that is \Random. The highest score
+of the population in a single GA trial, for opponent - seed combination \Random~-
 seed\(=1\), is given by Figure~\ref{fig:random_ga_score}.
-In the case of Random - seed\(=1\) the score of the best response sequence that
-was collected was not the actual score the sequence scores against Random -
+In the case of \Random~- seed\(=1\) the score of the best response sequence that
+was collected was not the actual score the sequence scores against \Random~-
 seed\(=1\).
 
 \begin{figure}[!htbp]
     \centering
     \includegraphics[width=.7\textwidth]{src/chapters/06/img/maximum_score_per_generation_random.pdf}
-    \caption{The maximum score a sequence achieved against Random - seed\(=1\)
+    \caption{The maximum score a sequence achieved against \Random - seed\(=1\)
     over the generations.}\label{fig:random_ga_score}
 \end{figure}
 
-From the \stochasticsequences sequences against stochastic strategies \stochasticuniquesequences are unique. A graphical representation of 1000 of
-those sequences are given by Figure~\ref{fig:brs_visualisation_stochastic}.
+From the \stochasticsequences sequences against stochastic strategies \stochasticuniquesequences are unique.
+A graphical representation of these
+sequences are given by Figure~\ref{fig:brs_visualisation_stochastic}.
 Similar to the results of the best response sequences against deterministic
 opponents the sequences are diverse.
 
 \begin{figure}[!htbp]
     \begin{subfigure}{0.45\textwidth}
     \centering
-    \includegraphics[width=\textwidth]{src/chapters/06/img/deterministic_best_responses.pdf}
+    \includegraphics[width=.9\textwidth]{src/chapters/06/img/deterministic_best_responses.pdf}
     \caption{A graphical representation of best \deterministicsequences response sequence. These
     have been estimated using deterministic opponents.}\label{fig:brs_visualisation}
     \end{subfigure}\hfill
     \begin{subfigure}{0.45\textwidth}
     \centering
-    \includegraphics[width=\textwidth]{src/chapters/06/img/stochastic_best_responses.pdf}
+    \includegraphics[width=.9\textwidth]{src/chapters/06/img/stochastic_best_responses.pdf}
     \caption{A graphical representation of \stochasticsequences response sequence. These
     have been estimated using stochastic opponents.}\label{fig:brs_visualisation_stochastic}
     \end{subfigure}
@@ -878,7 +883,7 @@ total of \totalsequences best response sequences of length 205 were retrieved. T
 205 turns will be explained in the following Chapter. The best response sequences have
 been archived and made available at~\cite{Glynatsi2020_sequences}.
 
-\section{Chapter Summary}
+\section{Chapter summary}
 
 This Chapter has explored the concept of best responses in the IPD game in the
 form of static sequences of moves. It introduced an evolutionary algorithm,
@@ -893,17 +898,19 @@ strategies were used to explore their different behaviours. From the list of
 \numberofstrategiesbestsequences opponents a total of 750 different behaviours
 were simulated.
 
-For the \deterministicstrategies deterministic strategies a total of \deterministicsequences
-sequences, from which \deterministicuniquesequences were unique, were estimated. These sequences were not
-just a set of trivial sequences of either \(C\) or \(D\). A common trait in the
-best response sequences appeared to be a series of defection closer to the final
-turns. For the seeded versions of the \stochasticstrategies stochastic opponents
-the best response sequences are not guaranteed to have been captured due to issues related to PRNGs and multi threading.
-Nevertheless, a total of \stochasticsequences sequences from which \stochasticuniquesequences are unique were
-collected. Similar, these sequences are more diverse than just a series of
-a single action. The \totalsequences sequences that were collected have been
-archived and are available at \cite{Glynatsi2020_sequences}.
+For the \deterministicstrategies deterministic strategies a total of
+\deterministicsequences sequences, from which \deterministicuniquesequences were
+unique, were estimated. These sequences were not just a set of trivial sequences
+of either \(C\) or \(D\). A common trait in the best response sequences appeared
+to be a series of defection closer to the final turns. For the seeded versions
+of the \stochasticstrategies stochastic opponents the best response sequences
+are not guaranteed to have been captured due to issues related to PRNGs and
+multi threading. Nevertheless, a total of \stochasticsequences sequences from
+which \stochasticuniquesequences are unique were collected. Similar, these
+sequences are more diverse than just a series of a single action.
 
-The main purpose of this Chapter has been to generate the bespoke data set,
-which contains a large number of unique and diverse sequences,
-so it can be used as training data set for Chapter~\ref{chapter:lstm}.
+A total of \totalsequences sequences were collected. These have been archived
+and are available at \cite{Glynatsi2020_sequences}. The main purpose of this
+Chapter has been to generate the bespoke data set, which contains a large number
+of unique and diverse sequences, so it can be used as training data set for
+Chapter~\ref{chapter:lstm}.

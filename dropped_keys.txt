@@ -1,12 +1,12 @@
-Adami2013evolutionary
-Axelrod1980more
-Carvalho2013
-Ashlock2008fingerprinting
 Axelrod1980
 Stewart2013extortion
+Axelrod1980more
 Kendall2007
+Carvalho2013
+Ashlock2008fingerprinting
+Turner1999
 Harper2015
 Axelrod1995
-Turner1999
+Adami2013evolutionary
 Wang2017
 Li2014

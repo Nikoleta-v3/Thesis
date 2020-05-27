@@ -1,0 +1,89 @@
+\chapter{Table of parameters (per Chapter)}\label{appendix:parameters_per_chapter}
+
+The parameters used throughout the thesis. There are given by
+Table~\ref{table:overall_parameters} alongside a brief explanation. Note that
+they are reported by Chapter.
+
+\begin{table}[h]
+    \centering
+    \resizebox{.7\textwidth}{!}{
+    \begin{tabular}{lll}
+        \toprule
+        {} & Parameter & Explanation\\
+        \midrule
+\rowcolor{Gray}
+Chapter~\ref{chapter:bibliometric_study} & \(N\) & number of abstracts \\
+\rowcolor{Gray}
+    & \(n\) & number of topics \\
+\rowcolor{Gray}
+    & \(c_i^ j\) & the percentage contributions of the \(i^{\text{th}}\) topic for the \(j^{\text{th}}\) abstract \\
+\rowcolor{Gray}
+    & \(c^*\) & the highest percentage contribution \\
+\midrule
+Chapter~\ref{chapter:meta_tournaments} & \(N\) & number of strategies \\
+    & \(k\) & number of tournament repetitions \\
+    & \(n\) & number of turns per match \\
+    & \(p_n\) & the probability of noise \\
+    & \(p_e\) & the probability of the match ending in the next turn \\
+    & \(C_r\) & the cooperation rate of a strategy \\
+    & \(R\) & the rank of a strategy \\
+    & \(r\) & the normalised rank of strategy calculated as \(R / N - 1\)\\
+    & \(\bar{r}\) & the median normalised rank of a strategy \\
+    & \(C_{\text{max}}\) & the maximum cooperation rate of a given tournament \\
+    & \(C_{\text{min}}\) & the minimum cooperation rate of a given tournament \\
+    & \(C_{\text{mean}}\) & the mean cooperation rate of a given tournament \\
+    & \(C_{\text{median}}\) & the median cooperation rate of a given tournament \\
+    & $C_r$ / $C_{\text{max}}$ & a strategy's cooperation rate divided by \(C_{\text{max}}\) \\
+    & $C_{\text{min}}$ / $C_r$ & \(C_{\text{min}}\) divided by a strategy's cooperation rate \\
+    & $C_r$ / $C_{\text{median}}$ & a strategy's cooperation rate divided by \(C_{\text{median}}\) \\
+    & $C_r$ / $C_{\text{mean}}$ & a strategy's cooperation rate divided by \(C_{\text{mean}}\) \\
+\midrule
+\rowcolor{Gray}
+Chapter~\ref{chapter:memory_one} & \(N\) & number of opponents \\
+\rowcolor{Gray}
+    & \(p\) & a vector describing a given memory-one/reactive player \\
+\rowcolor{Gray}
+    & \(q\) & a vector describing a given memory-one opponent \\
+\rowcolor{Gray}
+    & \(K\) & the number of self interactions \\
+\midrule
+Chapter~\ref{chapter:best_response_sequence} & \(N\) & number of turns \\
+    & \(S\) & a sequence player \\
+    & \(Q\) & an given opponent which can be any IPD strategy \\
+    & \(P\) & a population of potential best response sequences \\
+    & \(b\) & the bottleneck \\
+    & \(G\) &  a number of genetic algorithm generations \\
+    & \(p_m\) & the probability that each gene of an sequence being flipped \\
+    & \(K\) & maximum size of a population \\
+\midrule
+\rowcolor{Gray}
+Chapter~\ref{chapter:lstm} & \(x\) & input \\\rowcolor{Gray}
+    & \(y\) & expected output \\
+\rowcolor{Gray}
+    & \(\hat{y}\) & predicted output \\
+\rowcolor{Gray}
+    & \(\phi\) & activation function \\
+\rowcolor{Gray}
+    & \(N\) & number of turns in a sequence \\
+\rowcolor{Gray}
+    & \(p_o\) & the probability of opening with a cooperation \\
+\rowcolor{Gray}
+    & \(t\) & the number of time steps in a sequence\\
+\rowcolor{Gray}
+    & \(s\) & the size of a tournament \\
+\rowcolor{Gray}
+    & \(k\) & number of tournament repetitions \\
+\rowcolor{Gray}
+    & \(n\) & number of turns per match \\
+\rowcolor{Gray}
+    & \(R\) & the rank of a strategy \\
+\rowcolor{Gray}
+    & \(r\) & the normalised rank of strategy calculated as \(R / N - 1\)\\
+\rowcolor{Gray}
+    & \(\bar{r}\) & the median normalised rank of a strategy \\
+\rowcolor{Gray}
+    & \(p\) & the probability of cooperating at each turn \\
+\bottomrule
+    \end{tabular}}
+    \caption{The parameters used throughout the thesis per Chapter.}\label{table:overall_parameters}
+\end{table}
