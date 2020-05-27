@@ -60,4 +60,4 @@ jobs:
         inv doctest
     - name: Checks for ToDos
       run: |
-        inv todo
+        inv todos
