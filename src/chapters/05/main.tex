@@ -3,7 +3,7 @@
        memory in the Prisoner's Dilemma.}\label{chapter:memory_one}
 
 \begin{center}
-    The research reported in this Chapter has lead in a manuscript, entitled: \\
+    The research reported in this Chapter has lead to a manuscript, entitled: \\
     \textbf{``A theory of mind: Best responses to memory-one strategies.
     The limitations of extortion and restricted memory''} \\
     Available at: \url{arxiv.org/abs/1911.12112} \\
@@ -69,7 +69,7 @@ strategies~\cite{Hilbe2017, Pan2015}. The Chapter is structured as follows:
 \end{itemize}
 
 
-\section{The utility}\label{section:utility}
+\section{Quadratic form utility of the IPD}\label{section:utility}
 
 One specific advantage of memory-one strategies is their mathematical
 tractability. They can be represented completely as an element of \(\R^{4}_{[0, 1]}\).
@@ -292,24 +292,28 @@ f (\lambda x_1 + (1 - \lambda )x_2 ) \geq \lambda f (x_1 ) + (1 - \lambda )f (x_
 Let \(f\) be \(u_{(\frac{1}{3}, \frac{1}{3}, \frac{1}{3}, \frac{1}{3})}\).
 For \(x_1 = (\frac{1}{4}, \frac{1}{2}, \frac{1}{5} , \frac{1}{2}),
 x_2 = (\frac{8}{10}, \frac{1}{2}, \frac{9}{10} , \frac{7}{10})\) and
-\(\lambda=0.1\), direct substitution in Equation (\ref{eq:concave}) gives:
+\(\lambda=0.1\). Direct substitution in to the left hand side of Equation (\ref{eq:concave}) gives,
 
-\scalebox{0.7}{\parbox{\linewidth}{
 \begin{align*}
-    u_{(\frac{1}{3}, \frac{1}{3}, \frac{1}{3}, \frac{1}{3})}
-    \left( 0.1 \left(\frac{1}{4}, \frac{1}{2}, \frac{1}{5} , \frac{1}{2}\right)
-    + 0.9 \left(\frac{8}{10}, \frac{1}{2}, \frac{9}{10} , \frac{7}{10}\right) \right) & \geq
-    0.1 \times u_{(\frac{1}{3}, \frac{1}{3}, \frac{1}{3}, \frac{1}{3})}
+f (\lambda x_1 + (1 - \lambda )x_2 ) = & \; u_{(\frac{1}{3}, \frac{1}{3}, \frac{1}{3}, \frac{1}{3})}
+\left( 0.1 \left(\frac{1}{4}, \frac{1}{2}, \frac{1}{5} , \frac{1}{2}\right)
++ 0.9 \left(\frac{8}{10}, \frac{1}{2}, \frac{9}{10} , \frac{7}{10}\right) \right) \\
+= & \; 1.485
+\end{align*}
+
+and in to the right hand side,
+
+\begin{align*}
+    \lambda f (x_1 ) + (1 - \lambda )f (x_2 ) = & \; 0.1 \times u_{(\frac{1}{3}, \frac{1}{3}, \frac{1}{3}, \frac{1}{3})}
     \left(\left(\frac{1}{4}, \frac{1}{2}, \frac{1}{5} , \frac{1}{2}\right) \right) 
     + 0.9 \times u_{(\frac{1}{3}, \frac{1}{3}, \frac{1}{3}, \frac{1}{3})}
-    \left(\left(\frac{8}{10}, \frac{1}{2}, \frac{9}{10} , \frac{7}{10}\right) \right) \Rightarrow\\
-    1.485 & \geq 0.1 \times 1.790 + 0.9 \times 1.457 \Rightarrow \\
-    1.485 & \geq 1.490
+    \left(\left(\frac{8}{10}, \frac{1}{2}, \frac{9}{10} , \frac{7}{10}\right) \right) \\
+    = & \; 0.1 \times 1.790 + 0.9 \times 1.457 \\
+    = & \; 1.490.
 \end{align*}
-}}
 
-which can not hold. Thus \(u_{(\frac{1}{3}, \frac{1}{3}, \frac{1}{3}, \frac{1}{3})}\)
-is not concave.
+Thus Equation (\ref{eq:concave}) does not hold, and thus \(u_{(\frac{1}{3},
+\frac{1}{3}, \frac{1}{3}, \frac{1}{3})}\) is not concave.
 
 The non concavity of \(u(p)\) indicates multiple local
 optimal points. This is also intuitive. The best response against a \Cooperator,
@@ -964,7 +968,7 @@ future cooperation can occur.
     \label{fig:behaviour_violin_plots}
 \end{figure}
 
-\subsection{Longer memory best response}\label{subsection:longer_memory_best_response}
+\subsection{Longer memory best responses}\label{subsection:longer_memory_best_response}
 
 This section focuses on the memory size of strategies. The effectiveness of
 memory in the IPD has been previously explored in the literature, as

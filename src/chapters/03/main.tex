@@ -5,7 +5,7 @@ the field of the Iterated Prisoner's Dilemma}\label{chapter:bibliometric_study}
     The research reported in this Chapter has lead to a manuscript, entitled: \\
     \textbf{``A bibliometric study of research topics, collaboration and influence in the field of the Iterated Prisoner's Dilemma''} \\
     Available at: \url{arxiv.org/abs/1911.06128} \\
-    Associated data set: \cite{auction_data_2018}, \cite{anarchy_data_2018}, \cite{pd_data_2018}\\
+    Associated data sets: \cite{auction_data_2018, anarchy_data_2018, pd_data_2018}\\
     Associated codebase: \cite{nikoleta_2017} \\ \vspace{.5cm}
     The manuscript's abstract is the following:
 \end{center}
@@ -150,8 +150,8 @@ documentation of usage which is available at:
 with a list of APIs by specifying a single keyword whilst not considering the
 differences between the requesting and receiving phases of the APIs.
 
-Consider the example of retrieving a single article with the word `Prisoners
-Dilemma' in the title. Figure~\ref{fig:arcas_query_plos} demonstrates the Python
+Consider the example of retrieving a single article with the word ``Prisoner's
+Dilemma'' in the title. Figure~\ref{fig:arcas_query_plos} demonstrates the Python
 code needed to query the publisher PLOS and Figure~\ref{fig:arcas_query_nature}
 demonstrates code for querying the API of Nature. The only distinction between
 the two code snippets is their respective line 2 where the API is specified by
@@ -187,7 +187,7 @@ score
 
 \end{usagepy}
 \caption{Example of using the library Arcas to communicate the API of the publisher
-PLOS. The query is for a single article with the word `Prisoner's Dilemma' in
+PLOS. The query is for a single article with the word ``Prisoner's Dilemma'' in
 the title.}\label{fig:arcas_query_plos}
 \end{figure}
 
@@ -236,7 +236,7 @@ aggregationType
 
 \end{usagepy}
 \caption{Example of using the library Arcas to communicate the API of the publisher
-Nature. The query is for a single article with the word `prisoners dilemma' in
+Nature. The query is for a single article with the word ``Prisoner's Dilemma'' in
 the title.}\label{fig:arcas_query_nature}
 \end{figure}
 
@@ -383,7 +383,7 @@ class Arxiv(Api):
         root = ElementTree.fromstring(response.text)
         return root
 \end{minted}
-\caption{Class \mintinline{python}{Arxiv} is implemented in Arcas. It includes the code necessary for Arcas
+\caption{\mintinline{python}{Arxiv} class implementation in Arcas. It includes the code necessary for Arcas
 to query the API of arXiv.}\label{fig:arcas_arxiv}
 \end{figure}
 
@@ -461,7 +461,7 @@ class Ieee(Api):
         return root
     
 \end{minted}
-\caption{Class \mintinline{python}{Ieee} is implemented in Arcas. It includes the code necessary for Arcas
+\caption{\mintinline{python}{Ieee} class implementation in Arcas. It includes the code necessary for Arcas
 to query the API of IEEE.}\label{fig:arcas_ieee}
 \end{figure}
 
@@ -470,7 +470,7 @@ with the research projects of this thesis have been written following a set of
 best practices. These best practices include unit testing. There are a series of
 unit tests that test the functionality and correctness of each API class.
 For example, Figure~\ref{fig:test_arxiv} displays a test case for the
-method \mintinline{python}{to_dataframe} of the class Arxiv. Moreover, Figure
+method \mintinline{python}{to_dataframe} of the \mintinline{python}{Arxiv} class. Moreover, Figure
 \ref{fig:test_ieee} shows several unit tests which ensure that the request
 url for IEEE, with different search arguments, is being generated correctly.
 
@@ -502,7 +502,8 @@ def test_to_dataframe():
     assert article['score'].unique()[0] == 'Not available'
     assert article['open_access'].unique()[0] == True
 \end{sourcepy}
-\caption[Unit tests for class \mintinline{python}{Arxiv}.]{Unit tests for class \mintinline{python}{Arxiv}. Tests the functionality of the method \mintinline{python}{to_dataframe}.}\label{fig:test_arxiv}
+\caption[Unit tests for the \mintinline{python}{Arxiv} class.]{Unit tests for the \mintinline{python}{Arxiv} class.
+Tests the functionality of the method \mintinline{python}{to_dataframe}.}\label{fig:test_arxiv}
 \end{figure}
 
 \begin{figure}[!hbtp]
@@ -530,7 +531,7 @@ def test_parameters_and_url_title():
     assert parameters == ["article_title=Game"]
 
 \end{sourcepy}
-\caption{Unit tests for class \mintinline{python}{Ieee}.}\label{fig:test_ieee}
+\caption{Unit tests for the \mintinline{python}{Ieee} class.}\label{fig:test_ieee}
 \end{figure}
 
 

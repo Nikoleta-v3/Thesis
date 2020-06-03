@@ -734,7 +734,7 @@ to the data for training.
 
 The collections process was performed for 750 trials, and a total of 18 GAs were
 performed for each trial. The best response sequences are the sequences with the
-highest average score per turn in the final generation regardless the GA.
+highest average score per turn in the final generation regardless of the GA.
 
 In order to understand whether the algorithms reached convergence over the
 2,000 generations, the highest score in a population over the generations for four
@@ -768,13 +768,13 @@ it is not the highest scoring member, it is a sequence that was not arbitrarily
 generated but has some critical information regarding playing against given
 opponents.
 
-There are several trials that have managed to reach convergence,
+There are several trials that have managed to converged,
 and they did so in less than 200 generations. This is potentially the effect of a
 non random initial population.
 Figure~\ref{fig:ga_trials_to_500}
 shows the highest score in a population over the generations for the four
 strategies of Figure~\ref{fig:ga_trials} but only up to \(g_i = 500\). All trials
-with a \(p_m=0.01\) reach convergence within the first 200 generations. The trial
+with a \(p_m=0.01\) converged within the first 200 generations. The trial
 which reaches convergence first (in the four demonstrated cases) is the trial
 with the parameter values of \(K/2=15, b=10\) and \(p_m=0.1\).
 
@@ -860,7 +860,14 @@ From the \stochasticsequences sequences against stochastic strategies \stochasti
 A graphical representation of these
 sequences are given by Figure~\ref{fig:brs_visualisation_stochastic}.
 Similar to the results of the best response sequences against deterministic
-opponents the sequences are diverse.
+opponents the sequences are diverse. However, compared to the best response
+sequences to deterministic opponents the responses to stochastic opponents appear
+to be less diverse. The responses to stochastic opponents appear to belong to two
+families of strategies. Strategies that cooperate for approximately the first
+150 turns and defect thereafter, and strategies that play a series of
+alternating sets of cooperations and defections. The best response sequences to
+deterministic opponents can not be classified in just two families of
+strategies, and thus are more diverse.
 
 \begin{figure}[!htbp]
     \begin{subfigure}{0.45\textwidth}
@@ -875,6 +882,11 @@ opponents the sequences are diverse.
     \caption{A graphical representation of \stochasticsequences response sequence. These
     have been estimated using stochastic opponents.}\label{fig:brs_visualisation_stochastic}
     \end{subfigure}
+    \caption{A graphical representation of best response sequences. The best
+    response sequences have been sorted based on their total number of
+    cooperations. Thus the top rows of the plots are dominated by best response
+    sequences that mainly defect and the bottom rows by sequences that mainly
+    cooperate.}
 \end{figure}
 
 In summary, from the list of \numberofstrategiesbestsequences strategies
@@ -912,5 +924,5 @@ sequences are more diverse than just a series of a single action.
 A total of \totalsequences sequences were collected. These have been archived
 and are available at \cite{Glynatsi2020_sequences}. The main purpose of this
 Chapter has been to generate the bespoke data set, which contains a large number
-of unique and diverse sequences, so it can be used as training data set for
+of unique and diverse sequences, so it can be used as training data in
 Chapter~\ref{chapter:lstm}.
