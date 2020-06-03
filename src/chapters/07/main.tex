@@ -657,7 +657,7 @@ samples on the LSTM strategies' performance the networks are trained on the
 entire data set and on three unique subsets.
 
 The subsets are based on three collection of opponents. These are a collection
-of best performing strategies, strategies with ranks across a standard
+of best performing strategies, representative strategies with ranks across a standard
 tournament and a collection of basic strategies. The details of the subsets are
 given by Table~\ref{table:training_data_sets}.
 A list of the strategies' names used in each subset is given in the Appendix~\ref{appendix:training_sets_strategies}.
@@ -673,8 +673,9 @@ A list of the strategies' names used in each subset is given in the Appendix~\re
     all strategies & \numberofstrategiesbestsequences & The data set as presented in section~\ref{section:training_a_rnn}. & \totalsequences \\
     top performing strategies & \topstrategies & A data set constructed in the same way as the training data set but only with the best response sequences
     to \topstrategies strategies. These are the top performing strategies in a standard tournament of 218 opponents. & \topsequences \\
-    strategies across ranks & \acrossstrategies & A data set generated only with the best response sequences to
-    \acrossstrategies strategies whose ranks are across the 218 ranks of the standard tournament. & \acrosssequences\\
+    representative strategies & \acrossstrategies & A data set generated only with the best response sequences to
+    \acrossstrategies strategies whose ranks are across the 218 ranks of the standard tournament.
+    They are referred to as representative strategies because they represent behaviours of all types of performance (successful and not). & \acrosssequences\\
     basic strategies & \basicstrategies & A data set generated with the best response sequences to \basicstrategies strategies
     which are classified as a set of basic strategies in the APL. & \basicsequences \\
     \bottomrule
@@ -755,7 +756,7 @@ occurring.
     \end{subfigure}
     \begin{subfigure}{\textwidth}
     \centering
-    \includegraphics[width=.8\textwidth]{src/chapters/07/img/validation_plot_across_ranks_strategies.pdf}
+    \includegraphics[width=.8\textwidth]{src/chapters/07/img/validation_plot_representative_strategies.pdf}
     \end{subfigure}
     \begin{subfigure}{\textwidth}
     \centering
@@ -767,8 +768,8 @@ occurring.
 
 For the StoP networks there appears to be more variation in the test loss and
 accuracy, Figure~\ref{fig:validation_sequence_to_probability}. This is more evident
-for the networks that were trained on the top strategies and the strategies
-across ranks. This could indicate that the networks are overfitting. The StoP
+for the networks that were trained on the top strategies and the representative
+strategies. This could indicate that the networks are overfitting. The StoP
 network trained on the entire training data set has managed to maintained
 a low loss value (at 0.5) and a training accuracy of 0.75. The most successfully
 trained StoP network appears to be the network trained on the basic strategies.
@@ -784,7 +785,7 @@ trained StoP network appears to be the network trained on the basic strategies.
     \end{subfigure}
     \begin{subfigure}{\textwidth}
     \centering
-    \includegraphics[width=.8\textwidth]{src/chapters/07/img/validation_plot_classification_across_ranks_strategies.pdf}
+    \includegraphics[width=.8\textwidth]{src/chapters/07/img/validation_plot_classification_representative_strategies.pdf}
     \end{subfigure}
     \begin{subfigure}{\textwidth}
     \centering
@@ -946,7 +947,7 @@ The strategy with the lowest \(\bar{r}\) over the \metatournamentslstm
 tournaments is the LSTM strategy based on the StoS network trained over the entire
 training set with \(p_o=1\). The strategy achieved a \(\bar{r}\) of 0.222. The
 second most successful performance is by the StoP based strategy trained against
-the across the ranks strategies with \(p_o=1\). In
+the representative strategies with \(p_o=1\). In
 section~\ref{section:training_a_rnn} it was indicated that the specific network
 was overfitting, however, as an IPD strategy the network outperforms any other
 StoP strategies.
@@ -954,7 +955,7 @@ StoP strategies.
 A few strategies have achieved a \(\bar{r}\)
 close to 0.3. These include the StoS strategy trained on the entire data set
 with \(p_o=0.78\), and the StoP strategies trained against all strategies,
-across the ranks strategies, and against the basic strategies with \(p_o=1\),
+the representative strategies, and against the basic strategies with \(p_o=1\),
 \(p_o=0.78\) and \(p_o=1\) equivalently.
 
 The LSTM strategies that open with cooperation outperform any other strategy
@@ -992,7 +993,7 @@ Table~\ref{table:statistic_summary_s_to_s}.
     \end{subfigure}
     \par\bigskip
     \begin{subfigure}{\textwidth}
-    \includegraphics[width=\textwidth]{src/chapters/07/img/normalised_rank_across_ranks_strategies.pdf}
+    \includegraphics[width=\textwidth]{src/chapters/07/img/normalised_rank_representative_strategies.pdf}
     \end{subfigure}
     \par\bigskip
     \begin{subfigure}{\textwidth}
@@ -1015,7 +1016,7 @@ based on the StoS network.}\label{table:statistic_summary_s_to_s}
 Figure~\ref{fig:normalised_rank_distributions_sequence_to_probability} gives the
 \(r\) distributions for the strategies based on the StoP network. For \(p_o=0\)
 the performance of the strategies remains poorly. The strategies that have been
-trained against all strategies, across the ranks and basic strategies with
+trained against all strategies, representative and basic strategies with
 \(p_o=1\) appear to have won several of the tournaments they
 participated in. The statistics summary of the distributions is given by
 Table~\ref{table:statistic_summary_s_to_p}.
@@ -1030,7 +1031,7 @@ Table~\ref{table:statistic_summary_s_to_p}.
     \end{subfigure}
     \par\bigskip
     \begin{subfigure}{\textwidth}
-    \includegraphics[width=\textwidth]{src/chapters/07/img/normalised_rank_classification_across_ranks_strategies.pdf}
+    \includegraphics[width=\textwidth]{src/chapters/07/img/normalised_rank_classification_representative_strategies.pdf}
     \end{subfigure}
     \par\bigskip
     \begin{subfigure}{\textwidth}
@@ -1074,7 +1075,7 @@ being on the top ranks on a standard IPD tournament.
     \end{subfigure}
     \begin{subfigure}{.5\textwidth}
     \centering
-    \includegraphics[width=.75\textwidth]{src/chapters/07/img/cfd_to_sequence_across_ranks_strategies.pdf}
+    \includegraphics[width=.75\textwidth]{src/chapters/07/img/cfd_to_sequence_representative_strategies.pdf}
     \end{subfigure}\hfill
     \begin{subfigure}{.5\textwidth}
     \centering
@@ -1096,7 +1097,7 @@ being on the top ranks on a standard IPD tournament.
     \end{subfigure}
     \begin{subfigure}{.5\textwidth}
     \centering
-    \includegraphics[width=.75\textwidth]{src/chapters/07/img/cfd_to_probability_across_ranks_strategies.pdf}
+    \includegraphics[width=.75\textwidth]{src/chapters/07/img/cfd_to_probability_representative_strategies.pdf}
     \end{subfigure}\hfill
     \begin{subfigure}{.5\textwidth}
     \centering
@@ -1190,7 +1191,7 @@ similarities, is the strategies trained against the top performing strategies.
         \includegraphics[width=.3\textwidth]{src/chapters/07/img/tit_for_tat_twenty_sequence_0.pdf}
         \includegraphics[width=.3\textwidth]{src/chapters/07/img/tit_for_tat_twenty_sequence_1.pdf}
         \includegraphics[width=.3\textwidth]{src/chapters/07/img/tit_for_tat_twenty_sequence_0_78.pdf}
-        \caption{Strategies trained against the across the ranks strategies.}
+        \caption{Strategies trained against the representative strategies.}
     \end{subfigure}
     \begin{subfigure}{\textwidth}
         \includegraphics[width=.3\textwidth]{src/chapters/07/img/tit_for_tat_basic_sequence_0.pdf}
@@ -1219,7 +1220,7 @@ similarities, is the strategies trained against the top performing strategies.
         \includegraphics[width=.3\textwidth]{src/chapters/07/img/tit_for_tat_twenty_classification_0.pdf}
         \includegraphics[width=.3\textwidth]{src/chapters/07/img/tit_for_tat_twenty_classification_1.pdf}
         \includegraphics[width=.3\textwidth]{src/chapters/07/img/tit_for_tat_twenty_classification_0_78.pdf}
-        \caption{Strategies trained against the across the ranks strategies.}
+        \caption{Strategies trained against the representative strategies.}
     \end{subfigure}
     \begin{subfigure}{\textwidth}
         \includegraphics[width=.3\textwidth]{src/chapters/07/img/tit_for_tat_basic_classification_0.pdf}
@@ -1253,7 +1254,7 @@ training data set and opening moves appear to be more similar.
         \includegraphics[width=.3\textwidth]{src/chapters/07/img/win_shift_lose_stay_twenty_sequence_0.pdf}
         \includegraphics[width=.3\textwidth]{src/chapters/07/img/win_shift_lose_stay_twenty_sequence_1.pdf}
         \includegraphics[width=.3\textwidth]{src/chapters/07/img/win_shift_lose_stay_twenty_sequence_0_78.pdf}
-        \caption{Strategies trained against the across the ranks strategies.}
+        \caption{Strategies trained against the representative strategies.}
     \end{subfigure}
     \begin{subfigure}{\textwidth}
         \includegraphics[width=.3\textwidth]{src/chapters/07/img/win_shift_lose_stay_basic_sequence_0.pdf}
@@ -1282,7 +1283,7 @@ training data set and opening moves appear to be more similar.
         \includegraphics[width=.3\textwidth]{src/chapters/07/img/win_shift_lose_stay_twenty_classification_0.pdf}
         \includegraphics[width=.3\textwidth]{src/chapters/07/img/win_shift_lose_stay_twenty_classification_1.pdf}
         \includegraphics[width=.3\textwidth]{src/chapters/07/img/win_shift_lose_stay_twenty_classification_0_78.pdf}
-        \caption{Strategies trained against the across the ranks strategies.}
+        \caption{Strategies trained against the representative strategies.}
     \end{subfigure}
     \begin{subfigure}{\textwidth}
         \includegraphics[width=.3\textwidth]{src/chapters/07/img/win_shift_lose_stay_basic_classification_0.pdf}
@@ -1347,7 +1348,7 @@ training data set, have not been trained to react against random defections.
         \includegraphics[width=.3\textwidth]{src/chapters/07/img/stewart_twenty_sequence_0.pdf}
         \includegraphics[width=.3\textwidth]{src/chapters/07/img/stewart_twenty_sequence_1.pdf}
         \includegraphics[width=.3\textwidth]{src/chapters/07/img/stewart_twenty_sequence_0_78.pdf}
-        \caption{Strategies trained against the across the ranks strategies.}
+        \caption{Strategies trained against the representative strategies.}
     \end{subfigure}
     \begin{subfigure}{\textwidth}
         \includegraphics[width=.3\textwidth]{src/chapters/07/img/stewart_basic_sequence_0.pdf}
@@ -1376,7 +1377,7 @@ training data set, have not been trained to react against random defections.
         \includegraphics[width=.3\textwidth]{src/chapters/07/img/stewart_twenty_classification_0.pdf}
         \includegraphics[width=.3\textwidth]{src/chapters/07/img/stewart_twenty_classification_1.pdf}
         \includegraphics[width=.3\textwidth]{src/chapters/07/img/stewart_twenty_classification_0_78.pdf}
-        \caption{Strategies trained against the across the ranks strategies.}
+        \caption{Strategies trained against the representative strategies.}
     \end{subfigure}
     \begin{subfigure}{\textwidth}
         \includegraphics[width=.3\textwidth]{src/chapters/07/img/stewart_basic_classification_0.pdf}
@@ -1405,7 +1406,7 @@ training data set, have not been trained to react against random defections.
         \includegraphics[width=.3\textwidth]{src/chapters/07/img/beautil_twenty_sequence_0.pdf}
         \includegraphics[width=.3\textwidth]{src/chapters/07/img/beautil_twenty_sequence_1.pdf}
         \includegraphics[width=.3\textwidth]{src/chapters/07/img/beautil_twenty_sequence_0_78.pdf}
-        \caption{Strategies trained against the across the ranks strategies.}
+        \caption{Strategies trained against the representative strategies.}
     \end{subfigure}
     \begin{subfigure}{\textwidth}
         \includegraphics[width=.3\textwidth]{src/chapters/07/img/beautil_basic_sequence_0.pdf}
@@ -1434,7 +1435,7 @@ training data set, have not been trained to react against random defections.
         \includegraphics[width=.3\textwidth]{src/chapters/07/img/beautil_twenty_classification_0.pdf}
         \includegraphics[width=.3\textwidth]{src/chapters/07/img/beautil_twenty_classification_1.pdf}
         \includegraphics[width=.3\textwidth]{src/chapters/07/img/beautil_twenty_classification_0_78.pdf}
-        \caption{Strategies trained against the across the ranks strategies.}
+        \caption{Strategies trained against the representative strategies.}
     \end{subfigure}
     \begin{subfigure}{\textwidth}
         \includegraphics[width=.3\textwidth]{src/chapters/07/img/beautil_basic_classification_0.pdf}
@@ -1463,7 +1464,7 @@ training data set, have not been trained to react against random defections.
         \includegraphics[width=.3\textwidth]{src/chapters/07/img/default_twenty_sequence_0.pdf}
         \includegraphics[width=.3\textwidth]{src/chapters/07/img/default_twenty_sequence_1.pdf}
         \includegraphics[width=.3\textwidth]{src/chapters/07/img/default_twenty_sequence_0_78.pdf}
-        \caption{Strategies trained against the across the ranks strategies.}
+        \caption{Strategies trained against the representative strategies.}
     \end{subfigure}
     \begin{subfigure}{\textwidth}
         \includegraphics[width=.3\textwidth]{src/chapters/07/img/default_basic_sequence_0.pdf}
@@ -1493,7 +1494,7 @@ training data set, have not been trained to react against random defections.
         \includegraphics[width=.3\textwidth]{src/chapters/07/img/default_twenty_classification_0.pdf}
         \includegraphics[width=.3\textwidth]{src/chapters/07/img/default_twenty_classification_1.pdf}
         \includegraphics[width=.3\textwidth]{src/chapters/07/img/default_twenty_classification_0_78.pdf}
-        \caption{Strategies trained against the across the ranks strategies.}
+        \caption{Strategies trained against the representative strategies.}
     \end{subfigure}
     \begin{subfigure}{\textwidth}
         \includegraphics[width=.3\textwidth]{src/chapters/07/img/default_basic_classification_0.pdf}
@@ -1544,7 +1545,7 @@ Three LSTM players are matched against these strategies in a tournament of
 
 \begin{itemize}
     \item The StoS based strategy, trained against all strategies with $p_o=1$.
-    \item The StoP based strategy, trained against across the ranks with $p_o=1$.
+    \item The StoP based strategy, trained against the representative strategies with $p_o=1$.
     \item The StoP based strategy, trained against the basic strategies with $p_o=1$.
 \end{itemize}
 
@@ -1563,7 +1564,7 @@ Figure~\ref{fig:transitive_fingerprints_against_seven}.
 \begin{subfigure}{.32\textwidth}
         \includegraphics[width=\textwidth]{src/chapters/07/img/s_t_p_twenty_against_seven_opponents.pdf}
         \caption{StoP network trained
-        against across the ranks with $p_o=1$.}
+        against the representative strategies with $p_o=1$.}
     \end{subfigure}\hfill
     \begin{subfigure}{.32\textwidth}
         \includegraphics[width=\textwidth]{src/chapters/07/img/s_t_p_basic_against_seven_opponents.pdf}
@@ -1596,7 +1597,7 @@ $p_o=1$.}\label{table:scores_s_to_s_against_seven}
 \end{center}
 \caption{Median scores of a standard tournament of 200 turns that was repeated
 50 times. The LSTM strategy corresponds to the strategy based on the StoP
-network trained against across the ranks strategies with
+network trained against the representative strategies with
 $p_o=1$.}\label{table:scores_s_to_p_twenty_against_seven}
 \end{table}
 
@@ -1643,7 +1644,7 @@ comparison, the StoS sequence manages to achieve a higher cooperation rate
 against \ZDExtortTwo which subsequently results in a better score.
 
 Amongst the three strategy the most aggressive appears to be the StoP based
-strategy trained against the across ranks strategies. Even against \Adaptive the
+strategy trained against the representative strategies. Even against \Adaptive the
 strategy goes into mutual defection. The strategy does exhibit a more \Grudger
 behaviour than the rest of the LSTM strategies. However, as it can be seen
 against \ZDExtortTwo the strategy is not as provocable as \Grudger. The StoP based
@@ -1778,7 +1779,7 @@ networks were trained on a training data set generated by the collection of best
 response strategies, but also on three subsets of that training data set. This
 was done in order to understand the effect of the training samples on the
 network's performance in a IPD tournament. The subsets included the best
-response sequences to top performing strategies, to strategies with ranks across
+response sequences to top performing strategies, to representative strategies with ranks across
 a standard tournament and a set of basic strategies. The networks were developed
 and trained using the open source package Keras, and the training process was
 carried out on a GPU.
