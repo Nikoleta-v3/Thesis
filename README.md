@@ -2,10 +2,11 @@
 
 # Understanding responses to environments for the Prisoner's Dilemma: A machine learning approach
 
-This repository contains the source code and the \( \LaTeX \) documents for the thesis
-entitled ``Understanding responses to environments for the Prisoner's Dilemma:
-A meta analysis, multidimensional optimisation and machine learning approach'' submitted in fulfillment of the requirements for the
-degree of Doctor of Philosophy, at Cardiff University.
+This repository contains the source code and the LaTeX documents for the thesis
+entitled ``Understanding responses to environments for the Prisoner's Dilemma: A
+meta analysis, multidimensional optimisation and machine learning approach''
+submitted in fulfillment of the requirements for the degree of Doctor of
+Philosophy, at Cardiff University.
 
 # Cloning
 
