@@ -1,3 +1,5 @@
+[![GitHub Actions Status: CI](https://github.com/Nikoleta-v3/Thesis/workflows/CI/CD/badge.svg)](https://github.com/Nikoleta-v3/Thesis/actions?query=workflow%3ACI%2FCD+branch%3Amaster)
+
 # Understanding responses to environments for the Prisoner's Dilemma: A machine learning approach
 
 This thesis contains the source code and the Latex documents for the thesis
