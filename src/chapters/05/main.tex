@@ -46,9 +46,9 @@ environments. Extortionate behaviour is explored using a linear algebraic
 approach presented in~\cite{Knight2019}.
 
 The outcomes of this Chapter reinforce and extend known results which were presented in
-Chapter~\ref{chapter:literature_review}. Namely that memory-one strategies must
-be adaptable to be successful~\cite{Knight2017, Knight2019} and
-that longer-memory strategies have a certain form of advantage over short memory
+Chapter~\ref{chapter:literature_review}. These are that (a) memory-one strategies must
+be adaptable to be successful~\cite{Knight2017, Knight2019} and (b)
+longer-memory strategies have a certain form of advantage over short memory
 strategies~\cite{Hilbe2017, Pan2015}. The Chapter is structured as follows:
 
 \begin{itemize}
@@ -211,7 +211,8 @@ against \(N\) opponents is given by Theorem~\ref{theorem:tournament_utility}.
 Equation~(\ref{eq:tournament_utility}) is the average score
 (using Equation~(\ref{eq:optimisation_quadratic})) against the set of opponents.
 
-Similar to the previous result, the formulation of
+Using a procedure similar to that used in Theorem~\ref{theorem:quadratic_form_u},
+the formulation of
 Theorem~\ref{theorem:tournament_utility} is validated using numerical
 simulations where the 10 memory-one strategies described in~\cite{Stewart2012}
 have been used as the opponents. Figure~\ref{fig:stewart_plotkin_results} shows
@@ -233,8 +234,9 @@ that the simulated behaviour has been captured successfully.
 
 The list of strategies from~\cite{Stewart2012} was also used to check whether
 the utility against a group of strategies could be captured by the utility
-against the mean opponent. Thus whether condition (\ref{eq:condition}) holds.
-However condition~(\ref{eq:condition}) fails, as shown in
+against the mean opponent; condition (\ref{eq:condition}).
+However, condition~(\ref{eq:condition}) fails. This is numerically shown using
+a series of examples, demonstrated in
 Figure~\ref{fig:hypothesis}.
 
 \begin{equation}\label{eq:condition}
@@ -1150,8 +1152,9 @@ the usage of resultant theory in the search of best response strategies.
 The empirical results of this Chapter were presented in
 section~\ref{section:numerical_experiments}. The results relied on a bespoke
 data set of 1,000 pairs of memory-one opponents. For each pair of opponents two
-sets of best response memory-one strategies were estimated. Best responses that
-included and not self interactions. The behaviour of these best responses was
+sets of best response memory-one strategies were estimated. Best response
+calculations both in the case when self-interactions were included
+and also when they were not included. The behaviour of these best responses was
 investigated. More specifically, it was explored whether it was extortionate
 acts that made them the most favourable strategies. It was shown that it was not
 extortion but adaptability that allowed the strategies to gain the most from
