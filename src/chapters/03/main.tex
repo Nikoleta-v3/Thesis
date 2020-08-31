@@ -73,7 +73,7 @@ than individually. Indeed this is the very premise of the PD itself.
 Collaboration in groups has a long tradition in experimental
 sciences and it has be proven to be productive according
 to~\cite{Etzkowitz1992}. The number of collaborations can be different
-between research fields and understanding how collaborative a field is not
+between research fields. Understanding collaborative nature of a field is not
 always an easy task. Several studies tend to consider academic citations as a
 measure. A blog post published by Nature~\cite{nature_blog}
 argues that depending on citations can often be misleading because the true
@@ -649,7 +649,7 @@ A document with abstract ``The study of
 cooperation in humans'' has a \(c_{A} = 0.039 + 0.028 + 0.026 = 0.093\) and
 \(c_B = 0.020 + 0.0 + 0.0 = 0.020\). In essence, LDA maps every paper to a
 vector. In this example the document is mapped to \([0.093, 0.020]\). Each
-document has a dominant topic to which is going to be assigned in. The dominant
+document has a dominant topic. The dominant
 topic is the topic with the highest percentage contribution denoted as \(c^*\).
 For the given example the dominant topic is Topic A, and \(c^*=c_A\).
 
@@ -934,8 +934,7 @@ given by Figure~\ref{fig:median_percentage_contribution_over_time}.
 
 The five topics of the PD presented in this manuscript appear to always be
 less good at fitting the publications compared to the six topics of LDA \(n=6\).
-Moreover, there are less good than the topics of the optimal number of topics
-from 1951 to 1995. The difference in the performance values, Equation~(\ref{eq:ratio}),
+The difference in the performance values, Equation~(\ref{eq:ratio}),
 however are small. The relevance of the five topics has been increasing
 over time, and though, the topics did not always fit the majority of published
 work over time, there were still papers being published on those topics.
@@ -945,7 +944,8 @@ work over time, there were still papers being published on those topics.
     \includegraphics[width=.75\textwidth]{src/chapters/03/paper/bibliometric-study-of-the-prisoners-dilemma/assets/images/contribution_over_time.pdf}
     \caption{Maximum percentage contributions (\(c^*\)) over the time periods,
     for the LDA models for the entire data set for \(n\) equal to 5, 6
-    and the optimal number of topics over time.}
+    and the optimal number of topics over time. The optimal number of topics are
+    based on the coherence score.}
     \label{fig:median_percentage_contribution_over_time}
 \end{figure}
 
