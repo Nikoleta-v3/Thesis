@@ -47,8 +47,11 @@ the form of sequences. RNNs were firstly considered as an archetype in 1996.
 In~\cite{Sandholm1996} a RNN which considered a single previous step
 as an input was trained via a \(Q\) learning algorithm to play against a single
 opponent. The opponent was either the strategy \TitForTat or another \(Q\)
-learning strategy. The results of~\cite{Sandholm1996} were promising. The RNN
-player learned to play optimally but only against a single strategy, which
+learning strategy. The results of~\cite{Sandholm1996} were promising, the RNN
+player learned to successfully win against \TitForTat, however it had learned
+to win only a single opponent.
+
+its opponent play  but only against a single strategy, which
 was \TitForTat.
 
 The limitations of~\cite{Sandholm1996} could potentially have been due to the
@@ -352,7 +355,7 @@ variety of LSTM networks are trained to predict these best response sequences.
 
 LSTM are trained in a supervised fashion on a set of training sequences. The
 purpose of training a network in this Chapter is so it can learn to play
-optimally against IPD strategies. For that reason the networks are going to be
+successfully against IPD strategies. For that reason the networks are going to be
 trained on the collection of best response sequences generated in
 Chapter~\ref{chapter:best_response_sequence}.
 
@@ -1770,7 +1773,7 @@ is that LSTMs incorporate a mechanism of memory. This allows the networks
 to learn to using the history of an opponent in order to decide their next move.
 The collection of best response sequences of
 Chapter~\ref{chapter:best_response_sequence} was purposely generated so that
-LSTMs could be trained to play optimally against a list of known IPD strategies.
+LSTMs could be trained to play successfully against a list of known IPD strategies.
 
 Two types of LSTM networks have been trained in this Chapter. Presented in
 section~\ref{section:training_a_rnn}, there were referred to as the sequence to

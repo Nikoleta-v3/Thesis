@@ -738,7 +738,9 @@ highest average score per turn in the final generation regardless of the GA.
 
 In order to understand whether the algorithms reached convergence over the
 2,000 generations, the highest score in a population over the generations for four
-different strategies is given in Figure~\ref{fig:ga_trials}.
+different strategies is given in Figure~\ref{fig:ga_trials}. The population is
+said to have converged if the highest average score of
+the population has not changed over a number of generations.
 
 There are trials for which the algorithms never converged to the best response
 sequences. There are two reason that as to why this happened:
@@ -822,8 +824,7 @@ match ending in the following turn increases the effectiveness of defecting.
 
 A total of \stochasticsequences sequences have been estimated for the stochastic
 opponents. From these sequences, \reproducible did indeed play against the
-correct seeded opponent and achieved their respective scores at the final
-generation.
+correct seeded opponent.
 
 For instance for the strategy - seed combination of \Champion~- seed\(=9\) the highest score
 achieved by a member of the population over the generations is given by

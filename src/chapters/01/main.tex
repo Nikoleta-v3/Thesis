@@ -108,7 +108,7 @@ Equation~(\ref{eq:constrain_two}).
 
 An equivalent representation of the PD is the \textit{donation game}. In the
 donation game each player can cooperate by providing a benefit \(b\) to the
-other player at a cost \(c\) with \(0 < c < d\). Thus, the players' payoffs for
+other player at a cost \(c\) with \(b > c > 0\). Thus, the players' payoffs for
 the donation game are as given by Equation~(\ref{eq:the_pd_payoffs_with_cost}).
 
 \begin{equation}\label{eq:the_pd_payoffs_with_cost}
@@ -210,8 +210,9 @@ question:
 
 \begin{itemize}
     \centering
-    \item[] What is the optimal behaviour an Iterated Prisoner's Dilemma strategy should
-    adopt as a response to different environments?
+    \item[] What behaviour should an Iterated Prisoner's Dilemma strategy adopt
+    as a response to different environments to achieve a high average score
+    against a list of opponents?
 \end{itemize}
 
 Initially, Chapter~\ref{chapter:literature_review} provides a condensed
@@ -224,7 +225,7 @@ articles using data mining, machine learning and natural language processing. Th
 been collected using a bespoke research software tool, which was written for this work but has since been used by others. The data set is further
 analysed using network theoretic approaches to explore the behaviour of authors.
 
-There are four Chapters to the thesis which explore optimal behaviour using original approaches. Namely,
+There are four Chapters to the thesis which explore best behaviour using original approaches. Namely,
 Chapter~\ref{chapter:meta_tournaments} analyses a set of \numberofalltournaments computer
 tournaments of distinct types and evaluates \numberofstrategies strategies'
 performance. Chapter~\ref{chapter:memory_one} explores best response strategies
@@ -280,7 +281,7 @@ A summary of each Chapter is given below:
     opponents whilst having a theory of mind, and it introduces a well designed
     framework that allows the comparison of an optimal memory-one strategy and a
     more complex strategy which has a larger memory. The results add to the
-    literature that has shown that extortionate play is not always optimal by
+    literature that has shown that extortionate play is not always optimal, by
     showing that optimal play is often not extortionate.
     \item Chapter~\ref{chapter:best_response_sequence} explores the problem of
     IPD best responses in the form of sequences.
@@ -303,10 +304,10 @@ A summary of each Chapter is given below:
     further research questions that have arisen.
 \end{itemize}
 
-Chapters~\ref{chapter:meta_tournaments}-\ref{chapter:lstm} explore optimal
+Chapters~\ref{chapter:meta_tournaments}-\ref{chapter:lstm} explore
 behaviour in the IPD. The disparity between the
 approaches is their depth, as illustrated in Figure~\ref{fig:depth_structure}.
-Chapter~\ref{chapter:meta_tournaments} explores optimal behaviour
+Chapter~\ref{chapter:meta_tournaments} explores best responses
 by analysing a data set of tournaments and evaluating the performance of
 pre-designed strategies. The exact opposite is done in
 Chapter~\ref{chapter:memory_one} where for a given set of two
@@ -314,7 +315,7 @@ memory-one opponents a best response strategy is calculated explicitly.
 Similarly, a best responses sequence against a given opponent is calculated in
 Chapter~\ref{chapter:best_response_sequence}, but this is done using a heuristic
 method. Finally, Chapter~\ref{chapter:lstm} uses a machine learning algorithm
-to generate a optimal behaviour based on recurrent networks without any manual
+to generate an well performed strategy based on recurrent networks without any manual
 input.
 
 \begin{figure}[!hbtp]
@@ -381,7 +382,7 @@ A good version control system has the following features as stated in~\cite{Rupa
     \item Synchronisation: Source code files can be shared and users can update their
     codebase with the latest version.
     \item Undo changes: Changes made to the code can be undone by going back
-    to a version that was committed in the past.
+    to a version that was saved in the past.
     \item Track changes: Messages are attacked to file changes in order to track the
     how and why the code evolved over time.
     \item Track ownership: File changes are tagged with the user's name who made
