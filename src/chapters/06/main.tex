@@ -26,8 +26,8 @@ The purpose of a large collection of best response sequences is
 to serve as training data in Chapter~\ref{chapter:lstm} which aims to train a
 recurrent neural network as an IPD strategy. In Chapter~\ref{chapter:lstm} the
 usage of the bespoke data set, which has been archived and made publicly
-available~\cite{Glynatsi2020_sequences}, is discussed in more details. This
-Chapter is structured as follow:
+available~\cite{Glynatsi2020_sequences}, is discussed in more detail. This
+Chapter is structured as follows:
 
 \begin{itemize}
     \item section~\ref{section:ipd_as_sequences} formalises the use of sequences to express a player in a
@@ -92,7 +92,7 @@ for example against \TitForTat as demonstrated by Table~\ref{table:s_vs_tft},
 
 and against stochastic strategies such as \Random. \Random cooperates with a
 probability of \(0.5\) at each turn, and thus the actions of the strategy are
-not deterministic. \Random is a strategy that does react to the history, however,
+not deterministic. \Random is a strategy that does not react to the history, however,
 the actions of stochastic strategies that react to the
 history also differ between repetitions even when the history of the match is
 the same. Tables~\ref{table:s_vs_random} and~\ref{table:s_vs_random_2} both
@@ -127,7 +127,7 @@ are different to that of Table~\ref{table:s_vs_random}.}\label{table:s_vs_random
 \end{table}
 
 As discussed in Chapters~\ref{chapter:introduction} and~\ref{chapter:memory_one},
-a best response strategy is a strategy that achieves that most favourable outcome.
+a best response strategy is a strategy that achieves the most favourable outcome.
 Thus a best response sequence against a given opponent \(Q\) corresponds
 to a sequence \(S^*\) for which the average score per turn is maximised,
 as given in~(\ref{eq:best_response_sequence}).
@@ -284,7 +284,7 @@ of:
 \[\bullet \{\underbrace{D, \dots, D}_{c}, \underbrace{C, \dots, C}_{N-c}\} \text{ for } c \in \text{evenly spaced numbers over } [1, N].\]
 
 The GA of Algorithm~\ref{algorithm:genetic_algorithm} has been implemented in the programming language Python
-and it has been organised into a open source package called
+and it has been organised into an open source package called
 \mintinline{python}{sequence_sensei} available at~\cite{Glynatsi_2020_sensei}.
 The properties of creating an initial population, crossover and mutation have been
 implemented as individual functions.
@@ -414,7 +414,7 @@ Following the crossover between two members, a mutation is applied to new member
 before it is added to the population. Mutation has been implemented as a
 given probability \(p_m\) that each gene of the new member is flipped. A total
 of \(N\) random numbers between \([0, 1]\) are sampled. If the sampled
-probability at time \(i\) in less than \(p_m\) then the \(i^{th}\) gene of the
+probability at time \(i\) is less than \(p_m\) then the \(i^{th}\) gene of the
 individual is flipped, as demonstrated by
 Figure~\ref{fig:mutation_diagrammatic_example}.
 
@@ -504,7 +504,7 @@ using an in built method of APL once a match has been simulated.
 \end{usagepy}
 \caption{Simulating a match between \Cycler and \Cooperator and \Cycler and \TitForTat.
 The class \mintinline{python}{Cycler} takes a given sequence as an input argument in a string format
-\mintinline{python}{('DDDCCCDDCC')}. Once a match has been simulate with the \mintinline{python}{play} method
+\mintinline{python}{('DDDCCCDDCC')}. Once a match has been simulated with the \mintinline{python}{play} method
 the average score per turn is obtained using the \mintinline{python}{final_score_per_turn}
 method.}\label{fig:apl_simulations_cycler}
 \end{figure}
@@ -614,9 +614,9 @@ is given by Table~\ref{table:alternator_summary}.
 \begin{table}[!htbp]
     \resizebox{\textwidth}{!}{
     \input{src/chapters/06/tex/alternator_table.tex}}
-    \caption{An exampled of an exported summary. The specific output is for
+    \caption{An example of an exported summary. The specific output is for
     the opponent \Alternator. \Alternator is a deterministic strategy,
-    consequently, the value of seed in NaN. The values of the different GA
+    consequently, the value of seed is NaN. The values of the different GA
     parameters are recorded in the summary, as well as the details of each
     member of each generation. The sequences' genes
     were recorded in 0 and 1, where \(0 \to D\) and \(1 \to C\).
@@ -632,7 +632,7 @@ from the last generation of the exported summaries.
 \begin{table}[!htbp]
     \resizebox{\textwidth}{!}{
     \input{src/chapters/06/tex/champion_seed_nine_table.tex}}
-    \caption{An exampled of an exported summary for a stochastic strategy. The
+    \caption{An example of an exported summary for a stochastic strategy. The
     column seed does not have a value of NaN anymore but has captured the seed that
     was used to generate the specific play of the stochastic opponent. The members'
     genes are also recorded for each generation. Note that \(0 \to D\) and
@@ -738,7 +738,9 @@ highest average score per turn in the final generation regardless of the GA.
 
 In order to understand whether the algorithms reached convergence over the
 2,000 generations, the highest score in a population over the generations for four
-different strategies is given in Figure~\ref{fig:ga_trials}.
+different strategies is given in Figure~\ref{fig:ga_trials}. The population is
+said to have converged if the highest average score of
+the population has not changed over a number of generations.
 
 There are trials for which the algorithms never converged to the best response
 sequences. There are two reason that as to why this happened:
@@ -822,13 +824,12 @@ match ending in the following turn increases the effectiveness of defecting.
 
 A total of \stochasticsequences sequences have been estimated for the stochastic
 opponents. From these sequences, \reproducible did indeed play against the
-correct seeded opponent and achieved their respective scores at the final
-generation.
+correct seeded opponent.
 
 For instance for the strategy - seed combination of \Champion~- seed\(=9\) the highest score
 achieved by a member of the population over the generations is given by
 Figure~\ref{fig:champion_ga_score}. There is variation in the highest score
-occurring over the generations with several increasing and decreasing peeks. However,
+occurring over the generations with several increasing and decreasing peaks. However,
 for most of the generations the highest score appears to be between \(3.80 - 3.82\).
 The best response sequence retrieved by the data collection scored 3.82 against
 \Champion, and it reflected the score of the sequence against \Champion~- seed\(=9\).

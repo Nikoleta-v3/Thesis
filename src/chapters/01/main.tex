@@ -3,7 +3,7 @@
 Game theory is a field that makes use of mathematical tools and logic to model
 and analyse situations of conflict, cooperation, and competition. One of the
 most well-known examples of a strategic game is the Prisoner's Dilemma,
-consisting of two players which can either cooperative or defect. A more
+consisting of two players which can either cooperate or defect. A more
 realistic version of the game is that of the Iterated Prisoner's Dilemma where
 the two players play more than once in succession. The players remember the
 previous actions taken and change their strategy accordingly.
@@ -12,7 +12,7 @@ The world is surrounded by situations of conflict, and understanding the
 emergent outcome of interactions between two players can have a significant impact in
 economical and political sciences.
 
-In 1984 the ``The evolution of Cooperation'' was published by Robert Axelrod
+In 1984 ``The evolution of Cooperation'' was published by Robert Axelrod
 introducing the usage of the Iterated Prisoner's Dilemma and computer modelling
 in studying situations of conflict. Axelrod explored the optimal behaviour of
 players in round robin tournaments using computer strategies. Many tournaments
@@ -108,7 +108,7 @@ Equation~(\ref{eq:constrain_two}).
 
 An equivalent representation of the PD is the \textit{donation game}. In the
 donation game each player can cooperate by providing a benefit \(b\) to the
-other player at a cost \(c\) with \(0 < c < d\). Thus, the players' payoffs for
+other player at a cost \(c\) with \(b > c > 0\). Thus, the players' payoffs for
 the donation game are as given by Equation~(\ref{eq:the_pd_payoffs_with_cost}).
 
 \begin{equation}\label{eq:the_pd_payoffs_with_cost}
@@ -130,7 +130,7 @@ are numerical experiments presented in the following Chapters. These have been
 carried out using the payoff values of \(R = 3, P = 1, T = 5\) and \(S =
 0\), which are the values most commonly used in the
 literature~\cite{Adami2013, Axelrod1984,  Beaufils1988, Bendor1991, Donninger1986,
-Franken2005, Knight2017, Harper2017, kendall2007iterated, Knight2018, Li2007,
+Franken2005, Knight2017, kendall2007iterated, Knight2018, Li2007,
 A.Rogers2007Ctpw, Stewart2012}.
 
 In non-cooperative games the players interact in order to achieve their best 
@@ -142,7 +142,7 @@ a reason to deviate.
 
 In the PD due to constraint (\ref{eq:constrain_one}) it never benefits a player
 to cooperate. A player that cooperates receives either a payoff of \(R\) or \(S\)
-depending the action of the other player, whereas if a player defects they
+depending on the action of the other player, whereas if a player defects they
 receive either \(T\) or \(P\), and \(T > R\) and \(P > S\). Once both
 players defect neither have a reason to change their decision. Thus, in the
 PD mutual defection is a Nash equilibrium and defection is the
@@ -184,9 +184,9 @@ Table~\ref{table:tournament_refs}.
         1987 & \cite{Beaufils1997} & Round robin \& ecological tournament with 12 participants & \Gradual \\
         1991 & \cite{Bendor1991}   & Round robin tournament with noise and 13 participants & \NiceandForgiving \\
         2005 & \cite{kendall2007iterated}  & Varied with 223 participants & Varying \\
-        2012 & \cite{Stewart2012}  & Round robin tournament with 13 & Generous zero-determinants \\
+        2012 & \cite{Stewart2012}  & Round robin tournament with 13 participants & Generous zero-determinants \\
         2016 & \cite{Knight2016}   & Round robin tournament with 130 participants & Heuristically trained strategies\\
-        2017 & \cite{Harper2017}   & Round robin tournament with 200 participants & Heuristically trained strategies\\
+        2017 & \cite{Knight2017}   & Round robin tournament with 200 participants & Heuristically trained strategies\\
         \bottomrule
     \end{tabular}}
     \caption{An overview of published works that introduced dominating IPD strategies in their
@@ -210,8 +210,9 @@ question:
 
 \begin{itemize}
     \centering
-    \item[] What is the optimal behaviour an Iterated Prisoner's Dilemma strategy should
-    adopt as a response to different environments?
+    \item[] What behaviour should an Iterated Prisoner's Dilemma strategy adopt
+    as a response to different environments to achieve a high average score
+    against a list of opponents?
 \end{itemize}
 
 Initially, Chapter~\ref{chapter:literature_review} provides a condensed
@@ -224,7 +225,7 @@ articles using data mining, machine learning and natural language processing. Th
 been collected using a bespoke research software tool, which was written for this work but has since been used by others. The data set is further
 analysed using network theoretic approaches to explore the behaviour of authors.
 
-There are four Chapters to the thesis which explore optimal behaviour using original approaches. Namely,
+There are four Chapters to the thesis which explore best behaviour using original approaches. Namely,
 Chapter~\ref{chapter:meta_tournaments} analyses a set of \numberofalltournaments computer
 tournaments of distinct types and evaluates \numberofstrategies strategies'
 performance. Chapter~\ref{chapter:memory_one} explores best response strategies
@@ -235,7 +236,7 @@ Chapter~\ref{chapter:lstm}, uses the data set of best response sequences
 generated in Chapter~\ref{chapter:best_response_sequence} to train an IPD
 strategy using a recurrent neural network.
 
-The six Chapters of the thesis and their role is illustrated in
+The eight Chapters of the thesis and their role is illustrated in
 Figure~\ref{fig:structure_of_thesis}. An arrow between one Chapter and another
 implies that the work described in one serves as motivation for the other.
 
@@ -248,8 +249,8 @@ implies that the work described in one serves as motivation for the other.
 A summary of each Chapter is given below:
 
 \begin{itemize}
-    \item Chapter~\ref{chapter:introduction} has contextualised the three main
-    research questions of this thesis. Background of game theory and the
+    \item Chapter~\ref{chapter:introduction} has contextualised the main
+    research question of this thesis. Background of game theory and the
     PD has been given, and the structure
     of the remainder of the thesis has been outlined.
     \item Chapter~\ref{chapter:literature_review} provides a
@@ -280,7 +281,7 @@ A summary of each Chapter is given below:
     opponents whilst having a theory of mind, and it introduces a well designed
     framework that allows the comparison of an optimal memory-one strategy and a
     more complex strategy which has a larger memory. The results add to the
-    literature that has shown that extortionate play is not always optimal by
+    literature that has shown that extortionate play is not always optimal, by
     showing that optimal play is often not extortionate.
     \item Chapter~\ref{chapter:best_response_sequence} explores the problem of
     IPD best responses in the form of sequences.
@@ -303,28 +304,28 @@ A summary of each Chapter is given below:
     further research questions that have arisen.
 \end{itemize}
 
-Chapters~\ref{chapter:meta_tournaments}-\ref{chapter:lstm} explore optimal
+Chapters~\ref{chapter:meta_tournaments}-\ref{chapter:lstm} explore
 behaviour in the IPD. The disparity between the
 approaches is their depth, as illustrated in Figure~\ref{fig:depth_structure}.
-Chapter~\ref{chapter:meta_tournaments} explores optimal behaviour
+Chapter~\ref{chapter:meta_tournaments} explores best responses
 by analysing a data set of tournaments and evaluating the performance of
 pre-designed strategies. The exact opposite is done in
-Chapter~\ref{chapter:memory_one} whereas for a given set of two
+Chapter~\ref{chapter:memory_one} where for a given set of two
 memory-one opponents a best response strategy is calculated explicitly.
 Similarly, a best responses sequence against a given opponent is calculated in
 Chapter~\ref{chapter:best_response_sequence}, but this is done using a heuristic
 method. Finally, Chapter~\ref{chapter:lstm} uses a machine learning algorithm
-to generate a optimal behaviour based on recurrent networks without any manual
+to generate an well performed strategy based on recurrent networks without any manual
 input.
 
 \begin{figure}[!hbtp]
     \centering
     \includestandalone[width=.9\textwidth]{src/chapters/01/tex/depth_structure}
-    \caption{The depth of exploration whilst reporting on research question 1.}\label{fig:depth_structure}
+    \caption{The depth of exploration whilst reporting on the research question.}\label{fig:depth_structure}
 \end{figure}
 
-Most of Chapters of the thesis make use of parameters. There are instances that
-the same symbol is used at different Chapters to denote different parameters
+Most Chapters of the thesis make use of parameters. There are instances that
+the same symbol is used in different Chapters to denote different parameters
 with different meanings. The parameters of each Chapter alongside a brief
 exploration per Chapter is given in the
 Appendix~\ref{appendix:parameters_per_chapter}.
@@ -342,7 +343,7 @@ requirements.
 
 For the research of each Chapter (excluding Chapters~\ref{chapter:literature_review}
 and~\ref{chapter:conclusion}) source code and analysis code have been developed.
-All code is written in the an open source language Python, has been made public
+All code is written in the open source language Python, has been made public
 via GitHub and has one of the most flexible and permissive licences, the MIT
 licence. Essentially, the code developed for the thesis is available for inspection,
 testing, and modification which enables and encourages
@@ -381,7 +382,7 @@ A good version control system has the following features as stated in~\cite{Rupa
     \item Synchronisation: Source code files can be shared and users can update their
     codebase with the latest version.
     \item Undo changes: Changes made to the code can be undone by going back
-    to a version that was committed in the past.
+    to a version that was saved in the past.
     \item Track changes: Messages are attacked to file changes in order to track the
     how and why the code evolved over time.
     \item Track ownership: File changes are tagged with the user's name who made
@@ -453,7 +454,7 @@ distribution manager: conda allows users to create, export, list, remove, and up
 have different versions of Python and/or packages installed in them. Switching
 or moving between environments is called activating the environment. An environment
 can be shared and kept under version control as a file. An example of
-such as file is given by Figure~\ref{fig:environment_file}.
+such a file is given by Figure~\ref{fig:environment_file}.
 
 \begin{figure}[!htbp]
 \begin{shell}
@@ -500,7 +501,7 @@ ensure the code is clean and free of bugs.
 Functional tests aim to test how the whole application functions from the
 perspective of the outside user. They feed in basic input and test whether the
 end product/final behaviour is as expected. Unit tests assert that small chunks
-of code behave as expected, and the test the application from the point of the
+of code behave as expected, and they test the application from the point of the
 programmer. Unit tests are isolated from the rest of the code and are modular.
 There are two types of unit tests: \textit{pure} and \textit{integrated} tests.
 
@@ -582,12 +583,13 @@ Table~\ref{table:source_code_data_citations}.
     \label{table:source_code_data_citations}
 \end{table}
 
-Throughout the thesis, parts of the source code and examples of the code's usage are
-going to be presented in the corresponding Chapters. Two types of code snippets
-are used in this thesis to present code. Code snippets that demonstrate the
-source code of a specific piece of software, Figure~\ref{figure:source_code_example}, and
-code snippets that demonstrate the usage,
-Figure~\ref{figure:usage_code_example}. These can be distinguish by the three arrows,
+Throughout the thesis, parts of the source code and examples of the code's usage
+are going to be presented in the corresponding Chapters. Two types of code
+snippets are used in this thesis to present code. Firstly code snippets that
+demonstrate the source code of a specific piece of software as shown in
+Figure~\ref{figure:source_code_example}, and code snippets that demonstrate the
+usage as shown in Figure~\ref{figure:usage_code_example}. These can be
+distinguish by the three arrows,
 \mintinline{python}{>>>}, which are only found in the usage code snippets.
 The three arrows are followed by a command. It
 demonstrates that the command is executed in a Python interpreter, and the result of executing the command

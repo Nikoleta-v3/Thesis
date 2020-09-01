@@ -31,13 +31,13 @@ such as finite state automata, hidden Markov models and \textit{artificial
 neural networks} (ANNs).
 
 ANNs have successfully been trained to play games other than the IPD such as
-checkers~\cite{Chellapilla1999}, chess~\cite{Fogel2004} and
+draughts~\cite{Chellapilla1999}, chess~\cite{Fogel2004} and
 Go~\cite{Silver2016}. \textit{Feed forward networks} were firstly used to represent IPD
 strategies in 1996 \cite{Harrald1996}. Feed forward networks have been used in
 the literature ever since~\cite{Ashlock2008, Ashlock2006a, Darwen2001,
 Franken2005}, and possibly the most successful ANN strategies in the game are
-the ones introduced in~\cite{Harper2017}. The three ANN based strategies
-in~\cite{Harper2017} ranked \(7^{th}\), \(9^{th}\), and \(11^{th}\) in a
+the ones introduced in~\cite{Knight2017}. The three ANN based strategies
+in~\cite{Knight2017} ranked \(7^{th}\), \(9^{th}\), and \(11^{th}\) in a
 tournament of 223 strategies.
 
 A type of ANNs that have not received much attention in the literature are the
@@ -47,9 +47,12 @@ the form of sequences. RNNs were firstly considered as an archetype in 1996.
 In~\cite{Sandholm1996} a RNN which considered a single previous step
 as an input was trained via a \(Q\) learning algorithm to play against a single
 opponent. The opponent was either the strategy \TitForTat or another \(Q\)
-learning strategy. The results of~\cite{Sandholm1996} although somewhat
-promising, the RNN player learned to optimally play against \TitForTat,
-they were limited.
+learning strategy. The results of~\cite{Sandholm1996} were promising, the RNN
+player learned to successfully win against \TitForTat, however it had learned
+to win only a single opponent.
+
+its opponent play  but only against a single strategy, which
+was \TitForTat.
 
 The limitations of~\cite{Sandholm1996} could potentially have been due to the
 limitations of the RNNs themselves. As it will be discussed later in
@@ -57,7 +60,7 @@ section~\ref{section:artificial_neural_networks}, RNNs
 quickly became unable to learn due to the vanishing gradient problem.
 To improve on the standard recurrent networks a new model called the
 \textit{long short-term memory network} (LSTM) was introduced in~\cite{Hochreiter1997}.
-Remembering information for long periods of time is 
+Remembering information for long periods of time
 is the default behaviour of LSTMs, not something they struggle to learn.
 
 LSTMs are a set of networks that have been proven to be successfully trained and
@@ -96,7 +99,7 @@ has experienced three periods of extensive activity. The first peak was in the
 1940s. The work of~\cite{McCulloch1943} opened the subject by creating a
 computational model for neural networks. The second peak occurred in 1960s with
 the introduction of the perceptron~\cite{Rosenblatt1958}. The perceptron is a
-linear binary classifier and in the 1960s in was shown that it could be used to
+linear binary classifier and in the 1960s it was shown that it could be used to
 learn to classify simple shapes with \(20\times20\) pixels input. However, it
 was impossible for the perceptron to be extended to classification tasks with
 many categories. The limitations of the model were presented
@@ -212,7 +215,7 @@ parameters. Thus \(\frac{\partial{L}}{\partial{W}}\) and
 back propagation algorithm~\cite{Wythoff1993} which is a way of efficiently
 calculating the gradients starting from the output.
 
-According~\cite{Ruder2016} to there are variants of the gradient descent which
+According to~\cite{Ruder2016} there are variants of the gradient descent which
 differ in how much data is used to compute the gradient of the objective
 function. Using the gradient descent algorithm, the weights are updated
 incrementally after each pass over the training data set. In contrast, the
@@ -327,7 +330,7 @@ state,
 \end{align}
 
 This process is being carried out for each time step of the input sequence. At
-each time step both the cell state and hidden state are feed back into the
+each time step both the cell state and hidden state are fed back into the
 network. The hidden state can also be used to make a prediction at each time
 step as demonstrated by Figure~\ref{fig:lstm}.
 
@@ -352,7 +355,7 @@ variety of LSTM networks are trained to predict these best response sequences.
 
 LSTM are trained in a supervised fashion on a set of training sequences. The
 purpose of training a network in this Chapter is so it can learn to play
-optimally against IPD strategies. For that reason the networks are going to be
+successfully against IPD strategies. For that reason the networks are going to be
 trained on the collection of best response sequences generated in
 Chapter~\ref{chapter:best_response_sequence}.
 
@@ -490,9 +493,9 @@ construct and train the networks.
 
 The Python code for implementing the StoS model is given by
 Figure~\ref{fig:keras_sequence_to_sequence}. In line 12 the model is defined to
-be of the \mintinline{python}{Sequential} class. This mean that the model will
+be of the \mintinline{python}{Sequential} class. This means that the model will
 be constructed layer by layer. The StoS network has a single LSTM layer with 100
-nodes. The input to the LSTM network is not of a fixed length and there a single
+nodes. The input to the LSTM network is not of a fixed length and there is a single
 time step between the elements of each input sequence. This is defined by the
 argument \mintinline{python}{input_shape=(None, 1)}. The LSTM layer outputs a
 hidden state at each time step. Initially, the hidden states go through a
@@ -685,7 +688,7 @@ A list of the strategies' names used in each subset is given in the Appendix~\re
     3.10.0. The results are available at~\cite{std_tournament_results}.}\label{table:training_data_sets}
 \end{table}
 
-The training data sets have been archive and are available
+The training data sets have been archived and are available
 at~\cite{Glynatsi_2020_training_data_sets}.
 
 \subsection{Training and validation}
@@ -719,7 +722,7 @@ epochs compared to the StoS networks.
 
 At each training process the training data set is split into 80\% training samples
 and 20\% test samples. At each epoch the loss function is calculated for both
-the training and test samples. The loss function used to trained the networks
+the training and test samples. The loss function used to train the networks
 is the \textit{binary cross entropy}. In essence, the task of predicting IPD
 actions is a binary classification problem as there can only be two classes:
 cooperation or defection.
@@ -728,7 +731,7 @@ As discussed in section~\ref{section:artificial_neural_networks}, the loss
 function is used to optimise the learning algorithm. The networks that will
 be used as IPD strategies in the next section are the networks that achieved
 the lowest loss value over the epochs. The weights of the best performing
-networks have been archive and are available at~\cite{Glynatsi_2020_lstm_weights}.
+networks have been archived and are available at~\cite{Glynatsi_2020_lstm_weights}.
 
 Another measure which is being reported at each epoch is the accuracy. The accuracy
 is calculated after the learning parameters have been determined and it is in
@@ -919,7 +922,7 @@ turns which resulted in many best response sequences to defect on the last turn
 as the match was coming to an end. To avoid a series of unconditional defections
 by the LSTM strategies their performance is evaluated in  200 turns, which is a
 common number of turns used in the IPD literature~\cite{Axelrod1980a,
-Axelrod1980b, Harper2017, Knight2016}.
+Axelrod1980b, Knight2017, Knight2016}.
 
 A total of \metatournamentslstm trials of
 Algorithm~\ref{algorithm:meta_tournament_lstm_validation} have been run. For
@@ -962,7 +965,7 @@ The LSTM strategies that open with cooperation outperform any other strategy
 based on the same LSTM networks. Overall, the best performing
 strategies open with cooperation. The strategies that open with a probabilistic
 cooperation perform better than the strategies that open with defection.
-Interestedly, from Table~\ref{table:normalised_rank_lstm_tournaments} it is
+Interestingly, from Table~\ref{table:normalised_rank_lstm_tournaments} it is
 indicated that the strategies trained on the subsets perform better when they
 are based on the StoP model. There is no intuition as to why that is. The
 StoP networks have more learning parameters and yet they perform better when
@@ -1060,7 +1063,7 @@ This is answered by calculating the cumulative distribution function (CFD) of
 \(r\). CFD is the cumulative probability for a given value. It can be used to
 determine the probability that a random observation taken from the population
 will be less than or equal to a certain value. The CFD distributions are shown by
-Figures~\ref{fig:cfd_s_to_s}-\ref{fig:cfd_s_to_p}. The demonstrate that the
+Figures~\ref{fig:cfd_s_to_s}-\ref{fig:cfd_s_to_p}. They demonstrate that the
 strategies with a \(\bar{r}\) less than 0.333 have a 0.70-0.80 probability of
 being on the top ranks on a standard IPD tournament.
 
@@ -1115,13 +1118,13 @@ computer tournaments.
 
 A total of 6 strategies have achieved a \(\bar{r}\) lower than 0.35. Thus, these
 strategies have on average ranked on the top 30\% of a standard tournament.
-Furthermore, these strategies have a 0.70-0.80 probability of ranking in top half of a
+Furthermore, these strategies have a 0.70-0.80 probability of ranking in the top half of a
 standard tournament. Overall the most successful strategies of the analysis have
 been strategies that open with a cooperation.
 
 The LSTM strategies that have been trained against the top ranked
 strategies performed poorly. The top ranked strategies consisted of many trained
-strategies from~\cite{Harper2017}. In~\cite{Harper2017} it was shown that these
+strategies from~\cite{Knight2017}. In~\cite{Knight2017} it was shown that these
 strategies managed to exploit weak opponents whilst achieving mutual cooperation
 with strong opponents. The best response sequences of these strategies could
 have potentially only captured a single behaviour of these strategies, thus not
@@ -1770,7 +1773,7 @@ is that LSTMs incorporate a mechanism of memory. This allows the networks
 to learn to using the history of an opponent in order to decide their next move.
 The collection of best response sequences of
 Chapter~\ref{chapter:best_response_sequence} was purposely generated so that
-LSTMs could be trained to play optimally against a list of known IPD strategies.
+LSTMs could be trained to play successfully against a list of known IPD strategies.
 
 Two types of LSTM networks have been trained in this Chapter. Presented in
 section~\ref{section:training_a_rnn}, there were referred to as the sequence to

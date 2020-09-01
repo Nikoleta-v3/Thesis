@@ -5,26 +5,29 @@
 
 \begin{document}
     \begin{tikzpicture}[node distance=1cm]
-    \node[punkt] (literature) {\textbf{Literature Review}};
+    \node[punkt] (literature) {\textbf{2. Literature Review}};
     \node[below=1.2cm of literature] (dummy)
     {};
 
+    \node[above=2cm of literature, punkt] (intro) {\textbf{1. Introduction}};
+
     \node[left=6cm of dummy, punkt] (bibliometrics)
-    {\textbf{Bibliometric Study of the Prisoner's Dilemma}};
+    {\textbf{3. Bibliometric Study of the Prisoner's Dilemma}};
 
     \node[below=7cm of literature, punkt] (memoryone)
-    {\textbf{Best Response}\\ \textbf{Memory-one Strategies}};
+    {\textbf{5. Best Response}\\ \textbf{Memory-one Strategies}};
 
     \node[right=1.5cm of memoryone, punkt] (sequences)
-    {\textbf{Best Response Sequences}};
+    {\textbf{6. Best Response Sequences}};
 
     \node[left=1.5cm of memoryone, punkt] (metatournaments)
-    {\textbf{Meta Analysis of Tournaments}};
+    {\textbf{4. Meta Analysis of Tournaments}};
 
     \node[below=3cm of sequences, punkt] (lstm)
-    {\textbf{Long Short-Term} \\ \textbf{Memory Networks}};
+    {\textbf{7. Long Short-Term} \\ \textbf{Memory Networks}};
 
     \draw (literature) edge[pil, out=180, in=45] node {} (bibliometrics);
+    \draw (intro) edge[pil, out=-90, in=90] node {} (literature);
     \draw (literature) edge[pil, out=-90, in=90] node {} (memoryone);
     \draw (literature) edge[pil, out=-90, in=45] node {} (metatournaments);
     \draw (literature) edge[pil, out=-90, in=135] node {} (sequences);

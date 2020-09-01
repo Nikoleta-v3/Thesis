@@ -3,7 +3,7 @@
        memory in the Prisoner's Dilemma.}\label{chapter:memory_one}
 
 \begin{center}
-    The research reported in this Chapter has lead to a manuscript, entitled: \\
+    The research reported in this Chapter has led to a manuscript, entitled: \\
     \textbf{``A theory of mind: Best responses to memory-one strategies.
     The limitations of extortion and restricted memory''} \\
     Available at: \url{arxiv.org/abs/1911.12112} \\
@@ -20,7 +20,7 @@ response} memory-one strategies, as a multidimensional optimisation problem. We
 add to the literature that has shown that extortionate play is not always
 optimal by showing that optimal play is often not extortionate. We also provide
 evidence that memory-one strategies suffer from their limited memory in multi
-agent interactions and can be out performed by optimised strategies with longer
+agent interactions and can be outperformed by optimised strategies with longer
 memory.
 
 \hrulefill
@@ -29,7 +29,7 @@ The differences between the Chapter and the manuscript include details on the
 bespoke open source package used to carried out the numerical experiments,
 details on resultant theory and an additional section on reactive strategies.
 These details and the additional section are only reported in this Chapter, and
-not in the manuscript. The Chapter also includes details an introduction to the
+not in the manuscript. The Chapter also includes an introduction to the
 Bayesian optimisation used to carry out the numerical experiments.
 
 \section{Introduction}\label{section:mem_one_introduction}
@@ -46,9 +46,9 @@ environments. Extortionate behaviour is explored using a linear algebraic
 approach presented in~\cite{Knight2019}.
 
 The outcomes of this Chapter reinforce and extend known results which were presented in
-Chapter~\ref{chapter:literature_review}. Namely that memory-one strategies must
-adaptable to be successful~\cite{Knight2017, Knight2019} and
-that longer-memory strategies have a certain form of advantage over short memory
+Chapter~\ref{chapter:literature_review}. These are that (a) memory-one strategies must
+be adaptable to be successful~\cite{Knight2017, Knight2019} and (b)
+longer-memory strategies have a certain form of advantage over short memory
 strategies~\cite{Hilbe2017, Pan2015}. The Chapter is structured as follows:
 
 \begin{itemize}
@@ -211,7 +211,8 @@ against \(N\) opponents is given by Theorem~\ref{theorem:tournament_utility}.
 Equation~(\ref{eq:tournament_utility}) is the average score
 (using Equation~(\ref{eq:optimisation_quadratic})) against the set of opponents.
 
-Similar to the previous result, the formulation of
+Using a procedure similar to that used in Theorem~\ref{theorem:quadratic_form_u},
+the formulation of
 Theorem~\ref{theorem:tournament_utility} is validated using numerical
 simulations where the 10 memory-one strategies described in~\cite{Stewart2012}
 have been used as the opponents. Figure~\ref{fig:stewart_plotkin_results} shows
@@ -233,8 +234,9 @@ that the simulated behaviour has been captured successfully.
 
 The list of strategies from~\cite{Stewart2012} was also used to check whether
 the utility against a group of strategies could be captured by the utility
-against the mean opponent. Thus whether condition (\ref{eq:condition}) holds.
-However condition~(\ref{eq:condition}) fails, as shown in
+against the mean opponent; condition (\ref{eq:condition}).
+However, condition~(\ref{eq:condition}) fails. This is numerically shown using
+a series of examples, demonstrated in
 Figure~\ref{fig:hypothesis}.
 
 \begin{equation}\label{eq:condition}
@@ -581,7 +583,7 @@ Figure~\ref{fig:reactive_example_get_candidate_set}.
 retrieves the set \(S_q\) for a reactive strategy against a list of opponents.
 The set includes \(0\), \(1\) and to roots of the partial derivatives
 \(0.277\) and \(0.696\). An imaginary solution has also been
-calculated, however, it is ignore in the next step which calculates the best
+calculated, however, it is ignored in the next step which calculates the best
 response.}\label{fig:reactive_example_get_candidate_set}
 \end{figure}
 
@@ -978,7 +980,7 @@ memory-one best responses.
 
 The strategy used in this Chapter is one of the archetypes described in Chapter
 \ref{chapter:literature_review} called Gambler (introduced
-in~\cite{Harper2017}). As a reminder, Gambler is a stochastic version of a lookup
+in~\cite{Knight2017}). As a reminder, Gambler is a stochastic version of a lookup
 table. It makes probabilistic decisions based on the opponent's \(n_1\) first
 moves, the opponent's \(m_1\) last moves and the player's \(m_2\) last moves.
 In this Chapter Gambler with parameters: $n_1 = 2, m_1 = 1$ and $m_2
@@ -1007,7 +1009,7 @@ tournament of 500 turns and 200 repetitions, moreover,
 (\ref{eq:gambler_optimisation}) is solved numerically using Bayesian
 optimisation.
 
-Similarly to the previous section, a large data set has been generated with
+As in the previous section a large data set has been generated with
 instances of an optimal Gambler and a memory-one best response, available
 at~\cite{glynatsi2019}. Estimating a best response Gambler (17 dimensions) is
 computational more expensive compared to a best response memory-one (4
@@ -1125,7 +1127,7 @@ Figure~\ref{fig:stability_of_defection}.
 \section{Chapter summary}
 
 This Chapter has considered best response strategies in the IPD
-game, and more specifically, memory-one best responses. It has proven that:
+game, and more specifically, memory-one best responses. It has proved that:
 
 \begin{itemize}
     \item The utility of a memory-one strategy against a set
@@ -1150,8 +1152,9 @@ the usage of resultant theory in the search of best response strategies.
 The empirical results of this Chapter were presented in
 section~\ref{section:numerical_experiments}. The results relied on a bespoke
 data set of 1,000 pairs of memory-one opponents. For each pair of opponents two
-sets of best response memory-one strategies were estimated. Best responses that
-included and not self interactions. The behaviour of these best responses was
+sets of best response memory-one strategies were estimated. Best response
+calculations both in the case when self-interactions were included
+and also when they were not included. The behaviour of these best responses was
 investigated. More specifically, it was explored whether it was extortionate
 acts that made them the most favourable strategies. It was shown that it was not
 extortion but adaptability that allowed the strategies to gain the most from

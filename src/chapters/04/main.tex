@@ -2,7 +2,7 @@
 Iterated Prisoner's Dilemma.}\label{chapter:meta_tournaments}
 
 \begin{center}
-    The research reported in this Chapter has lead to a manuscript, entitled: \\
+    The research reported in this Chapter has led to a manuscript, entitled: \\
     \textbf{``Properties of winning Iterated Prisoner's Dilemma strategies''} \\
     Available at: \url{https://arxiv.org/abs/2001.05911} \\
     Associated data sets: \cite{Glynatsi2019_meta, Glynatsi2019_meta_raw_data} \\
@@ -84,11 +84,11 @@ Axelrod on properties of successful strategies (presented in
 section~\ref{section:intelligent_design}), and conclude that the properties are:
 
 \begin{itemize}
-    \item \st{Do not be envious} Be a little bit envious
+    \item Be a little bit envious
     \item Be ``nice'' in non-noisy environments or when game lengths are longer
     \item Reciprocate both cooperation and defection appropriately;
     Be provocable in tournaments with short matches, and generous when matches are longer
-    \item \st{Do not be too clever} It is okay to be clever
+    \item It is okay to be clever
     \item Adapt to the environment; Adjust to the mean population cooperation rate
 \end{itemize}
 
@@ -335,7 +335,7 @@ ending tournaments have the highest medians.}
 \end{figure*}
 
 In standard tournaments 10 out of the 15 top strategies were introduced
-in~\cite{Harper2017}. These are strategies based on finite state automata (FSM),
+in~\cite{Knight2017}. These are strategies based on finite state automata (FSM),
 hidden Markov models (HMM), artificial neural networks (ANN), lookup tables
 (LookerUp) and stochastic lookup tables (Gambler) that have been trained using
 reinforcement learning algorithms (evolutionary and particle swarm algorithms).
@@ -441,7 +441,7 @@ competition.
     strategies occupy the top spots followed by \BackStabber and \DoubleCrosser.
     The distributions of the \Retaliate strategies have no statistical
     difference. \PSOGamblerTwoTwoTwoNoiseZeroFive and \EvolvedHMMFive are trained strategies introduced
-    in~\cite{Harper2017} and \NiceMetaWinner and \NMWEMemoryOne are strategies
+    in~\cite{Knight2017} and \NiceMetaWinner and \NMWEMemoryOne are strategies
     based on teams. \Grudger is a strategy from Axelrod's original tournament and
     Forgetful \FoolMeOnce is based on the same approach as
     \Grudger.}\label{table:overall_results}
@@ -699,12 +699,12 @@ reflected here.
         \label{fig:discussion_noisy}
 \end{figure}
 
-The probability of noise has been observed to substantially affect optimal
+The probability of noise has been observed to substantially affect successful
 behaviour.
 Figure~\ref{fig:compared_to_mean_over_noise_probability} gives the ratio \(C_r /
 C_{\text{mean}}\) for the winners in tournaments with noise, over the
 probability of noise. From Figure~\ref{fig:noisy_discussion_over_noise} it is
-clear that the cooperating only 67\% of the time the mean cooperator did is
+clear that cooperating only 67\% of the time the mean cooperator did is
 optimal only when \(p_n \in [0.2, 0.4)\) and \(p_n \in [0.6, 0.7]\). In
 environments with \(p_n < 0.1\) the winners want to be close to the mean
 cooperator, similarly to standard tournaments, and as the probability of noise
@@ -748,13 +748,13 @@ ZDs are a set of strategies that are often envious as they try to exploit their
 opponents. The winners of the tournaments considered in this analysis are
 envious, but not as much as many ZDs.
 Though the exact interactions between the matches have not been recorded here,
-the work of~\cite{Harper2017} which introduced the trained strategies that
+the work of~\cite{Knight2017} which introduced the trained strategies that
 appeared in the top ranked strategies of section~\ref{section:top_performances}
-did. In~\cite{Harper2017} it was shown that clever strategies managed to achieve
+did. In~\cite{Knight2017} it was shown that clever strategies managed to achieve
 mutual cooperation with stronger strategies whilst exploiting the weaker
 strategies. This could explain the clever winners
 of this analysis, and would explain the SSE distributions. This could also
-be the reason why ZDs fail to appear in the tops ranks -- they try to exploit
+be the reason why ZDs fail to appear in the top ranks -- they try to exploit
 all opponents and cannot actively adapt back to mutual cooperation against
 stronger strategies, which requires more depth of memory. Note that
 ZDs also tend to perform poorly in population games for a similar reason: they
@@ -850,7 +850,7 @@ adaptability to a more diverse set of environments.
 It was also shown that while the type of exploitation attempted by ZDs is
 not typically effective in standard tournaments, envious strategies
 capable of both exploiting and not their opponents can be highly successful.
-Based on the results of~\cite{Harper2017} this could be because they are
+Based on the results of~\cite{Knight2017} this could be because they are
 selectively exploiting weaker opponents while mutually cooperating with stronger
 opponents. Highly noisy or tournaments with short matches also favoured envious
 strategies. These environments mitigated the value of being nice. Uncertainty
@@ -861,7 +861,7 @@ cooperating to typically defecting.
 The feature analysis of the best performing strategies demonstrated that a
 strategy should reciprocate, as suggested by Axelrod, but it should relax its
 readiness to do so and be more generous. For noisy environments this is
-inline with the results of~\cite{Bendor1991, Donninger1986, Molander1985,
+in line with the results of~\cite{Bendor1991, Donninger1986, Molander1985,
 Hammerstein1984}, however, it was also showed that generosity pays off even in
 standard settings, and that in fact the only setting a strategy would want to be
 too provocable is when the matches are not long. Forgiveness as defined by
@@ -898,16 +898,16 @@ Overall, the five properties successful strategies need to have in a IPD competi
 based on the analysis that has been presented in this Chapter are:
 
 \begin{itemize}
-    \item \st{Do not be envious} Be a little bit envious
+    \item Be a little bit envious
     \item Be ``nice'' in non-noisy environments or when game lengths are longer
     \item Reciprocate both cooperation and defection appropriately;
     Be provocable in tournaments with short matches, and generous when matches are longer
-    \item \st{Do not be too clever} It is okay to be clever
+    \item It is okay to be clever
     \item Adapt to the environment; Adjust to the mean population cooperation rate
 \end{itemize}
 
-In this Chapter optimal behaviour was explored whilst considering a collection
+In this Chapter well performed behaviour was explored whilst considering a collection
 of pre defined strategies. In comparison, Chapter~\ref{chapter:memory_one} does
 not consider pre defined strategies but estimates the exact best responses. This
-is done by considering strategies with a theory of mind that compete in e
+is done by considering strategies with a theory of mind that compete in
 environments of memory-one opponents.

@@ -2,7 +2,7 @@
 the field of the Iterated Prisoner's Dilemma}\label{chapter:bibliometric_study}
 
 \begin{center}
-    The research reported in this Chapter has lead to a manuscript, entitled: \\
+    The research reported in this Chapter has led to a manuscript, entitled: \\
     \textbf{``A bibliometric study of research topics, collaboration and influence in the field of the Iterated Prisoner's Dilemma''} \\
     Available at: \url{arxiv.org/abs/1911.06128} \\
     Associated data sets: \cite{auction_data_2018, anarchy_data_2018, pd_data_2018}\\
@@ -73,7 +73,7 @@ than individually. Indeed this is the very premise of the PD itself.
 Collaboration in groups has a long tradition in experimental
 sciences and it has be proven to be productive according
 to~\cite{Etzkowitz1992}. The number of collaborations can be different
-between research fields and understanding how collaborative a field is not
+between research fields. Understanding collaborative nature of a field is not
 always an easy task. Several studies tend to consider academic citations as a
 measure. A blog post published by Nature~\cite{nature_blog}
 argues that depending on citations can often be misleading because the true
@@ -86,7 +86,7 @@ development of a field is to use the co-authorship network, as described
 in~\cite{Liu2015}. The co-authorship network has many advantages as several
 graph theoretic measures can be used as proxies to explain author relationships.
 For example the average degree of a node corresponds to the average number of
-an authors' collaborators, and clustering coefficient corresponds to the extent that
+an author's collaborators, and clustering coefficient corresponds to the extent that
 two collaborators of an author also collaborate with each other.
 In~\cite{Liu2015}, the approach was applied to analyse the development of the field
 ``evolution of cooperation'', and in~\cite{youngblood2018} to identify the
@@ -586,7 +586,7 @@ In comparison, modularity is a global measure designed to measure the strength o
 division of a network into communities. The number of communities will be reported
 using the Clauset-Newman-Moore method~\cite{clauset2004}. Also the modularity index
 is calculated using the Louvain method described in~\cite{Blondel2008}. The value
-of the modularity index can vary between \([-1, 1]\), a high value of modularity
+of the modularity index can vary between \([-1, 1]\); a high value of modularity
 corresponds to a structure where there are dense connections between the nodes within
 communities but sparse connections between nodes in different communities.
 That means that there are many sub communities of authors that write together
@@ -649,7 +649,7 @@ A document with abstract ``The study of
 cooperation in humans'' has a \(c_{A} = 0.039 + 0.028 + 0.026 = 0.093\) and
 \(c_B = 0.020 + 0.0 + 0.0 = 0.020\). In essence, LDA maps every paper to a
 vector. In this example the document is mapped to \([0.093, 0.020]\). Each
-document has a dominant topic to which is going to be assigned in. The dominant
+document has a dominant topic. The dominant
 topic is the topic with the highest percentage contribution denoted as \(c^*\).
 For the given example the dominant topic is Topic A, and \(c^*=c_A\).
 
@@ -739,7 +739,7 @@ such as cultural evolution~\cite{youngblood2018}, Astronomy and Astrophysics,
 Genetics and Heredity, Nuclear and Particle Physics as reported
 by~\cite{nature_author_blog}.
 There are only a total of 545 publications with a single author, which
-corresponds to the 22\% of the papers. It appears that academic publications
+corresponds to the 22\% of papers. It appears that academic publications
 tend to be undertaken in the form of collaborative effort, which is in line
 with the claim of~\cite{Kyvik2017}. From
 Figure~\ref{fig:ci_over_time} the trend of collaboration index over the years is given. There are
@@ -934,8 +934,7 @@ given by Figure~\ref{fig:median_percentage_contribution_over_time}.
 
 The five topics of the PD presented in this manuscript appear to always be
 less good at fitting the publications compared to the six topics of LDA \(n=6\).
-Moreover, there are less good than the topics of the optimal number of topics
-from 1951 to 1995. The difference in the performance values, Equation~(\ref{eq:ratio}),
+The difference in the performance values, Equation~(\ref{eq:ratio}),
 however are small. The relevance of the five topics has been increasing
 over time, and though, the topics did not always fit the majority of published
 work over time, there were still papers being published on those topics.
@@ -945,7 +944,8 @@ work over time, there were still papers being published on those topics.
     \includegraphics[width=.75\textwidth]{src/chapters/03/paper/bibliometric-study-of-the-prisoners-dilemma/assets/images/contribution_over_time.pdf}
     \caption{Maximum percentage contributions (\(c^*\)) over the time periods,
     for the LDA models for the entire data set for \(n\) equal to 5, 6
-    and the optimal number of topics over time.}
+    and the optimal number of topics over time. The optimal number of topics are
+    based on the coherence score.}
     \label{fig:median_percentage_contribution_over_time}
 \end{figure}
 
@@ -994,7 +994,7 @@ But how do these compare to other fields? Two more data sets for the topics
 ``price of anarchy'' and ``auction Games'' have been collected in order to
 compare the collaborative behaviour of the PD to other game theoretic fields. A
 total of 3,444 publications have been collected for auction games and 748 for
-price of anarchy. Price of anarchy is relatively a new field, with the first
+price of anarchy. Price of anarchy is a relatively new field, with the first
 publication on the topic being~\cite{Koutsoupias1999} in 1999. This explains the
 small number of articles that have been retrieved. Both data sets have been
 archived and are available in~\cite{auction_data_2018, anarchy_data_2018}.
