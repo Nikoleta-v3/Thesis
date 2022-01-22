@@ -1,6 +1,6 @@
 invoke
 jupyter==1.0.0
-ipython==5.0.0
+ipython==7.16.3
 bibtexparser
 axelrod==4.2.1
 numpy==1.15.4
